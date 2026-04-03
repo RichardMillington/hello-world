@@ -180,6 +180,39 @@
 
     footer{text-align:center;padding:2rem 1rem;font-size:.78rem;color:var(--text-sec);border-top:1px solid var(--border);margin-top:2rem}
 
+    /* FeverBee Verdict */
+    .verdict-badge{display:inline-flex;align-items:center;gap:.35rem;padding:.25rem .75rem;border-radius:6px;font-size:.78rem;font-weight:700;letter-spacing:.3px}
+    .verdict-rising{background:#0d2818;color:#34d399;border:1px solid #1a4030}
+    .verdict-rising::before{content:"\25B2";font-size:.65rem}
+    .verdict-steady{background:#2a2518;color:#fbbf24;border:1px solid #3d3520}
+    .verdict-steady::before{content:"\25C6";font-size:.65rem}
+    .verdict-declining{background:#2a1215;color:#f87171;border:1px solid #3d1a1a}
+    .verdict-declining::before{content:"\25BC";font-size:.65rem}
+    .verdict-watch{background:#1a1f2e;color:#818cf8;border:1px solid #2a2f4e}
+    .verdict-watch::before{content:"\25CB";font-size:.65rem}
+
+    /* CTA sections */
+    .cta-box{background:linear-gradient(135deg,#1a2736,#1e2d3d);border:1px solid var(--amber);border-radius:var(--radius);padding:1.5rem;text-align:center;margin:1.5rem 0}
+    .cta-box h3{font-size:1rem;font-weight:800;color:var(--amber);margin-bottom:.3rem}
+    .cta-box p{font-size:.85rem;color:var(--text-sec);margin-bottom:.75rem}
+    .cta-btn{display:inline-block;padding:.65rem 1.5rem;background:var(--amber);color:var(--navy);border:0;border-radius:8px;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit;transition:.15s;text-decoration:none}
+    .cta-btn:hover{background:var(--amber-dark);text-decoration:none}
+    .cta-price{font-size:.78rem;color:var(--text-dim);margin-top:.4rem}
+
+    /* Requirements form */
+    .req-section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin:1.5rem 0}
+    .req-section h3{font-size:1rem;font-weight:700;color:var(--amber);margin-bottom:.3rem}
+    .req-section p{font-size:.84rem;color:var(--text-sec);margin-bottom:.75rem}
+    .req-form{display:flex;flex-direction:column;gap:.6rem}
+    .req-form input,.req-form textarea{background:var(--navy-light);border:1px solid var(--border);border-radius:8px;padding:.6rem .9rem;color:var(--text);font-size:.88rem;font-family:inherit;outline:0;resize:vertical}
+    .req-form input:focus,.req-form textarea:focus{border-color:var(--amber);box-shadow:0 0 0 3px var(--amber-glow)}
+    .req-form input::placeholder,.req-form textarea::placeholder{color:var(--text-dim)}
+    .req-form textarea{min-height:100px}
+    .req-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+    .req-submit{padding:.6rem 1.5rem;background:var(--amber);color:var(--navy);border:0;border-radius:8px;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit;transition:.15s;justify-self:start}
+    .req-submit:hover{background:var(--amber-dark)}
+    .req-success{display:none;padding:1rem;background:var(--green-bg);border:1px solid #1a4030;border-radius:8px;color:var(--green);font-size:.88rem;font-weight:600;text-align:center}
+
     @media(max-width:768px){
       header h1{font-size:1.25rem}
       .platform-grid{grid-template-columns:1fr}
@@ -245,6 +278,28 @@
   </div>
 
   <div class="profile-page" id="profilePage"></div>
+
+  <div class="cta-box" id="ctaConsult">
+    <h3>Not sure which platform is right for you?</h3>
+    <p>Book a 1-hour consultation with FeverBee. We'll review your requirements, recommend the right platform, and help you avoid costly mistakes.</p>
+    <a class="cta-btn" href="mailto:richard@feverbee.com?subject=Community%20Platform%20Consultation%20Request&body=Hi%20Richard%2C%0A%0AI'd%20like%20to%20book%20a%201-hour%20community%20platform%20consultation%20(%24325).%0A%0AOrganisation%3A%20%0ACurrent%20platform%20(if%20any)%3A%20%0AKey%20requirements%3A%20%0A%0AThanks">Book a Consultation - $325/hr</a>
+    <div class="cta-price">1 hour with a FeverBee community strategist. We'll send an invoice after booking.</div>
+  </div>
+
+  <div class="req-section" id="reqSection">
+    <h3>Get a Personalised Recommendation</h3>
+    <p>Tell us about your community needs and we'll email you our recommendation on which platform fits best.</p>
+    <form class="req-form" id="reqForm" onsubmit="submitReq(event)">
+      <div class="req-row">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Email address" required>
+      </div>
+      <input type="text" name="org" placeholder="Organisation name">
+      <textarea name="requirements" placeholder="Describe your community goals, audience size, key requirements, current platform (if any), budget range, and any must-have features or integrations..." required></textarea>
+      <button type="submit" class="req-submit">Get Our Recommendation</button>
+    </form>
+    <div class="req-success" id="reqSuccess">Thanks! We've received your requirements. A FeverBee strategist will review and email you our recommendation within 2 business days.</div>
+  </div>
 </div>
 
 <button class="compare-fab" id="compareFab" onclick="switchTab('compare')">
@@ -261,7 +316,8 @@ const platforms = [
     tagline:"Full-featured enterprise community with social customer care",
     uxApproach:[{type:"forum",label:"Traditional Forum"}],
     pricing:"~$50,000+/yr (custom quotes only)",target:"Enterprise",
-    breadthOfFeatures:9,qualityOfFeatures:8.5,integrations:8,dataPrivacySecurity:9,servicesSupport:8,reportsAnalytics:8.5,
+    verdict:"Established leader, but watch post-acquisition direction",verdictType:"steady",website:"https://khoros.com",
+    easeOfUse:6.5,qualityOfFeatures:8.5,integrations:8,dataPrivacySecurity:9,servicesSupport:8,reportsAnalytics:8.5,
     execution:{
       "Discussions":"Classic threaded forum. Topic-based boards with categories and sub-categories. Deep threading suits long technical support conversations. Content is highly searchable and persistent.",
       "Q&A":"Dedicated Q&A format with accepted answers, voting, and best-answer selection. Separate from general discussion boards.",
@@ -300,7 +356,8 @@ const platforms = [
     tagline:"Customer success-focused community platform (formerly inSided)",
     uxApproach:[{type:"forum",label:"Traditional Forum"},{type:"feed",label:"Product Updates Feed"}],
     pricing:"Custom (3 tiers: Professional, Business, Enterprise)",target:"Mid-Market / Enterprise",
-    breadthOfFeatures:8,qualityOfFeatures:8,integrations:8.5,dataPrivacySecurity:8,servicesSupport:8.5,reportsAnalytics:8,
+    verdict:"Rising fast. Strong product momentum and analyst recognition",verdictType:"rising",website:"https://www.gainsight.com/customer-communities/",
+    easeOfUse:7.5,qualityOfFeatures:8,integrations:8.5,dataPrivacySecurity:8,servicesSupport:8.5,reportsAnalytics:8,
     execution:{
       "Discussions":"Forum-style with threaded topics. Organised by categories. Focused on customer-to-customer support and peer engagement rather than general discussion.",
       "Q&A":"Integrated into forum topics. Less distinct from discussions than Khoros or Vanilla.",
@@ -340,7 +397,8 @@ const platforms = [
     tagline:"Proven B2B community platform for support-driven engagement",
     uxApproach:[{type:"forum",label:"Traditional Forum"},{type:"hybrid",label:"Q&A Hybrid"}],
     pricing:"Custom (3 tiers: Corporate, Enterprise, Enterprise Plus)",target:"Mid-Market / Enterprise",
-    breadthOfFeatures:8,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7.5,
+    verdict:"Solid and reliable. Steady performer in B2B support communities",verdictType:"steady",website:"https://www.higherlogic.com/vanilla/",
+    easeOfUse:7.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7.5,
     execution:{
       "Discussions":"Traditional threaded forum with categories. Clean, focused interface. Strong for B2B support communities where searchability matters.",
       "Q&A":"Distinct Q&A content type with accepted answers and AI-suggested answers from historical content. The Q&A format is more differentiated from discussions than most platforms.",
@@ -380,7 +438,8 @@ const platforms = [
     tagline:"CRM-native community for organisations deep in the Salesforce ecosystem",
     uxApproach:[{type:"hybrid",label:"Configurable (Forum/Portal/Feed)"}],
     pricing:"Per-login ($2-$15) or per-member ($5-$35/mo) by license type",target:"Enterprise",
-    breadthOfFeatures:9,qualityOfFeatures:7.5,integrations:9.5,dataPrivacySecurity:9,servicesSupport:7,reportsAnalytics:8.5,
+    verdict:"Dominant if you're in the ecosystem. Overkill if you're not",verdictType:"steady",website:"https://www.salesforce.com/products/experience-cloud/",
+    easeOfUse:5,qualityOfFeatures:7.5,integrations:9.5,dataPrivacySecurity:9,servicesSupport:7,reportsAnalytics:8.5,
     execution:{
       "Discussions":"Fully configurable - can be traditional forum, Chatter-style feed, or portal-style. Experience Builder lets you design any layout. The flexibility is powerful but means more setup complexity.",
       "Q&A":"Q&A available via Chatter Questions or custom Lightning components. Not as purpose-built as dedicated community Q&A.",
@@ -419,7 +478,8 @@ const platforms = [
     tagline:"Enterprise community with strong moderation and CX suite integration",
     uxApproach:[{type:"forum",label:"Traditional Forum"}],
     pricing:"Custom enterprise quotes only",target:"Enterprise",
-    breadthOfFeatures:8.5,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:8.5,servicesSupport:7.5,reportsAnalytics:8,
+    verdict:"Declining momentum. Falling behind on innovation and market presence",verdictType:"declining",website:"https://www.verint.com/engagement-channels/communities/",
+    easeOfUse:6,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:8.5,servicesSupport:7.5,reportsAnalytics:8,
     execution:{
       "Discussions":"Traditional threaded forum inherited from Telligent. Category-based boards. Mature forum infrastructure but older UX patterns.",
       "Q&A":"Q&A built into forum structure. Less distinct from general discussions than newer platforms.",
@@ -457,7 +517,8 @@ const platforms = [
     tagline:"Modern, API-first community with flexible content types and feed-style UX",
     uxApproach:[{type:"feed",label:"Social Feed / Wall"}],
     pricing:"From $399/mo (Starter) to $1,500/mo (Growth); Premium custom",target:"SMB / Mid-Market",
-    breadthOfFeatures:7.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:7,servicesSupport:7,reportsAnalytics:7,
+    verdict:"Watch this space. Modern approach but needs to prove enterprise readiness",verdictType:"watch",website:"https://www.bettermode.com",
+    easeOfUse:8.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:7,servicesSupport:7,reportsAnalytics:7,
     execution:{
       "Discussions":"Social feed/wall-style. Content appears in a scrolling feed like LinkedIn or Facebook rather than threaded forum topics. Feels modern and drives casual engagement but content is harder to find months later.",
       "Q&A":"Q&A built into the feed. Users can post questions and receive answers, but it lives within the same feed UI rather than a dedicated Q&A section.",
@@ -495,7 +556,8 @@ const platforms = [
     tagline:"Community events platform expanding into all-in-one community management",
     uxApproach:[{type:"events",label:"Events-First"},{type:"feed",label:"Community Hub Feed"}],
     pricing:"Custom enterprise pricing (estimated mid-five figures/yr)",target:"Mid-Market / Enterprise",
-    breadthOfFeatures:7,qualityOfFeatures:7.5,integrations:7.5,dataPrivacySecurity:7.5,servicesSupport:8,reportsAnalytics:7.5,
+    verdict:"Rising in events. Still proving itself as a full community platform",verdictType:"rising",website:"https://www.bevy.com",
+    easeOfUse:7,qualityOfFeatures:7.5,integrations:7.5,dataPrivacySecurity:7.5,servicesSupport:8,reportsAnalytics:7.5,
     execution:{
       "Discussions":"Community Hub discussions are newer and still maturing. Not the core strength - events are. Forum/discussion features are functional but lack the depth of dedicated forum platforms.",
       "Q&A":"Basic Q&A within community hub. Not a primary capability.",
@@ -533,7 +595,8 @@ const platforms = [
     tagline:"Alumni and membership community platform expanding into enterprise",
     uxApproach:[{type:"hybrid",label:"Member Directory + Feed"},{type:"events",label:"Events-Centric"}],
     pricing:"Custom (~$5,000 - $30,000+/yr based on members)",target:"Mid-Market / Enterprise",
-    breadthOfFeatures:7.5,qualityOfFeatures:7.5,integrations:6.5,dataPrivacySecurity:8,servicesSupport:7,reportsAnalytics:7,
+    verdict:"Strong in its niche. Best choice for alumni and membership orgs",verdictType:"steady",website:"https://www.hivebrite.com",
+    easeOfUse:7.5,qualityOfFeatures:7.5,integrations:6.5,dataPrivacySecurity:8,servicesSupport:7,reportsAnalytics:7,
     execution:{
       "Discussions":"Discussion forums available but less sophisticated than dedicated community platforms. Not the primary use case - member networking is.",
       "Q&A":"Basic Q&A within discussions. Not a distinct content type.",
@@ -572,7 +635,8 @@ const platforms = [
     tagline:"The most popular open-source forum platform, used by developer and tech communities worldwide",
     uxApproach:[{type:"forum",label:"Modern Forum"},{type:"hybrid",label:"Chat Hybrid"}],
     pricing:"Free (self-hosted) or $50-$300/mo hosted; Enterprise from $8,000/yr",target:"All sizes",
-    breadthOfFeatures:7.5,qualityOfFeatures:8.5,integrations:7,dataPrivacySecurity:8,servicesSupport:6.5,reportsAnalytics:6.5,
+    verdict:"Rising. The open-source leader with real AI momentum",verdictType:"rising",website:"https://www.discourse.org",
+    easeOfUse:7,qualityOfFeatures:8.5,integrations:7,dataPrivacySecurity:8,servicesSupport:6.5,reportsAnalytics:6.5,
     execution:{
       "Discussions":"Modern threaded forum with infinite scroll, real-time updates, and a flat-ish threading model (replies quote parent context rather than deep nesting). Feels contemporary compared to traditional phpBB-style forums. Categories and tags for organisation. Trust levels auto-promote active members.",
       "Q&A":"Dedicated Q&A plugin with accepted answers and voting. Can be enabled per category. Functional but not as central as in Vanilla.",
@@ -611,7 +675,8 @@ const platforms = [
     tagline:"Lightweight, elegant open-source forum for simple, fast community discussions",
     uxApproach:[{type:"forum",label:"Modern Minimal Forum"}],
     pricing:"Free (self-hosted only)",target:"SMB / Developer communities",
-    breadthOfFeatures:5.5,qualityOfFeatures:7,integrations:5,dataPrivacySecurity:7,servicesSupport:4,reportsAnalytics:4.5,
+    verdict:"Niche option. Best for small communities wanting simplicity over features",verdictType:"watch",website:"https://flarum.org",
+    easeOfUse:8,qualityOfFeatures:7,integrations:5,dataPrivacySecurity:7,servicesSupport:4,reportsAnalytics:4.5,
     execution:{
       "Discussions":"Clean, modern single-page app forum. Two-pane layout: discussion list on the left, conversation on the right. Fast and responsive. Feels like a lightweight, elegant forum stripped to essentials. Tags instead of categories (flat, not hierarchical).",
       "Q&A":"No native Q&A format. Discussions only. Community extensions can add basic Q&A features.",
@@ -647,7 +712,7 @@ const platforms = [
 ];
 
 const criteria = [
-  {key:"breadthOfFeatures",label:"Breadth of Features"},
+  {key:"easeOfUse",label:"Ease of Setup & Use"},
   {key:"qualityOfFeatures",label:"Quality of Features"},
   {key:"integrations",label:"Integrations"},
   {key:"dataPrivacySecurity",label:"Data Privacy & Security"},
@@ -707,6 +772,9 @@ function weightedScore(p){
 function uxBadges(arr){
   return arr.map(a=>`<span class="ux-badge ux-${a.type}">${a.label}</span>`).join("");
 }
+function verdictBadge(p){
+  return`<span class="verdict-badge verdict-${p.verdictType}">${p.verdict}</span>`;
+}
 function catBadge(p){
   if(p.category==="established")return'<span class="cat-label cat-established">Established</span>';
   if(p.category==="opensource")return'<span class="cat-label cat-opensource">Open Source</span>';
@@ -757,6 +825,7 @@ function renderOverview(){
       <div class="card-cat">${catBadge(p)} ${uxBadges(p.uxApproach)}</div>
       ${bars}
       <div class="overall"><span class="olbl">Weighted Score</span><span class="oval ${sClass(p.ws)}">${p.ws}</span></div>
+      <div style="margin-top:.4rem">${verdictBadge(p)}</div>
       <div class="pmeta"><strong>${p.pricing}</strong></div>
       <button class="view-profile-btn" onclick="event.stopPropagation();showProfile('${p.id}')">View Profile</button>
     </div>`;
@@ -804,7 +873,8 @@ function showProfile(id){
       <div style="margin-bottom:.5rem">${catBadge(p)} ${uxBadges(p.uxApproach)}</div>
       <h2>${p.name}</h2>
       <div class="p-tagline">${p.tagline}</div>
-      <div class="p-meta"><strong>Pricing:</strong> ${p.pricing} &middot; <strong>Target:</strong> ${p.target}</div>
+      <div class="p-meta"><strong>Pricing:</strong> ${p.pricing} &middot; <strong>Target:</strong> ${p.target}${p.website?` &middot; <a href="${p.website}" target="_blank" rel="noopener">${p.website.replace('https://','').replace('www.','').replace(/\/$/,'')}</a>`:''}</div>
+      <div style="margin-top:.6rem">${verdictBadge(p)}</div>
       <div style="margin-top:.75rem">${scoreBars}</div>
       <div class="overall" style="max-width:300px"><span class="olbl">Weighted Score</span><span class="oval ${sClass(weightedScore(p))}">${weightedScore(p)}</span></div>
     </div>
@@ -843,6 +913,11 @@ function showProfile(id){
           <p>${p.editorial}</p>
         </div>
       </div>
+      <div class="profile-section full-width" style="text-align:center;background:linear-gradient(135deg,#1a2736,#1e2d3d);border-color:var(--amber)">
+        <h4 style="border:0;display:block">Need help deciding if ${p.name} is right for you?</h4>
+        <p style="font-size:.85rem;color:var(--text-sec);margin:.5rem 0 .75rem">Book a 1-hour consultation with a FeverBee strategist. We'll review your specific requirements and give you an honest recommendation.</p>
+        <a class="cta-btn" href="mailto:richard@feverbee.com?subject=Platform%20Consultation%20-%20${encodeURIComponent(p.name)}&body=Hi%20Richard%2C%0A%0AI'm%20considering%20${encodeURIComponent(p.name)}%20and%20would%20like%20to%20book%20a%201-hour%20consultation%20(%24325).%0A%0AOrganisation%3A%20%0AKey%20requirements%3A%20%0A%0AThanks">Book a Consultation - $325/hr</a>
+      </div>
     </div>`;
 
   // Hide main tabs, show profile
@@ -875,6 +950,7 @@ function renderCompare(){
 
   // Summary rows (always show)
   rows+=`<tr style="background:#111b25"><td style="font-weight:700">Weighted Score</td>${picks.map(p=>{const ws=weightedScore(p);return`<td style="font-weight:800;font-size:1rem" class="${sClass(ws)}">${ws}</td>`}).join("")}</tr>`;
+  rows+=`<tr style="background:#111b25"><td>FeverBee Verdict</td>${picks.map(p=>`<td>${verdictBadge(p)}</td>`).join("")}</tr>`;
   rows+=`<tr style="background:#111b25"><td>Category</td>${picks.map(p=>`<td>${catBadge(p)}</td>`).join("")}</tr>`;
   rows+=`<tr style="background:#111b25"><td>UX Approach</td>${picks.map(p=>`<td>${uxBadges(p.uxApproach)}</td>`).join("")}</tr>`;
 
@@ -949,6 +1025,20 @@ document.querySelectorAll(".pill").forEach(b=>b.addEventListener("click",()=>{
   currentFilter=b.dataset.cat;
   renderOverview();
 }));
+
+// Requirements form
+function submitReq(e){
+  e.preventDefault();
+  const form=document.getElementById("reqForm");
+  const data=new FormData(form);
+  const name=data.get("name"),email=data.get("email"),org=data.get("org"),reqs=data.get("requirements");
+  // Send via mailto as fallback (could be replaced with API endpoint)
+  const subject=encodeURIComponent("Platform Recommendation Request from "+name);
+  const body=encodeURIComponent(`Name: ${name}\nEmail: ${email}\nOrganisation: ${org}\n\nRequirements:\n${reqs}`);
+  window.location.href=`mailto:richard@feverbee.com?subject=${subject}&body=${body}`;
+  form.style.display="none";
+  document.getElementById("reqSuccess").style.display="block";
+}
 
 // Init
 renderWeights();
