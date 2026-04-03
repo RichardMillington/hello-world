@@ -47,6 +47,7 @@
     .cat-label{display:inline-block;padding:.15rem .6rem;border-radius:4px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
     .cat-established{background:#1a2736;color:#6b8aad;border:1px solid #2a3f55}
     .cat-newgen{background:#2a2518;color:var(--amber);border:1px solid #3d3520}
+    .cat-opensource{background:#1a2a20;color:var(--green);border:1px solid #2a4030}
 
     /* Platform grid */
     .overview-controls{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.75rem}
@@ -215,6 +216,7 @@
         <button class="pill active" data-cat="all">All</button>
         <button class="pill" data-cat="established">Established Platforms</button>
         <button class="pill" data-cat="newgen">New Generation</button>
+        <button class="pill" data-cat="opensource">Open Source</button>
       </div>
       <input type="text" class="search-box" id="searchInput" placeholder="Search platforms...">
     </div>
@@ -564,6 +566,83 @@ const platforms = [
     strengths:["Purpose-built for alumni/membership organisations - features like mentoring, fundraising, job boards are native","Strongest white-labelling of any platform (fully branded apps, no 'powered by')","All-in-one for membership orgs: CMS + CRM + events + fundraising + jobs","GDPR-compliant European origins","Native mobile apps included"],
     considerations:["Forum/discussion features less sophisticated than dedicated community platforms","Fewer third-party integrations than competitors","Academic/alumni DNA may not suit all enterprise use cases","Smaller engineering team than established vendors","Analytics less advanced"],
     editorial:"[Your editorial opinion on Hivebrite goes here. How well does the alumni-origin translate to broader community use? Where does it genuinely excel vs where is it stretching?]"
+  },
+  {
+    id:"discourse",name:"Discourse",category:"opensource",catLabel:"Open Source",
+    tagline:"The most popular open-source forum platform, used by developer and tech communities worldwide",
+    uxApproach:[{type:"forum",label:"Modern Forum"},{type:"hybrid",label:"Chat Hybrid"}],
+    pricing:"Free (self-hosted) or $50-$300/mo hosted; Enterprise from $8,000/yr",target:"All sizes",
+    breadthOfFeatures:7.5,qualityOfFeatures:8.5,integrations:7,dataPrivacySecurity:8,servicesSupport:6.5,reportsAnalytics:6.5,
+    execution:{
+      "Discussions":"Modern threaded forum with infinite scroll, real-time updates, and a flat-ish threading model (replies quote parent context rather than deep nesting). Feels contemporary compared to traditional phpBB-style forums. Categories and tags for organisation. Trust levels auto-promote active members.",
+      "Q&A":"Dedicated Q&A plugin with accepted answers and voting. Can be enabled per category. Functional but not as central as in Vanilla.",
+      "Ideation":"No native ideation. Can be approximated with voting plugins but not purpose-built.",
+      "Knowledge Base":"Docs-style knowledge base available. Wiki-mode lets any post become collaboratively editable. Not as structured as dedicated KB platforms.",
+      "Content Format":"Forum-first but modernised. Infinite scroll, real-time presence indicators, and live updates make it feel more dynamic than traditional forums. Chat channels add real-time messaging alongside async discussion. Rich markdown editor with drag-drop uploads.",
+      "AI Approach":"AI-powered features include AI search, AI-generated topic summaries, AI-suggested post improvements, AI auto-tagging, and AI-powered spam detection. Built-in AI bot that can answer questions from community content. Active AI development roadmap.",
+      "Events":"No native events. Plugin ecosystem can add basic event functionality.",
+      "Mobile":"Progressive Web App (PWA) with native-like mobile experience. Discourse Hub app available for iOS/Android to manage multiple Discourse communities.",
+      "Unique Features":"Fully open source (GPL v2) - you own your data and can modify anything. Trust level system auto-promotes engaged members through 4 tiers, reducing moderation burden. Plugin ecosystem with 100+ community plugins. Chat channels alongside forum. Can self-host on any infrastructure. Massive community of developers extending the platform."
+    },
+    communityFeatures:{
+      "Discussion Forums":true,"Q&A":true,"Ideation / Ideas":"Partial","Knowledge Base":"Partial","Chat Channels":true,
+      "Gamification":true,"Moderation Tools":true,"SSO (SAML/OAuth)":true,"API Access":true,
+      "Custom Branding":true,"Native Mobile App":"Partial","Events":"Partial",
+      "AI Content Moderation":true,"AI Search / Answers":true,"Self-Hosted Option":true,"Multi-language":true
+    },
+    keyIntegrations:["WordPress","Slack","GitHub","Zendesk","Zapier","OAuth/SAML SSO providers","Patreon","Custom via plugin API"],
+    examples:[
+      {name:"Meta Community Forums",url:"https://community.meta.discourse.org",desc:"Discourse's own community - the largest Discourse instance"},
+      {name:"Docker Community Forums",url:"https://forums.docker.com",desc:"Developer community for container platform"},
+      {name:"Figma Community Forum",url:"https://forum.figma.com",desc:"Design tool community for support and discussion"}
+    ],
+    recentNews:[
+      {date:"2025",text:"Major AI feature rollout: AI search, topic summaries, suggested improvements, auto-tagging, and AI bot for answering questions"},
+      {date:"2025",text:"Chat channels matured as first-class feature alongside async forum discussions"},
+      {date:"2025",text:"Continued growth in developer and tech community adoption"},
+      {date:"2025",text:"Discourse for Teams (managed enterprise) expanding with SLA and priority support"}
+    ],
+    strengths:["Fully open source - own your data, modify anything, no vendor lock-in","Most modern forum UX of any open-source option (infinite scroll, real-time, markdown)","Trust level system reduces moderation workload automatically","Active AI development with practical features already shipped","Massive plugin ecosystem and developer community","Can self-host on your own infrastructure for full control","Free to self-host - only pay for hosting costs"],
+    considerations:["Self-hosted requires technical team for maintenance, upgrades, and security","Hosted pricing can add up for larger communities","No native ideation or structured knowledge base","Analytics/reporting less sophisticated than enterprise platforms","Services and support weaker than commercial vendors (unless on Enterprise plan)","Plugin quality varies - some community plugins are unmaintained"],
+    editorial:"[Your editorial opinion on Discourse goes here. How does it compare to the commercial platforms in practice? Where do you see it fitting vs not fitting?]"
+  },
+  {
+    id:"flarum",name:"Flarum",category:"opensource",catLabel:"Open Source",
+    tagline:"Lightweight, elegant open-source forum for simple, fast community discussions",
+    uxApproach:[{type:"forum",label:"Modern Minimal Forum"}],
+    pricing:"Free (self-hosted only)",target:"SMB / Developer communities",
+    breadthOfFeatures:5.5,qualityOfFeatures:7,integrations:5,dataPrivacySecurity:7,servicesSupport:4,reportsAnalytics:4.5,
+    execution:{
+      "Discussions":"Clean, modern single-page app forum. Two-pane layout: discussion list on the left, conversation on the right. Fast and responsive. Feels like a lightweight, elegant forum stripped to essentials. Tags instead of categories (flat, not hierarchical).",
+      "Q&A":"No native Q&A format. Discussions only. Community extensions can add basic Q&A features.",
+      "Ideation":"No ideation features.",
+      "Knowledge Base":"No knowledge base. Forum discussions only.",
+      "Content Format":"Forum-only, deliberately minimal. Tag-based organisation (no nested categories). Single-page app architecture makes navigation fast. Markdown editor. The simplicity is the feature - no bloat, no feature creep. Very different philosophy from enterprise platforms.",
+      "AI Approach":"No native AI features. Being open source, third-party AI integrations are possible via extensions but nothing official.",
+      "Events":"No events features.",
+      "Mobile":"Mobile-responsive web design. No native app. The SPA architecture works well on mobile.",
+      "Unique Features":"Extreme simplicity and speed. Built on modern stack (PHP/Laravel backend, Mithril.js frontend). Extension-based architecture - core is minimal, add only what you need. Very fast page loads. Beautiful default design with minimal configuration. Lower resource requirements than Discourse for self-hosting. Best option when you want a clean, fast forum without enterprise complexity."
+    },
+    communityFeatures:{
+      "Discussion Forums":true,"Q&A":false,"Ideation / Ideas":false,"Knowledge Base":false,"Blogs":false,
+      "Gamification":"Partial","Moderation Tools":true,"SSO (SAML/OAuth)":"Partial","API Access":true,
+      "Custom Branding":true,"Native Mobile App":false,"Events":false,
+      "AI Content Moderation":false,"AI Search / Answers":false,"Self-Hosted Option":true,"Multi-language":true
+    },
+    keyIntegrations:["OAuth SSO","WordPress (via extension)","Mailgun/SMTP","Custom via extension API"],
+    examples:[
+      {name:"Flarum Community",url:"https://discuss.flarum.org",desc:"Flarum's own community and support forum"},
+      {name:"NixOS Discourse Alternative",url:"https://discourse.nixos.org",desc:"Some NixOS community discussion moved to lighter alternatives"},
+      {name:"Various indie/gaming communities",url:"https://discuss.flarum.org/d/22228",desc:"Used by smaller gaming, tech, and hobbyist communities"}
+    ],
+    recentNews:[
+      {date:"2025",text:"Continued development of v2.0 with improved extension API and performance"},
+      {date:"2025",text:"Growing extension ecosystem with community-contributed plugins"},
+      {date:"2024",text:"Stable 1.x releases with focus on reliability and performance"}
+    ],
+    strengths:["Simplest, cleanest forum UX - deliberately minimal and fast","Fully open source and free - no licensing costs","Modern tech stack (Laravel + Mithril.js) - easy for developers to extend","Lower server requirements than Discourse for self-hosting","Beautiful default design out of the box","Extension architecture keeps core lean - add only what you need"],
+    considerations:["No enterprise features (analytics, AI, ideation, KB, events)","Smaller community and ecosystem than Discourse","Self-hosted only - no managed hosting option from Flarum","Fewer extensions and less mature plugin ecosystem","No commercial support - community support only","Not suitable for large enterprise deployments","No native SSO/SAML without extensions"],
+    editorial:"[Your editorial opinion on Flarum goes here. When does the simplicity make it the right choice? How does it compare to Discourse for smaller communities?]"
   }
 ];
 
@@ -587,22 +666,25 @@ const tableStakes = [
 const differentiators = [
   {title:"Forum-Style vs Feed/Wall-Style UX",
    desc:"The biggest UX divide. Traditional forums (threaded, topic-based) suit deep technical support and knowledge retention. Social feed/wall UX (chronological, card-based) drives engagement and feels modern but content is harder to find later.",
-   platforms:[{name:"Forum-style",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint"]},{name:"Feed/Wall-style",tags:["Bettermode","Bevy Hub"]},{name:"Configurable",tags:["Salesforce","Hivebrite"]}]},
+   platforms:[{name:"Forum-style",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Discourse","Flarum"]},{name:"Feed/Wall-style",tags:["Bettermode","Bevy Hub"]},{name:"Configurable",tags:["Salesforce","Hivebrite"]}]},
   {title:"Events-Native vs Bolt-On",
    desc:"Some platforms treat events as a core capability baked into the product. Others have no events at all, or offer basic integrations. If community events are central to your strategy, this matters enormously.",
-   platforms:[{name:"Events-native",tags:["Bevy","Hivebrite"]},{name:"Built-in events",tags:["Gainsight CC","Bettermode","Salesforce"]},{name:"No native events",tags:["Khoros","Higher Logic Vanilla","Verint"]}]},
+   platforms:[{name:"Events-native",tags:["Bevy","Hivebrite"]},{name:"Built-in events",tags:["Gainsight CC","Bettermode","Salesforce"]},{name:"No native events",tags:["Khoros","Higher Logic Vanilla","Verint","Discourse","Flarum"]}]},
   {title:"Dedicated Community vs Platform Module",
    desc:"Is the community product the vendor's primary focus, or is it one module in a larger suite? Dedicated vendors iterate faster on community features. Platform modules offer deeper integration with the parent ecosystem.",
-   platforms:[{name:"Community is the product",tags:["Higher Logic Vanilla","Bettermode","Bevy","Hivebrite"]},{name:"Part of larger suite",tags:["Salesforce","Gainsight CC","Verint","Khoros"]}]},
+   platforms:[{name:"Community is the product",tags:["Higher Logic Vanilla","Bettermode","Bevy","Hivebrite","Discourse","Flarum"]},{name:"Part of larger suite",tags:["Salesforce","Gainsight CC","Verint","Khoros"]}]},
   {title:"AI Capabilities Maturity",
    desc:"Every vendor is rushing to add AI, but maturity varies wildly. Some have shipped production AI moderation and search. Others are still in beta or marketing vapourware.",
-   platforms:[{name:"Production AI features",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Salesforce"]},{name:"Emerging AI",tags:["Bettermode","Verint","Bevy"]},{name:"Limited AI",tags:["Hivebrite"]}]},
+   platforms:[{name:"Production AI features",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Salesforce","Discourse"]},{name:"Emerging AI",tags:["Bettermode","Verint","Bevy"]},{name:"Limited / No AI",tags:["Hivebrite","Flarum"]}]},
   {title:"Membership / Alumni Features",
    desc:"Features like fundraising, job boards, mentoring programmes, and member directories are native in some platforms and completely absent in others.",
-   platforms:[{name:"Native membership features",tags:["Hivebrite"]},{name:"Some membership features",tags:["Bevy"]},{name:"Not focused on membership",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Bettermode","Salesforce"]}]},
+   platforms:[{name:"Native membership features",tags:["Hivebrite"]},{name:"Some membership features",tags:["Bevy"]},{name:"Not focused on membership",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Bettermode","Salesforce","Discourse","Flarum"]}]},
+  {title:"Self-Hosted / Open Source vs SaaS-Only",
+   desc:"Can you run it on your own servers? Open-source platforms give full control over data, security, and customisation but require technical resources. SaaS platforms handle everything but create vendor dependency.",
+   platforms:[{name:"Open source, self-host available",tags:["Discourse","Flarum"]},{name:"SaaS only",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Bettermode","Bevy","Hivebrite","Verint","Salesforce"]}]},
   {title:"Self-Serve Pricing vs Enterprise Sales",
    desc:"Can you sign up and start today, or do you need a 3-month sales process? This affects time-to-value and suits different buyer types.",
-   platforms:[{name:"Self-serve pricing published",tags:["Bettermode"]},{name:"Tiers listed, quote required",tags:["Gainsight CC","Higher Logic Vanilla"]},{name:"Enterprise sales only",tags:["Khoros","Salesforce","Verint","Bevy","Hivebrite"]}]}
+   platforms:[{name:"Free / open source",tags:["Discourse (self-hosted)","Flarum"]},{name:"Self-serve pricing published",tags:["Bettermode","Discourse (hosted)"]},{name:"Tiers listed, quote required",tags:["Gainsight CC","Higher Logic Vanilla"]},{name:"Enterprise sales only",tags:["Khoros","Salesforce","Verint","Bevy","Hivebrite"]}]}
 ];
 
 let weights = {};
@@ -626,7 +708,9 @@ function uxBadges(arr){
   return arr.map(a=>`<span class="ux-badge ux-${a.type}">${a.label}</span>`).join("");
 }
 function catBadge(p){
-  return p.category==="established"?'<span class="cat-label cat-established">Established</span>':'<span class="cat-label cat-newgen">New Generation</span>';
+  if(p.category==="established")return'<span class="cat-label cat-established">Established</span>';
+  if(p.category==="opensource")return'<span class="cat-label cat-opensource">Open Source</span>';
+  return'<span class="cat-label cat-newgen">New Generation</span>';
 }
 
 // --- RENDERING ---
