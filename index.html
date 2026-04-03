@@ -3,121 +3,340 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enterprise Community Platform Comparison</title>
+  <title>Community Platform Comparison Tool | FeverBee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #f8f9fb;
+      --navy: #1b2a4a;
+      --navy-light: #263a5e;
+      --amber: #f5a623;
+      --amber-light: #fef5e0;
+      --amber-dark: #d4891a;
+      --bg: #f7f8fa;
       --card: #ffffff;
-      --border: #e2e6ed;
-      --text: #1a1f36;
-      --text-secondary: #525f7f;
-      --accent: #635bff;
-      --accent-light: #e8e6ff;
-      --green: #0d9f6e;
-      --green-bg: #e6f9f0;
-      --red: #cd3d64;
-      --red-bg: #fce8ee;
+      --border: #e4e7ed;
+      --text: #1b2a4a;
+      --text-secondary: #5a6578;
+      --green: #1a9e6f;
+      --green-bg: #e8f7f0;
+      --red: #c4384b;
+      --red-bg: #fce8ec;
       --yellow: #c27a0e;
       --yellow-bg: #fef3cd;
+      --radius: 10px;
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
     }
 
+    /* Header */
     header {
-      background: linear-gradient(135deg, #1a1f36 0%, #32325d 100%);
+      background: var(--navy);
       color: white;
-      padding: 3rem 2rem;
+      padding: 2rem 1.5rem 1.5rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-    header p { color: #a3acb9; font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--amber);
+    }
 
-    .controls {
-      max-width: 1200px;
-      margin: 1.5rem auto;
-      padding: 0 1rem;
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .logo span { color: var(--amber); }
+
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+    }
+
+    header p {
+      color: #9aa5b8;
+      font-size: 0.95rem;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 1.25rem 1rem; }
+
+    /* Tabs: Overview / Compare */
+    .tab-bar {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      align-items: center;
+      gap: 0;
+      margin-bottom: 1.25rem;
+      border-bottom: 2px solid var(--border);
     }
 
-    .controls label { font-weight: 600; font-size: 0.9rem; margin-right: 0.25rem; }
-
-    .filter-group { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
-
-    .filter-btn {
-      padding: 0.4rem 0.9rem;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      background: var(--card);
+    .tab-btn {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      background: transparent;
       cursor: pointer;
-      font-size: 0.85rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { color: var(--navy); border-bottom-color: var(--amber); }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Overview cards */
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+
+    .platform-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      cursor: pointer;
+      transition: all 0.15s;
+      position: relative;
+    }
+
+    .platform-card:hover { border-color: var(--amber); box-shadow: 0 4px 16px rgba(27,42,74,0.08); }
+    .platform-card.selected { border-color: var(--amber); background: var(--amber-light); }
+
+    .platform-card .card-check {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: white;
       transition: all 0.15s;
     }
 
-    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
-
-    .search-box {
-      padding: 0.5rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.9rem;
-      width: 240px;
-      outline: none;
+    .platform-card.selected .card-check {
+      background: var(--amber);
+      border-color: var(--amber);
     }
 
-    .search-box:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
+    .platform-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.15rem; padding-right: 2rem; }
+    .platform-card .card-tagline { font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.75rem; }
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
+    .card-scores {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.35rem;
+    }
 
-    /* Comparison Table */
-    .table-wrapper {
+    .card-score-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .score-bar-bg {
+      flex: 1;
+      height: 6px;
+      background: #ebedf2;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .score-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    .score-label { min-width: 85px; color: var(--text-secondary); font-size: 0.78rem; }
+    .score-value { min-width: 22px; text-align: right; font-weight: 600; font-size: 0.78rem; }
+
+    .card-pricing {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    .card-pricing strong { color: var(--text); }
+
+    /* Compare button floating */
+    .compare-fab {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: var(--amber);
+      color: var(--navy);
+      border: none;
+      border-radius: 28px;
+      padding: 0.85rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(245,166,35,0.4);
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 100;
+      font-family: inherit;
+      transition: transform 0.15s;
+    }
+
+    .compare-fab:hover { transform: scale(1.05); }
+    .compare-fab.show { display: flex; }
+
+    .compare-fab .fab-count {
+      background: var(--navy);
+      color: white;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+    }
+
+    /* Side-by-side comparison */
+    .compare-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .compare-header h2 { font-size: 1.2rem; font-weight: 700; }
+
+    .btn-back {
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--card);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-family: inherit;
+      font-weight: 500;
+    }
+
+    .btn-back:hover { border-color: var(--navy); }
+
+    .compare-table-wrap {
       overflow-x: auto;
       background: var(--card);
-      border-radius: 12px;
+      border-radius: var(--radius);
       border: 1px solid var(--border);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
     }
 
-    table { width: 100%; border-collapse: collapse; min-width: 900px; }
+    .compare-table { width: 100%; border-collapse: collapse; }
 
-    th, td {
-      padding: 0.85rem 1rem;
-      text-align: left;
+    .compare-table th,
+    .compare-table td {
+      padding: 0.75rem 1rem;
+      text-align: center;
       border-bottom: 1px solid var(--border);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
     }
 
-    th {
-      background: #f4f5f7;
+    .compare-table th:first-child,
+    .compare-table td:first-child {
+      text-align: left;
       font-weight: 600;
+      background: #f9fafb;
+      min-width: 160px;
       position: sticky;
-      top: 0;
-      cursor: pointer;
-      user-select: none;
-      white-space: nowrap;
+      left: 0;
+      z-index: 1;
     }
 
-    th:hover { background: #ebedf0; }
-    th .sort-arrow { margin-left: 4px; font-size: 0.7rem; opacity: 0.4; }
-    th.sorted .sort-arrow { opacity: 1; color: var(--accent); }
+    .compare-table thead th {
+      background: var(--navy);
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 1rem;
+    }
 
-    tr:last-child td { border-bottom: none; }
-    tr:hover td { background: #fafbfc; }
+    .compare-table thead th:first-child { background: var(--navy); }
+
+    .compare-table tr:last-child td { border-bottom: none; }
+
+    .compare-table .section-row td {
+      background: var(--amber-light);
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--navy);
+      text-align: left;
+      padding: 0.6rem 1rem;
+    }
+
+    .score-cell {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .score-high { color: var(--green); }
+    .score-mid { color: var(--yellow); }
+    .score-low { color: var(--red); }
+
+    .compare-bar-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .compare-mini-bar {
+      width: 60px;
+      height: 8px;
+      background: #ebedf2;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .compare-mini-fill {
+      height: 100%;
+      border-radius: 4px;
+    }
 
     .badge {
       display: inline-block;
-      padding: 0.15rem 0.55rem;
+      padding: 0.15rem 0.6rem;
       border-radius: 12px;
       font-size: 0.78rem;
       font-weight: 600;
@@ -126,441 +345,281 @@
     .badge-yes { background: var(--green-bg); color: var(--green); }
     .badge-no { background: var(--red-bg); color: var(--red); }
     .badge-partial { background: var(--yellow-bg); color: var(--yellow); }
-    .badge-category { background: var(--accent-light); color: var(--accent); }
 
-    .platform-name {
-      font-weight: 700;
-      color: var(--accent);
+    .winner-highlight {
+      background: var(--green-bg) !important;
     }
 
-    .price-range { font-weight: 600; }
-
-    /* Detail cards view */
-    .cards-view { display: none; gap: 1.5rem; flex-wrap: wrap; }
-    .cards-view.active { display: flex; }
-    .table-wrapper.hidden { display: none; }
-
-    .platform-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      flex: 1 1 340px;
-      max-width: 100%;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    }
-
-    .platform-card h3 { color: var(--accent); margin-bottom: 0.25rem; }
-    .platform-card .card-category { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; }
-
-    .card-features {
-      list-style: none;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.4rem;
-      margin-bottom: 1rem;
-    }
-
-    .card-features li { font-size: 0.85rem; }
-    .card-features li::before { margin-right: 4px; }
-    .card-features li.yes::before { content: "\2713"; color: var(--green); font-weight: bold; }
-    .card-features li.no::before { content: "\2717"; color: var(--red); font-weight: bold; }
-    .card-features li.partial::before { content: "\25CB"; color: var(--yellow); font-weight: bold; }
-
-    .card-meta { font-size: 0.85rem; color: var(--text-secondary); }
-    .card-meta span { display: block; margin-bottom: 0.25rem; }
-    .card-meta strong { color: var(--text); }
-
-    .view-toggle {
-      display: flex;
-      gap: 0.25rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      margin-left: auto;
-    }
-
-    .view-toggle button {
-      padding: 0.4rem 0.8rem;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      font-size: 0.85rem;
-    }
-
-    .view-toggle button.active { background: var(--accent); color: white; }
-
-    .empty-state {
+    .empty-compare {
       text-align: center;
-      padding: 3rem;
+      padding: 4rem 2rem;
       color: var(--text-secondary);
-      display: none;
     }
 
-    .summary-bar {
+    .empty-compare h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text); }
+
+    /* Search */
+    .overview-controls {
       display: flex;
-      gap: 1.5rem;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 1rem;
       flex-wrap: wrap;
+      gap: 0.75rem;
     }
 
-    .summary-stat {
-      background: var(--card);
+    .search-box {
+      padding: 0.5rem 1rem;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem 1.25rem;
-      flex: 1;
-      min-width: 160px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      width: 240px;
+      outline: none;
+      font-family: inherit;
     }
 
-    .summary-stat .stat-value { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
-    .summary-stat .stat-label { font-size: 0.82rem; color: var(--text-secondary); }
+    .search-box:focus { border-color: var(--amber); box-shadow: 0 0 0 3px var(--amber-light); }
+
+    .selection-hint {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .selection-hint strong { color: var(--amber-dark); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.3rem; }
+      .platform-grid { grid-template-columns: 1fr; }
+      .card-scores { grid-template-columns: 1fr; }
+      .compare-fab { bottom: 1rem; right: 1rem; padding: 0.7rem 1.2rem; font-size: 0.85rem; }
+    }
 
     footer {
       text-align: center;
-      padding: 2rem;
+      padding: 2rem 1rem;
+      font-size: 0.8rem;
       color: var(--text-secondary);
-      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
     }
 
-    @media (max-width: 768px) {
-      header h1 { font-size: 1.4rem; }
-      .controls { flex-direction: column; align-items: stretch; }
-      .view-toggle { margin-left: 0; }
-      .card-features { grid-template-columns: 1fr; }
-    }
+    footer a { color: var(--navy); font-weight: 600; text-decoration: none; }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Enterprise Community Platform Comparison</h1>
-  <p>Compare features, pricing, and capabilities of leading enterprise community platforms side by side.</p>
+  <div class="logo">Fever<span>Bee</span></div>
+  <h1>Community Platform Comparison Tool</h1>
+  <p>Evaluate and compare the top enterprise community platforms based on the Buzz Report criteria.</p>
 </header>
 
 <div class="container">
-  <div class="controls">
-    <div class="filter-group">
-      <label>Category:</label>
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="Traditional Forum">Traditional Forum</button>
-      <button class="filter-btn" data-filter="Modern Community">Modern Community</button>
-      <button class="filter-btn" data-filter="Customer Success">Customer Success</button>
-      <button class="filter-btn" data-filter="Open Source">Open Source</button>
-    </div>
-    <input type="text" class="search-box" id="searchInput" placeholder="Search platforms...">
-    <div class="view-toggle">
-      <button class="active" data-view="table">Table</button>
-      <button data-view="cards">Cards</button>
-    </div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="overview">All Platforms</button>
+    <button class="tab-btn" data-tab="compare">Side-by-Side Comparison</button>
   </div>
 
-  <div class="summary-bar" id="summaryBar"></div>
-
-  <div class="table-wrapper" id="tableView">
-    <table>
-      <thead>
-        <tr id="tableHead"></tr>
-      </thead>
-      <tbody id="tableBody"></tbody>
-    </table>
+  <!-- OVERVIEW TAB -->
+  <div class="tab-panel active" id="panel-overview">
+    <div class="overview-controls">
+      <div class="selection-hint">Select <strong>2 - 4 platforms</strong> to compare side by side</div>
+      <input type="text" class="search-box" id="searchInput" placeholder="Search platforms...">
+    </div>
+    <div class="platform-grid" id="platformGrid"></div>
   </div>
 
-  <div class="cards-view" id="cardsView"></div>
-  <div class="empty-state" id="emptyState">No platforms match your filters.</div>
+  <!-- COMPARE TAB -->
+  <div class="tab-panel" id="panel-compare">
+    <div class="compare-header">
+      <h2>Side-by-Side Comparison</h2>
+      <button class="btn-back" onclick="switchTab('overview')">+ Change Platforms</button>
+    </div>
+    <div id="compareContent"></div>
+  </div>
+
 </div>
 
+<button class="compare-fab" id="compareFab" onclick="switchTab('compare')">
+  Compare <span class="fab-count" id="fabCount">0</span>
+</button>
+
 <footer>
-  Data compiled for general comparison. Pricing and features may change. Verify with vendors for latest details.
+  Based on the <a href="#">FeverBee Buzz Report</a> evaluation criteria. Scores are illustrative estimates &mdash; refer to the full report for detailed analysis. &copy; FeverBee
 </footer>
 
 <script>
+// Platform data using Buzz Report criteria
+// Scores are out of 10 for each of the 6 criteria
 const platforms = [
   {
-    name: "Khoros (Lithium)",
-    category: "Modern Community",
+    id: "khoros",
+    name: "Khoros",
+    tagline: "Full-featured enterprise community platform with social customer care",
     pricing: "$25,000 - $100,000+/yr",
-    priceSort: 25000,
-    users: "Enterprise",
-    forums: true,
-    ideation: true,
-    knowledgeBase: true,
-    gamification: true,
-    analytics: true,
-    moderation: true,
-    sso: true,
-    api: true,
-    customBranding: true,
-    mobileApp: true,
-    events: false,
-    aiFeatures: true,
-    selfHosted: false,
-    bestFor: "Large enterprises needing full-featured branded community with social customer care"
+    target: "Enterprise",
+    breadthOfFeatures: 9,
+    qualityOfFeatures: 8.5,
+    integrations: 8,
+    dataPrivacySecurity: 9,
+    servicesSupport: 8,
+    reportsAnalytics: 8.5,
+    extras: {
+      "SSO / SAML": true,
+      "Native Mobile App": true,
+      "AI / Automation": true,
+      "Ideation / Ideas": true,
+      "Knowledge Base": true,
+      "Gamification": true,
+      "Events": false,
+      "Self-Hosted Option": false
+    }
   },
   {
-    name: "Salesforce Experience Cloud",
-    category: "Customer Success",
-    pricing: "$25,000 - $150,000+/yr",
-    priceSort: 25000,
-    users: "Enterprise",
-    forums: true,
-    ideation: true,
-    knowledgeBase: true,
-    gamification: true,
-    analytics: true,
-    moderation: true,
-    sso: true,
-    api: true,
-    customBranding: true,
-    mobileApp: true,
-    events: true,
-    aiFeatures: true,
-    selfHosted: false,
-    bestFor: "Organizations already in the Salesforce ecosystem needing CRM-integrated community"
-  },
-  {
-    name: "Higher Logic Vanilla",
-    category: "Modern Community",
-    pricing: "$10,000 - $60,000+/yr",
-    priceSort: 10000,
-    users: "Mid-Market / Enterprise",
-    forums: true,
-    ideation: true,
-    knowledgeBase: true,
-    gamification: true,
-    analytics: true,
-    moderation: true,
-    sso: true,
-    api: true,
-    customBranding: true,
-    mobileApp: false,
-    events: false,
-    aiFeatures: true,
-    selfHosted: false,
-    bestFor: "B2B companies wanting community-led support and engagement"
-  },
-  {
+    id: "gainsight",
     name: "Gainsight Customer Communities",
-    category: "Customer Success",
+    tagline: "Customer success-focused platform (formerly inSided)",
     pricing: "$15,000 - $80,000+/yr",
-    priceSort: 15000,
-    users: "Mid-Market / Enterprise",
-    forums: true,
-    ideation: true,
-    knowledgeBase: true,
-    gamification: true,
-    analytics: true,
-    moderation: true,
-    sso: true,
-    api: true,
-    customBranding: true,
-    mobileApp: false,
-    events: true,
-    aiFeatures: true,
-    selfHosted: false,
-    bestFor: "SaaS companies focused on customer success and product feedback"
+    target: "Mid-Market / Enterprise",
+    breadthOfFeatures: 8,
+    qualityOfFeatures: 8,
+    integrations: 8.5,
+    dataPrivacySecurity: 8,
+    servicesSupport: 8.5,
+    reportsAnalytics: 8,
+    extras: {
+      "SSO / SAML": true,
+      "Native Mobile App": false,
+      "AI / Automation": true,
+      "Ideation / Ideas": true,
+      "Knowledge Base": true,
+      "Gamification": true,
+      "Events": true,
+      "Self-Hosted Option": false
+    }
   },
   {
-    name: "Discourse",
-    category: "Open Source",
-    pricing: "$3,000 - $30,000/yr (hosted) or Free (self-hosted)",
-    priceSort: 0,
-    users: "All sizes",
-    forums: true,
-    ideation: "Partial",
-    knowledgeBase: "Partial",
-    gamification: true,
-    analytics: "Partial",
-    moderation: true,
-    sso: true,
-    api: true,
-    customBranding: true,
-    mobileApp: true,
-    events: false,
-    aiFeatures: true,
-    selfHosted: true,
-    bestFor: "Developer communities, open-source projects, and teams wanting full control"
+    id: "higherlogic",
+    name: "Higher Logic Vanilla",
+    tagline: "Proven B2B community platform for support and engagement",
+    pricing: "$10,000 - $60,000+/yr",
+    target: "Mid-Market / Enterprise",
+    breadthOfFeatures: 8,
+    qualityOfFeatures: 8,
+    integrations: 7.5,
+    dataPrivacySecurity: 8,
+    servicesSupport: 8,
+    reportsAnalytics: 7.5,
+    extras: {
+      "SSO / SAML": true,
+      "Native Mobile App": false,
+      "AI / Automation": true,
+      "Ideation / Ideas": true,
+      "Knowledge Base": true,
+      "Gamification": true,
+      "Events": false,
+      "Self-Hosted Option": false
+    }
   },
   {
-    name: "Bettermode (Tribe)",
-    category: "Modern Community",
+    id: "salesforce",
+    name: "Salesforce Experience Cloud",
+    tagline: "CRM-integrated community for the Salesforce ecosystem",
+    pricing: "$25,000 - $150,000+/yr",
+    target: "Enterprise",
+    breadthOfFeatures: 9,
+    qualityOfFeatures: 7.5,
+    integrations: 9.5,
+    dataPrivacySecurity: 9,
+    servicesSupport: 7,
+    reportsAnalytics: 8.5,
+    extras: {
+      "SSO / SAML": true,
+      "Native Mobile App": true,
+      "AI / Automation": true,
+      "Ideation / Ideas": true,
+      "Knowledge Base": true,
+      "Gamification": true,
+      "Events": true,
+      "Self-Hosted Option": false
+    }
+  },
+  {
+    id: "verint",
+    name: "Verint Community",
+    tagline: "Enterprise community with strong moderation and analytics",
+    pricing: "$20,000 - $90,000+/yr",
+    target: "Enterprise",
+    breadthOfFeatures: 8.5,
+    qualityOfFeatures: 7.5,
+    integrations: 7,
+    dataPrivacySecurity: 8.5,
+    servicesSupport: 7.5,
+    reportsAnalytics: 8,
+    extras: {
+      "SSO / SAML": true,
+      "Native Mobile App": true,
+      "AI / Automation": true,
+      "Ideation / Ideas": true,
+      "Knowledge Base": true,
+      "Gamification": true,
+      "Events": false,
+      "Self-Hosted Option": false
+    }
+  },
+  {
+    id: "bettermode",
+    name: "Bettermode",
+    tagline: "Modern, API-first community with flexible content types",
     pricing: "$5,000 - $30,000+/yr",
-    priceSort: 5000,
-    users: "SMB / Mid-Market",
-    forums: true,
-    ideation: true,
-    knowledgeBase: true,
-    gamification: true,
-    analytics: true,
-    moderation: true,
-    sso: true,
-    api: true,
-    customBranding: true,
-    mobileApp: false,
-    events: true,
-    aiFeatures: true,
-    selfHosted: false,
-    bestFor: "Companies wanting a modern, customizable community with flexible content types"
-  },
-  {
-    name: "Hivebrite",
-    category: "Modern Community",
-    pricing: "$10,000 - $50,000+/yr",
-    priceSort: 10000,
-    users: "Mid-Market / Enterprise",
-    forums: true,
-    ideation: false,
-    knowledgeBase: "Partial",
-    gamification: "Partial",
-    analytics: true,
-    moderation: true,
-    sso: true,
-    api: true,
-    customBranding: true,
-    mobileApp: true,
-    events: true,
-    aiFeatures: false,
-    selfHosted: false,
-    bestFor: "Alumni networks, associations, and membership organizations"
-  },
-  {
-    name: "Insided (Gainsight)",
-    category: "Customer Success",
-    pricing: "$20,000 - $80,000+/yr",
-    priceSort: 20000,
-    users: "Mid-Market / Enterprise",
-    forums: true,
-    ideation: true,
-    knowledgeBase: true,
-    gamification: true,
-    analytics: true,
-    moderation: true,
-    sso: true,
-    api: true,
-    customBranding: true,
-    mobileApp: false,
-    events: true,
-    aiFeatures: true,
-    selfHosted: false,
-    bestFor: "B2B SaaS companies wanting product-integrated community for customer success"
-  },
-  {
-    name: "Mighty Networks",
-    category: "Modern Community",
-    pricing: "$2,000 - $15,000+/yr",
-    priceSort: 2000,
-    users: "SMB / Mid-Market",
-    forums: true,
-    ideation: false,
-    knowledgeBase: false,
-    gamification: "Partial",
-    analytics: true,
-    moderation: true,
-    sso: "Partial",
-    api: "Partial",
-    customBranding: true,
-    mobileApp: true,
-    events: true,
-    aiFeatures: true,
-    selfHosted: false,
-    bestFor: "Creators, coaches, and brands building course-based or membership communities"
-  },
-  {
-    name: "Flarum",
-    category: "Open Source",
-    pricing: "Free (self-hosted)",
-    priceSort: 0,
-    users: "All sizes",
-    forums: true,
-    ideation: false,
-    knowledgeBase: false,
-    gamification: true,
-    analytics: "Partial",
-    moderation: true,
-    sso: true,
-    api: true,
-    customBranding: true,
-    mobileApp: false,
-    events: false,
-    aiFeatures: false,
-    selfHosted: true,
-    bestFor: "Lightweight, modern forum for small to mid-size communities"
-  },
-  {
-    name: "Invision Community",
-    category: "Traditional Forum",
-    pricing: "$3,000 - $25,000/yr (cloud) or $600 license",
-    priceSort: 600,
-    users: "All sizes",
-    forums: true,
-    ideation: false,
-    knowledgeBase: true,
-    gamification: true,
-    analytics: true,
-    moderation: true,
-    sso: true,
-    api: true,
-    customBranding: true,
-    mobileApp: false,
-    events: true,
-    aiFeatures: "Partial",
-    selfHosted: true,
-    bestFor: "Established communities needing rich forum features with commerce and support"
-  },
-  {
-    name: "Discourse for Teams",
-    category: "Traditional Forum",
-    pricing: "$8,000 - $40,000/yr",
-    priceSort: 8000,
-    users: "Mid-Market / Enterprise",
-    forums: true,
-    ideation: "Partial",
-    knowledgeBase: true,
-    gamification: true,
-    analytics: true,
-    moderation: true,
-    sso: true,
-    api: true,
-    customBranding: true,
-    mobileApp: true,
-    events: false,
-    aiFeatures: true,
-    selfHosted: false,
-    bestFor: "Enterprise teams wanting managed Discourse with SLA and priority support"
+    target: "SMB / Mid-Market",
+    breadthOfFeatures: 7.5,
+    qualityOfFeatures: 8,
+    integrations: 7.5,
+    dataPrivacySecurity: 7,
+    servicesSupport: 7,
+    reportsAnalytics: 7,
+    extras: {
+      "SSO / SAML": true,
+      "Native Mobile App": false,
+      "AI / Automation": true,
+      "Ideation / Ideas": true,
+      "Knowledge Base": true,
+      "Gamification": true,
+      "Events": true,
+      "Self-Hosted Option": false
+    }
   }
 ];
 
-const featureCols = [
-  { key: "forums", label: "Forums" },
-  { key: "ideation", label: "Ideation" },
-  { key: "knowledgeBase", label: "Knowledge Base" },
-  { key: "gamification", label: "Gamification" },
-  { key: "analytics", label: "Analytics" },
-  { key: "moderation", label: "Moderation" },
-  { key: "sso", label: "SSO" },
-  { key: "api", label: "API" },
-  { key: "customBranding", label: "Custom Branding" },
-  { key: "mobileApp", label: "Mobile App" },
-  { key: "events", label: "Events" },
-  { key: "aiFeatures", label: "AI Features" },
-  { key: "selfHosted", label: "Self-Hosted" },
+const criteria = [
+  { key: "breadthOfFeatures", label: "Breadth of Features" },
+  { key: "qualityOfFeatures", label: "Quality of Features" },
+  { key: "integrations", label: "Integrations" },
+  { key: "dataPrivacySecurity", label: "Data Privacy & Security" },
+  { key: "servicesSupport", label: "Services & Support" },
+  { key: "reportsAnalytics", label: "Reports & Analytics" },
 ];
 
-const allCols = [
-  { key: "name", label: "Platform", sortable: true },
-  { key: "category", label: "Category", sortable: true },
-  { key: "pricing", label: "Pricing", sortable: true, sortKey: "priceSort" },
-  { key: "users", label: "Target Market", sortable: true },
-  ...featureCols.map(c => ({ ...c, sortable: true })),
-  { key: "bestFor", label: "Best For", sortable: false },
-];
+let selected = new Set();
 
-let currentFilter = "all";
-let currentSearch = "";
-let currentSort = { key: null, dir: "asc" };
-let currentView = "table";
+function overallScore(p) {
+  return (criteria.reduce((s, c) => s + p[c.key], 0) / criteria.length).toFixed(1);
+}
+
+function scoreColor(score) {
+  if (score >= 8) return "var(--green)";
+  if (score >= 6) return "var(--amber)";
+  return "var(--red)";
+}
+
+function scoreClass(score) {
+  if (score >= 8) return "score-high";
+  if (score >= 6) return "score-mid";
+  return "score-low";
+}
 
 function featureBadge(val) {
   if (val === true) return '<span class="badge badge-yes">Yes</span>';
@@ -568,168 +627,158 @@ function featureBadge(val) {
   return '<span class="badge badge-partial">Partial</span>';
 }
 
-function getFiltered() {
-  return platforms.filter(p => {
-    if (currentFilter !== "all" && p.category !== currentFilter) return false;
-    if (currentSearch) {
-      const s = currentSearch.toLowerCase();
-      return p.name.toLowerCase().includes(s) ||
-             p.category.toLowerCase().includes(s) ||
-             p.bestFor.toLowerCase().includes(s);
-    }
-    return true;
+function toggleSelect(id) {
+  if (selected.has(id)) {
+    selected.delete(id);
+  } else {
+    if (selected.size >= 4) return; // max 4
+    selected.add(id);
+  }
+  renderOverview();
+  updateFab();
+}
+
+function updateFab() {
+  const fab = document.getElementById("compareFab");
+  const count = document.getElementById("fabCount");
+  count.textContent = selected.size;
+  fab.classList.toggle("show", selected.size >= 2);
+}
+
+function renderOverview() {
+  const grid = document.getElementById("platformGrid");
+  const search = document.getElementById("searchInput").value.toLowerCase();
+
+  const filtered = platforms.filter(p => {
+    if (!search) return true;
+    return p.name.toLowerCase().includes(search) ||
+           p.tagline.toLowerCase().includes(search);
   });
-}
 
-function getSorted(list) {
-  if (!currentSort.key) return list;
-  const col = allCols.find(c => c.key === currentSort.key);
-  const sortKey = col?.sortKey || currentSort.key;
-  return [...list].sort((a, b) => {
-    let va = a[sortKey], vb = b[sortKey];
-    if (typeof va === "boolean") { va = va ? 1 : 0; vb = vb === true ? 1 : vb === "Partial" ? 0.5 : 0; }
-    if (typeof va === "string" && typeof vb === "string") {
-      const cmp = va.localeCompare(vb);
-      return currentSort.dir === "asc" ? cmp : -cmp;
-    }
-    if (typeof va === "number" && typeof vb === "number") {
-      return currentSort.dir === "asc" ? va - vb : vb - va;
-    }
-    return 0;
-  });
-}
-
-function renderSummary(filtered) {
-  const bar = document.getElementById("summaryBar");
-  const withAI = filtered.filter(p => p.aiFeatures === true).length;
-  const withSelfHost = filtered.filter(p => p.selfHosted === true).length;
-  const avgFeatures = filtered.length ? (filtered.reduce((sum, p) => {
-    return sum + featureCols.filter(c => p[c.key] === true).length;
-  }, 0) / filtered.length).toFixed(1) : 0;
-
-  bar.innerHTML = `
-    <div class="summary-stat">
-      <div class="stat-value">${filtered.length}</div>
-      <div class="stat-label">Platforms shown</div>
-    </div>
-    <div class="summary-stat">
-      <div class="stat-value">${withAI}</div>
-      <div class="stat-label">With AI features</div>
-    </div>
-    <div class="summary-stat">
-      <div class="stat-value">${withSelfHost}</div>
-      <div class="stat-label">Self-hosted option</div>
-    </div>
-    <div class="summary-stat">
-      <div class="stat-value">${avgFeatures}</div>
-      <div class="stat-label">Avg features (of ${featureCols.length})</div>
-    </div>
-  `;
-}
-
-function renderHead() {
-  const head = document.getElementById("tableHead");
-  head.innerHTML = allCols.map(col => {
-    const sorted = currentSort.key === col.key;
-    const arrow = sorted ? (currentSort.dir === "asc" ? "\u25B2" : "\u25BC") : "\u25B2";
-    const cls = sorted ? "sorted" : "";
-    const onclick = col.sortable ? `onclick="toggleSort('${col.key}')"` : "";
-    return `<th class="${cls}" ${onclick}>${col.label}${col.sortable ? `<span class="sort-arrow">${arrow}</span>` : ""}</th>`;
-  }).join("");
-}
-
-function renderTable(list) {
-  const tbody = document.getElementById("tableBody");
-  tbody.innerHTML = list.map(p => {
-    return `<tr>
-      <td class="platform-name">${p.name}</td>
-      <td><span class="badge badge-category">${p.category}</span></td>
-      <td class="price-range">${p.pricing}</td>
-      <td>${p.users}</td>
-      ${featureCols.map(c => `<td>${featureBadge(p[c.key])}</td>`).join("")}
-      <td>${p.bestFor}</td>
-    </tr>`;
-  }).join("");
-}
-
-function renderCards(list) {
-  const cards = document.getElementById("cardsView");
-  cards.innerHTML = list.map(p => {
-    const features = featureCols.map(c => {
-      const cls = p[c.key] === true ? "yes" : p[c.key] === false ? "no" : "partial";
-      return `<li class="${cls}">${c.label}</li>`;
+  grid.innerHTML = filtered.map(p => {
+    const sel = selected.has(p.id);
+    const avg = overallScore(p);
+    const bars = criteria.map(c => {
+      const pct = (p[c.key] / 10) * 100;
+      return `<div class="card-score-item">
+        <span class="score-label">${c.label}</span>
+        <div class="score-bar-bg">
+          <div class="score-bar-fill" style="width:${pct}%;background:${scoreColor(p[c.key])}"></div>
+        </div>
+        <span class="score-value">${p[c.key]}</span>
+      </div>`;
     }).join("");
-    return `<div class="platform-card">
+
+    return `<div class="platform-card ${sel ? 'selected' : ''}" onclick="toggleSelect('${p.id}')">
+      <div class="card-check">${sel ? '\u2713' : ''}</div>
       <h3>${p.name}</h3>
-      <div class="card-category">${p.category}</div>
-      <ul class="card-features">${features}</ul>
-      <div class="card-meta">
-        <span><strong>Pricing:</strong> ${p.pricing}</span>
-        <span><strong>Target:</strong> ${p.users}</span>
-        <span><strong>Best for:</strong> ${p.bestFor}</span>
-      </div>
+      <div class="card-tagline">${p.tagline}</div>
+      <div class="card-scores">${bars}</div>
+      <div class="card-pricing"><strong>${p.pricing}</strong> &middot; ${p.target}</div>
     </div>`;
   }).join("");
 }
 
-function render() {
-  const filtered = getFiltered();
-  const sorted = getSorted(filtered);
+function renderCompare() {
+  const content = document.getElementById("compareContent");
 
-  renderSummary(sorted);
-  renderHead();
-  renderTable(sorted);
-  renderCards(sorted);
-
-  document.getElementById("emptyState").style.display = sorted.length === 0 ? "block" : "none";
-
-  if (currentView === "table") {
-    document.getElementById("tableView").classList.remove("hidden");
-    document.getElementById("cardsView").classList.remove("active");
-  } else {
-    document.getElementById("tableView").classList.add("hidden");
-    document.getElementById("cardsView").classList.add("active");
+  if (selected.size < 2) {
+    content.innerHTML = `<div class="empty-compare">
+      <h3>Select platforms to compare</h3>
+      <p>Go to All Platforms and select 2 - 4 platforms, then return here.</p>
+    </div>`;
+    return;
   }
-}
 
-function toggleSort(key) {
-  if (currentSort.key === key) {
-    currentSort.dir = currentSort.dir === "asc" ? "desc" : "asc";
-  } else {
-    currentSort.key = key;
-    currentSort.dir = "asc";
+  const picks = platforms.filter(p => selected.has(p.id));
+  const headers = picks.map(p => `<th>${p.name}</th>`).join("");
+
+  // Find winner per criterion
+  function bestInRow(key) {
+    let max = -1;
+    picks.forEach(p => { if (p[key] > max) max = p[key]; });
+    return max;
   }
-  render();
-}
 
-// Filter buttons
-document.querySelectorAll(".filter-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    currentFilter = btn.dataset.filter;
-    render();
+  // Scores section
+  let rows = "";
+
+  // Overall score row
+  rows += `<tr style="background:#f9fafb">
+    <td style="font-weight:700">Overall Score</td>
+    ${picks.map(p => {
+      const avg = overallScore(p);
+      return `<td class="score-cell ${scoreClass(avg)}">${avg}</td>`;
+    }).join("")}
+  </tr>`;
+
+  // Section: Buzz Report Criteria
+  rows += `<tr class="section-row"><td colspan="${picks.length + 1}">Buzz Report Criteria (scored out of 10)</td></tr>`;
+
+  criteria.forEach(c => {
+    const best = bestInRow(c.key);
+    rows += `<tr>
+      <td>${c.label}</td>
+      ${picks.map(p => {
+        const val = p[c.key];
+        const isBest = val === best && picks.filter(pp => pp[c.key] === best).length < picks.length;
+        return `<td class="${isBest ? 'winner-highlight' : ''}">
+          <div class="compare-bar-cell">
+            <div class="compare-mini-bar">
+              <div class="compare-mini-fill" style="width:${(val/10)*100}%;background:${scoreColor(val)}"></div>
+            </div>
+            <span class="score-cell ${scoreClass(val)}">${val}</span>
+          </div>
+        </td>`;
+      }).join("")}
+    </tr>`;
   });
+
+  // Section: Additional Features
+  const extraKeys = Object.keys(picks[0].extras);
+  rows += `<tr class="section-row"><td colspan="${picks.length + 1}">Additional Features</td></tr>`;
+
+  extraKeys.forEach(key => {
+    rows += `<tr>
+      <td>${key}</td>
+      ${picks.map(p => `<td>${featureBadge(p.extras[key])}</td>`).join("")}
+    </tr>`;
+  });
+
+  // Section: Pricing & Target
+  rows += `<tr class="section-row"><td colspan="${picks.length + 1}">Pricing & Market</td></tr>`;
+  rows += `<tr><td>Pricing</td>${picks.map(p => `<td style="font-size:0.82rem;font-weight:600">${p.pricing}</td>`).join("")}</tr>`;
+  rows += `<tr><td>Target Market</td>${picks.map(p => `<td style="font-size:0.85rem">${p.target}</td>`).join("")}</tr>`;
+
+  content.innerHTML = `<div class="compare-table-wrap">
+    <table class="compare-table">
+      <thead><tr><th>Criteria</th>${headers}</tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+  </div>`;
+}
+
+function switchTab(tab) {
+  document.querySelectorAll(".tab-btn").forEach(b => {
+    b.classList.toggle("active", b.dataset.tab === tab);
+  });
+  document.querySelectorAll(".tab-panel").forEach(p => {
+    p.classList.toggle("active", p.id === "panel-" + tab);
+  });
+  if (tab === "compare") renderCompare();
+}
+
+// Tab clicks
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => switchTab(btn.dataset.tab));
 });
 
 // Search
-document.getElementById("searchInput").addEventListener("input", e => {
-  currentSearch = e.target.value;
-  render();
-});
+document.getElementById("searchInput").addEventListener("input", renderOverview);
 
-// View toggle
-document.querySelectorAll(".view-toggle button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".view-toggle button").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    currentView = btn.dataset.view;
-    render();
-  });
-});
-
-// Initial render
-render();
+// Init
+renderOverview();
+updateFab();
 </script>
 
 </body>
