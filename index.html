@@ -4,145 +4,185 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Community Platform Comparison Tool | FeverBee</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --navy: #0f1923;
-      --navy-light: #1a2736;
-      --navy-mid: #1e2d3d;
-      --amber: #f5a623;
-      --amber-light: #2a2518;
-      --amber-dark: #d4891a;
-      --bg: #0b1117;
-      --card: #141e2a;
-      --border: #1e2d3d;
-      --text: #e2e8f0;
-      --text-sec: #8494a7;
-      --green: #34d399;
-      --green-bg: #0d2818;
-      --red: #f87171;
-      --red-bg: #2a1215;
-      --yellow: #fbbf24;
-      --yellow-bg: #2a2518;
-      --radius: 10px;
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --navy:#0f1923;--navy-light:#1a2736;--navy-mid:#1e2d3d;
+      --amber:#f5a623;--amber-light:#2a2518;--amber-dark:#d4891a;--amber-glow:rgba(245,166,35,0.15);
+      --bg:#0b1117;--card:#141e2a;--card-hover:#192432;--border:#1e2d3d;
+      --text:#e2e8f0;--text-sec:#8494a7;--text-dim:#5a6a7e;
+      --green:#34d399;--green-bg:#0d2818;
+      --red:#f87171;--red-bg:#2a1215;
+      --yellow:#fbbf24;--yellow-bg:#2a2518;
+      --radius:10px;
     }
-    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-    header { background: linear-gradient(135deg, #0f1923 0%, #162032 100%); color: white; padding: 2rem 1.5rem 1.5rem; text-align: center; position: relative; }
-    header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--amber), #f7c948); }
-    .logo { font-size: 1.1rem; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 0.75rem; text-transform: uppercase; }
-    .logo span { color: var(--amber); }
-    header h1 { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.3rem; }
-    header p { color: #7a8ba0; font-size: 0.92rem; max-width: 580px; margin: 0 auto; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 1.25rem 1rem; }
-    .tab-bar { display: flex; gap: 0; margin-bottom: 1.25rem; border-bottom: 2px solid var(--border); }
-    .tab-btn { padding: 0.7rem 1.3rem; border: none; background: transparent; cursor: pointer; font-size: 0.92rem; font-weight: 600; color: var(--text-sec); border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.15s; font-family: inherit; }
-    .tab-btn:hover { color: var(--text); }
-    .tab-btn.active { color: var(--amber); border-bottom-color: var(--amber); }
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    a{color:var(--amber);text-decoration:none}
+    a:hover{text-decoration:underline}
 
-    /* Weight controls */
-    .weight-section { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1.25rem; }
-    .weight-section h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--amber); }
-    .weight-section p { font-size: 0.8rem; color: var(--text-sec); margin-bottom: 0.75rem; }
-    .weight-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.6rem; }
-    .weight-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; }
-    .weight-item label { min-width: 130px; color: var(--text-sec); }
-    .weight-item input[type=range] { flex: 1; accent-color: var(--amber); }
-    .weight-item .wval { min-width: 20px; font-weight: 700; color: var(--amber); text-align: center; }
+    header{background:linear-gradient(135deg,#0f1923,#162032);color:#fff;padding:2rem 1.5rem 1.5rem;text-align:center;position:relative}
+    header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--amber),#f7c948)}
+    .logo{font-size:1.1rem;font-weight:800;letter-spacing:.5px;margin-bottom:.75rem;text-transform:uppercase}
+    .logo span{color:var(--amber)}
+    header h1{font-size:1.6rem;font-weight:800;margin-bottom:.3rem}
+    header p{color:#7a8ba0;font-size:.92rem;max-width:580px;margin:0 auto}
+
+    .container{max-width:1100px;margin:0 auto;padding:1.25rem 1rem}
+
+    /* Navigation tabs */
+    .tab-bar{display:flex;gap:0;margin-bottom:1.25rem;border-bottom:2px solid var(--border);overflow-x:auto}
+    .tab-btn{padding:.7rem 1.2rem;border:none;background:0;cursor:pointer;font-size:.88rem;font-weight:600;color:var(--text-sec);border-bottom:3px solid transparent;margin-bottom:-2px;transition:.15s;font-family:inherit;white-space:nowrap}
+    .tab-btn:hover{color:var(--text)}
+    .tab-btn.active{color:var(--amber);border-bottom-color:var(--amber)}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+
+    /* Section headers */
+    .section-title{font-size:1.1rem;font-weight:800;color:var(--amber);margin:1.5rem 0 .75rem;display:flex;align-items:center;gap:.5rem}
+    .section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+    .section-desc{font-size:.85rem;color:var(--text-sec);margin-bottom:1rem;max-width:700px}
+
+    /* Category labels */
+    .cat-label{display:inline-block;padding:.15rem .6rem;border-radius:4px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+    .cat-established{background:#1a2736;color:#6b8aad;border:1px solid #2a3f55}
+    .cat-newgen{background:#2a2518;color:var(--amber);border:1px solid #3d3520}
 
     /* Platform grid */
-    .overview-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem; }
-    .sel-hint { font-size: 0.85rem; color: var(--text-sec); }
-    .sel-hint strong { color: var(--amber); }
-    .search-box { padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.88rem; width: 220px; outline: none; font-family: inherit; background: var(--card); color: var(--text); }
-    .search-box:focus { border-color: var(--amber); box-shadow: 0 0 0 3px rgba(245,166,35,0.15); }
-    .search-box::placeholder { color: var(--text-sec); }
-    .platform-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem; }
-    .pcard { background: var(--card); border: 2px solid var(--border); border-radius: var(--radius); padding: 1.25rem; cursor: pointer; transition: all 0.15s; position: relative; }
-    .pcard:hover { border-color: var(--amber); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-    .pcard.selected { border-color: var(--amber); background: var(--amber-light); }
-    .pcard .chk { position: absolute; top: 1rem; right: 1rem; width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: white; transition: all 0.15s; }
-    .pcard.selected .chk { background: var(--amber); border-color: var(--amber); }
-    .pcard h3 { font-size: 1rem; font-weight: 700; color: var(--amber); margin-bottom: 0.1rem; padding-right: 2rem; }
-    .pcard .tagline { font-size: 0.8rem; color: var(--text-sec); margin-bottom: 0.6rem; }
-    .score-row { display: flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; margin-bottom: 0.3rem; }
-    .score-row .slbl { min-width: 120px; color: var(--text-sec); }
-    .score-row .sbar { flex: 1; height: 6px; background: #1e2d3d; border-radius: 3px; overflow: hidden; }
-    .score-row .sfill { height: 100%; border-radius: 3px; }
-    .score-row .sval { min-width: 22px; text-align: right; font-weight: 600; }
-    .pcard .overall { margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-    .pcard .overall .olbl { font-size: 0.82rem; font-weight: 600; color: var(--text-sec); }
-    .pcard .overall .oval { font-size: 1.2rem; font-weight: 800; }
-    .pcard .pmeta { margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-sec); }
-    .pcard .pmeta strong { color: var(--text); }
-    .pcard .detail-btn { display: inline-block; margin-top: 0.6rem; padding: 0.3rem 0.8rem; background: var(--amber); color: var(--navy); border-radius: 6px; font-size: 0.78rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; font-family: inherit; }
-    .pcard .detail-btn:hover { background: var(--amber-dark); }
+    .overview-controls{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.75rem}
+    .search-box{padding:.5rem 1rem;border:1px solid var(--border);border-radius:8px;font-size:.88rem;width:220px;outline:0;font-family:inherit;background:var(--card);color:var(--text)}
+    .search-box:focus{border-color:var(--amber);box-shadow:0 0 0 3px var(--amber-glow)}
+    .search-box::placeholder{color:var(--text-dim)}
+    .filter-pills{display:flex;gap:.4rem;flex-wrap:wrap}
+    .pill{padding:.35rem .85rem;border:1px solid var(--border);border-radius:20px;background:var(--card);color:var(--text-sec);cursor:pointer;font-size:.8rem;font-family:inherit;transition:.15s}
+    .pill:hover{border-color:var(--amber);color:var(--amber)}
+    .pill.active{background:var(--amber);color:var(--navy);border-color:var(--amber)}
 
-    /* FAB */
-    .compare-fab { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--amber); color: var(--navy); border: none; border-radius: 28px; padding: 0.85rem 1.5rem; font-size: 0.95rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 20px rgba(245,166,35,0.4); display: none; align-items: center; gap: 0.5rem; z-index: 100; font-family: inherit; transition: transform 0.15s; }
-    .compare-fab:hover { transform: scale(1.05); }
-    .compare-fab.show { display: flex; }
-    .fab-count { background: var(--navy); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; }
+    .platform-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1rem}
+    .pcard{background:var(--card);border:2px solid var(--border);border-radius:var(--radius);padding:1.2rem;cursor:pointer;transition:.15s;position:relative}
+    .pcard:hover{border-color:var(--amber);box-shadow:0 4px 20px rgba(0,0,0,.3);background:var(--card-hover)}
+    .pcard.selected{border-color:var(--amber);background:var(--amber-light)}
+    .pcard .chk{position:absolute;top:.9rem;right:.9rem;width:22px;height:22px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.65rem;color:#fff;transition:.15s}
+    .pcard.selected .chk{background:var(--amber);border-color:var(--amber)}
+    .pcard h3{font-size:.95rem;font-weight:700;color:var(--amber);margin-bottom:.1rem;padding-right:2rem}
+    .pcard .tagline{font-size:.78rem;color:var(--text-sec);margin-bottom:.5rem}
+    .pcard .card-cat{margin-bottom:.5rem}
+    .score-row{display:flex;align-items:center;gap:.4rem;font-size:.75rem;margin-bottom:.25rem}
+    .score-row .slbl{min-width:110px;color:var(--text-sec)}
+    .score-row .sbar{flex:1;height:5px;background:var(--navy-mid);border-radius:3px;overflow:hidden}
+    .score-row .sfill{height:100%;border-radius:3px}
+    .score-row .sval{min-width:20px;text-align:right;font-weight:600}
+    .pcard .overall{margin-top:.4rem;padding-top:.4rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+    .pcard .overall .olbl{font-size:.8rem;font-weight:600;color:var(--text-sec)}
+    .pcard .overall .oval{font-size:1.15rem;font-weight:800}
+    .pcard .pmeta{margin-top:.4rem;font-size:.78rem;color:var(--text-sec)}
+    .pcard .pmeta strong{color:var(--text)}
+    .view-profile-btn{display:inline-block;margin-top:.5rem;padding:.3rem .8rem;background:var(--amber);color:var(--navy);border-radius:6px;font-size:.75rem;font-weight:700;cursor:pointer;border:0;font-family:inherit;transition:.15s}
+    .view-profile-btn:hover{background:var(--amber-dark)}
 
-    /* Compare tab */
-    .compare-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
-    .compare-header h2 { font-size: 1.15rem; font-weight: 700; color: var(--text); }
-    .btn-back { padding: 0.4rem 1rem; border: 1px solid var(--border); border-radius: 6px; background: var(--card); color: var(--text); cursor: pointer; font-size: 0.82rem; font-family: inherit; font-weight: 500; }
-    .btn-back:hover { border-color: var(--amber); color: var(--amber); }
-    .ctable-wrap { overflow-x: auto; background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: 0 2px 12px rgba(0,0,0,0.2); }
-    .ctable { width: 100%; border-collapse: collapse; }
-    .ctable th, .ctable td { padding: 0.7rem 0.9rem; text-align: center; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
-    .ctable th:first-child, .ctable td:first-child { text-align: left; font-weight: 600; background: #111b25; min-width: 150px; position: sticky; left: 0; z-index: 1; }
-    .ctable thead th { background: var(--navy); color: white; font-weight: 700; font-size: 0.88rem; padding: 0.9rem; }
-    .ctable thead th:first-child { background: var(--navy); }
-    .ctable tr:last-child td { border-bottom: none; }
-    .ctable .sec-row td { background: var(--amber-light); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--amber); text-align: left; padding: 0.5rem 0.9rem; }
-    .score-high { color: var(--green); }
-    .score-mid { color: var(--yellow); }
-    .score-low { color: var(--red); }
-    .cbar-cell { display: flex; align-items: center; justify-content: center; gap: 0.35rem; }
-    .cmbar { width: 50px; height: 7px; background: #1e2d3d; border-radius: 4px; overflow: hidden; }
-    .cmfill { height: 100%; border-radius: 4px; }
-    .badge { display: inline-block; padding: 0.12rem 0.55rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
-    .badge-yes { background: var(--green-bg); color: var(--green); }
-    .badge-no { background: var(--red-bg); color: var(--red); }
-    .badge-partial { background: var(--yellow-bg); color: var(--yellow); }
-    .winner { background: var(--green-bg) !important; }
-    .empty-cmp { text-align: center; padding: 3rem 2rem; color: var(--text-sec); }
-    .empty-cmp h3 { font-size: 1.05rem; margin-bottom: 0.4rem; color: var(--amber); }
+    /* Compare FAB */
+    .compare-fab{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--amber);color:var(--navy);border:0;border-radius:28px;padding:.85rem 1.5rem;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(245,166,35,.4);display:none;align-items:center;gap:.5rem;z-index:100;font-family:inherit;transition:.15s}
+    .compare-fab:hover{transform:scale(1.05)}
+    .compare-fab.show{display:flex}
+    .fab-count{background:var(--navy);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem}
 
-    /* Detail modal */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; align-items: center; justify-content: center; padding: 1rem; }
-    .modal-overlay.open { display: flex; }
-    .modal { background: #141e2a; border: 1px solid var(--border); border-radius: 12px; max-width: 700px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 2rem; position: relative; }
-    .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.3rem; cursor: pointer; color: var(--text-sec); }
-    .modal h2 { font-size: 1.3rem; font-weight: 800; color: var(--amber); margin-bottom: 0.2rem; }
-    .modal .m-tagline { color: var(--text-sec); font-size: 0.9rem; margin-bottom: 1rem; }
-    .modal h4 { font-size: 0.88rem; font-weight: 700; color: var(--amber); margin: 1rem 0 0.4rem; border-bottom: 2px solid var(--amber); padding-bottom: 0.25rem; display: inline-block; }
-    .modal ul { list-style: none; padding: 0; }
-    .modal ul li { font-size: 0.85rem; padding: 0.2rem 0; color: var(--text-sec); }
-    .modal ul li::before { content: "\2022"; color: var(--amber); font-weight: bold; margin-right: 0.5rem; }
-    .modal .news-item { padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
-    .modal .news-item:last-child { border-bottom: none; }
-    .modal .news-date { font-size: 0.75rem; font-weight: 600; color: var(--amber); }
-    .modal .news-text { font-size: 0.84rem; color: var(--text); }
-    .modal .feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem; }
-    .modal .feat-grid .fi { font-size: 0.84rem; display: flex; align-items: center; gap: 0.3rem; }
-    .modal .feat-grid .fi.yes { color: var(--green); }
-    .modal .feat-grid .fi.no { color: var(--red); }
-    .modal .feat-grid .fi.partial { color: var(--yellow); }
+    /* Table stakes */
+    .stakes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.6rem;margin-bottom:1.5rem}
+    .stake-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.7rem .9rem;font-size:.82rem;color:var(--text-sec);display:flex;align-items:center;gap:.4rem}
+    .stake-item .si-icon{color:var(--green);font-weight:700}
 
-    footer { text-align: center; padding: 2rem 1rem; font-size: 0.78rem; color: var(--text-sec); border-top: 1px solid var(--border); margin-top: 2rem; }
+    /* Differentiators */
+    .diff-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem;margin-bottom:1.5rem}
+    .diff-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem}
+    .diff-card h4{font-size:.88rem;font-weight:700;color:var(--amber);margin-bottom:.4rem}
+    .diff-card p{font-size:.82rem;color:var(--text-sec);margin-bottom:.5rem}
+    .diff-card .diff-platforms{display:flex;flex-wrap:wrap;gap:.3rem}
+    .diff-tag{padding:.15rem .5rem;border-radius:4px;font-size:.72rem;font-weight:600;background:var(--navy-mid);color:var(--text-sec)}
 
-    @media (max-width: 768px) {
-      header h1 { font-size: 1.25rem; }
-      .platform-grid { grid-template-columns: 1fr; }
-      .weight-grid { grid-template-columns: 1fr; }
-      .compare-fab { bottom: 1rem; right: 1rem; padding: 0.7rem 1.1rem; font-size: 0.85rem; }
-      .modal { padding: 1.25rem; }
+    /* Compare table */
+    .compare-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}
+    .compare-header h2{font-size:1.15rem;font-weight:700;color:var(--text)}
+    .btn-back{padding:.4rem 1rem;border:1px solid var(--border);border-radius:6px;background:var(--card);color:var(--text);cursor:pointer;font-size:.82rem;font-family:inherit;font-weight:500}
+    .btn-back:hover{border-color:var(--amber);color:var(--amber)}
+    .ctable-wrap{overflow-x:auto;background:var(--card);border-radius:var(--radius);border:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,.2)}
+    .ctable{width:100%;border-collapse:collapse}
+    .ctable th,.ctable td{padding:.65rem .85rem;text-align:center;border-bottom:1px solid var(--border);font-size:.82rem}
+    .ctable th:first-child,.ctable td:first-child{text-align:left;font-weight:600;background:#111b25;min-width:140px;position:sticky;left:0;z-index:1}
+    .ctable thead th{background:var(--navy);color:#fff;font-weight:700;font-size:.85rem;padding:.85rem}
+    .ctable thead th:first-child{background:var(--navy)}
+    .ctable tr:last-child td{border-bottom:0}
+    .ctable .sec-row td{background:var(--amber-light);font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.5px;color:var(--amber);text-align:left;padding:.45rem .85rem}
+    .score-high{color:var(--green)}.score-mid{color:var(--yellow)}.score-low{color:var(--red)}
+    .cbar-cell{display:flex;align-items:center;justify-content:center;gap:.3rem}
+    .cmbar{width:45px;height:6px;background:var(--navy-mid);border-radius:4px;overflow:hidden}
+    .cmfill{height:100%;border-radius:4px}
+    .badge{display:inline-block;padding:.12rem .5rem;border-radius:12px;font-size:.72rem;font-weight:600}
+    .badge-yes{background:var(--green-bg);color:var(--green)}
+    .badge-no{background:var(--red-bg);color:var(--red)}
+    .badge-partial{background:var(--yellow-bg);color:var(--yellow)}
+    .winner{background:var(--green-bg)!important}
+    .empty-cmp{text-align:center;padding:3rem 2rem;color:var(--text-sec)}
+    .empty-cmp h3{font-size:1.05rem;margin-bottom:.4rem;color:var(--amber)}
+
+    /* Weight controls */
+    .weight-section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem;margin-bottom:1.25rem}
+    .weight-section h3{font-size:.88rem;font-weight:700;margin-bottom:.5rem;color:var(--amber)}
+    .weight-section p{font-size:.78rem;color:var(--text-sec);margin-bottom:.6rem}
+    .weight-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.5rem}
+    .weight-item{display:flex;align-items:center;gap:.4rem;font-size:.8rem}
+    .weight-item label{min-width:120px;color:var(--text-sec)}
+    .weight-item input[type=range]{flex:1;accent-color:var(--amber)}
+    .weight-item .wval{min-width:18px;font-weight:700;color:var(--amber);text-align:center}
+
+    /* Profile page */
+    .profile-page{display:none}
+    .profile-page.active{display:block}
+    .profile-back{display:inline-flex;align-items:center;gap:.3rem;padding:.4rem .9rem;border:1px solid var(--border);border-radius:6px;background:var(--card);color:var(--text-sec);cursor:pointer;font-size:.82rem;font-family:inherit;margin-bottom:1rem}
+    .profile-back:hover{border-color:var(--amber);color:var(--amber)}
+    .profile-hero{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem}
+    .profile-hero h2{font-size:1.4rem;font-weight:800;color:var(--amber);margin-bottom:.2rem}
+    .profile-hero .p-tagline{font-size:.9rem;color:var(--text-sec);margin-bottom:.75rem}
+    .profile-hero .p-meta{font-size:.85rem;color:var(--text-sec)}
+    .profile-hero .p-meta strong{color:var(--text)}
+
+    .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .profile-section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem}
+    .profile-section.full-width{grid-column:1/-1}
+    .profile-section h4{font-size:.88rem;font-weight:700;color:var(--amber);margin-bottom:.6rem;padding-bottom:.3rem;border-bottom:2px solid var(--amber);display:inline-block}
+    .profile-section ul{list-style:none;padding:0}
+    .profile-section ul li{font-size:.84rem;padding:.2rem 0;color:var(--text-sec)}
+    .profile-section ul li::before{content:"\2022";color:var(--amber);font-weight:700;margin-right:.4rem}
+    .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.25rem}
+    .fi{font-size:.82rem;display:flex;align-items:center;gap:.3rem}
+    .fi.yes{color:var(--green)}.fi.no{color:var(--red)}.fi.partial{color:var(--yellow)}
+    .news-item{padding:.45rem 0;border-bottom:1px solid var(--border)}
+    .news-item:last-child{border-bottom:0}
+    .news-date{font-size:.72rem;font-weight:600;color:var(--amber)}
+    .news-text{font-size:.82rem;color:var(--text)}
+    .example-item{padding:.5rem 0;border-bottom:1px solid var(--border)}
+    .example-item:last-child{border-bottom:0}
+    .example-name{font-weight:600;color:var(--text);font-size:.85rem}
+    .example-desc{font-size:.78rem;color:var(--text-sec)}
+    .editorial-box{background:var(--navy-light);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--radius);padding:1rem 1.2rem;margin-top:.5rem}
+    .editorial-box h4{font-size:.85rem;color:var(--amber);margin-bottom:.4rem;border:0;padding:0;display:block}
+    .editorial-box p{font-size:.84rem;color:var(--text-sec);font-style:italic;line-height:1.7}
+    .ux-badge{display:inline-block;padding:.2rem .7rem;border-radius:6px;font-size:.78rem;font-weight:700;margin-right:.4rem;margin-bottom:.3rem}
+    .ux-forum{background:#1a2d3d;color:#60a5fa;border:1px solid #2a4055}
+    .ux-feed{background:#2a2518;color:var(--amber);border:1px solid #3d3520}
+    .ux-hybrid{background:#1a2a20;color:var(--green);border:1px solid #2a4030}
+    .ux-events{background:#2a1828;color:#f0abfc;border:1px solid #3d2040}
+
+    footer{text-align:center;padding:2rem 1rem;font-size:.78rem;color:var(--text-sec);border-top:1px solid var(--border);margin-top:2rem}
+
+    @media(max-width:768px){
+      header h1{font-size:1.25rem}
+      .platform-grid{grid-template-columns:1fr}
+      .profile-grid{grid-template-columns:1fr}
+      .weight-grid{grid-template-columns:1fr}
+      .compare-fab{bottom:1rem;right:1rem;padding:.7rem 1.1rem;font-size:.85rem}
+      .stakes-grid{grid-template-columns:1fr 1fr}
+      .diff-cards{grid-template-columns:1fr}
+      .feat-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -150,25 +190,42 @@
 <header>
   <div class="logo">Fever<span>Bee</span></div>
   <h1>Community Platform Comparison Tool</h1>
-  <p>Evaluate and compare enterprise community platforms using Buzz Report criteria. Select platforms and adjust weights to match your priorities.</p>
+  <p>Evaluate, compare, and explore enterprise community platforms. Based on the Buzz Report criteria.</p>
 </header>
 <div class="container">
   <div class="tab-bar">
     <button class="tab-btn active" data-tab="overview">All Platforms</button>
+    <button class="tab-btn" data-tab="stakes">Table Stakes & Differentiators</button>
     <button class="tab-btn" data-tab="compare">Side-by-Side Comparison</button>
   </div>
+
   <div class="tab-panel active" id="panel-overview">
     <div class="weight-section">
       <h3>Adjust Criteria Weights</h3>
-      <p>Drag sliders to weight what matters most to your organisation. Platform scores update in real time.</p>
+      <p>Weight what matters most to your organisation. Scores update in real time.</p>
       <div class="weight-grid" id="weightGrid"></div>
     </div>
     <div class="overview-controls">
-      <div class="sel-hint">Tap platforms to select <strong>2 - 4</strong> for side-by-side comparison</div>
+      <div class="filter-pills">
+        <button class="pill active" data-cat="all">All</button>
+        <button class="pill" data-cat="established">Established Platforms</button>
+        <button class="pill" data-cat="newgen">New Generation</button>
+      </div>
       <input type="text" class="search-box" id="searchInput" placeholder="Search platforms...">
     </div>
+    <p style="font-size:.8rem;color:var(--text-dim);margin-bottom:.75rem">Tap cards to select 2-4 platforms for comparison. Click &ldquo;View Profile&rdquo; for full details.</p>
     <div class="platform-grid" id="platformGrid"></div>
   </div>
+
+  <div class="tab-panel" id="panel-stakes">
+    <div class="section-title">Table Stakes</div>
+    <div class="section-desc">Every enterprise community platform worth considering includes these core capabilities. These are not differentiators &mdash; they are the minimum requirements.</div>
+    <div class="stakes-grid" id="stakesGrid"></div>
+    <div class="section-title">Key Differentiators</div>
+    <div class="section-desc">Where platforms genuinely differ. These are the decisions that matter when choosing between them.</div>
+    <div class="diff-cards" id="diffCards"></div>
+  </div>
+
   <div class="tab-panel" id="panel-compare">
     <div class="compare-header">
       <h2>Side-by-Side Comparison</h2>
@@ -176,276 +233,503 @@
     </div>
     <div id="compareContent"></div>
   </div>
+
+  <div class="profile-page" id="profilePage"></div>
 </div>
+
 <button class="compare-fab" id="compareFab" onclick="switchTab('compare')">
   Compare <span class="fab-count" id="fabCount">0</span>
 </button>
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal" id="modalContent"></div>
-</div>
+
 <footer>
   Based on the FeverBee Buzz Report evaluation criteria. Feature data verified against vendor documentation (April 2026). Scores are illustrative &mdash; refer to the full Buzz Report for detailed analysis. &copy; FeverBee
 </footer>
 <script>
 const platforms = [
   {
-    id: "khoros", name: "Khoros", tagline: "Full-featured enterprise community with social customer care",
-    pricing: "~$50,000+/yr (custom quotes)", target: "Enterprise",
-    breadthOfFeatures: 9, qualityOfFeatures: 8.5, integrations: 8, dataPrivacySecurity: 9, servicesSupport: 8, reportsAnalytics: 8.5,
-    communityFeatures: {
-      "Discussion Forums": true, "Q&A": true, "Ideation / Ideas": true, "Knowledge Base": true,
-      "Blogs": true, "Gamification": true, "Moderation Tools": true, "SSO (SAML/OAuth)": true,
-      "API Access": true, "Custom Branding": true, "Native Mobile App": true, "Events": false,
-      "AI Content Moderation": true, "AI Search / Answers": true, "Self-Hosted Option": false, "Multi-language (37+)": true
+    id:"khoros",name:"Khoros",category:"established",catLabel:"Established Platform",
+    tagline:"Full-featured enterprise community with social customer care",
+    uxApproach:[{type:"forum",label:"Traditional Forum"}],
+    pricing:"~$50,000+/yr (custom quotes only)",target:"Enterprise",
+    breadthOfFeatures:9,qualityOfFeatures:8.5,integrations:8,dataPrivacySecurity:9,servicesSupport:8,reportsAnalytics:8.5,
+    communityFeatures:{
+      "Discussion Forums":true,"Q&A":true,"Ideation / Ideas":true,"Knowledge Base":true,"Blogs":true,
+      "Gamification":true,"Moderation Tools":true,"SSO (SAML/OAuth)":true,"API Access":true,
+      "Custom Branding":true,"Native Mobile App":true,"Events":false,
+      "AI Content Moderation":true,"AI Search / Answers":true,"Self-Hosted Option":false,"Multi-language (37+)":true
     },
-    keyIntegrations: ["Salesforce (premium connector)", "Google Analytics 360", "Adobe Analytics", "Slack", "Zendesk"],
-    recentNews: [
-      { date: "May 2025", text: "IgniteTech acquires Khoros, plans AI transformation for community platform" },
-      { date: "Q3 2025", text: "Launched AI Expert Help (instant multi-lingual AI responses) and AI Discovery Defender (keeps content discoverable by AI search engines)" },
-      { date: "Q3 2025", text: "New AI Community Orchestration: AI assists community managers with content generation, moderation, and engagement" },
-      { date: "Jul 2025", text: "Strategic shift from search-driven support to AI-powered community ecosystems announced" }
+    keyIntegrations:["Salesforce (premium bi-directional connector)","Google Analytics 360","Adobe Analytics / Experience Manager","Slack","Zendesk","Marketo"],
+    examples:[
+      {name:"Samsung Community",desc:"Global customer support and discussion community"},
+      {name:"Spotify Community",desc:"Feature requests, troubleshooting, and music discussion"},
+      {name:"HP Community",desc:"Long-running support community for printers, laptops, and PCs"}
     ],
-    strengths: ["Most comprehensive feature set for large enterprises", "Strong AI spam/moderation tools", "37+ language support", "Deep Salesforce integration"],
-    considerations: ["Premium pricing - not suited for SMBs", "No self-hosted option", "No native events feature", "Recent acquisition may bring changes"]
+    recentNews:[
+      {date:"May 2025",text:"IgniteTech acquires Khoros to transform customer connections in the AI answer engine era"},
+      {date:"Q3 2025",text:"Launched AI Expert Help, AI Discovery Defender (keeps content visible to AI search engines), and AI Brand Defender"},
+      {date:"Q3 2025",text:"AI Community Orchestration: AI assists with content generation, moderation, sentiment analysis"},
+      {date:"Jul 2025",text:"Strategic shift from search-driven support to AI-powered community ecosystems"}
+    ],
+    strengths:["Most comprehensive feature set for large enterprises","37+ language support out of the box","Deep Salesforce bi-directional connector","Strong AI moderation and spam filtering","Proven at massive scale (Samsung, Spotify)"],
+    considerations:["Premium pricing - starts around $50k/yr","No native events capability","No self-hosted option","IgniteTech acquisition may bring strategic changes","90-day auto-renewal opt-out clause in contracts"],
+    editorial:"[Your editorial opinion on Khoros goes here. How does it compare in practice? What have you seen with clients? Where does it excel and fall short?]"
   },
   {
-    id: "gainsight", name: "Gainsight Customer Communities", tagline: "Customer success-focused community platform (formerly inSided)",
-    pricing: "Custom (3 tiers: Professional, Business, Enterprise)", target: "Mid-Market / Enterprise",
-    breadthOfFeatures: 8, qualityOfFeatures: 8, integrations: 8.5, dataPrivacySecurity: 8, servicesSupport: 8.5, reportsAnalytics: 8,
-    communityFeatures: {
-      "Discussion Forums": true, "Q&A": true, "Ideation / Ideas": true, "Knowledge Base": true,
-      "Product Updates Hub": true, "Gamification": true, "Moderation Tools": true, "SSO (SAML/OAuth)": true,
-      "API Access": true, "Custom Branding": true, "Native Mobile App": false, "Events": true,
-      "AI Content Moderation": true, "AI Search / Answers": "Partial", "Self-Hosted Option": false, "Multi-language": true
+    id:"gainsight",name:"Gainsight Customer Communities",category:"established",catLabel:"Established Platform",
+    tagline:"Customer success-focused community platform (formerly inSided)",
+    uxApproach:[{type:"forum",label:"Traditional Forum"},{type:"feed",label:"Product Updates Feed"}],
+    pricing:"Custom (3 tiers: Professional, Business, Enterprise)",target:"Mid-Market / Enterprise",
+    breadthOfFeatures:8,qualityOfFeatures:8,integrations:8.5,dataPrivacySecurity:8,servicesSupport:8.5,reportsAnalytics:8,
+    communityFeatures:{
+      "Discussion Forums":true,"Q&A":true,"Ideation / Ideas":true,"Knowledge Base":true,"Product Updates Hub":true,
+      "Gamification":true,"Moderation Tools":true,"SSO (SAML/OAuth)":true,"API Access":true,
+      "Custom Branding":true,"Native Mobile App":false,"Events":true,
+      "AI Content Moderation":true,"AI Search / Answers":"Partial","Self-Hosted Option":false,"Multi-language":true
     },
-    keyIntegrations: ["Gainsight CS (customer health scoring)", "Gainsight PX (in-app bots)", "Salesforce", "Zendesk", "Jira", "Slack", "Zapier"],
-    recentNews: [
-      { date: "Oct 2025", text: "Named Leader in IDC MarketScape: Worldwide Enterprise Community Applications 2025" },
-      { date: "2025", text: "Launched Moderation AI Agent (via ModerateKit acquisition) - auto-classifies posts as Approved/Pending/Trashed" },
-      { date: "2025", text: "AI Translations GA - one-click translation of posts and replies into user preferred language" },
-      { date: "Q1 2026", text: "AI Answers enters open beta; new Subscription dashboards; categorised Ideas and Product Updates" },
-      { date: "2025", text: "60+ new customers including Airtable, Figma, Payscale, and Zoom" }
+    keyIntegrations:["Gainsight CS (customer health scoring)","Gainsight PX (in-app knowledge bots)","Salesforce (incl. Lightning Web Components)","Zendesk","Jira","Slack","Zapier","Skilljar"],
+    examples:[
+      {name:"Gainsight GameChanger Community",desc:"Their own community, powered by their own platform"},
+      {name:"Figma Community",desc:"Product feedback and peer support for design tool users"},
+      {name:"Airtable Community",desc:"Customer community for the no-code database platform"}
     ],
-    strengths: ["Deep integration with Gainsight CS for customer health scoring", "Strong product feedback/ideation workflow", "AI moderation agent", "IDC MarketScape Leader"],
-    considerations: ["No native mobile app", "AI Answers still in beta", "Pricing not publicly disclosed", "Best value when paired with Gainsight CS suite"]
+    recentNews:[
+      {date:"Oct 2025",text:"Named Leader in IDC MarketScape: Worldwide Enterprise Community Applications 2025"},
+      {date:"2025",text:"Launched Moderation AI Agent (via ModerateKit acquisition) - auto-classifies posts in real time"},
+      {date:"2025",text:"AI Translations GA - one-click translation of posts into user's preferred language"},
+      {date:"Q1 2026",text:"AI Answers enters open beta; new Subscription dashboards; categorised Ideas and Product Updates"},
+      {date:"2025",text:"60+ new customers including Airtable, Figma, Payscale, and Zoom"}
+    ],
+    strengths:["Deep integration with Gainsight CS for customer health scoring","Strong product feedback and ideation workflow","AI Moderation Agent classifies posts automatically","IDC MarketScape Leader 2025","Product Updates hub is unique and useful"],
+    considerations:["No native mobile app","AI Answers still in beta (Q1 2026)","Best value when paired with full Gainsight suite","Pricing not publicly disclosed","Community is one product in a larger CS platform"],
+    editorial:"[Your editorial opinion on Gainsight CC goes here. How does the inSided heritage show? What's the real experience like for community managers?]"
   },
   {
-    id: "higherlogic", name: "Higher Logic Vanilla", tagline: "Proven B2B community platform for support-driven engagement",
-    pricing: "Custom (3 tiers: Corporate, Enterprise, Enterprise Plus)", target: "Mid-Market / Enterprise",
-    breadthOfFeatures: 8, qualityOfFeatures: 8, integrations: 7.5, dataPrivacySecurity: 8, servicesSupport: 8, reportsAnalytics: 7.5,
-    communityFeatures: {
-      "Discussion Forums": true, "Q&A": true, "Ideation / Ideas": true, "Knowledge Base": true,
-      "Blogs": false, "Gamification": true, "Moderation Tools": true, "SSO (SAML/OAuth)": true,
-      "API Access": true, "Custom Branding": true, "Native Mobile App": false, "Events": false,
-      "AI Content Moderation": true, "AI Search / Answers": true, "Self-Hosted Option": false, "Multi-language": "Partial"
+    id:"higherlogic",name:"Higher Logic Vanilla",category:"established",catLabel:"Established Platform",
+    tagline:"Proven B2B community platform for support-driven engagement",
+    uxApproach:[{type:"forum",label:"Traditional Forum"},{type:"hybrid",label:"Q&A Hybrid"}],
+    pricing:"Custom (3 tiers: Corporate, Enterprise, Enterprise Plus)",target:"Mid-Market / Enterprise",
+    breadthOfFeatures:8,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7.5,
+    communityFeatures:{
+      "Discussion Forums":true,"Q&A":true,"Ideation / Ideas":true,"Knowledge Base":true,"Blogs":false,
+      "Gamification":true,"Moderation Tools":true,"SSO (SAML/OAuth)":true,"API Access":true,
+      "Custom Branding":true,"Native Mobile App":false,"Events":false,
+      "AI Content Moderation":true,"AI Search / Answers":true,"Self-Hosted Option":false,"Multi-language":"Partial"
     },
-    keyIntegrations: ["Zendesk (deep integration)", "Salesforce", "Slack", "Zoom", "Zapier", "ServiceNow", "Jira"],
-    recentNews: [
-      { date: "Jun 2025", text: "Launched AI Search Assistant using RAG - conversational answers from community content, docs, and org knowledge" },
-      { date: "Dec 2025", text: "Named Marius Ciortea (ex-IBM) as Chief Community Officer, signalling push into AI-powered engagement" },
-      { date: "2025", text: "New Widget Builder: built-in IDE using React + TypeScript with live preview for custom community components" },
-      { date: "2025", text: "AI Bot Shield launched for detecting and blocking bot activity" },
-      { date: "Mar 2026", text: "TLI selects Higher Logic for Autism Knowledge Gateway community" }
+    keyIntegrations:["Zendesk (deep bi-directional integration)","Salesforce","Slack","Zoom (one-click event registration)","Zapier","ServiceNow","Jira","Aha!"],
+    examples:[
+      {name:"Airtable Community",desc:"User community for the no-code platform (Vanilla-powered)"},
+      {name:"DigitalOcean Community",desc:"Developer tutorials and Q&A community"},
+      {name:"Malwarebytes Forums",desc:"Long-standing support community"}
     ],
-    strengths: ["Strong Zendesk integration for support communities", "Widget Builder (React/TypeScript IDE) for customisation", "AI Search Assistant with RAG", "Dedicated Customer Success team on all plans"],
-    considerations: ["No native mobile app", "No built-in events feature", "Limited multi-language compared to Khoros", "Analytics less advanced than some competitors"]
+    recentNews:[
+      {date:"Jun 2025",text:"Launched AI Search Assistant using RAG - conversational answers from community content and docs"},
+      {date:"Dec 2025",text:"Named Marius Ciortea (ex-IBM) as Chief Community Officer"},
+      {date:"2025",text:"Widget Builder launched: built-in React/TypeScript IDE with live preview for custom components"},
+      {date:"2025",text:"AI Bot Shield for detecting and blocking bot activity"},
+      {date:"Mar 2026",text:"TLI selects Higher Logic for Autism Knowledge Gateway community"}
+    ],
+    strengths:["Best-in-class Zendesk integration for support communities","Widget Builder (React/TypeScript IDE) for deep customisation","AI Search Assistant with RAG technology","Dedicated Customer Success team on all plans","Strong in B2B support community use cases"],
+    considerations:["No native mobile app","No built-in events feature","Limited multi-language vs Khoros","Analytics less advanced than competitors","No blog functionality built in"],
+    editorial:"[Your editorial opinion on Higher Logic Vanilla goes here. How does it compare to old Vanilla Forums? What's the real developer experience like?]"
   },
   {
-    id: "salesforce", name: "Salesforce Experience Cloud", tagline: "CRM-native community platform for the Salesforce ecosystem",
-    pricing: "Per-login ($2-$15) or per-member ($5-$35/mo) depending on license type", target: "Enterprise",
-    breadthOfFeatures: 9, qualityOfFeatures: 7.5, integrations: 9.5, dataPrivacySecurity: 9, servicesSupport: 7, reportsAnalytics: 8.5,
-    communityFeatures: {
-      "Discussion Forums": true, "Q&A": true, "Ideation / Ideas": true, "Knowledge Base": true,
-      "Experience Builder (drag-drop)": true, "Gamification": true, "Moderation Tools": true, "SSO (SAML/OAuth)": true,
-      "API Access": true, "Custom Branding": true, "Native Mobile App": true, "Events": true,
-      "AI Search (Einstein)": true, "AI Bots (Einstein/Agentforce)": true, "Self-Hosted Option": false, "Multi-language": true
+    id:"salesforce",name:"Salesforce Experience Cloud",category:"established",catLabel:"Established Platform",
+    tagline:"CRM-native community for organisations deep in the Salesforce ecosystem",
+    uxApproach:[{type:"hybrid",label:"Configurable (Forum/Portal/Feed)"}],
+    pricing:"Per-login ($2-$15) or per-member ($5-$35/mo) by license type",target:"Enterprise",
+    breadthOfFeatures:9,qualityOfFeatures:7.5,integrations:9.5,dataPrivacySecurity:9,servicesSupport:7,reportsAnalytics:8.5,
+    communityFeatures:{
+      "Discussion Forums":true,"Q&A":true,"Ideation / Ideas":true,"Knowledge Base":true,"Experience Builder (drag-drop)":true,
+      "Gamification":true,"Moderation Tools":true,"SSO (SAML/OAuth)":true,"API Access":true,
+      "Custom Branding":true,"Native Mobile App":true,"Events":true,
+      "AI Search (Einstein)":true,"AI Bots (Agentforce)":true,"Self-Hosted Option":false,"Multi-language":true
     },
-    keyIntegrations: ["Sales Cloud", "Service Cloud", "Marketing Cloud", "Data Cloud", "Commerce Cloud", "Slack", "MuleSoft", "AppExchange ecosystem"],
-    recentNews: [
-      { date: "Feb 2026", text: "Spring 26: Generative Engine Optimization (GEO) - public community pages now discoverable by AI search engines (ChatGPT, Perplexity)" },
-      { date: "Feb 2026", text: "Spring 26: Dynamic redirects on Aura sites, session persistence for authenticated users" },
-      { date: "Jul 2025", text: "Summer 25: Major upgrades alongside Agentforce rollout across platform" },
-      { date: "2025-26", text: "Agentforce live with 12,000+ customers - autonomous AI agents for community workflows at $2/conversation" }
+    keyIntegrations:["Sales Cloud","Service Cloud","Marketing Cloud","Data Cloud","Commerce Cloud","Slack","MuleSoft","AppExchange (thousands of apps)"],
+    examples:[
+      {name:"Salesforce Trailblazer Community",desc:"Massive community for Salesforce admins, devs, and users"},
+      {name:"Sonos Community",desc:"Customer support forums for audio products"},
+      {name:"T-Mobile Community",desc:"Customer support and discussion community"}
     ],
-    strengths: ["Unmatched integration depth if already on Salesforce", "Flexible licensing model (per-login or per-member)", "Native CRM data access without middleware", "Agentforce AI agents for automation"],
-    considerations: ["Requires Salesforce ecosystem commitment", "Community is one module of a massive platform - complexity", "Quality of community-specific UX lags dedicated vendors", "Services/support can be impersonal at lower tiers"]
+    recentNews:[
+      {date:"Feb 2026",text:"Spring '26: Generative Engine Optimization (GEO) - community pages discoverable by ChatGPT, Perplexity, Gemini"},
+      {date:"Feb 2026",text:"Spring '26: Dynamic redirects on Aura sites, session persistence for authenticated users"},
+      {date:"Jul 2025",text:"Summer '25: Major platform upgrades alongside Agentforce rollout"},
+      {date:"2025-26",text:"Agentforce live with 12,000+ customers - AI agents for community workflows at $2/conversation"}
+    ],
+    strengths:["Unmatched integration depth within Salesforce ecosystem","Flexible licensing (per-login or per-member)","Native CRM data access without middleware","Agentforce AI agents for workflow automation","Experience Builder for no-code page creation"],
+    considerations:["Requires deep Salesforce ecosystem commitment","Community is one module in a massive platform - complexity overhead","Community-specific UX lags dedicated vendors","Implementation typically requires SI partners","Services and support can feel impersonal"],
+    editorial:"[Your editorial opinion on Salesforce Experience Cloud goes here. When does it make sense vs a dedicated community platform? What's the real cost of ownership?]"
   },
   {
-    id: "verint", name: "Verint Community", tagline: "Enterprise community with strong moderation and CX integration",
-    pricing: "Custom enterprise quotes only", target: "Enterprise",
-    breadthOfFeatures: 8.5, qualityOfFeatures: 7.5, integrations: 7, dataPrivacySecurity: 8.5, servicesSupport: 7.5, reportsAnalytics: 8,
-    communityFeatures: {
-      "Discussion Forums": true, "Q&A": true, "Ideation / Ideas": true, "Knowledge Base": true,
-      "Blogs": true, "Gamification": true, "Moderation Tools": true, "SSO (SAML/OAuth)": true,
-      "API Access": true, "Custom Branding": true, "Native Mobile App": true, "Events": false,
-      "AI Content Moderation": true, "AI Search / Answers": true, "Self-Hosted Option": false, "Multi-language": true
+    id:"verint",name:"Verint Community",category:"established",catLabel:"Established Platform",
+    tagline:"Enterprise community with strong moderation and CX suite integration",
+    uxApproach:[{type:"forum",label:"Traditional Forum"}],
+    pricing:"Custom enterprise quotes only",target:"Enterprise",
+    breadthOfFeatures:8.5,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:8.5,servicesSupport:7.5,reportsAnalytics:8,
+    communityFeatures:{
+      "Discussion Forums":true,"Q&A":true,"Ideation / Ideas":true,"Knowledge Base":true,"Blogs":true,
+      "Gamification":true,"Moderation Tools":true,"SSO (SAML/OAuth)":true,"API Access":true,
+      "Custom Branding":true,"Native Mobile App":true,"Events":false,
+      "AI Content Moderation":true,"AI Search / Answers":true,"Self-Hosted Option":false,"Multi-language":true
     },
-    keyIntegrations: ["Verint CX suite (WFM, Knowledge Mgmt)", "Salesforce", "Microsoft Dynamics", "REST APIs"],
-    recentNews: [
-      { date: "2024-25", text: "Verint Da Vinci AI expanded across platform - intelligent search, auto-tagging, sentiment analysis in community" },
-      { date: "2025", text: "Open platform AI strategy: ability to plug in multiple AI models (not locked to one vendor)" },
-      { date: "2025", text: "Continued investment in case deflection analytics measuring community ROI on support ticket reduction" }
+    keyIntegrations:["Verint CX suite (WFM, Knowledge Mgmt, Engagement Mgmt)","Salesforce","Microsoft Dynamics","REST APIs"],
+    examples:[
+      {name:"Verint Connect",desc:"Verint's own customer community on their own platform"},
+      {name:"Microsoft Tech Community",desc:"Used Verint/Telligent technology for technical community infrastructure"},
+      {name:"Verizon Community",desc:"Customer engagement and support forums"}
     ],
-    strengths: ["Part of broader Verint CX ecosystem", "Strong moderation and compliance tools", "Da Vinci AI for sentiment analysis and auto-tagging", "Good case deflection analytics"],
-    considerations: ["No public pricing - enterprise sales process only", "Fewer third-party integrations than competitors", "Innovation pace slower than newer entrants", "No native events feature"]
+    recentNews:[
+      {date:"2024-25",text:"Verint Da Vinci AI expanded - intelligent search, auto-tagging, sentiment analysis in community"},
+      {date:"2025",text:"Open platform AI strategy: plug in multiple AI models, not locked to one vendor"},
+      {date:"2025",text:"Continued investment in case deflection analytics measuring community ROI on ticket reduction"}
+    ],
+    strengths:["Part of broader Verint CX ecosystem","Strong moderation and compliance tools","Da Vinci AI for sentiment analysis and auto-tagging","Good case deflection analytics and ROI measurement","Open AI strategy - not locked to one AI vendor"],
+    considerations:["No public pricing - enterprise sales process only","Fewer third-party integrations than competitors","Innovation pace slower than newer entrants","No native events feature","Telligent heritage means older underlying architecture"],
+    editorial:"[Your editorial opinion on Verint Community goes here. How does the Telligent heritage affect the product? Where does it sit in the market now?]"
   },
   {
-    id: "bettermode", name: "Bettermode", tagline: "Modern, API-first community with flexible content types",
-    pricing: "From $399/mo (Starter) to $1,500/mo (Growth); Premium custom", target: "SMB / Mid-Market",
-    breadthOfFeatures: 7.5, qualityOfFeatures: 8, integrations: 7.5, dataPrivacySecurity: 7, servicesSupport: 7, reportsAnalytics: 7,
-    communityFeatures: {
-      "Discussion Forums": true, "Q&A": true, "Ideation / Ideas": true, "Knowledge Base": true,
-      "Polls & Events": true, "Gamification": true, "Moderation Tools": true, "SSO (OAuth/JWT)": true,
-      "GraphQL API": true, "Custom Branding": true, "Native Mobile App": false, "Events": true,
-      "AI Content Moderation": true, "AI Search / Ask AI": true, "Self-Hosted Option": false, "Multi-language": true
+    id:"bettermode",name:"Bettermode",category:"newgen",catLabel:"New Generation",
+    tagline:"Modern, API-first community with flexible content types and feed-style UX",
+    uxApproach:[{type:"feed",label:"Social Feed / Wall"}],
+    pricing:"From $399/mo (Starter) to $1,500/mo (Growth); Premium custom",target:"SMB / Mid-Market",
+    breadthOfFeatures:7.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:7,servicesSupport:7,reportsAnalytics:7,
+    communityFeatures:{
+      "Discussion Forums":true,"Q&A":true,"Ideation / Ideas":true,"Knowledge Base":true,"Polls & Events":true,
+      "Gamification":true,"Moderation Tools":true,"SSO (OAuth/JWT)":true,"GraphQL API":true,
+      "Custom Branding":true,"Native Mobile App":false,"Events":true,
+      "AI Content Moderation":true,"AI Search / Ask AI":true,"Self-Hosted Option":false,"Multi-language":true
     },
-    keyIntegrations: ["Zapier (8,000+ apps)", "Make (Integromat)", "Salesforce", "Intercom", "Slack", "Shopify", "Stripe", "Google Analytics"],
-    recentNews: [
-      { date: "Mar 2025", text: "Launched AI-Powered Search and Ask AI - natural language questions answered from community content" },
-      { date: "2025", text: "New pricing tiers (Starter/Growth/Premium) replacing old Free/Pro/Advanced structure" },
-      { date: "Mar 2026", text: "Free plan sunset deadline - all free communities removed; users must upgrade or export" }
+    keyIntegrations:["Zapier (8,000+ apps)","Make (Integromat)","Salesforce","Intercom","Slack","Shopify","Stripe","Google Analytics","Mixpanel"],
+    examples:[
+      {name:"Pipedrive Community",desc:"CRM user community for peer support and discussion"},
+      {name:"Bettermode Community",desc:"Their own community, showcasing the platform"},
+      {name:"Outgrow Community",desc:"Customer community for the marketing tool"}
     ],
-    strengths: ["Most affordable entry point of the six platforms", "GraphQL API for developers", "Design Studio for no-code customisation", "Flexible content types (feeds, podcasts, jobs, reviews)"],
-    considerations: ["No native mobile app", "Smaller company with less enterprise track record", "Free plan being discontinued", "Data privacy/security less mature than enterprise-focused vendors"]
+    recentNews:[
+      {date:"Mar 2025",text:"Launched AI-Powered Search and Ask AI - natural language answers from community content"},
+      {date:"2025",text:"New pricing tiers (Starter $399/mo, Growth $1,500/mo, Premium custom) replacing old structure"},
+      {date:"Mar 2026",text:"Free plan sunset - all free communities removed; users must upgrade or export content"}
+    ],
+    strengths:["Most affordable entry point of all platforms reviewed","Modern social feed UX (wall-style, not forum-style)","GraphQL API for developer flexibility","Design Studio for no-code visual customisation","Flexible content types: feeds, podcasts, jobs, reviews, polls"],
+    considerations:["No native mobile app","Smaller company with less enterprise track record","Free plan being discontinued (Mar 2026)","Data privacy and security less mature than enterprise vendors","Smaller customer base than established players"],
+    editorial:"[Your editorial opinion on Bettermode goes here. How does the feed/wall approach compare to forums in practice? Who is this really for?]"
+  },
+  {
+    id:"bevy",name:"Bevy",category:"newgen",catLabel:"New Generation",
+    tagline:"Community events platform expanding into all-in-one community management",
+    uxApproach:[{type:"events",label:"Events-First"},{type:"feed",label:"Community Hub Feed"}],
+    pricing:"Custom enterprise pricing (estimated mid-five figures/yr)",target:"Mid-Market / Enterprise",
+    breadthOfFeatures:7,qualityOfFeatures:7.5,integrations:7.5,dataPrivacySecurity:7.5,servicesSupport:8,reportsAnalytics:7.5,
+    communityFeatures:{
+      "Discussion Forums":"Partial","Q&A":"Partial","Ideation / Ideas":false,"Knowledge Base":"Partial","Event Management":true,
+      "Gamification":"Partial","Moderation Tools":true,"SSO (SAML/OAuth)":true,"API Access":true,
+      "Custom Branding":true,"Native Mobile App":false,"Virtual Events":true,
+      "AI Community Insights":true,"Chapter / Local Groups":true,"Self-Hosted Option":false,"Multi-language":"Partial"
+    },
+    keyIntegrations:["Salesforce","HubSpot","Slack","Marketo","Zapier","Okta","Google Analytics","Zoom","Eloqua"],
+    examples:[
+      {name:"Salesforce Trailblazer Community Groups",desc:"Massive global chapter-based events programme across hundreds of cities"},
+      {name:"Atlassian Community Events",desc:"Global user groups for Jira, Confluence, and other products"},
+      {name:"Google Developer Groups (GDG)",desc:"1,000+ chapters globally for developer meetups and events"}
+    ],
+    recentNews:[
+      {date:"2024-25",text:"Expanding from events-only to all-in-one community platform with discussions, content, and member directories"},
+      {date:"2025",text:"AI-powered community insights and analytics for ROI measurement"},
+      {date:"2025",text:"Continued enterprise focus on security, compliance, and scalability"}
+    ],
+    strengths:["Dominant platform for community-led events at scale","Owns CMX (the community industry body) - unique strategic position","Proven with world's largest community programmes (Salesforce, Google, Atlassian)","Chapter/local group management is unmatched","Strong event ROI and attribution analytics"],
+    considerations:["Forum/discussion features are newer and less mature than dedicated platforms","Not yet a full community platform - events DNA still dominant","No native ideation or knowledge base features","Custom pricing only - no self-serve","Expanding scope may stretch focus"],
+    editorial:"[Your editorial opinion on Bevy goes here. Is it really becoming a full community platform or still primarily events? How does the CMX ownership affect the market?]"
+  },
+  {
+    id:"hivebrite",name:"Hivebrite",category:"newgen",catLabel:"New Generation",
+    tagline:"Alumni and membership community platform expanding into enterprise",
+    uxApproach:[{type:"hybrid",label:"Member Directory + Feed"},{type:"events",label:"Events-Centric"}],
+    pricing:"Custom (~$5,000 - $30,000+/yr based on members)",target:"Mid-Market / Enterprise",
+    breadthOfFeatures:7.5,qualityOfFeatures:7.5,integrations:6.5,dataPrivacySecurity:8,servicesSupport:7,reportsAnalytics:7,
+    communityFeatures:{
+      "Discussion Forums":true,"Q&A":"Partial","Member Directory":true,"Knowledge Base":"Partial","Event Management":true,
+      "Gamification":"Partial","Moderation Tools":true,"SSO (SAML/OAuth)":true,"API Access":true,
+      "Custom Branding":true,"Native Mobile App":true,"Job Board":true,
+      "Mentoring Programmes":true,"Fundraising / Donations":true,"Self-Hosted Option":false,"Multi-language":true
+    },
+    keyIntegrations:["Salesforce","HubSpot","SSO providers","Payment gateways","Custom APIs"],
+    examples:[
+      {name:"INSEAD Alumni Network",desc:"Global alumni network for one of the world's top business schools"},
+      {name:"HEC Paris Alumni",desc:"Alumni engagement for the leading French business school"},
+      {name:"WWF (World Wildlife Fund)",desc:"Supporter and volunteer community management"}
+    ],
+    recentNews:[
+      {date:"2025",text:"AI-powered features for content suggestions, engagement insights, and smart mentoring matching"},
+      {date:"2025",text:"Enhanced native mobile apps with push notifications"},
+      {date:"2025",text:"Expanded beyond Europe into North America and Asia-Pacific markets"},
+      {date:"2025",text:"Positioning shift from 'alumni platform' to general 'community management platform'"}
+    ],
+    strengths:["Purpose-built for alumni/membership organisations - features like mentoring, fundraising, job boards are native","Strongest white-labelling of any platform (fully branded apps, no 'powered by')","All-in-one for membership orgs: CMS + CRM + events + fundraising + jobs","GDPR-compliant European origins","Native mobile apps included"],
+    considerations:["Forum/discussion features less sophisticated than dedicated community platforms","Fewer third-party integrations than competitors","Academic/alumni DNA may not suit all enterprise use cases","Smaller engineering team than established vendors","Analytics less advanced"],
+    editorial:"[Your editorial opinion on Hivebrite goes here. How well does the alumni-origin translate to broader community use? Where does it genuinely excel vs where is it stretching?]"
   }
 ];
 
 const criteria = [
-  { key: "breadthOfFeatures", label: "Breadth of Features" },
-  { key: "qualityOfFeatures", label: "Quality of Features" },
-  { key: "integrations", label: "Integrations" },
-  { key: "dataPrivacySecurity", label: "Data Privacy & Security" },
-  { key: "servicesSupport", label: "Services & Support" },
-  { key: "reportsAnalytics", label: "Reports & Analytics" }
+  {key:"breadthOfFeatures",label:"Breadth of Features"},
+  {key:"qualityOfFeatures",label:"Quality of Features"},
+  {key:"integrations",label:"Integrations"},
+  {key:"dataPrivacySecurity",label:"Data Privacy & Security"},
+  {key:"servicesSupport",label:"Services & Support"},
+  {key:"reportsAnalytics",label:"Reports & Analytics"}
+];
+
+const tableStakes = [
+  "Discussion forums or spaces","User profiles and accounts","Content moderation tools",
+  "Single Sign-On (SSO)","Search functionality","Admin dashboard",
+  "Basic analytics / reporting","Custom branding / theming","Email notifications",
+  "Role-based permissions","Mobile-responsive design","API access",
+  "User registration flows","Content flagging / reporting","GDPR / privacy controls"
+];
+
+const differentiators = [
+  {title:"Forum-Style vs Feed/Wall-Style UX",
+   desc:"The biggest UX divide. Traditional forums (threaded, topic-based) suit deep technical support and knowledge retention. Social feed/wall UX (chronological, card-based) drives engagement and feels modern but content is harder to find later.",
+   platforms:[{name:"Forum-style",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint"]},{name:"Feed/Wall-style",tags:["Bettermode","Bevy Hub"]},{name:"Configurable",tags:["Salesforce","Hivebrite"]}]},
+  {title:"Events-Native vs Bolt-On",
+   desc:"Some platforms treat events as a core capability baked into the product. Others have no events at all, or offer basic integrations. If community events are central to your strategy, this matters enormously.",
+   platforms:[{name:"Events-native",tags:["Bevy","Hivebrite"]},{name:"Built-in events",tags:["Gainsight CC","Bettermode","Salesforce"]},{name:"No native events",tags:["Khoros","Higher Logic Vanilla","Verint"]}]},
+  {title:"Dedicated Community vs Platform Module",
+   desc:"Is the community product the vendor's primary focus, or is it one module in a larger suite? Dedicated vendors iterate faster on community features. Platform modules offer deeper integration with the parent ecosystem.",
+   platforms:[{name:"Community is the product",tags:["Higher Logic Vanilla","Bettermode","Bevy","Hivebrite"]},{name:"Part of larger suite",tags:["Salesforce","Gainsight CC","Verint","Khoros"]}]},
+  {title:"AI Capabilities Maturity",
+   desc:"Every vendor is rushing to add AI, but maturity varies wildly. Some have shipped production AI moderation and search. Others are still in beta or marketing vapourware.",
+   platforms:[{name:"Production AI features",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Salesforce"]},{name:"Emerging AI",tags:["Bettermode","Verint","Bevy"]},{name:"Limited AI",tags:["Hivebrite"]}]},
+  {title:"Membership / Alumni Features",
+   desc:"Features like fundraising, job boards, mentoring programmes, and member directories are native in some platforms and completely absent in others.",
+   platforms:[{name:"Native membership features",tags:["Hivebrite"]},{name:"Some membership features",tags:["Bevy"]},{name:"Not focused on membership",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Bettermode","Salesforce"]}]},
+  {title:"Self-Serve Pricing vs Enterprise Sales",
+   desc:"Can you sign up and start today, or do you need a 3-month sales process? This affects time-to-value and suits different buyer types.",
+   platforms:[{name:"Self-serve pricing published",tags:["Bettermode"]},{name:"Tiers listed, quote required",tags:["Gainsight CC","Higher Logic Vanilla"]},{name:"Enterprise sales only",tags:["Khoros","Salesforce","Verint","Bevy","Hivebrite"]}]}
 ];
 
 let weights = {};
 criteria.forEach(c => weights[c.key] = 5);
 let selected = new Set();
+let currentFilter = "all";
 
-function sColor(s) { return s >= 8 ? "var(--green)" : s >= 6 ? "var(--amber)" : "var(--red)"; }
-function sClass(s) { return s >= 8 ? "score-high" : s >= 6 ? "score-mid" : "score-low"; }
-function fBadge(v) {
-  if (v === true) return '<span class="badge badge-yes">Yes</span>';
-  if (v === false) return '<span class="badge badge-no">No</span>';
-  return '<span class="badge badge-partial">Partial</span>';
+function sColor(s){return s>=8?"var(--green)":s>=6?"var(--amber)":"var(--red)"}
+function sClass(s){return s>=8?"score-high":s>=6?"score-mid":"score-low"}
+function fBadge(v){
+  if(v===true)return'<span class="badge badge-yes">Yes</span>';
+  if(v===false)return'<span class="badge badge-no">No</span>';
+  return'<span class="badge badge-partial">Partial</span>';
+}
+function weightedScore(p){
+  let tw=0,ts=0;
+  criteria.forEach(c=>{tw+=weights[c.key];ts+=p[c.key]*weights[c.key]});
+  return tw>0?(ts/tw).toFixed(1):0;
+}
+function uxBadges(arr){
+  return arr.map(a=>`<span class="ux-badge ux-${a.type}">${a.label}</span>`).join("");
+}
+function catBadge(p){
+  return p.category==="established"?'<span class="cat-label cat-established">Established</span>':'<span class="cat-label cat-newgen">New Generation</span>';
 }
 
-function weightedScore(p) {
-  let totalW = 0, totalS = 0;
-  criteria.forEach(c => { totalW += weights[c.key]; totalS += p[c.key] * weights[c.key]; });
-  return totalW > 0 ? (totalS / totalW).toFixed(1) : 0;
-}
+// --- RENDERING ---
 
-function renderWeights() {
-  document.getElementById("weightGrid").innerHTML = criteria.map(c =>
+function renderWeights(){
+  document.getElementById("weightGrid").innerHTML=criteria.map(c=>
     `<div class="weight-item"><label>${c.label}</label><input type="range" min="0" max="10" value="${weights[c.key]}" oninput="weights['${c.key}']=+this.value;this.nextElementSibling.textContent=this.value;renderOverview()"><span class="wval">${weights[c.key]}</span></div>`
   ).join("");
 }
 
-function toggleSelect(id, e) {
-  if (e && (e.target.classList.contains("detail-btn") || e.target.closest(".detail-btn"))) return;
-  if (selected.has(id)) selected.delete(id); else { if (selected.size >= 4) return; selected.add(id); }
-  renderOverview();
-  updateFab();
+function toggleSelect(id,e){
+  if(e&&(e.target.classList.contains("view-profile-btn")||e.target.closest(".view-profile-btn")))return;
+  if(selected.has(id))selected.delete(id);else{if(selected.size>=4)return;selected.add(id)}
+  renderOverview();updateFab();
 }
 
-function updateFab() {
-  document.getElementById("fabCount").textContent = selected.size;
-  document.getElementById("compareFab").classList.toggle("show", selected.size >= 2);
+function updateFab(){
+  document.getElementById("fabCount").textContent=selected.size;
+  document.getElementById("compareFab").classList.toggle("show",selected.size>=2);
 }
 
-function renderOverview() {
-  const grid = document.getElementById("platformGrid");
-  const q = document.getElementById("searchInput").value.toLowerCase();
-  const list = platforms.filter(p => !q || p.name.toLowerCase().includes(q) || p.tagline.toLowerCase().includes(q))
-    .map(p => ({ ...p, ws: +weightedScore(p) }))
-    .sort((a, b) => b.ws - a.ws);
+function renderOverview(){
+  const grid=document.getElementById("platformGrid");
+  const q=document.getElementById("searchInput").value.toLowerCase();
+  const list=platforms
+    .filter(p=>{
+      if(currentFilter!=="all"&&p.category!==currentFilter)return false;
+      if(q)return p.name.toLowerCase().includes(q)||p.tagline.toLowerCase().includes(q);
+      return true;
+    })
+    .map(p=>({...p,ws:+weightedScore(p)}))
+    .sort((a,b)=>b.ws-a.ws);
 
-  grid.innerHTML = list.map(p => {
-    const sel = selected.has(p.id);
-    const bars = criteria.map(c => {
-      const pct = (p[c.key]/10)*100;
-      return `<div class="score-row"><span class="slbl">${c.label}</span><div class="sbar"><div class="sfill" style="width:${pct}%;background:${sColor(p[c.key])}"></div></div><span class="sval">${p[c.key]}</span></div>`;
+  grid.innerHTML=list.map(p=>{
+    const sel=selected.has(p.id);
+    const bars=criteria.map(c=>{
+      const pct=(p[c.key]/10)*100;
+      return`<div class="score-row"><span class="slbl">${c.label}</span><div class="sbar"><div class="sfill" style="width:${pct}%;background:${sColor(p[c.key])}"></div></div><span class="sval">${p[c.key]}</span></div>`;
     }).join("");
-    return `<div class="pcard ${sel?'selected':''}" onclick="toggleSelect('${p.id}',event)">
+    return`<div class="pcard ${sel?'selected':''}" onclick="toggleSelect('${p.id}',event)">
       <div class="chk">${sel?'\u2713':''}</div>
-      <h3>${p.name}</h3><div class="tagline">${p.tagline}</div>
+      <h3>${p.name}</h3>
+      <div class="tagline">${p.tagline}</div>
+      <div class="card-cat">${catBadge(p)} ${uxBadges(p.uxApproach)}</div>
       ${bars}
       <div class="overall"><span class="olbl">Weighted Score</span><span class="oval ${sClass(p.ws)}">${p.ws}</span></div>
       <div class="pmeta"><strong>${p.pricing}</strong></div>
-      <button class="detail-btn" onclick="event.stopPropagation();showDetail('${p.id}')">View Details & Updates</button>
+      <button class="view-profile-btn" onclick="event.stopPropagation();showProfile('${p.id}')">View Profile</button>
     </div>`;
   }).join("");
 }
 
-function showDetail(id) {
-  const p = platforms.find(x => x.id === id);
-  const ov = document.getElementById("modalOverlay");
-  const mc = document.getElementById("modalContent");
-  const feats = Object.entries(p.communityFeatures).map(([k,v]) => {
-    const cls = v === true ? "yes" : v === false ? "no" : "partial";
-    const icon = v === true ? "\u2713" : v === false ? "\u2717" : "\u25CB";
-    return `<div class="fi ${cls}">${icon} ${k}</div>`;
+function renderStakes(){
+  document.getElementById("stakesGrid").innerHTML=tableStakes.map(s=>
+    `<div class="stake-item"><span class="si-icon">\u2713</span>${s}</div>`
+  ).join("");
+  document.getElementById("diffCards").innerHTML=differentiators.map(d=>{
+    const groups=d.platforms.map(g=>
+      `<div style="margin-bottom:.4rem"><span style="font-size:.75rem;font-weight:600;color:var(--text)">${g.name}:</span> <span class="diff-platforms">${g.tags.map(t=>`<span class="diff-tag">${t}</span>`).join("")}</span></div>`
+    ).join("");
+    return`<div class="diff-card"><h4>${d.title}</h4><p>${d.desc}</p>${groups}</div>`;
   }).join("");
-  const news = p.recentNews.map(n => `<div class="news-item"><div class="news-date">${n.date}</div><div class="news-text">${n.text}</div></div>`).join("");
-  const integ = p.keyIntegrations.map(i => `<li>${i}</li>`).join("");
-  const pros = p.strengths.map(s => `<li>${s}</li>`).join("");
-  const cons = p.considerations.map(s => `<li>${s}</li>`).join("");
-
-  mc.innerHTML = `<button class="modal-close" onclick="closeDetail()">\u2715</button>
-    <h2>${p.name}</h2><div class="m-tagline">${p.tagline}</div>
-    <div style="font-size:0.85rem;color:var(--text-sec);margin-bottom:0.5rem"><strong>Pricing:</strong> ${p.pricing} &middot; <strong>Target:</strong> ${p.target}</div>
-    <h4>Community Platform Features</h4><div class="feat-grid">${feats}</div>
-    <h4>Key Integrations</h4><ul>${integ}</ul>
-    <h4>Strengths</h4><ul>${pros}</ul>
-    <h4>Considerations</h4><ul>${cons}</ul>
-    <h4>Recent News & Updates</h4>${news}`;
-  ov.classList.add("open");
 }
 
-function closeDetail() { document.getElementById("modalOverlay").classList.remove("open"); }
-document.getElementById("modalOverlay").addEventListener("click", e => { if (e.target === e.currentTarget) closeDetail(); });
+// --- PROFILE PAGE ---
 
-function renderCompare() {
-  const ct = document.getElementById("compareContent");
-  if (selected.size < 2) { ct.innerHTML = '<div class="empty-cmp"><h3>Select platforms to compare</h3><p>Go to All Platforms and select 2-4 platforms.</p></div>'; return; }
-  const picks = platforms.filter(p => selected.has(p.id));
-  const hdr = picks.map(p => `<th>${p.name}</th>`).join("");
-  let rows = "";
-  // Weighted overall
-  rows += `<tr style="background:#111b25"><td style="font-weight:700">Weighted Score</td>${picks.map(p => { const ws = weightedScore(p); return `<td class="score-cell" style="font-weight:800;font-size:1.05rem" class="${sClass(ws)}">${ws}</td>`; }).join("")}</tr>`;
-  // Criteria
-  rows += `<tr class="sec-row"><td colspan="${picks.length+1}">Buzz Report Criteria (out of 10)</td></tr>`;
-  criteria.forEach(c => {
-    const best = Math.max(...picks.map(p => p[c.key]));
-    rows += `<tr><td>${c.label}</td>${picks.map(p => {
-      const v = p[c.key]; const isBest = v === best && picks.filter(pp => pp[c.key]===best).length < picks.length;
-      return `<td class="${isBest?'winner':''}"><div class="cbar-cell"><div class="cmbar"><div class="cmfill" style="width:${(v/10)*100}%;background:${sColor(v)}"></div></div><span style="font-weight:700" class="${sClass(v)}">${v}</span></div></td>`;
+function showProfile(id){
+  const p=platforms.find(x=>x.id===id);
+  const pp=document.getElementById("profilePage");
+  const feats=Object.entries(p.communityFeatures).map(([k,v])=>{
+    const cls=v===true?"yes":v===false?"no":"partial";
+    const icon=v===true?"\u2713":v===false?"\u2717":"\u25CB";
+    return`<div class="fi ${cls}">${icon} ${k}</div>`;
+  }).join("");
+  const news=p.recentNews.map(n=>`<div class="news-item"><div class="news-date">${n.date}</div><div class="news-text">${n.text}</div></div>`).join("");
+  const integ=p.keyIntegrations.map(i=>`<li>${i}</li>`).join("");
+  const pros=p.strengths.map(s=>`<li>${s}</li>`).join("");
+  const cons=p.considerations.map(s=>`<li>${s}</li>`).join("");
+  const examples=p.examples.map(e=>`<div class="example-item"><div class="example-name">${e.name}</div><div class="example-desc">${e.desc}</div></div>`).join("");
+  const scoreBars=criteria.map(c=>{
+    const pct=(p[c.key]/10)*100;
+    return`<div class="score-row"><span class="slbl">${c.label}</span><div class="sbar"><div class="sfill" style="width:${pct}%;background:${sColor(p[c.key])}"></div></div><span class="sval">${p[c.key]}</span></div>`;
+  }).join("");
+
+  pp.innerHTML=`
+    <button class="profile-back" onclick="hideProfile()">\u2190 Back to All Platforms</button>
+    <div class="profile-hero">
+      <div style="margin-bottom:.5rem">${catBadge(p)} ${uxBadges(p.uxApproach)}</div>
+      <h2>${p.name}</h2>
+      <div class="p-tagline">${p.tagline}</div>
+      <div class="p-meta"><strong>Pricing:</strong> ${p.pricing} &middot; <strong>Target:</strong> ${p.target}</div>
+      <div style="margin-top:.75rem">${scoreBars}</div>
+      <div class="overall" style="max-width:300px"><span class="olbl">Weighted Score</span><span class="oval ${sClass(weightedScore(p))}">${weightedScore(p)}</span></div>
+    </div>
+    <div class="profile-grid">
+      <div class="profile-section">
+        <h4>Community Features</h4>
+        <div class="feat-grid">${feats}</div>
+      </div>
+      <div class="profile-section">
+        <h4>Key Integrations</h4>
+        <ul>${integ}</ul>
+      </div>
+      <div class="profile-section">
+        <h4>Strengths</h4>
+        <ul>${pros}</ul>
+      </div>
+      <div class="profile-section">
+        <h4>Considerations</h4>
+        <ul>${cons}</ul>
+      </div>
+      <div class="profile-section">
+        <h4>Example Communities</h4>
+        ${examples}
+      </div>
+      <div class="profile-section">
+        <h4>Recent News & Updates</h4>
+        ${news}
+      </div>
+      <div class="profile-section full-width">
+        <div class="editorial-box">
+          <h4>FeverBee Editorial</h4>
+          <p>${p.editorial}</p>
+        </div>
+      </div>
+    </div>`;
+
+  // Hide main tabs, show profile
+  document.querySelectorAll(".tab-panel").forEach(t=>t.classList.remove("active"));
+  document.querySelector(".tab-bar").style.display="none";
+  document.getElementById("compareFab").classList.remove("show");
+  pp.classList.add("active");
+  window.scrollTo(0,0);
+}
+
+function hideProfile(){
+  document.getElementById("profilePage").classList.remove("active");
+  document.querySelector(".tab-bar").style.display="flex";
+  document.querySelector(".tab-panel.was-active,.tab-panel[data-was]")?.classList.add("active");
+  // Restore the last active tab
+  const activeTab=document.querySelector(".tab-btn.active");
+  if(activeTab)switchTab(activeTab.dataset.tab);
+  else switchTab("overview");
+}
+
+// --- COMPARE ---
+
+function renderCompare(){
+  const ct=document.getElementById("compareContent");
+  if(selected.size<2){ct.innerHTML='<div class="empty-cmp"><h3>Select platforms to compare</h3><p>Go to All Platforms and tap 2-4 platform cards to select them.</p></div>';return}
+  const picks=platforms.filter(p=>selected.has(p.id));
+  const hdr=picks.map(p=>`<th>${p.name}</th>`).join("");
+  let rows="";
+  rows+=`<tr style="background:#111b25"><td style="font-weight:700">Weighted Score</td>${picks.map(p=>{const ws=weightedScore(p);return`<td style="font-weight:800;font-size:1rem" class="${sClass(ws)}">${ws}</td>`}).join("")}</tr>`;
+  rows+=`<tr style="background:#111b25"><td>Category</td>${picks.map(p=>`<td>${catBadge(p)}</td>`).join("")}</tr>`;
+  rows+=`<tr style="background:#111b25"><td>UX Approach</td>${picks.map(p=>`<td>${uxBadges(p.uxApproach)}</td>`).join("")}</tr>`;
+  rows+=`<tr class="sec-row"><td colspan="${picks.length+1}">Buzz Report Criteria (out of 10)</td></tr>`;
+  criteria.forEach(c=>{
+    const best=Math.max(...picks.map(p=>p[c.key]));
+    rows+=`<tr><td>${c.label}</td>${picks.map(p=>{
+      const v=p[c.key];const isBest=v===best&&picks.filter(pp=>pp[c.key]===best).length<picks.length;
+      return`<td class="${isBest?'winner':''}"><div class="cbar-cell"><div class="cmbar"><div class="cmfill" style="width:${(v/10)*100}%;background:${sColor(v)}"></div></div><span style="font-weight:700" class="${sClass(v)}">${v}</span></div></td>`;
     }).join("")}</tr>`;
   });
-  // Community features
-  const allKeys = Object.keys(picks[0].communityFeatures);
-  rows += `<tr class="sec-row"><td colspan="${picks.length+1}">Community Platform Features</td></tr>`;
-  allKeys.forEach(k => {
-    rows += `<tr><td>${k}</td>${picks.map(p => `<td>${fBadge(p.communityFeatures[k])}</td>`).join("")}</tr>`;
+  // Features - merge all keys
+  const allKeys=[...new Set(picks.flatMap(p=>Object.keys(p.communityFeatures)))];
+  rows+=`<tr class="sec-row"><td colspan="${picks.length+1}">Community Features</td></tr>`;
+  allKeys.forEach(k=>{
+    rows+=`<tr><td>${k}</td>${picks.map(p=>`<td>${fBadge(p.communityFeatures[k]!=null?p.communityFeatures[k]:false)}</td>`).join("")}</tr>`;
   });
-  // Pricing
-  rows += `<tr class="sec-row"><td colspan="${picks.length+1}">Pricing & Market</td></tr>`;
-  rows += `<tr><td>Pricing</td>${picks.map(p => `<td style="font-size:0.8rem;font-weight:600">${p.pricing}</td>`).join("")}</tr>`;
-  rows += `<tr><td>Target Market</td>${picks.map(p => `<td style="font-size:0.83rem">${p.target}</td>`).join("")}</tr>`;
-  ct.innerHTML = `<div class="ctable-wrap"><table class="ctable"><thead><tr><th>Criteria</th>${hdr}</tr></thead><tbody>${rows}</tbody></table></div>`;
+  rows+=`<tr class="sec-row"><td colspan="${picks.length+1}">Pricing & Market</td></tr>`;
+  rows+=`<tr><td>Pricing</td>${picks.map(p=>`<td style="font-size:.78rem;font-weight:600">${p.pricing}</td>`).join("")}</tr>`;
+  rows+=`<tr><td>Target Market</td>${picks.map(p=>`<td style="font-size:.8rem">${p.target}</td>`).join("")}</tr>`;
+  rows+=`<tr><td>Example Communities</td>${picks.map(p=>`<td style="font-size:.78rem;text-align:left">${p.examples.map(e=>e.name).join(", ")}</td>`).join("")}</tr>`;
+  ct.innerHTML=`<div class="ctable-wrap"><table class="ctable"><thead><tr><th>Criteria</th>${hdr}</tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
-function switchTab(tab) {
-  document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab===tab));
-  document.querySelectorAll(".tab-panel").forEach(p => p.classList.toggle("active", p.id==="panel-"+tab));
-  if (tab === "compare") renderCompare();
+// --- NAVIGATION ---
+
+function switchTab(tab){
+  document.getElementById("profilePage").classList.remove("active");
+  document.querySelector(".tab-bar").style.display="flex";
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));
+  document.querySelectorAll(".tab-panel").forEach(p=>p.classList.toggle("active",p.id==="panel-"+tab));
+  if(tab==="compare")renderCompare();
+  if(tab==="stakes")renderStakes();
+  updateFab();
 }
 
-document.querySelectorAll(".tab-btn").forEach(b => b.addEventListener("click", () => switchTab(b.dataset.tab)));
-document.getElementById("searchInput").addEventListener("input", renderOverview);
+document.querySelectorAll(".tab-btn").forEach(b=>b.addEventListener("click",()=>switchTab(b.dataset.tab)));
+document.getElementById("searchInput").addEventListener("input",renderOverview);
+document.querySelectorAll(".pill").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".pill").forEach(p=>p.classList.remove("active"));
+  b.classList.add("active");
+  currentFilter=b.dataset.cat;
+  renderOverview();
+}));
 
+// Init
 renderWeights();
 renderOverview();
 updateFab();
