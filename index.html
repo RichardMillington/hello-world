@@ -291,6 +291,60 @@
     /* Weights reset */
     .weight-reset{font-size:.78rem;color:var(--text-dim);cursor:pointer;border:0;background:0;font-family:inherit;text-decoration:underline;text-decoration-color:var(--border);padding:0}
     .weight-reset:hover{color:var(--amber);text-decoration-color:var(--amber)}
+
+    /* AI Recommendation Engine */
+    .ai-section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:0;margin-bottom:1.5rem;box-shadow:var(--shadow);overflow:hidden}
+    .ai-toggle{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;cursor:pointer;user-select:none;background:linear-gradient(135deg,#0D0D0D,#1A1A2E);color:#fff;transition:.15s}
+    .ai-toggle:hover{background:linear-gradient(135deg,#1A1A1A,#252540)}
+    .ai-toggle h3{font-size:.92rem;font-weight:600;margin:0;display:flex;align-items:center;gap:.5rem}
+    .ai-toggle h3 .ai-spark{color:var(--amber)}
+    .ai-toggle .ai-sub{font-size:.8rem;color:#888;font-weight:400}
+    .ai-toggle .chevron{font-size:.7rem;color:#888;transition:.2s}
+    .ai-toggle .chevron.open{transform:rotate(180deg)}
+    .ai-body{display:none;padding:1.5rem}
+    .ai-body.open{display:block}
+    .ai-body p{font-size:.88rem;color:var(--text-sec);margin-bottom:1rem;line-height:1.6}
+    .ai-dropzone{border:2px dashed var(--border);border-radius:var(--radius);padding:2rem;text-align:center;margin-bottom:1rem;transition:.15s;cursor:pointer;position:relative}
+    .ai-dropzone:hover,.ai-dropzone.dragover{border-color:var(--amber);background:var(--amber-light)}
+    .ai-dropzone .drop-icon{font-size:1.5rem;margin-bottom:.5rem;color:var(--text-dim)}
+    .ai-dropzone .drop-text{font-size:.88rem;color:var(--text-sec)}
+    .ai-dropzone .drop-hint{font-size:.78rem;color:var(--text-dim);margin-top:.3rem}
+    .ai-dropzone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
+    .ai-textarea{width:100%;min-height:140px;border:1px solid var(--border);border-radius:8px;padding:.85rem 1rem;font-size:.88rem;font-family:inherit;color:var(--text);outline:0;resize:vertical;line-height:1.6;background:#fff}
+    .ai-textarea:focus{border-color:var(--amber);box-shadow:0 0 0 3px var(--amber-glow)}
+    .ai-textarea::placeholder{color:var(--text-dim)}
+    .ai-key-row{display:flex;gap:.75rem;align-items:end;margin:1rem 0;flex-wrap:wrap}
+    .ai-key-group{display:flex;flex-direction:column;gap:.25rem;flex:1;min-width:200px}
+    .ai-key-group label{font-size:.78rem;color:var(--text-dim);font-weight:500}
+    .ai-key-input{padding:.5rem .75rem;border:1px solid var(--border);border-radius:8px;font-size:.85rem;font-family:inherit;background:#fff;color:var(--text);outline:0}
+    .ai-key-input:focus{border-color:var(--amber)}
+    .ai-submit{padding:.6rem 1.5rem;background:var(--amber);color:#fff;border:0;border-radius:8px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s;white-space:nowrap}
+    .ai-submit:hover{background:var(--amber-dark)}
+    .ai-submit:disabled{opacity:.5;cursor:not-allowed}
+    .ai-loading{text-align:center;padding:2rem;color:var(--text-sec);font-size:.88rem}
+    .ai-loading .spinner{display:inline-block;width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--amber);border-radius:50%;animation:spin .6s linear infinite;margin-right:.5rem;vertical-align:middle}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* AI Results */
+    .ai-results{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-top:1rem}
+    .ai-results h4{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:1rem}
+    .ai-rec-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:1.25rem}
+    .ai-rec-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;box-shadow:var(--shadow);position:relative}
+    .ai-rec-card.top-pick{border-color:var(--amber);border-width:2px}
+    .ai-rec-card .rec-rank{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--amber);margin-bottom:.25rem}
+    .ai-rec-card h5{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.25rem}
+    .ai-rec-card .rec-why{font-size:.85rem;color:var(--text-sec);line-height:1.6;margin-bottom:.5rem}
+    .ai-rec-card .rec-fit{font-size:.78rem;font-weight:600;color:var(--green)}
+    .ai-tradeoffs{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1rem}
+    .ai-tradeoffs h5{font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:.5rem}
+    .ai-tradeoff-item{padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.85rem;color:var(--text-sec);line-height:1.6}
+    .ai-tradeoff-item:last-child{border-bottom:0}
+    .ai-tradeoff-item strong{color:var(--text);font-weight:600}
+    .ai-weights-rec{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem}
+    .ai-weights-rec h5{font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:.5rem}
+    .ai-apply-btn{margin-top:.75rem;padding:.45rem 1rem;background:var(--amber-light);color:var(--amber-dark);border:1px solid var(--amber);border-radius:6px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:inherit}
+    .ai-apply-btn:hover{background:var(--amber);color:#fff}
+    .ai-error{padding:1rem;background:var(--red-bg);border:1px solid var(--red-border);border-radius:8px;color:var(--red);font-size:.88rem;margin-top:1rem}
   </style>
 </head>
 <body>
@@ -307,6 +361,34 @@
   </div>
 
   <div class="tab-panel active" id="panel-overview">
+    <div class="ai-section">
+      <div class="ai-toggle" onclick="document.getElementById('aiBody').classList.toggle('open');this.querySelector('.chevron').classList.toggle('open')">
+        <div>
+          <h3><span class="ai-spark">&#9733;</span> Get AI-Powered Recommendations</h3>
+          <div class="ai-sub">Drop your requirements document or describe what you need — we'll recommend the right platforms</div>
+        </div>
+        <span class="chevron">&#9660;</span>
+      </div>
+      <div class="ai-body" id="aiBody">
+        <p>Paste your community requirements, RFP brief, or just describe what you're looking for. Our AI will analyse your needs against all 10 platforms and recommend the best fit — with trade-offs you should be aware of.</p>
+        <div class="ai-dropzone" id="aiDropzone">
+          <div class="drop-icon">&#128196;</div>
+          <div class="drop-text">Drop a document here or click to upload</div>
+          <div class="drop-hint">.txt, .pdf, .doc, .md files supported</div>
+          <input type="file" id="aiFileInput" accept=".txt,.md,.doc,.docx,.pdf" onchange="handleFileUpload(event)">
+        </div>
+        <textarea class="ai-textarea" id="aiInput" placeholder="Or type/paste your requirements here...&#10;&#10;Example: We're a B2B SaaS company with 50,000 customers. We need a community for customer support deflection, product feedback, and peer-to-peer knowledge sharing. We use Salesforce and Zendesk. Budget is $30-60k/year. Must have SSO and strong moderation. Events would be nice but not essential."></textarea>
+        <div class="ai-key-row">
+          <div class="ai-key-group">
+            <label>Anthropic API Key <span style="color:var(--text-dim)">(required — not stored, used client-side only)</span></label>
+            <input type="password" class="ai-key-input" id="aiApiKey" placeholder="sk-ant-...">
+          </div>
+          <button class="ai-submit" id="aiSubmitBtn" onclick="runAiAnalysis()">Analyse my requirements</button>
+        </div>
+        <div id="aiResults"></div>
+      </div>
+    </div>
+
     <div class="weight-section">
       <div class="weight-toggle" onclick="document.querySelector('.weight-body').classList.toggle('open');document.querySelector('.chevron').classList.toggle('open')">
         <h3>Customise scoring weights</h3>
@@ -1148,6 +1230,183 @@ function submitReq(e){
   window.location.href=`mailto:richard@feverbee.com?subject=${subject}&body=${body}`;
   form.style.display="none";
   document.getElementById("reqSuccess").style.display="block";
+}
+
+// --- AI RECOMMENDATION ENGINE ---
+
+// File upload handling
+const dropzone=document.getElementById("aiDropzone");
+dropzone?.addEventListener("dragover",e=>{e.preventDefault();dropzone.classList.add("dragover")});
+dropzone?.addEventListener("dragleave",()=>dropzone.classList.remove("dragover"));
+dropzone?.addEventListener("drop",e=>{
+  e.preventDefault();dropzone.classList.remove("dragover");
+  const file=e.dataTransfer.files[0];
+  if(file)readFile(file);
+});
+
+function handleFileUpload(e){
+  const file=e.target.files[0];
+  if(file)readFile(file);
+}
+
+function readFile(file){
+  const reader=new FileReader();
+  reader.onload=e=>{
+    document.getElementById("aiInput").value=e.target.result;
+    dropzone.querySelector(".drop-text").textContent=`Loaded: ${file.name}`;
+  };
+  reader.readAsText(file);
+}
+
+// Build platform summary for the prompt
+function buildPlatformSummary(){
+  return platforms.map(p=>{
+    const feats=Object.entries(p.communityFeatures).map(([k,v])=>`${k}: ${v===true?'Yes':v===false?'No':'Partial'}`).join(", ");
+    return`**${p.name}** (${p.catLabel}): ${p.tagline}. Pricing: ${p.pricing}. Target: ${p.target}. UX: ${p.uxApproach.map(a=>a.label).join(", ")}. Verdict: ${p.verdict}. Key features: ${feats}. Integrations: ${p.keyIntegrations.join(", ")}. Strengths: ${p.strengths.join("; ")}. Considerations: ${p.considerations.join("; ")}.`;
+  }).join("\n\n");
+}
+
+async function runAiAnalysis(){
+  const input=document.getElementById("aiInput").value.trim();
+  const apiKey=document.getElementById("aiApiKey").value.trim();
+  const resultsDiv=document.getElementById("aiResults");
+
+  if(!input){resultsDiv.innerHTML='<div class="ai-error">Please enter your requirements or upload a document.</div>';return}
+  if(!apiKey){resultsDiv.innerHTML='<div class="ai-error">Please enter your Anthropic API key. It is used client-side only and is not stored.</div>';return}
+
+  const btn=document.getElementById("aiSubmitBtn");
+  btn.disabled=true;
+  resultsDiv.innerHTML='<div class="ai-loading"><span class="spinner"></span>Analysing your requirements against 10 community platforms...</div>';
+
+  const systemPrompt=`You are a FeverBee community platform analyst. You have deep knowledge of enterprise community platforms. Given a user's requirements, recommend the best platforms from the following options and explain trade-offs.
+
+Here are the 10 platforms in our comparison tool:
+${buildPlatformSummary()}
+
+The 6 evaluation criteria are: Ease of Setup & Use, Quality of Features, Integrations, Data Privacy & Security, Services & Support, Reports & Analytics. Each is scored 0-10.
+
+Respond in this exact JSON format:
+{
+  "recommendations": [
+    {"id": "platform_id", "rank": 1, "fitScore": "92%", "reasoning": "Why this platform fits their needs"},
+    {"id": "platform_id", "rank": 2, "fitScore": "78%", "reasoning": "Why this is the runner-up"},
+    {"id": "platform_id", "rank": 3, "fitScore": "65%", "reasoning": "Why this is worth considering"}
+  ],
+  "tradeoffs": [
+    "Trade-off 1: choosing X over Y means you gain... but lose...",
+    "Trade-off 2: ...",
+    "Trade-off 3: ..."
+  ],
+  "suggestedWeights": {
+    "easeOfUse": 5,
+    "qualityOfFeatures": 7,
+    "integrations": 8,
+    "dataPrivacySecurity": 5,
+    "servicesSupport": 6,
+    "reportsAnalytics": 4
+  },
+  "weightReasoning": "Brief explanation of why these weights suit their requirements",
+  "summary": "A 2-3 sentence overall recommendation"
+}
+
+Use the exact platform IDs: khoros, gainsight, higherlogic, salesforce, verint, bettermode, bevy, hivebrite, discourse, flarum. Return ONLY valid JSON.`;
+
+  try{
+    const resp=await fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "x-api-key":apiKey,
+        "anthropic-version":"2023-06-01",
+        "anthropic-dangerous-direct-browser-access":"true"
+      },
+      body:JSON.stringify({
+        model:"claude-sonnet-4-20250514",
+        max_tokens:2000,
+        system:systemPrompt,
+        messages:[{role:"user",content:`Here are my community platform requirements:\n\n${input}`}]
+      })
+    });
+
+    if(!resp.ok){
+      const err=await resp.json().catch(()=>({}));
+      throw new Error(err.error?.message||`API error: ${resp.status}`);
+    }
+
+    const data=await resp.json();
+    const text=data.content[0].text;
+
+    // Parse JSON from response (handle markdown code blocks)
+    const jsonMatch=text.match(/\{[\s\S]*\}/);
+    if(!jsonMatch)throw new Error("Could not parse AI response");
+    const result=JSON.parse(jsonMatch[0]);
+
+    renderAiResults(result);
+  }catch(err){
+    resultsDiv.innerHTML=`<div class="ai-error">Error: ${err.message}</div>`;
+  }finally{
+    btn.disabled=false;
+  }
+}
+
+function renderAiResults(result){
+  const div=document.getElementById("aiResults");
+
+  const recCards=result.recommendations.map((r,i)=>{
+    const p=platforms.find(x=>x.id===r.id);
+    if(!p)return"";
+    return`<div class="ai-rec-card ${i===0?'top-pick':''}">
+      <div class="rec-rank">${i===0?'Top recommendation':'#'+(i+1)+' Alternative'}</div>
+      <h5>${p.name}</h5>
+      <div class="rec-why">${r.reasoning}</div>
+      <div class="rec-fit">Fit score: ${r.fitScore}</div>
+    </div>`;
+  }).join("");
+
+  const tradeoffs=result.tradeoffs.map(t=>`<div class="ai-tradeoff-item">${t}</div>`).join("");
+
+  const weightBars=criteria.map(c=>{
+    const v=result.suggestedWeights[c.key]||5;
+    return`<div class="score-row"><span class="slbl">${c.label}</span><div class="sbar"><div class="sfill" style="width:${(v/10)*100}%"></div></div><span class="sval">${v}</span></div>`;
+  }).join("");
+
+  div.innerHTML=`
+    <div class="ai-results">
+      <h4>AI Recommendation</h4>
+      <p style="font-size:.88rem;color:var(--text-sec);margin-bottom:1rem">${result.summary}</p>
+      <div class="ai-rec-cards">${recCards}</div>
+      <div class="ai-tradeoffs">
+        <h5>Key Trade-offs to Consider</h5>
+        ${tradeoffs}
+      </div>
+      <div class="ai-weights-rec">
+        <h5>Suggested Criteria Weights for Your Needs</h5>
+        <p style="font-size:.85rem;color:var(--text-sec);margin-bottom:.5rem">${result.weightReasoning}</p>
+        ${weightBars}
+        <button class="ai-apply-btn" onclick="applyAiWeights(${JSON.stringify(result.suggestedWeights).replace(/"/g,'&quot;')})">Apply these weights &amp; select recommended platforms</button>
+      </div>
+    </div>`;
+}
+
+function applyAiWeights(w){
+  criteria.forEach(c=>{if(w[c.key]!=null)weights[c.key]=w[c.key]});
+  renderWeights();
+
+  // Auto-select recommended platforms
+  const resultsDiv=document.getElementById("aiResults");
+  const recCards=resultsDiv.querySelectorAll(".ai-rec-card h5");
+  selected.clear();
+  recCards.forEach(h=>{
+    const name=h.textContent;
+    const p=platforms.find(x=>x.name===name);
+    if(p)selected.add(p.id);
+  });
+
+  renderOverview();
+  updateCompareBar();
+
+  // Scroll to platform grid
+  document.getElementById("platformGrid").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
 // Init
