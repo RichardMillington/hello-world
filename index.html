@@ -121,6 +121,11 @@
     .badge-no{background:var(--red-bg);color:var(--red)}
     .badge-partial{background:var(--yellow-bg);color:var(--yellow)}
     .winner{background:var(--green-bg)!important}
+    .diff-only-toggle{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--text-sec);cursor:pointer;user-select:none}
+    .diff-only-toggle input{accent-color:var(--amber)}
+    .exec-cell{font-size:.78rem;color:var(--text);text-align:left;line-height:1.5}
+    .exec-cell .exec-label{font-weight:600;color:var(--amber);font-size:.72rem;text-transform:uppercase;letter-spacing:.3px;display:block;margin-bottom:.1rem}
+    .same-row{opacity:.35}
     .empty-cmp{text-align:center;padding:3rem 2rem;color:var(--text-sec)}
     .empty-cmp h3{font-size:1.05rem;margin-bottom:.4rem;color:var(--amber)}
 
@@ -229,7 +234,10 @@
   <div class="tab-panel" id="panel-compare">
     <div class="compare-header">
       <h2>Side-by-Side Comparison</h2>
-      <button class="btn-back" onclick="switchTab('overview')">+ Change Platforms</button>
+      <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
+        <label class="diff-only-toggle"><input type="checkbox" id="diffToggle" onchange="renderCompare()"> Show only differences</label>
+        <button class="btn-back" onclick="switchTab('overview')">+ Change Platforms</button>
+      </div>
     </div>
     <div id="compareContent"></div>
   </div>
@@ -252,6 +260,17 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Traditional Forum"}],
     pricing:"~$50,000+/yr (custom quotes only)",target:"Enterprise",
     breadthOfFeatures:9,qualityOfFeatures:8.5,integrations:8,dataPrivacySecurity:9,servicesSupport:8,reportsAnalytics:8.5,
+    execution:{
+      "Discussions":"Classic threaded forum. Topic-based boards with categories and sub-categories. Deep threading suits long technical support conversations. Content is highly searchable and persistent.",
+      "Q&A":"Dedicated Q&A format with accepted answers, voting, and best-answer selection. Separate from general discussion boards.",
+      "Ideation":"Purpose-built ideation boards with voting, status tracking, and admin workflow for feature requests.",
+      "Knowledge Base":"Integrated KB with articles, guides, and how-tos. Can be community-contributed or admin-curated.",
+      "Content Format":"Forum-first. Threaded posts organised by boards/categories. Also supports blogs and contests/quizzes.",
+      "AI Approach":"Post-acquisition AI suite: AI Expert Help (instant responses), AI Discovery Defender (keeps content visible to AI search engines), AI Community Orchestration (assists CMs with content and moderation). Pre-built spam and profanity models.",
+      "Events":"No native events. Requires third-party integration.",
+      "Mobile":"Native mobile app included.",
+      "Unique Features":"37+ language support. AI Discovery Defender ensures community content stays discoverable by AI answer engines (Google AI Overviews, ChatGPT, etc.) - unique in the market."
+    },
     communityFeatures:{
       "Discussion Forums":true,"Q&A":true,"Ideation / Ideas":true,"Knowledge Base":true,"Blogs":true,
       "Gamification":true,"Moderation Tools":true,"SSO (SAML/OAuth)":true,"API Access":true,
@@ -280,6 +299,17 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Traditional Forum"},{type:"feed",label:"Product Updates Feed"}],
     pricing:"Custom (3 tiers: Professional, Business, Enterprise)",target:"Mid-Market / Enterprise",
     breadthOfFeatures:8,qualityOfFeatures:8,integrations:8.5,dataPrivacySecurity:8,servicesSupport:8.5,reportsAnalytics:8,
+    execution:{
+      "Discussions":"Forum-style with threaded topics. Organised by categories. Focused on customer-to-customer support and peer engagement rather than general discussion.",
+      "Q&A":"Integrated into forum topics. Less distinct from discussions than Khoros or Vanilla.",
+      "Ideation":"Strong ideation workflow with voting, commenting, and real-time status tracking. Can filter ideas by account value (dollar impact) - unique for prioritising enterprise customer requests.",
+      "Knowledge Base":"Drag-and-drop article organisation. Smart search suggestions. Content rating system.",
+      "Content Format":"Forum-based with a dedicated Product Updates feed. The Product Updates hub is a distinct content type where companies publish release notes and announcements - unique to Gainsight CC.",
+      "AI Approach":"Moderation AI Agent (via ModerateKit acquisition) auto-classifies posts as Approved/Pending/Trashed using your community's tone. AI Translations for one-click multilingual. AI Answers in open beta (Q1 2026).",
+      "Events":"Basic built-in event management tools.",
+      "Mobile":"No native mobile app. Mobile-responsive web only.",
+      "Unique Features":"Product Updates hub for publishing release notes. Ideation filtered by account value. Deep Gainsight CS integration feeds community activity into customer health scores."
+    },
     communityFeatures:{
       "Discussion Forums":true,"Q&A":true,"Ideation / Ideas":true,"Knowledge Base":true,"Product Updates Hub":true,
       "Gamification":true,"Moderation Tools":true,"SSO (SAML/OAuth)":true,"API Access":true,
@@ -309,6 +339,17 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Traditional Forum"},{type:"hybrid",label:"Q&A Hybrid"}],
     pricing:"Custom (3 tiers: Corporate, Enterprise, Enterprise Plus)",target:"Mid-Market / Enterprise",
     breadthOfFeatures:8,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7.5,
+    execution:{
+      "Discussions":"Traditional threaded forum with categories. Clean, focused interface. Strong for B2B support communities where searchability matters.",
+      "Q&A":"Distinct Q&A content type with accepted answers and AI-suggested answers from historical content. The Q&A format is more differentiated from discussions than most platforms.",
+      "Ideation":"Ideation boards with voting. Less sophisticated workflow than Gainsight CC's dollar-value filtering.",
+      "Knowledge Base":"Structured KB for self-service. Integrates with forum Q&A so resolved questions can become KB articles.",
+      "Content Format":"Forum-first with distinct Q&A. No native blogs. Widget Builder (React/TypeScript IDE with live preview) lets developers build completely custom content experiences - unique in the market.",
+      "AI Approach":"AI Search Assistant using RAG - conversational answers sourced across community content, uploaded docs, and org knowledge with source attribution. AI Bot Shield detects and blocks bot activity. AI Suggested Tags and Sentiment Analysis.",
+      "Events":"No native events. Zoom integration enables one-click event registration from within community.",
+      "Mobile":"No native mobile app. Mobile-responsive web only.",
+      "Unique Features":"Widget Builder is a built-in IDE using React + TypeScript with live preview, version control, and support for third-party APIs. 50+ prebuilt widgets. Best Zendesk integration of any platform (bi-directional, federated search, ticket escalation)."
+    },
     communityFeatures:{
       "Discussion Forums":true,"Q&A":true,"Ideation / Ideas":true,"Knowledge Base":true,"Blogs":false,
       "Gamification":true,"Moderation Tools":true,"SSO (SAML/OAuth)":true,"API Access":true,
@@ -338,6 +379,17 @@ const platforms = [
     uxApproach:[{type:"hybrid",label:"Configurable (Forum/Portal/Feed)"}],
     pricing:"Per-login ($2-$15) or per-member ($5-$35/mo) by license type",target:"Enterprise",
     breadthOfFeatures:9,qualityOfFeatures:7.5,integrations:9.5,dataPrivacySecurity:9,servicesSupport:7,reportsAnalytics:8.5,
+    execution:{
+      "Discussions":"Fully configurable - can be traditional forum, Chatter-style feed, or portal-style. Experience Builder lets you design any layout. The flexibility is powerful but means more setup complexity.",
+      "Q&A":"Q&A available via Chatter Questions or custom Lightning components. Not as purpose-built as dedicated community Q&A.",
+      "Ideation":"Ideas object with voting. Functional but not as refined as dedicated ideation platforms.",
+      "Knowledge Base":"Salesforce Knowledge fully integrated. Articles surface in communities, cases, and search. Strongest when paired with Service Cloud.",
+      "Content Format":"Completely configurable via Experience Builder (drag-drop). Can create forum, feed, portal, or hybrid layouts. Aura and LWR (Lightning Web Runtime) site types. The most flexible but most complex to set up.",
+      "AI Approach":"Einstein AI for search, recommendations, and chatbots. Agentforce autonomous AI agents can handle multi-step workflows (case resolution, onboarding). Spring '26 adds GEO so community pages are discoverable by AI search engines. $2/conversation for Agentforce.",
+      "Events":"Salesforce Scheduler integration. Events are a native Salesforce object. Can build full event management with custom development.",
+      "Mobile":"Mobile Publisher creates native iOS/Android apps from Experience Cloud sites.",
+      "Unique Features":"The only platform where community data lives natively alongside CRM data - no sync, no middleware. Every interaction can trigger sales, service, or marketing workflows. Experience Builder creates any layout without code. But: you're locked into the Salesforce ecosystem."
+    },
     communityFeatures:{
       "Discussion Forums":true,"Q&A":true,"Ideation / Ideas":true,"Knowledge Base":true,"Experience Builder (drag-drop)":true,
       "Gamification":true,"Moderation Tools":true,"SSO (SAML/OAuth)":true,"API Access":true,
@@ -366,6 +418,17 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Traditional Forum"}],
     pricing:"Custom enterprise quotes only",target:"Enterprise",
     breadthOfFeatures:8.5,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:8.5,servicesSupport:7.5,reportsAnalytics:8,
+    execution:{
+      "Discussions":"Traditional threaded forum inherited from Telligent. Category-based boards. Mature forum infrastructure but older UX patterns.",
+      "Q&A":"Q&A built into forum structure. Less distinct from general discussions than newer platforms.",
+      "Ideation":"Idea exchange with voting and submission. Functional but not the primary strength.",
+      "Knowledge Base":"Strong KB integrated with Verint's broader Knowledge Management suite. Articles, FAQs, how-tos.",
+      "Content Format":"Forum-first with blogs, Q&A, and group spaces. Traditional feel. Content is structured but UX feels older than newer entrants.",
+      "AI Approach":"Da Vinci AI engine provides intelligent search, auto-tagging, content classification, sentiment analysis, and chatbots that surface community answers. Open platform strategy lets you plug in multiple AI models rather than being locked to one vendor - unique approach.",
+      "Events":"No native events feature.",
+      "Mobile":"Native mobile app available.",
+      "Unique Features":"Open AI model strategy (not locked to one vendor). Strongest case deflection analytics - measures exactly how community content reduces support tickets with ROI attribution. Part of broader Verint CX suite (WFM, engagement management)."
+    },
     communityFeatures:{
       "Discussion Forums":true,"Q&A":true,"Ideation / Ideas":true,"Knowledge Base":true,"Blogs":true,
       "Gamification":true,"Moderation Tools":true,"SSO (SAML/OAuth)":true,"API Access":true,
@@ -393,6 +456,17 @@ const platforms = [
     uxApproach:[{type:"feed",label:"Social Feed / Wall"}],
     pricing:"From $399/mo (Starter) to $1,500/mo (Growth); Premium custom",target:"SMB / Mid-Market",
     breadthOfFeatures:7.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:7,servicesSupport:7,reportsAnalytics:7,
+    execution:{
+      "Discussions":"Social feed/wall-style. Content appears in a scrolling feed like LinkedIn or Facebook rather than threaded forum topics. Feels modern and drives casual engagement but content is harder to find months later.",
+      "Q&A":"Q&A built into the feed. Users can post questions and receive answers, but it lives within the same feed UI rather than a dedicated Q&A section.",
+      "Ideation":"Ideas as a content type within the feed. Voting and commenting. Less structured than Gainsight CC or Khoros ideation boards.",
+      "Knowledge Base":"KB as a content space. Articles and resources. Organised by 'Spaces' rather than traditional categories.",
+      "Content Format":"This is the key differentiator. Everything is a feed/wall. Spaces can be configured as Feeds, Q&A, Podcasts, Job Listings, Reviews, or Events. Liquid template engine for deep customisation. Design Studio for visual no-code layout. Very different from forum-based platforms.",
+      "AI Approach":"AI-Powered Search and Ask AI (launched Mar 2025). Natural language questions answered from community content. AI content moderation and spam detection. Less mature than established vendors.",
+      "Events":"Events as a content type within spaces. Basic event management with calendar.",
+      "Mobile":"No native mobile app. Mobile-responsive web.",
+      "Unique Features":"The only platform built entirely around a social feed/wall paradigm rather than forums. GraphQL API (not REST) for developer flexibility. Flexible content types mean you can create podcast directories, job boards, review sites, etc. within your community. Most affordable entry point ($399/mo)."
+    },
     communityFeatures:{
       "Discussion Forums":true,"Q&A":true,"Ideation / Ideas":true,"Knowledge Base":true,"Polls & Events":true,
       "Gamification":true,"Moderation Tools":true,"SSO (OAuth/JWT)":true,"GraphQL API":true,
@@ -420,6 +494,17 @@ const platforms = [
     uxApproach:[{type:"events",label:"Events-First"},{type:"feed",label:"Community Hub Feed"}],
     pricing:"Custom enterprise pricing (estimated mid-five figures/yr)",target:"Mid-Market / Enterprise",
     breadthOfFeatures:7,qualityOfFeatures:7.5,integrations:7.5,dataPrivacySecurity:7.5,servicesSupport:8,reportsAnalytics:7.5,
+    execution:{
+      "Discussions":"Community Hub discussions are newer and still maturing. Not the core strength - events are. Forum/discussion features are functional but lack the depth of dedicated forum platforms.",
+      "Q&A":"Basic Q&A within community hub. Not a primary capability.",
+      "Ideation":"No native ideation features.",
+      "Knowledge Base":"Basic content/resource sharing within community hub. Not a structured KB.",
+      "Content Format":"Events-first. The primary experience is browsing, registering for, and attending events. Community Hub adds feed-style discussions and content sharing on top. Chapter pages organise local groups.",
+      "AI Approach":"AI-powered community insights and analytics. Engagement scoring and ROI measurement. Less focused on content AI (search, moderation) and more on strategic insights for community managers.",
+      "Events":"This is where Bevy dominates. Full virtual, hybrid, and in-person event management. Chapter-based programme management across hundreds of cities. Speaker management, session scheduling, ticketing, branded event pages. Virtual events with breakout rooms, networking lounges, expo booths. Unmatched at scale.",
+      "Mobile":"No native mobile app. Mobile-responsive web.",
+      "Unique Features":"Chapter/local group management at massive scale (Google runs 1,000+ GDG chapters on Bevy). Owns CMX, the community industry body. Event ROI attribution analytics. The only platform purpose-built for community-led events programmes. Expanding into broader community management."
+    },
     communityFeatures:{
       "Discussion Forums":"Partial","Q&A":"Partial","Ideation / Ideas":false,"Knowledge Base":"Partial","Event Management":true,
       "Gamification":"Partial","Moderation Tools":true,"SSO (SAML/OAuth)":true,"API Access":true,
@@ -447,6 +532,17 @@ const platforms = [
     uxApproach:[{type:"hybrid",label:"Member Directory + Feed"},{type:"events",label:"Events-Centric"}],
     pricing:"Custom (~$5,000 - $30,000+/yr based on members)",target:"Mid-Market / Enterprise",
     breadthOfFeatures:7.5,qualityOfFeatures:7.5,integrations:6.5,dataPrivacySecurity:8,servicesSupport:7,reportsAnalytics:7,
+    execution:{
+      "Discussions":"Discussion forums available but less sophisticated than dedicated community platforms. Not the primary use case - member networking is.",
+      "Q&A":"Basic Q&A within discussions. Not a distinct content type.",
+      "Ideation":"No dedicated ideation features.",
+      "Knowledge Base":"Content management / CMS for news, articles, and newsletters. More of a publishing tool than a structured KB.",
+      "Content Format":"Member directory-centric. The primary experience is finding and connecting with other members (alumni, peers). Discussions, events, and content sit alongside a rich member directory with professional profiles. Very different from forum-first or feed-first platforms.",
+      "AI Approach":"AI for content suggestions, engagement insights, and smart mentoring matching. Less mature than enterprise-focused AI but practical for membership use cases.",
+      "Events":"Native event management with ticketing, registration, and virtual/hybrid support. Events are a core part of the alumni/membership experience, not a bolt-on.",
+      "Mobile":"Native branded iOS and Android apps included. Strongest white-labelling of any platform - no 'powered by' branding.",
+      "Unique Features":"Purpose-built membership features no other platform has: structured mentoring programme matching, fundraising/donation campaigns, integrated job board, and member directory with professional networking. All native, not bolt-on. Originated in French business school alumni networks (INSEAD, HEC Paris)."
+    },
     communityFeatures:{
       "Discussion Forums":true,"Q&A":"Partial","Member Directory":true,"Knowledge Base":"Partial","Event Management":true,
       "Gamification":"Partial","Moderation Tools":true,"SSO (SAML/OAuth)":true,"API Access":true,
@@ -605,6 +701,9 @@ function showProfile(id){
     const icon=v===true?"\u2713":v===false?"\u2717":"\u25CB";
     return`<div class="fi ${cls}">${icon} ${k}</div>`;
   }).join("");
+  const execEntries=p.execution?Object.entries(p.execution).map(([k,v])=>
+    `<div style="margin-bottom:.75rem"><div style="font-weight:700;color:var(--amber);font-size:.82rem;margin-bottom:.2rem">${k}</div><div style="font-size:.84rem;color:var(--text-sec);line-height:1.6">${v}</div></div>`
+  ).join(""):"";
   const news=p.recentNews.map(n=>`<div class="news-item"><div class="news-date">${n.date}</div><div class="news-text">${n.text}</div></div>`).join("");
   const integ=p.keyIntegrations.map(i=>`<li>${i}</li>`).join("");
   const pros=p.strengths.map(s=>`<li>${s}</li>`).join("");
@@ -626,8 +725,12 @@ function showProfile(id){
       <div class="overall" style="max-width:300px"><span class="olbl">Weighted Score</span><span class="oval ${sClass(weightedScore(p))}">${weightedScore(p)}</span></div>
     </div>
     <div class="profile-grid">
+      <div class="profile-section full-width">
+        <h4>How It Works (Execution Details)</h4>
+        ${execEntries}
+      </div>
       <div class="profile-section">
-        <h4>Community Features</h4>
+        <h4>Feature Checklist</h4>
         <div class="feat-grid">${feats}</div>
       </div>
       <div class="profile-section">
@@ -682,29 +785,63 @@ function renderCompare(){
   const ct=document.getElementById("compareContent");
   if(selected.size<2){ct.innerHTML='<div class="empty-cmp"><h3>Select platforms to compare</h3><p>Go to All Platforms and tap 2-4 platform cards to select them.</p></div>';return}
   const picks=platforms.filter(p=>selected.has(p.id));
+  const diffOnly=document.getElementById("diffToggle")?.checked||false;
   const hdr=picks.map(p=>`<th>${p.name}</th>`).join("");
   let rows="";
+
+  // Summary rows (always show)
   rows+=`<tr style="background:#111b25"><td style="font-weight:700">Weighted Score</td>${picks.map(p=>{const ws=weightedScore(p);return`<td style="font-weight:800;font-size:1rem" class="${sClass(ws)}">${ws}</td>`}).join("")}</tr>`;
   rows+=`<tr style="background:#111b25"><td>Category</td>${picks.map(p=>`<td>${catBadge(p)}</td>`).join("")}</tr>`;
   rows+=`<tr style="background:#111b25"><td>UX Approach</td>${picks.map(p=>`<td>${uxBadges(p.uxApproach)}</td>`).join("")}</tr>`;
+
+  // Buzz Report Criteria
   rows+=`<tr class="sec-row"><td colspan="${picks.length+1}">Buzz Report Criteria (out of 10)</td></tr>`;
   criteria.forEach(c=>{
-    const best=Math.max(...picks.map(p=>p[c.key]));
-    rows+=`<tr><td>${c.label}</td>${picks.map(p=>{
+    const vals=picks.map(p=>p[c.key]);
+    const allSame=vals.every(v=>v===vals[0]);
+    const best=Math.max(...vals);
+    if(diffOnly&&allSame)return;
+    rows+=`<tr class="${allSame?'same-row':''}"><td>${c.label}</td>${picks.map(p=>{
       const v=p[c.key];const isBest=v===best&&picks.filter(pp=>pp[c.key]===best).length<picks.length;
       return`<td class="${isBest?'winner':''}"><div class="cbar-cell"><div class="cmbar"><div class="cmfill" style="width:${(v/10)*100}%;background:${sColor(v)}"></div></div><span style="font-weight:700" class="${sClass(v)}">${v}</span></div></td>`;
     }).join("")}</tr>`;
   });
-  // Features - merge all keys
-  const allKeys=[...new Set(picks.flatMap(p=>Object.keys(p.communityFeatures)))];
-  rows+=`<tr class="sec-row"><td colspan="${picks.length+1}">Community Features</td></tr>`;
-  allKeys.forEach(k=>{
-    rows+=`<tr><td>${k}</td>${picks.map(p=>`<td>${fBadge(p.communityFeatures[k]!=null?p.communityFeatures[k]:false)}</td>`).join("")}</tr>`;
+
+  // How They Execute - the interesting part
+  const execKeys=["Discussions","Q&A","Ideation","Knowledge Base","Content Format","AI Approach","Events","Mobile","Unique Features"];
+  rows+=`<tr class="sec-row"><td colspan="${picks.length+1}">How They Execute (the real differences)</td></tr>`;
+  execKeys.forEach(k=>{
+    const vals=picks.map(p=>p.execution?.[k]||"N/A");
+    const allSame=vals.every(v=>v===vals[0]);
+    if(diffOnly&&allSame)return;
+    rows+=`<tr class="${allSame?'same-row':''}"><td>${k}</td>${picks.map(p=>{
+      const v=p.execution?.[k]||"N/A";
+      return`<td class="exec-cell">${v}</td>`;
+    }).join("")}</tr>`;
   });
+
+  // Features grid (only differences if toggle on)
+  const allKeys=[...new Set(picks.flatMap(p=>Object.keys(p.communityFeatures)))];
+  const diffFeats=allKeys.filter(k=>{
+    const vals=picks.map(p=>p.communityFeatures[k]!=null?p.communityFeatures[k]:false);
+    return!vals.every(v=>v===vals[0]);
+  });
+  const featsToShow=diffOnly?diffFeats:allKeys;
+  if(featsToShow.length>0){
+    rows+=`<tr class="sec-row"><td colspan="${picks.length+1}">${diffOnly?'Features That Differ':'All Features (Yes/No/Partial)'}</td></tr>`;
+    featsToShow.forEach(k=>{
+      const vals=picks.map(p=>p.communityFeatures[k]!=null?p.communityFeatures[k]:false);
+      const allSame=vals.every(v=>v===vals[0]);
+      rows+=`<tr class="${allSame?'same-row':''}"><td>${k}</td>${picks.map(p=>`<td>${fBadge(p.communityFeatures[k]!=null?p.communityFeatures[k]:false)}</td>`).join("")}</tr>`;
+    });
+  }
+
+  // Pricing & Market
   rows+=`<tr class="sec-row"><td colspan="${picks.length+1}">Pricing & Market</td></tr>`;
   rows+=`<tr><td>Pricing</td>${picks.map(p=>`<td style="font-size:.78rem;font-weight:600">${p.pricing}</td>`).join("")}</tr>`;
   rows+=`<tr><td>Target Market</td>${picks.map(p=>`<td style="font-size:.8rem">${p.target}</td>`).join("")}</tr>`;
   rows+=`<tr><td>Example Communities</td>${picks.map(p=>`<td style="font-size:.78rem;text-align:left">${p.examples.map(e=>e.name).join(", ")}</td>`).join("")}</tr>`;
+
   ct.innerHTML=`<div class="ctable-wrap"><table class="ctable"><thead><tr><th>Criteria</th>${hdr}</tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
