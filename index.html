@@ -221,7 +221,76 @@
       .diff-cards{grid-template-columns:1fr}
       .feat-grid{grid-template-columns:1fr}
       .req-row{grid-template-columns:1fr}
+      .profile-layout{grid-template-columns:1fr}
+      .profile-sidebar{position:static}
+      .sort-row{flex-direction:column;align-items:stretch}
     }
+
+    /* Sort dropdown */
+    .sort-row{display:flex;align-items:center;gap:.5rem}
+    .sort-select{padding:.4rem .75rem;border:1px solid var(--border);border-radius:8px;font-size:.82rem;font-family:inherit;background:#fff;color:var(--text);outline:0;cursor:pointer}
+    .sort-select:focus{border-color:var(--amber)}
+    .rank-badge{position:absolute;top:-.5rem;left:-.5rem;width:26px;height:26px;border-radius:50%;background:var(--amber);color:#fff;font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+
+    /* Card compare checkbox */
+    .compare-check{position:absolute;top:1.25rem;right:1.25rem;display:flex;align-items:center;gap:.3rem;font-size:.72rem;color:var(--text-dim);cursor:pointer;z-index:2;padding:.25rem .5rem;border-radius:6px;border:1px solid var(--border);background:#fff;transition:.15s}
+    .compare-check:hover{border-color:var(--amber);color:var(--amber)}
+    .compare-check.active{background:var(--amber);color:#fff;border-color:var(--amber)}
+    .compare-check input{display:none}
+
+    /* Verdict as subtle text */
+    .verdict-line{font-size:.78rem;font-style:italic;color:var(--text-dim);margin-top:.2rem;display:flex;align-items:center;gap:.35rem}
+    .verdict-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+    .verdict-dot.rising{background:var(--green)}
+    .verdict-dot.steady{background:var(--yellow)}
+    .verdict-dot.declining{background:var(--red)}
+    .verdict-dot.watch{background:var(--purple)}
+
+    /* Profile two-column layout */
+    .profile-layout{display:grid;grid-template-columns:1fr 340px;gap:1.5rem;align-items:start}
+    .profile-main{display:flex;flex-direction:column;gap:1.25rem}
+    .profile-sidebar{position:sticky;top:1.5rem;display:flex;flex-direction:column;gap:1rem}
+    .sidebar-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;box-shadow:var(--shadow)}
+    .sidebar-card h4{font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:.6rem}
+    .sidebar-stat{display:flex;justify-content:space-between;align-items:center;padding:.35rem 0;font-size:.85rem}
+    .sidebar-stat .stat-label{color:var(--text-dim)}
+    .sidebar-stat .stat-val{font-weight:600;color:var(--text)}
+    .sidebar-link{display:block;padding:.4rem 0;font-size:.85rem;color:var(--text);text-decoration-color:var(--amber)}
+
+    /* Execution accordion */
+    .exec-item{border-bottom:1px solid var(--border)}
+    .exec-item:last-child{border-bottom:0}
+    .exec-header{display:flex;justify-content:space-between;align-items:center;padding:.75rem 0;cursor:pointer;font-weight:600;font-size:.88rem;color:var(--text)}
+    .exec-header:hover{color:var(--amber)}
+    .exec-header .exec-chev{font-size:.6rem;color:var(--text-dim);transition:.2s}
+    .exec-header .exec-chev.open{transform:rotate(180deg)}
+    .exec-body{display:none;padding:0 0 .75rem;font-size:.88rem;color:var(--text-sec);line-height:1.7}
+    .exec-body.open{display:block}
+
+    /* Sticky compare bar */
+    .compare-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:.75rem 1.5rem;display:none;align-items:center;justify-content:center;gap:1rem;z-index:100;box-shadow:0 -2px 8px rgba(0,0,0,.06)}
+    .compare-bar.show{display:flex}
+    .compare-bar .bar-platforms{display:flex;gap:.5rem;align-items:center;font-size:.85rem;color:var(--text-sec)}
+    .compare-bar .bar-name{background:#F0EEEB;padding:.2rem .6rem;border-radius:4px;font-size:.82rem;font-weight:500;color:var(--text)}
+    .compare-bar .bar-btn{padding:.5rem 1.25rem;background:var(--amber);color:#fff;border:0;border-radius:8px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:inherit}
+    .compare-bar .bar-btn:hover{background:var(--amber-dark)}
+
+    /* Sticky table header */
+    .ctable thead th{position:sticky;top:0;z-index:2}
+
+    /* Back to top */
+    .back-to-top{position:fixed;bottom:1.5rem;right:1.5rem;width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid var(--border);color:var(--text-dim);font-size:1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:90;box-shadow:var(--shadow)}
+    .back-to-top.show{display:flex}
+    .back-to-top:hover{border-color:var(--amber);color:var(--amber)}
+
+    /* Table stakes compact */
+    .stakes-compact{font-size:.88rem;color:var(--text-sec);line-height:1.8;margin-bottom:1.5rem}
+    .stakes-expand{color:var(--text-dim);font-size:.82rem;cursor:pointer;text-decoration:underline;text-decoration-color:var(--border)}
+    .stakes-expand:hover{color:var(--amber);text-decoration-color:var(--amber)}
+
+    /* Weights reset */
+    .weight-reset{font-size:.78rem;color:var(--text-dim);cursor:pointer;border:0;background:0;font-family:inherit;text-decoration:underline;text-decoration-color:var(--border);padding:0}
+    .weight-reset:hover{color:var(--amber);text-decoration-color:var(--amber)}
   </style>
 </head>
 <body>
@@ -246,25 +315,30 @@
       <div class="weight-body" id="weightBody">
         <p>Drag sliders to weight what matters most to your organisation. Platform scores update in real time.</p>
         <div class="weight-grid" id="weightGrid"></div>
+        <div style="margin-top:.75rem;text-align:right"><button class="weight-reset" onclick="resetWeights()">Reset to defaults</button></div>
       </div>
     </div>
     <div class="overview-controls">
-      <div class="filter-pills">
-        <button class="pill active" data-cat="all">All</button>
-        <button class="pill" data-cat="established">Established Platforms</button>
-        <button class="pill" data-cat="newgen">New Generation</button>
-        <button class="pill" data-cat="opensource">Open Source</button>
+      <div class="filter-pills" id="filterPills"></div>
+      <div class="sort-row">
+        <label style="font-size:.82rem;color:var(--text-dim)">Sort by</label>
+        <select class="sort-select" id="sortSelect" onchange="renderOverview()">
+          <option value="score">Weighted Score</option>
+          <option value="alpha">Alphabetical</option>
+          <option value="easeOfUse">Ease of Setup</option>
+          <option value="qualityOfFeatures">Quality of Features</option>
+          <option value="integrations">Integrations</option>
+        </select>
+        <input type="text" class="search-box" id="searchInput" placeholder="Search platforms...">
       </div>
-      <input type="text" class="search-box" id="searchInput" placeholder="Search platforms...">
     </div>
-    <p style="font-size:.78rem;color:var(--text-dim);margin-bottom:1rem">Select 2&ndash;4 platforms to compare side by side. Click a platform name for the full profile.</p>
     <div class="platform-grid" id="platformGrid"></div>
   </div>
 
   <div class="tab-panel" id="panel-stakes">
     <div class="section-title">Table Stakes</div>
-    <div class="section-desc">Every enterprise community platform worth considering includes these core capabilities. These are not differentiators &mdash; they are the minimum requirements.</div>
-    <div class="stakes-grid" id="stakesGrid"></div>
+    <div class="section-desc">Every enterprise community platform includes these. They are not differentiators.</div>
+    <div id="stakesArea"></div>
     <div class="section-title">Key Differentiators</div>
     <div class="section-desc">Where platforms genuinely differ. These are the decisions that matter when choosing between them.</div>
     <div class="diff-cards" id="diffCards"></div>
@@ -306,9 +380,11 @@
   </div>
 </div>
 
-<button class="compare-fab" id="compareFab" onclick="switchTab('compare')">
-  Compare <span class="fab-count" id="fabCount">0</span>
-</button>
+<div class="compare-bar" id="compareBar">
+  <div class="bar-platforms">Comparing: <span id="barNames"></span></div>
+  <button class="bar-btn" onclick="switchTab('compare')">View comparison &rarr;</button>
+</div>
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&uarr;</button>
 
 <footer>
   Based on the FeverBee Buzz Report evaluation criteria. Feature data verified against vendor documentation (April 2026). Scores are illustrative &mdash; refer to the full Buzz Report for detailed analysis. &copy; FeverBee
@@ -760,9 +836,8 @@ let weights = {};
 criteria.forEach(c => weights[c.key] = 5);
 let selected = new Set();
 let currentFilter = "all";
+let stakesExpanded = false;
 
-function sColor(s){return s>=8?"var(--green)":s>=6?"var(--amber)":"var(--red)"}
-function sClass(s){return s>=8?"score-high":s>=6?"score-mid":"score-low"}
 function fBadge(v){
   if(v===true)return'<span class="badge badge-yes">Yes</span>';
   if(v===false)return'<span class="badge badge-no">No</span>';
@@ -773,83 +848,118 @@ function weightedScore(p){
   criteria.forEach(c=>{tw+=weights[c.key];ts+=p[c.key]*weights[c.key]});
   return tw>0?(ts/tw).toFixed(1):0;
 }
-function uxBadges(arr){
-  return arr.map(a=>`<span class="ux-badge ux-${a.type}">${a.label}</span>`).join("");
-}
-function verdictBadge(p){
-  return`<span class="verdict-badge verdict-${p.verdictType}">${p.verdict}</span>`;
-}
+function uxBadges(arr){return arr.map(a=>`<span class="ux-badge ux-${a.type}">${a.label}</span>`).join("")}
 function catBadge(p){
   if(p.category==="established")return'<span class="cat-label cat-established">Established</span>';
   if(p.category==="opensource")return'<span class="cat-label cat-opensource">Open Source</span>';
   return'<span class="cat-label cat-newgen">New Generation</span>';
 }
+function verdictLine(p){
+  return`<div class="verdict-line"><span class="verdict-dot ${p.verdictType}"></span>${p.verdict}</div>`;
+}
 
-// --- RENDERING ---
+// --- FILTER PILLS WITH COUNTS ---
+function renderPills(){
+  const cats=[
+    {key:"all",label:"All",count:platforms.length},
+    {key:"established",label:"Established",count:platforms.filter(p=>p.category==="established").length},
+    {key:"newgen",label:"New Generation",count:platforms.filter(p=>p.category==="newgen").length},
+    {key:"opensource",label:"Open Source",count:platforms.filter(p=>p.category==="opensource").length}
+  ];
+  document.getElementById("filterPills").innerHTML=cats.map(c=>
+    `<button class="pill ${currentFilter===c.key?'active':''}" data-cat="${c.key}">${c.label} (${c.count})</button>`
+  ).join("");
+  document.querySelectorAll(".pill").forEach(b=>b.addEventListener("click",()=>{
+    currentFilter=b.dataset.cat;
+    renderPills();renderOverview();
+  }));
+}
 
+// --- WEIGHTS ---
 function renderWeights(){
   document.getElementById("weightGrid").innerHTML=criteria.map(c=>
     `<div class="weight-item"><label>${c.label}</label><div class="slider-row"><input type="range" min="0" max="10" value="${weights[c.key]}" oninput="weights['${c.key}']=+this.value;this.parentElement.querySelector('.wval').textContent=this.value;renderOverview()"><span class="wval">${weights[c.key]}</span></div></div>`
   ).join("");
 }
+function resetWeights(){
+  criteria.forEach(c=>weights[c.key]=5);
+  renderWeights();renderOverview();
+}
 
-function toggleSelect(id,e){
-  if(e&&(e.target.classList.contains("view-profile-btn")||e.target.closest(".view-profile-btn")))return;
+// --- COMPARE BAR ---
+function toggleCompare(id,e){
+  e.stopPropagation();
   if(selected.has(id))selected.delete(id);else{if(selected.size>=4)return;selected.add(id)}
-  renderOverview();updateFab();
+  renderOverview();updateCompareBar();
+}
+function updateCompareBar(){
+  const bar=document.getElementById("compareBar");
+  const names=document.getElementById("barNames");
+  if(selected.size>=2){
+    bar.classList.add("show");
+    names.innerHTML=[...selected].map(id=>{const p=platforms.find(x=>x.id===id);return`<span class="bar-name">${p.name}</span>`}).join("");
+  }else{
+    bar.classList.remove("show");
+  }
 }
 
-function updateFab(){
-  document.getElementById("fabCount").textContent=selected.size;
-  document.getElementById("compareFab").classList.toggle("show",selected.size>=2);
-}
-
+// --- OVERVIEW ---
 function renderOverview(){
   const grid=document.getElementById("platformGrid");
   const q=document.getElementById("searchInput").value.toLowerCase();
+  const sortBy=document.getElementById("sortSelect").value;
   const list=platforms
     .filter(p=>{
       if(currentFilter!=="all"&&p.category!==currentFilter)return false;
       if(q)return p.name.toLowerCase().includes(q)||p.tagline.toLowerCase().includes(q);
       return true;
     })
-    .map(p=>({...p,ws:+weightedScore(p)}))
-    .sort((a,b)=>b.ws-a.ws);
+    .map(p=>({...p,ws:+weightedScore(p)}));
 
-  grid.innerHTML=list.map(p=>{
+  // Sort
+  if(sortBy==="alpha")list.sort((a,b)=>a.name.localeCompare(b.name));
+  else if(sortBy==="score")list.sort((a,b)=>b.ws-a.ws);
+  else list.sort((a,b)=>(b[sortBy]||0)-(a[sortBy]||0));
+
+  grid.innerHTML=list.map((p,i)=>{
     const sel=selected.has(p.id);
+    const rank=sortBy==="score"||sortBy==="alpha"?null:null; // rank only for score sort
+    const showRank=sortBy!=="alpha";
     const bars=criteria.map(c=>{
       const pct=(p[c.key]/10)*100;
-      return`<div class="score-row"><span class="slbl">${c.label}</span><div class="sbar"><div class="sfill" style="width:${pct}%;background:${sColor(p[c.key])}"></div></div><span class="sval">${p[c.key]}</span></div>`;
+      return`<div class="score-row"><span class="slbl">${c.label}</span><div class="sbar"><div class="sfill" style="width:${pct}%"></div></div><span class="sval">${p[c.key]}</span></div>`;
     }).join("");
-    return`<div class="pcard ${sel?'selected':''}" onclick="toggleSelect('${p.id}',event)">
-      <div class="chk">${sel?'\u2713':''}</div>
+    return`<div class="pcard" onclick="showProfile('${p.id}')" style="cursor:pointer">
+      ${showRank?`<span class="rank-badge">#${i+1}</span>`:''}
+      <label class="compare-check ${sel?'active':''}" onclick="toggleCompare('${p.id}',event)"><input type="checkbox" ${sel?'checked':''}>${sel?'\u2713 Compare':'+ Compare'}</label>
       <h3>${p.name}</h3>
       <div class="tagline">${p.tagline}</div>
       <div class="card-cat">${catBadge(p)} ${uxBadges(p.uxApproach)}</div>
       ${bars}
-      <div class="overall"><span class="olbl">Weighted Score</span><span class="oval ${sClass(p.ws)}">${p.ws}</span></div>
-      <div style="margin-top:.5rem">${verdictBadge(p)}</div>
+      <div class="overall"><span class="olbl">Weighted Score</span><span class="oval">${p.ws}<span style="font-size:.7rem;font-weight:400;color:var(--text-dim)"> / 10</span></span></div>
+      ${verdictLine(p)}
       <div class="pmeta"><strong>${p.pricing}</strong></div>
-      <button class="view-profile-btn" onclick="event.stopPropagation();showProfile('${p.id}')">View full profile &rarr;</button>
     </div>`;
   }).join("");
 }
 
+// --- TABLE STAKES ---
 function renderStakes(){
-  document.getElementById("stakesGrid").innerHTML=tableStakes.map(s=>
-    `<div class="stake-item"><span class="si-icon">\u2713</span>${s}</div>`
-  ).join("");
+  const area=document.getElementById("stakesArea");
+  if(!stakesExpanded){
+    area.innerHTML=`<div class="stakes-compact">All platforms include: ${tableStakes.join(", ")}. <span class="stakes-expand" onclick="stakesExpanded=true;renderStakes()">Show as grid &darr;</span></div>`;
+  }else{
+    area.innerHTML=`<div class="stakes-grid">${tableStakes.map(s=>`<div class="stake-item"><span class="si-icon">\u2713</span>${s}</div>`).join("")}</div><div style="margin-bottom:1rem"><span class="stakes-expand" onclick="stakesExpanded=false;renderStakes()">Collapse &uarr;</span></div>`;
+  }
   document.getElementById("diffCards").innerHTML=differentiators.map(d=>{
     const groups=d.platforms.map(g=>
-      `<div style="margin-bottom:.4rem"><span style="font-size:.75rem;font-weight:600;color:var(--text)">${g.name}:</span> <span class="diff-platforms">${g.tags.map(t=>`<span class="diff-tag">${t}</span>`).join("")}</span></div>`
+      `<div style="margin-bottom:.5rem"><span style="font-size:.78rem;font-weight:600;color:var(--text)">${g.name}:</span> <span class="diff-platforms">${g.tags.map(t=>`<span class="diff-tag">${t}</span>`).join("")}</span></div>`
     ).join("");
     return`<div class="diff-card"><h4>${d.title}</h4><p>${d.desc}</p>${groups}</div>`;
   }).join("");
 }
 
-// --- PROFILE PAGE ---
-
+// --- PROFILE PAGE (two-column with sidebar) ---
 function showProfile(id){
   const p=platforms.find(x=>x.id===id);
   const pp=document.getElementById("profilePage");
@@ -858,9 +968,12 @@ function showProfile(id){
     const icon=v===true?"\u2713":v===false?"\u2717":"\u25CB";
     return`<div class="fi ${cls}">${icon} ${k}</div>`;
   }).join("");
-  const execEntries=p.execution?Object.entries(p.execution).map(([k,v])=>
-    `<div class="exec-entry"><div class="exec-title">${k}</div><div class="exec-body">${v}</div></div>`
+
+  // Accordion for execution
+  const execItems=p.execution?Object.entries(p.execution).map(([k,v],i)=>
+    `<div class="exec-item"><div class="exec-header" onclick="this.querySelector('.exec-chev').classList.toggle('open');this.nextElementSibling.classList.toggle('open')">${k}<span class="exec-chev">\u25BC</span></div><div class="exec-body">${v}</div></div>`
   ).join(""):"";
+
   const news=p.recentNews.map(n=>`<div class="news-item"><div class="news-date">${n.date}</div><div class="news-text">${n.text}</div></div>`).join("");
   const integ=p.keyIntegrations.map(i=>`<li>${i}</li>`).join("");
   const pros=p.strengths.map(s=>`<li>${s}</li>`).join("");
@@ -868,66 +981,76 @@ function showProfile(id){
   const examples=p.examples.map(e=>`<div class="example-item"><div class="example-name">${e.url?`<a href="${e.url}" target="_blank" rel="noopener">${e.name} &rarr;</a>`:e.name}</div><div class="example-desc">${e.desc}</div></div>`).join("");
   const scoreBars=criteria.map(c=>{
     const pct=(p[c.key]/10)*100;
-    return`<div class="score-row"><span class="slbl">${c.label}</span><div class="sbar"><div class="sfill" style="width:${pct}%;background:${sColor(p[c.key])}"></div></div><span class="sval">${p[c.key]}</span></div>`;
+    return`<div class="score-row"><span class="slbl">${c.label}</span><div class="sbar"><div class="sfill" style="width:${pct}%"></div></div><span class="sval">${p[c.key]}</span></div>`;
   }).join("");
 
+  const isPlaceholder=p.editorial.startsWith("[");
+
   pp.innerHTML=`
-    <button class="profile-back" onclick="hideProfile()">\u2190 Back to All Platforms</button>
+    <button class="profile-back" onclick="hideProfile()">&larr; Back to all platforms</button>
     <div class="profile-hero">
       <div style="margin-bottom:.5rem">${catBadge(p)} ${uxBadges(p.uxApproach)}</div>
       <h2>${p.name}</h2>
       <div class="p-tagline">${p.tagline}</div>
       <div class="p-meta"><strong>Pricing:</strong> ${p.pricing} &middot; <strong>Target:</strong> ${p.target}${p.website?` &middot; <a href="${p.website}" target="_blank" rel="noopener">${p.website.replace('https://','').replace('www.','').replace(/\/$/,'')}</a>`:''}</div>
-      <div style="margin-top:.6rem">${verdictBadge(p)}</div>
-      <div style="margin-top:.75rem">${scoreBars}</div>
-      <div class="overall" style="max-width:300px"><span class="olbl">Weighted Score</span><span class="oval ${sClass(weightedScore(p))}">${weightedScore(p)}</span></div>
+      ${verdictLine(p)}
     </div>
-    <div class="profile-grid">
-      <div class="profile-section full-width">
-        <h4>How It Works (Execution Details)</h4>
-        ${execEntries}
-      </div>
-      <div class="profile-section">
-        <h4>Feature Checklist</h4>
-        <div class="feat-grid">${feats}</div>
-      </div>
-      <div class="profile-section">
-        <h4>Key Integrations</h4>
-        <ul>${integ}</ul>
-      </div>
-      <div class="profile-section strengths-section">
-        <h4>Strengths</h4>
-        <ul>${pros}</ul>
-      </div>
-      <div class="profile-section considerations-section">
-        <h4>Considerations</h4>
-        <ul>${cons}</ul>
-      </div>
-      <div class="profile-section">
-        <h4>Example Communities</h4>
-        ${examples}
-      </div>
-      <div class="profile-section">
-        <h4>Recent News & Updates</h4>
-        ${news}
-      </div>
-      <div class="profile-section full-width">
-        <div class="editorial-box">
-          <h4>FeverBee Editorial</h4>
-          <p>${p.editorial}</p>
+    <div class="profile-layout">
+      <div class="profile-main">
+        <div class="profile-section">
+          <h4>How It Works</h4>
+          <p style="font-size:.85rem;color:var(--text-dim);margin-bottom:.5rem">Click each topic to expand.</p>
+          ${execItems}
         </div>
+        <div class="profile-section strengths-section">
+          <h4>Strengths</h4>
+          <ul>${pros}</ul>
+        </div>
+        <div class="profile-section considerations-section">
+          <h4>Considerations</h4>
+          <ul>${cons}</ul>
+        </div>
+        <div class="profile-section">
+          <h4>Example Communities</h4>
+          ${examples}
+        </div>
+        <div class="profile-section">
+          <h4>Feature Checklist</h4>
+          <div class="feat-grid">${feats}</div>
+        </div>
+        <div class="profile-section">
+          <h4>Recent News &amp; Updates</h4>
+          ${news}
+        </div>
+        ${!isPlaceholder?`<div class="profile-section"><div class="editorial-box"><h4>FeverBee Editorial</h4><p>${p.editorial}</p></div></div>`:''}
       </div>
-      <div class="cta-box" style="margin:0">
-        <h3>Need help deciding if ${p.name} is right for you?</h3>
-        <p>Book a 1-hour consultation with a FeverBee strategist. We'll review your specific requirements and give you an honest recommendation.</p>
-        <a class="cta-btn" href="mailto:richard@feverbee.com?subject=Platform%20Consultation%20-%20${encodeURIComponent(p.name)}&body=Hi%20Richard%2C%0A%0AI'm%20considering%20${encodeURIComponent(p.name)}%20and%20would%20like%20to%20book%20a%201-hour%20consultation%20(%24325).%0A%0AOrganisation%3A%20%0AKey%20requirements%3A%20%0A%0AThanks">Book a Consultation - $325/hr</a>
+      <div class="profile-sidebar">
+        <div class="sidebar-card">
+          <h4>Scores</h4>
+          ${scoreBars}
+          <div class="overall" style="margin-top:.5rem"><span class="olbl">Weighted Score</span><span class="oval">${weightedScore(p)}<span style="font-size:.65rem;font-weight:400;color:var(--text-dim)"> / 10</span></span></div>
+        </div>
+        <div class="sidebar-card">
+          <h4>Key Info</h4>
+          <div class="sidebar-stat"><span class="stat-label">Pricing</span><span class="stat-val" style="font-size:.8rem">${p.pricing}</span></div>
+          <div class="sidebar-stat"><span class="stat-label">Target</span><span class="stat-val">${p.target}</span></div>
+          ${p.website?`<div style="margin-top:.5rem"><a class="sidebar-link" href="${p.website}" target="_blank" rel="noopener">Visit website &rarr;</a></div>`:''}
+        </div>
+        <div class="sidebar-card">
+          <h4>Key Integrations</h4>
+          <ul style="list-style:none;padding:0">${p.keyIntegrations.slice(0,6).map(i=>`<li style="font-size:.84rem;padding:.15rem 0;color:var(--text-sec)">${i}</li>`).join("")}</ul>
+        </div>
+        <div class="cta-box" style="margin:0;border-radius:var(--radius)">
+          <h3 style="font-size:.95rem">Need help deciding?</h3>
+          <p style="font-size:.82rem">Book a consultation with a FeverBee strategist.</p>
+          <a class="cta-btn" style="font-size:.85rem;padding:.6rem 1.25rem" href="mailto:richard@feverbee.com?subject=Platform%20Consultation%20-%20${encodeURIComponent(p.name)}&body=Hi%20Richard%2C%0A%0AI'm%20considering%20${encodeURIComponent(p.name)}%20and%20would%20like%20to%20book%20a%201-hour%20consultation%20(%24325).%0A%0AOrganisation%3A%20%0AKey%20requirements%3A%20%0A%0AThanks">$325/hr consultation</a>
+        </div>
       </div>
     </div>`;
 
-  // Hide main tabs, show profile
   document.querySelectorAll(".tab-panel").forEach(t=>t.classList.remove("active"));
   document.querySelector(".tab-bar").style.display="none";
-  document.getElementById("compareFab").classList.remove("show");
+  document.getElementById("compareBar").classList.remove("show");
   pp.classList.add("active");
   window.scrollTo(0,0);
 }
@@ -935,30 +1058,25 @@ function showProfile(id){
 function hideProfile(){
   document.getElementById("profilePage").classList.remove("active");
   document.querySelector(".tab-bar").style.display="flex";
-  document.querySelector(".tab-panel.was-active,.tab-panel[data-was]")?.classList.add("active");
-  // Restore the last active tab
   const activeTab=document.querySelector(".tab-btn.active");
   if(activeTab)switchTab(activeTab.dataset.tab);
   else switchTab("overview");
 }
 
 // --- COMPARE ---
-
 function renderCompare(){
   const ct=document.getElementById("compareContent");
-  if(selected.size<2){ct.innerHTML='<div class="empty-cmp"><h3>Select platforms to compare</h3><p>Go to All Platforms and tap 2-4 platform cards to select them.</p></div>';return}
+  if(selected.size<2){ct.innerHTML='<div class="empty-cmp"><h3>Select platforms to compare</h3><p>Go to All Platforms and select 2&ndash;4 platform cards using the &ldquo;+ Compare&rdquo; button.</p></div>';return}
   const picks=platforms.filter(p=>selected.has(p.id));
   const diffOnly=document.getElementById("diffToggle")?.checked||false;
   const hdr=picks.map(p=>`<th>${p.name}</th>`).join("");
   let rows="";
 
-  // Summary rows (always show)
-  rows+=`<tr style="background:#F5F4F1"><td style="font-weight:700">Weighted Score</td>${picks.map(p=>{const ws=weightedScore(p);return`<td style="font-weight:800;font-size:1rem" class="${sClass(ws)}">${ws}</td>`}).join("")}</tr>`;
-  rows+=`<tr style="background:#F5F4F1"><td>FeverBee Verdict</td>${picks.map(p=>`<td>${verdictBadge(p)}</td>`).join("")}</tr>`;
+  rows+=`<tr style="background:#F5F4F1"><td style="font-weight:700">Weighted Score</td>${picks.map(p=>{const ws=weightedScore(p);return`<td style="font-weight:800;font-size:1rem;color:var(--amber)">${ws} <span style="font-size:.7rem;font-weight:400;color:var(--text-dim)">/ 10</span></td>`}).join("")}</tr>`;
+  rows+=`<tr style="background:#F5F4F1"><td>FeverBee Verdict</td>${picks.map(p=>`<td style="font-size:.82rem;font-style:italic;color:var(--text-sec)">${p.verdict}</td>`).join("")}</tr>`;
   rows+=`<tr style="background:#F5F4F1"><td>Category</td>${picks.map(p=>`<td>${catBadge(p)}</td>`).join("")}</tr>`;
   rows+=`<tr style="background:#F5F4F1"><td>UX Approach</td>${picks.map(p=>`<td>${uxBadges(p.uxApproach)}</td>`).join("")}</tr>`;
 
-  // Buzz Report Criteria
   rows+=`<tr class="sec-row"><td colspan="${picks.length+1}">Buzz Report Criteria (out of 10)</td></tr>`;
   criteria.forEach(c=>{
     const vals=picks.map(p=>p[c.key]);
@@ -967,32 +1085,24 @@ function renderCompare(){
     if(diffOnly&&allSame)return;
     rows+=`<tr class="${allSame?'same-row':''}"><td>${c.label}</td>${picks.map(p=>{
       const v=p[c.key];const isBest=v===best&&picks.filter(pp=>pp[c.key]===best).length<picks.length;
-      return`<td class="${isBest?'winner':''}"><div class="cbar-cell"><div class="cmbar"><div class="cmfill" style="width:${(v/10)*100}%;background:${sColor(v)}"></div></div><span style="font-weight:700" class="${sClass(v)}">${v}</span></div></td>`;
+      return`<td class="${isBest?'winner':''}"><div class="cbar-cell"><div class="cmbar"><div class="cmfill" style="width:${(v/10)*100}%;background:var(--amber)"></div></div><span style="font-weight:700;color:var(--text)">${v}</span></div></td>`;
     }).join("")}</tr>`;
   });
 
-  // How They Execute - the interesting part
   const execKeys=["Discussions","Q&A","Ideation","Knowledge Base","Content Format","AI Approach","Events","Mobile","Unique Features"];
-  rows+=`<tr class="sec-row"><td colspan="${picks.length+1}">How They Execute (the real differences)</td></tr>`;
+  rows+=`<tr class="sec-row"><td colspan="${picks.length+1}">How They Execute</td></tr>`;
   execKeys.forEach(k=>{
     const vals=picks.map(p=>p.execution?.[k]||"N/A");
     const allSame=vals.every(v=>v===vals[0]);
     if(diffOnly&&allSame)return;
-    rows+=`<tr class="${allSame?'same-row':''}"><td>${k}</td>${picks.map(p=>{
-      const v=p.execution?.[k]||"N/A";
-      return`<td class="exec-cell">${v}</td>`;
-    }).join("")}</tr>`;
+    rows+=`<tr class="${allSame?'same-row':''}"><td>${k}</td>${picks.map(p=>`<td class="exec-cell">${p.execution?.[k]||"N/A"}</td>`).join("")}</tr>`;
   });
 
-  // Features grid (only differences if toggle on)
   const allKeys=[...new Set(picks.flatMap(p=>Object.keys(p.communityFeatures)))];
-  const diffFeats=allKeys.filter(k=>{
-    const vals=picks.map(p=>p.communityFeatures[k]!=null?p.communityFeatures[k]:false);
-    return!vals.every(v=>v===vals[0]);
-  });
+  const diffFeats=allKeys.filter(k=>{const vals=picks.map(p=>p.communityFeatures[k]!=null?p.communityFeatures[k]:false);return!vals.every(v=>v===vals[0])});
   const featsToShow=diffOnly?diffFeats:allKeys;
   if(featsToShow.length>0){
-    rows+=`<tr class="sec-row"><td colspan="${picks.length+1}">${diffOnly?'Features That Differ':'All Features (Yes/No/Partial)'}</td></tr>`;
+    rows+=`<tr class="sec-row"><td colspan="${picks.length+1}">${diffOnly?'Features That Differ':'All Features'}</td></tr>`;
     featsToShow.forEach(k=>{
       const vals=picks.map(p=>p.communityFeatures[k]!=null?p.communityFeatures[k]:false);
       const allSame=vals.every(v=>v===vals[0]);
@@ -1000,17 +1110,15 @@ function renderCompare(){
     });
   }
 
-  // Pricing & Market
-  rows+=`<tr class="sec-row"><td colspan="${picks.length+1}">Pricing & Market</td></tr>`;
-  rows+=`<tr><td>Pricing</td>${picks.map(p=>`<td style="font-size:.78rem;font-weight:600">${p.pricing}</td>`).join("")}</tr>`;
-  rows+=`<tr><td>Target Market</td>${picks.map(p=>`<td style="font-size:.8rem">${p.target}</td>`).join("")}</tr>`;
-  rows+=`<tr><td>Example Communities</td>${picks.map(p=>`<td style="font-size:.78rem;text-align:left">${p.examples.map(e=>e.url?`<a href="${e.url}" target="_blank" rel="noopener">${e.name}</a>`:`${e.name}`).join("<br>")}</td>`).join("")}</tr>`;
+  rows+=`<tr class="sec-row"><td colspan="${picks.length+1}">Pricing &amp; Market</td></tr>`;
+  rows+=`<tr><td>Pricing</td>${picks.map(p=>`<td style="font-size:.82rem;font-weight:600">${p.pricing}</td>`).join("")}</tr>`;
+  rows+=`<tr><td>Target Market</td>${picks.map(p=>`<td style="font-size:.84rem">${p.target}</td>`).join("")}</tr>`;
+  rows+=`<tr><td>Example Communities</td>${picks.map(p=>`<td style="font-size:.82rem;text-align:left">${p.examples.map(e=>e.url?`<a href="${e.url}" target="_blank" rel="noopener">${e.name}</a>`:e.name).join("<br>")}</td>`).join("")}</tr>`;
 
   ct.innerHTML=`<div class="ctable-wrap"><table class="ctable"><thead><tr><th>Criteria</th>${hdr}</tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
 // --- NAVIGATION ---
-
 function switchTab(tab){
   document.getElementById("profilePage").classList.remove("active");
   document.querySelector(".tab-bar").style.display="flex";
@@ -1018,17 +1126,16 @@ function switchTab(tab){
   document.querySelectorAll(".tab-panel").forEach(p=>p.classList.toggle("active",p.id==="panel-"+tab));
   if(tab==="compare")renderCompare();
   if(tab==="stakes")renderStakes();
-  updateFab();
+  updateCompareBar();
 }
 
 document.querySelectorAll(".tab-btn").forEach(b=>b.addEventListener("click",()=>switchTab(b.dataset.tab)));
 document.getElementById("searchInput").addEventListener("input",renderOverview);
-document.querySelectorAll(".pill").forEach(b=>b.addEventListener("click",()=>{
-  document.querySelectorAll(".pill").forEach(p=>p.classList.remove("active"));
-  b.classList.add("active");
-  currentFilter=b.dataset.cat;
-  renderOverview();
-}));
+
+// Back to top
+window.addEventListener("scroll",()=>{
+  document.getElementById("backToTop").classList.toggle("show",window.scrollY>400);
+});
 
 // Requirements form
 function submitReq(e){
@@ -1036,7 +1143,6 @@ function submitReq(e){
   const form=document.getElementById("reqForm");
   const data=new FormData(form);
   const name=data.get("name"),email=data.get("email"),org=data.get("org"),reqs=data.get("requirements");
-  // Send via mailto as fallback (could be replaced with API endpoint)
   const subject=encodeURIComponent("Platform Recommendation Request from "+name);
   const body=encodeURIComponent(`Name: ${name}\nEmail: ${email}\nOrganisation: ${org}\n\nRequirements:\n${reqs}`);
   window.location.href=`mailto:richard@feverbee.com?subject=${subject}&body=${body}`;
@@ -1045,9 +1151,10 @@ function submitReq(e){
 }
 
 // Init
+renderPills();
 renderWeights();
 renderOverview();
-updateFab();
+updateCompareBar();
 </script>
 </body>
 </html>
