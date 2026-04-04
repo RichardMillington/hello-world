@@ -968,9 +968,15 @@ function resetWeights(){
   renderWeights();renderOverview();
 }
 
+// --- CARD CLICK ---
+function cardClick(id,e){
+  // Don't open profile if clicking compare button
+  if(e.target.closest('.compare-check'))return;
+  showProfile(id);
+}
+
 // --- COMPARE BAR ---
 function toggleCompare(id,e){
-  e.stopPropagation();
   if(selected.has(id))selected.delete(id);else{if(selected.size>=4)return;selected.add(id)}
   renderOverview();updateCompareBar();
 }
@@ -1011,9 +1017,9 @@ function renderOverview(){
       const pct=(p[c.key]/10)*100;
       return`<div class="score-row"><span class="slbl">${c.label}</span><div class="sbar"><div class="sfill" style="width:${pct}%"></div></div><span class="sval">${p[c.key]}</span></div>`;
     }).join("");
-    return`<div class="pcard" onclick="showProfile('${p.id}')" style="cursor:pointer">
+    return`<div class="pcard" onclick="cardClick('${p.id}',event)" style="cursor:pointer">
       ${showRank?`<span class="rank-badge">#${i+1}</span>`:''}
-      <label class="compare-check ${sel?'active':''}" onclick="toggleCompare('${p.id}',event)"><input type="checkbox" ${sel?'checked':''}>${sel?'\u2713 Compare':'+ Compare'}</label>
+      <label class="compare-check ${sel?'active':''}" onclick="event.preventDefault();event.stopPropagation();toggleCompare('${p.id}',event)"><input type="checkbox" ${sel?'checked':''}>${sel?'\u2713 Compare':'+ Compare'}</label>
       <h3>${p.name}</h3>
       <div class="tagline">${p.tagline}</div>
       <div class="card-cat">${catBadge(p)} ${uxBadges(p.uxApproach)}</div>
@@ -1206,9 +1212,9 @@ function switchTab(tab){
   document.querySelector(".tab-bar").style.display="flex";
   document.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));
   document.querySelectorAll(".tab-panel").forEach(p=>p.classList.toggle("active",p.id==="panel-"+tab));
-  if(tab==="compare")renderCompare();
+  if(tab==="compare"){renderCompare();document.getElementById("compareBar").classList.remove("show")}
+  else{updateCompareBar()}
   if(tab==="stakes")renderStakes();
-  updateCompareBar();
 }
 
 document.querySelectorAll(".tab-btn").forEach(b=>b.addEventListener("click",()=>switchTab(b.dataset.tab)));
