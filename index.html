@@ -137,6 +137,7 @@
     .weight-item .slider-row{display:flex;align-items:center;gap:.5rem}
     .weight-item input[type=range]{flex:1;accent-color:var(--amber)}
     .weight-item .wval{min-width:18px;font-weight:700;color:var(--text);text-align:center;font-size:.85rem}
+    .weight-hint{font-size:.72rem;color:var(--text-dim);min-height:1.2em;transition:color .15s}
 
     .profile-page{display:none}
     .profile-page.active{display:block}
@@ -1039,10 +1040,91 @@ function renderPills(){
 }
 
 // --- WEIGHTS ---
+const weightHints={
+  easeOfUse:{
+    0:"Not important",
+    1:"Barely matters",2:"Barely matters",
+    3:"Minor factor",4:"Minor factor",
+    5:"Moderate priority — we'd like a reasonable setup",
+    6:"Important — we need something our team can manage without devs",
+    7:"High priority — non-technical admins must be able to run it day-to-day",
+    8:"Very high — must be intuitive out of the box with minimal training",
+    9:"Critical — ease of use is a dealbreaker for us",
+    10:"Our top priority — we'll sacrifice features for simplicity"
+  },
+  qualityOfFeatures:{
+    0:"Not important",
+    1:"Barely matters",2:"Barely matters",
+    3:"Minor factor — basic features are fine",4:"Minor factor",
+    5:"Moderate — we need solid core features that work well",
+    6:"Important — feature polish and depth matter to us",
+    7:"High priority — we need best-in-class execution, not just checkboxes",
+    8:"Very high — poorly implemented features are worse than missing ones",
+    9:"Critical — we'd rather have fewer features done excellently",
+    10:"Our top priority — quality of execution is everything"
+  },
+  integrations:{
+    0:"Not important — standalone is fine",
+    1:"Barely matters",2:"Barely matters",
+    3:"Minor — maybe one or two connections",4:"Minor factor",
+    5:"Moderate — needs to connect to our main tools (CRM, support)",
+    6:"Important — deep integration with our existing stack matters",
+    7:"High priority — bi-directional data flow with CRM/support tools essential",
+    8:"Very high — community must be deeply embedded in our tech ecosystem",
+    9:"Critical — data must flow seamlessly across our entire stack",
+    10:"Our top priority — integration depth trumps everything else"
+  },
+  dataPrivacySecurity:{
+    0:"Not important",
+    1:"Barely matters",2:"Barely matters",
+    3:"Minor — basic security is sufficient",4:"Minor factor",
+    5:"Moderate — standard enterprise security (SSO, encryption)",
+    6:"Important — we're in a regulated industry or handle sensitive data",
+    7:"High priority — GDPR compliance, data residency, audit trails needed",
+    8:"Very high — strict security requirements from our compliance team",
+    9:"Critical — healthcare, finance, or government-level requirements",
+    10:"Our top priority — security and privacy override all other factors"
+  },
+  servicesSupport:{
+    0:"Not important — we're self-sufficient",
+    1:"Barely matters",2:"Barely matters",
+    3:"Minor — documentation is enough",4:"Minor factor",
+    5:"Moderate — we'd like responsive support when we need it",
+    6:"Important — dedicated account manager or CSM preferred",
+    7:"High priority — we need proactive guidance, not just reactive support",
+    8:"Very high — strategic partnership with the vendor matters enormously",
+    9:"Critical — implementation support and ongoing strategic advice essential",
+    10:"Our top priority — vendor relationship and service quality above all"
+  },
+  reportsAnalytics:{
+    0:"Not important",
+    1:"Barely matters",2:"Barely matters",
+    3:"Minor — basic metrics are fine",4:"Minor factor",
+    5:"Moderate — we need standard engagement and activity dashboards",
+    6:"Important — leadership requires regular community ROI reporting",
+    7:"High priority — we need to prove business impact with data",
+    8:"Very high — advanced analytics, custom reports, and API data access needed",
+    9:"Critical — case deflection metrics, revenue attribution required",
+    10:"Our top priority — data and reporting drive all our decisions"
+  }
+};
+
+function getWeightHint(key,val){
+  return weightHints[key]?.[val]||"";
+}
+
 function renderWeights(){
-  document.getElementById("weightGrid").innerHTML=criteria.map(c=>
-    `<div class="weight-item"><label>${c.label}</label><div class="slider-row"><input type="range" min="0" max="10" value="${weights[c.key]}" oninput="weights['${c.key}']=+this.value;this.parentElement.querySelector('.wval').textContent=this.value;renderOverview()"><span class="wval">${weights[c.key]}</span></div></div>`
-  ).join("");
+  document.getElementById("weightGrid").innerHTML=criteria.map(c=>{
+    const v=weights[c.key];
+    return`<div class="weight-item">
+      <label>${c.label}</label>
+      <div class="slider-row">
+        <input type="range" min="0" max="10" value="${v}" oninput="weights['${c.key}']=+this.value;this.parentElement.querySelector('.wval').textContent=this.value;this.closest('.weight-item').querySelector('.weight-hint').textContent=getWeightHint('${c.key}',+this.value);renderOverview()">
+        <span class="wval">${v}</span>
+      </div>
+      <div class="weight-hint">${getWeightHint(c.key,v)}</div>
+    </div>`;
+  }).join("");
 }
 function resetWeights(){
   criteria.forEach(c=>weights[c.key]=5);
