@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Community Platform Comparison Tool | FeverBee</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
@@ -345,6 +346,19 @@
     .ai-apply-btn{margin-top:.75rem;padding:.45rem 1rem;background:var(--amber-light);color:var(--amber-dark);border:1px solid var(--amber);border-radius:6px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:inherit}
     .ai-apply-btn:hover{background:var(--amber);color:#fff}
     .ai-error{padding:1rem;background:var(--red-bg);border:1px solid var(--red-border);border-radius:8px;color:var(--red);font-size:.88rem;margin-top:1rem}
+
+    /* Example community with favicon */
+    .example-item{display:flex;align-items:flex-start;gap:.6rem;padding:.6rem 0;border-bottom:1px solid var(--border)}
+    .example-item:last-child{border-bottom:0}
+    .example-favicon{width:20px;height:20px;border-radius:4px;flex-shrink:0;margin-top:2px;background:#F0EEEB}
+    .example-info{flex:1}
+
+    /* PDF export */
+    .pdf-btn{padding:.45rem 1rem;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:.82rem;font-weight:500;color:var(--text-sec);cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:.35rem;transition:.15s}
+    .pdf-btn:hover{border-color:var(--amber);color:var(--amber)}
+
+    /* Creator/membership category */
+    .cat-creator{background:#FDF0EE;color:#C0392B}
   </style>
 </head>
 <body>
@@ -380,8 +394,8 @@
         <textarea class="ai-textarea" id="aiInput" placeholder="Or type/paste your requirements here...&#10;&#10;Example: We're a B2B SaaS company with 50,000 customers. We need a community for customer support deflection, product feedback, and peer-to-peer knowledge sharing. We use Salesforce and Zendesk. Budget is $30-60k/year. Must have SSO and strong moderation. Events would be nice but not essential."></textarea>
         <div class="ai-key-row">
           <div class="ai-key-group">
-            <label>Anthropic API Key <span style="color:var(--text-dim)">(required — not stored, used client-side only)</span></label>
-            <input type="password" class="ai-key-input" id="aiApiKey" placeholder="sk-ant-...">
+            <label>Anthropic API Key <span style="color:var(--text-dim)">(optional if backend proxy is configured)</span></label>
+            <input type="password" class="ai-key-input" id="aiApiKey" placeholder="sk-ant-... (or leave blank if proxy is set up)">
           </div>
           <button class="ai-submit" id="aiSubmitBtn" onclick="runAiAnalysis()">Analyse my requirements</button>
         </div>
@@ -431,6 +445,7 @@
       <h2>Side-by-Side Comparison</h2>
       <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
         <label class="diff-only-toggle"><input type="checkbox" id="diffToggle" onchange="renderCompare()"> Show only differences</label>
+        <button class="pdf-btn" onclick="exportPdf()">&#128196; Export PDF</button>
         <button class="btn-back" onclick="switchTab('overview')">+ Change Platforms</button>
       </div>
     </div>
@@ -511,7 +526,7 @@ const platforms = [
     ],
     strengths:["Most comprehensive feature set for large enterprises","37+ language support out of the box","Deep Salesforce bi-directional connector","Strong AI moderation and spam filtering","Proven at massive scale (Samsung, Spotify)"],
     considerations:["Premium pricing - starts around $50k/yr","No native events capability","No self-hosted option","IgniteTech acquisition may bring strategic changes","90-day auto-renewal opt-out clause in contracts"],
-    editorial:"[Your editorial opinion on Khoros goes here. How does it compare in practice? What have you seen with clients? Where does it excel and fall short?]"
+    editorial:"Khoros remains the most feature-complete enterprise community platform on the market. If you're a large organisation with complex needs, multilingual requirements, and a big budget, it's hard to beat. The Salesforce connector is genuinely best-in-class. But the IgniteTech acquisition introduces uncertainty — we're watching closely to see whether the new ownership accelerates innovation or strips the product for efficiency. The pricing also puts it out of reach for most mid-market buyers. If you can afford it and need the depth, it delivers. If you're not a Fortune 500, look elsewhere."
   },
   {
     id:"gainsight",name:"Gainsight Customer Communities",category:"established",catLabel:"Established Platform",
@@ -552,7 +567,7 @@ const platforms = [
     ],
     strengths:["Deep integration with Gainsight CS for customer health scoring","Strong product feedback and ideation workflow","AI Moderation Agent classifies posts automatically","IDC MarketScape Leader 2025","Product Updates hub is unique and useful"],
     considerations:["No native mobile app","AI Answers still in beta (Q1 2026)","Best value when paired with full Gainsight suite","Pricing not publicly disclosed","Community is one product in a larger CS platform"],
-    editorial:"[Your editorial opinion on Gainsight CC goes here. How does the inSided heritage show? What's the real experience like for community managers?]"
+    editorial:"Gainsight CC is the platform we're most excited about right now. The inSided heritage gives it solid community fundamentals, and the Gainsight integration creates a genuinely unique value proposition — your community activity feeds directly into customer health scores. The IDC MarketScape recognition is well-deserved. The AI Moderation Agent is practical and already working in production. The main caveat: it's strongest when you're already in the Gainsight ecosystem. As a standalone community platform without the CS suite, the value proposition weakens. If you're a B2B SaaS company already using Gainsight, this should be your first call."
   },
   {
     id:"higherlogic",name:"Higher Logic Vanilla",category:"established",catLabel:"Established Platform",
@@ -593,7 +608,7 @@ const platforms = [
     ],
     strengths:["Best-in-class Zendesk integration for support communities","Widget Builder (React/TypeScript IDE) for deep customisation","AI Search Assistant with RAG technology","Dedicated Customer Success team on all plans","Strong in B2B support community use cases"],
     considerations:["No native mobile app","No built-in events feature","Limited multi-language vs Khoros","Analytics less advanced than competitors","No blog functionality built in"],
-    editorial:"[Your editorial opinion on Higher Logic Vanilla goes here. How does it compare to old Vanilla Forums? What's the real developer experience like?]"
+    editorial:"Higher Logic Vanilla is the quiet achiever in this space. It doesn't generate the most buzz, but organisations running it tend to be satisfied. The Zendesk integration is the best we've seen from any platform — if Zendesk is your support tool, this is probably your community platform. The Widget Builder is genuinely impressive for teams with developer resources — it's a real IDE, not a drag-and-drop toy. The AI Search Assistant with RAG is practical and well-implemented. Where it falls short: no mobile app, no events, and the analytics feel a generation behind Khoros or Salesforce. It's a workhorse, not a showpiece."
   },
   {
     id:"salesforce",name:"Salesforce Experience Cloud",category:"established",catLabel:"Established Platform",
@@ -633,7 +648,7 @@ const platforms = [
     ],
     strengths:["Unmatched integration depth within Salesforce ecosystem","Flexible licensing (per-login or per-member)","Native CRM data access without middleware","Agentforce AI agents for workflow automation","Experience Builder for no-code page creation"],
     considerations:["Requires deep Salesforce ecosystem commitment","Community is one module in a massive platform - complexity overhead","Community-specific UX lags dedicated vendors","Implementation typically requires SI partners","Services and support can feel impersonal"],
-    editorial:"[Your editorial opinion on Salesforce Experience Cloud goes here. When does it make sense vs a dedicated community platform? What's the real cost of ownership?]"
+    editorial:"Salesforce Experience Cloud is the most polarising platform in this comparison. If your organisation lives in Salesforce, the native data integration is transformative — community interactions flow into cases, opportunities, and reports without any middleware. But the total cost of ownership is brutal: licensing, implementation (you'll almost certainly need an SI partner), and ongoing maintenance add up fast. The community-specific UX also lags dedicated vendors — it feels like a CRM that happens to have a community module, because that's exactly what it is. We recommend it only when deep CRM integration is a non-negotiable requirement. Otherwise, a dedicated platform will serve your community members better."
   },
   {
     id:"verint",name:"Verint Community",category:"established",catLabel:"Established Platform",
@@ -672,7 +687,7 @@ const platforms = [
     ],
     strengths:["Part of broader Verint CX ecosystem","Strong moderation and compliance tools","Da Vinci AI for sentiment analysis and auto-tagging","Good case deflection analytics and ROI measurement","Open AI strategy - not locked to one AI vendor"],
     considerations:["No public pricing - enterprise sales process only","Fewer third-party integrations than competitors","Innovation pace slower than newer entrants","No native events feature","Telligent heritage means older underlying architecture"],
-    editorial:"[Your editorial opinion on Verint Community goes here. How does the Telligent heritage affect the product? Where does it sit in the market now?]"
+    editorial:"We have to be honest: Verint Community is losing ground. The Telligent heritage shows in an aging UX that hasn't kept pace with modern expectations. The Da Vinci AI capabilities are genuinely interesting — especially the open AI model strategy — and the case deflection analytics remain strong. But the broader platform feels like it's receiving less investment than the competition. If you're already in the Verint CX ecosystem, it still makes sense as part of that stack. But we wouldn't recommend starting a new community on Verint today unless the CX suite integration is the primary driver. The market has moved on."
   },
   {
     id:"bettermode",name:"Bettermode",category:"newgen",catLabel:"New Generation",
@@ -711,7 +726,7 @@ const platforms = [
     ],
     strengths:["Most affordable entry point of all platforms reviewed","Modern social feed UX (wall-style, not forum-style)","GraphQL API for developer flexibility","Design Studio for no-code visual customisation","Flexible content types: feeds, podcasts, jobs, reviews, polls"],
     considerations:["No native mobile app","Smaller company with less enterprise track record","Free plan being discontinued (Mar 2026)","Data privacy and security less mature than enterprise vendors","Smaller customer base than established players"],
-    editorial:"[Your editorial opinion on Bettermode goes here. How does the feed/wall approach compare to forums in practice? Who is this really for?]"
+    editorial:"Bettermode represents a genuine philosophical alternative to the forum-based platforms that dominate this space. The feed/wall approach feels more like a modern social network than a traditional community — and for some use cases, that's exactly right. The GraphQL API and Design Studio give technical teams real flexibility. The pricing is the most accessible in this comparison. But the feed-first approach has a real trade-off: content discoverability suffers over time. Great for engagement, less great for building a searchable knowledge repository. Best suited for product communities where engagement matters more than deep knowledge management. Not yet proven at enterprise scale."
   },
   {
     id:"bevy",name:"Bevy",category:"newgen",catLabel:"New Generation",
@@ -750,7 +765,7 @@ const platforms = [
     ],
     strengths:["Dominant platform for community-led events at scale","Owns CMX (the community industry body) - unique strategic position","Proven with world's largest community programmes (Salesforce, Google, Atlassian)","Chapter/local group management is unmatched","Strong event ROI and attribution analytics"],
     considerations:["Forum/discussion features are newer and less mature than dedicated platforms","Not yet a full community platform - events DNA still dominant","No native ideation or knowledge base features","Custom pricing only - no self-serve","Expanding scope may stretch focus"],
-    editorial:"[Your editorial opinion on Bevy goes here. Is it really becoming a full community platform or still primarily events? How does the CMX ownership affect the market?]"
+    editorial:"Bevy is the undisputed champion of community events at scale. The fact that Salesforce, Google, and Atlassian all run their community events programmes on Bevy tells you everything about its events capability. The CMX ownership is strategically brilliant — they own the community profession's industry body while selling the tools. But let's be clear: Bevy is still primarily an events platform. The community hub features (discussions, content) are functional but years behind dedicated community platforms. If events are your primary community strategy, Bevy is the obvious choice. If you need a forum or knowledge base with events bolted on, look elsewhere and integrate Bevy for events."
   },
   {
     id:"hivebrite",name:"Hivebrite",category:"newgen",catLabel:"New Generation",
@@ -790,7 +805,7 @@ const platforms = [
     ],
     strengths:["Purpose-built for alumni/membership organisations - features like mentoring, fundraising, job boards are native","Strongest white-labelling of any platform (fully branded apps, no 'powered by')","All-in-one for membership orgs: CMS + CRM + events + fundraising + jobs","GDPR-compliant European origins","Native mobile apps included"],
     considerations:["Forum/discussion features less sophisticated than dedicated community platforms","Fewer third-party integrations than competitors","Academic/alumni DNA may not suit all enterprise use cases","Smaller engineering team than established vendors","Analytics less advanced"],
-    editorial:"[Your editorial opinion on Hivebrite goes here. How well does the alumni-origin translate to broader community use? Where does it genuinely excel vs where is it stretching?]"
+    editorial:"Hivebrite is the clear winner for alumni networks, associations, and membership organisations. Features like mentoring programme management, fundraising, and job boards are native — not afterthoughts. The white-labelling is the best in the market, and the branded mobile apps are a genuine differentiator. However, we see Hivebrite trying to position itself as a general-purpose community platform, and that's a stretch. The discussion and content features lag behind dedicated community vendors. If you're a university, professional association, or membership organisation, Hivebrite is purpose-built for you. If you're a SaaS company looking for customer community, there are better options."
   },
   {
     id:"discourse",name:"Discourse",category:"opensource",catLabel:"Open Source",
@@ -830,7 +845,7 @@ const platforms = [
     ],
     strengths:["Fully open source - own your data, modify anything, no vendor lock-in","Most modern forum UX of any open-source option (infinite scroll, real-time, markdown)","Trust level system reduces moderation workload automatically","Active AI development with practical features already shipped","Massive plugin ecosystem and developer community","Can self-host on your own infrastructure for full control","Free to self-host - only pay for hosting costs"],
     considerations:["Self-hosted requires technical team for maintenance, upgrades, and security","Hosted pricing can add up for larger communities","No native ideation or structured knowledge base","Analytics/reporting less sophisticated than enterprise platforms","Services and support weaker than commercial vendors (unless on Enterprise plan)","Plugin quality varies - some community plugins are unmaintained"],
-    editorial:"[Your editorial opinion on Discourse goes here. How does it compare to the commercial platforms in practice? Where do you see it fitting vs not fitting?]"
+    editorial:"Discourse is the most interesting platform in this comparison for a specific reason: it's the only open-source option that genuinely competes with commercial vendors on quality. The UX is modern, the AI features are practical (not vapourware), and the trust level system is an elegant solution to moderation scaling. The plugin ecosystem means you can extend it in ways commercial vendors won't allow. Self-hosting gives you full data sovereignty. The trade-off is clear: you need technical resources to run it. If you have a dev team and want control, Discourse gives you more for less than any commercial alternative. If you want a managed service with hand-holding, the enterprise tier works but you're paying commercial prices for open-source software."
   },
   {
     id:"flarum",name:"Flarum",category:"opensource",catLabel:"Open Source",
@@ -869,7 +884,87 @@ const platforms = [
     ],
     strengths:["Simplest, cleanest forum UX - deliberately minimal and fast","Fully open source and free - no licensing costs","Modern tech stack (Laravel + Mithril.js) - easy for developers to extend","Lower server requirements than Discourse for self-hosting","Beautiful default design out of the box","Extension architecture keeps core lean - add only what you need"],
     considerations:["No enterprise features (analytics, AI, ideation, KB, events)","Smaller community and ecosystem than Discourse","Self-hosted only - no managed hosting option from Flarum","Fewer extensions and less mature plugin ecosystem","No commercial support - community support only","Not suitable for large enterprise deployments","No native SSO/SAML without extensions"],
-    editorial:"[Your editorial opinion on Flarum goes here. When does the simplicity make it the right choice? How does it compare to Discourse for smaller communities?]"
+    editorial:"Flarum is the minimalist's choice. In a market where every vendor is adding features, Flarum strips back to essentials and does them beautifully. The two-pane SPA interface is fast and elegant. If you need a simple discussion forum without the enterprise overhead — for an internal team, a small product community, or a hobbyist group — Flarum delivers a better out-of-the-box experience than Discourse with far less server overhead. But it's not for enterprise use. No native AI, limited analytics, community-only support, and a smaller ecosystem. Think of it as the indie alternative: perfect for its niche, wrong for enterprise procurement."
+  },
+  {
+    id:"circle",name:"Circle",category:"creator",catLabel:"Creator / Membership",
+    tagline:"All-in-one community, courses, and monetisation platform for creators and brands",
+    uxApproach:[{type:"feed",label:"Social Feed"},{type:"hybrid",label:"Courses + Chat"}],
+    pricing:"From $49/mo (Basic) to $219/mo (Business); Enterprise custom",target:"Creators / SMB / Mid-Market",
+    verdict:"Strong in the creator space. Increasingly competing for SaaS communities too",verdictType:"rising",website:"https://circle.so",
+    easeOfUse:8.5,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:6.5,servicesSupport:7,reportsAnalytics:6.5,
+    execution:{
+      "Discussions":"Feed/wall-style within Spaces. Posts appear in a social timeline, not threaded forum topics. Comments are nested but shallow. Feels like a modern social platform rather than a knowledge base.",
+      "Q&A":"Not a dedicated format. Q&A happens within the feed. No accepted answers or voting system like dedicated Q&A platforms.",
+      "Ideation":"No native ideation features.",
+      "Knowledge Base":"No structured KB. Course content and pinned posts serve as reference material but there's no dedicated knowledge base module.",
+      "Content Format":"Hybrid: feed/wall for discussions, structured modules for courses, real-time chat channels, and event pages. Spaces can be configured as different types (discussion, chat, event, course). The mix of async feed + real-time chat + courses in one platform is the key differentiator.",
+      "AI Approach":"AI-powered search and content summarisation. AI copilot for admins helps with writing posts, moderation, and community reports. Smart activity feeds surface relevant content. AI is practical but less advanced than enterprise vendors.",
+      "Events":"Native event scheduling with RSVP, live rooms, and streaming built in. Events are a core feature, not a bolt-on.",
+      "Mobile":"iOS and Android apps. Custom-branded mobile app available on Enterprise tier.",
+      "Unique Features":"The community + courses + monetisation combo in one platform. Native paywalls and membership tiers. Headless/embedded options for SaaS companies wanting to embed community into their own product. Spaces architecture lets you mix discussion, chat, courses, and events in one community."
+    },
+    communityFeatures:{
+      "Discussion Spaces (Feed)":true,"Real-time Chat":true,"Course Builder":true,"Event Management":true,"Member Directory":true,
+      "Monetisation / Paywalls":true,"Moderation Tools":true,"SSO (SAML/OAuth)":"Partial","API Access":"Partial",
+      "Custom Branding":true,"Native Mobile App":true,"Gamification":false,
+      "AI Search / Summaries":true,"Workflow Automations":true,"Self-Hosted Option":false,"White-label App":"Partial"
+    },
+    keyIntegrations:["Zapier","Stripe","Zoom","Slack","Mailchimp","ConvertKit","WordPress","Google Analytics","Meta Pixel","Webhooks"],
+    examples:[
+      {name:"SPI Pro (Pat Flynn)",url:"https://www.smartpassiveincome.com/community",desc:"Smart Passive Income creator community"},
+      {name:"FWFG (Yoga With Adriene)",url:"https://fwfg.com",desc:"Find What Feels Good wellness community"},
+      {name:"Teachable Creators",url:"https://circle.so",desc:"Teachable's creator community built on Circle"}
+    ],
+    recentNews:[
+      {date:"2025",text:"Continued AI feature rollout: admin copilot, content summarisation, smart feeds"},
+      {date:"2025",text:"Custom-branded mobile apps becoming accessible on lower tiers"},
+      {date:"2025",text:"Headless/API-first capabilities expanded for SaaS embedding"},
+      {date:"2025",text:"Increasingly competing with Bettermode and community platforms for SaaS use cases"}
+    ],
+    strengths:["All-in-one: community + courses + events + monetisation in one platform","Native paywalls and membership tiers — built for revenue","Modern, clean UX that non-technical users can manage","Mobile apps included (custom-branded on Enterprise)","Headless/embedded options for SaaS companies","Self-serve pricing — can start today without a sales call"],
+    considerations:["Not a forum — poor for deep technical support or knowledge retention","No structured knowledge base","Limited SSO and API on lower tiers","Analytics less sophisticated than enterprise platforms","Creator-focused brand may not suit enterprise procurement","No native ideation or product feedback features"],
+    editorial:"Circle has carved out a strong position as the platform where community meets commerce. If you're a creator, educator, or membership organisation that wants to charge for access, run courses, and build community in one place, Circle is the most polished option. The Spaces architecture is genuinely well-designed. But it's not an enterprise community platform — don't try to run a customer support community or a product feedback forum on Circle. It doesn't have the depth. Where Circle gets interesting is the headless/embedded play for SaaS companies. If that matures, it could compete with Bettermode and even Gainsight CC. Worth watching."
+  },
+  {
+    id:"mighty",name:"Mighty Networks",category:"creator",catLabel:"Creator / Membership",
+    tagline:"Community-powered courses and memberships with branded mobile apps and AI",
+    uxApproach:[{type:"feed",label:"Social Feed"},{type:"hybrid",label:"Courses + Events"}],
+    pricing:"From $41/mo (Community) to $179/mo (Business); Pro from ~$3,000/mo",target:"Creators / Educators / SMB",
+    verdict:"Established in creator space. Mighty AI is a genuine differentiator",verdictType:"steady",website:"https://www.mightynetworks.com",
+    easeOfUse:8,qualityOfFeatures:7,integrations:5.5,dataPrivacySecurity:6,servicesSupport:6.5,reportsAnalytics:5.5,
+    execution:{
+      "Discussions":"Social feed/wall within each Space. Activity feed similar to Facebook Groups. Not threaded — posts in a timeline with nested comments. Mobile-first design makes it feel more like a social app than a community platform.",
+      "Q&A":"Q&A as a content type within the feed. No dedicated Q&A module with accepted answers.",
+      "Ideation":"No ideation features.",
+      "Knowledge Base":"No structured KB. Course content serves as the knowledge repository. Resources can be pinned but there's no dedicated knowledge base.",
+      "Content Format":"Feed-first with structured courses layered in. Each Space has its own activity feed. Course Spaces have modules, lessons, quizzes, and certificates. Events can be virtual (with native live streaming) or in-person. The blend of social feed + structured learning is the core proposition.",
+      "AI Approach":"Mighty AI (formerly Co-Host) is one of the most developed AI implementations in the creator platform space. Generates discussion prompts, drafts posts, answers member questions from existing content, summarises threads, suggests content, generates landing page copy, and provides engagement nudges for inactive members. AI is a strategic differentiator, not a checkbox.",
+      "Events":"Native event hosting with RSVP, live video/streaming, and Zoom integration. Virtual and in-person. Events are a core feature.",
+      "Mobile":"Native iOS and Android apps. Mighty Pro tier provides fully white-labeled apps published under the creator's own brand name in app stores — this is unique and a major differentiator.",
+      "Unique Features":"The branded mobile app play is unique — on Pro tier, your community appears as its own app in the App Store, not 'Mighty Networks'. Combined with courses, monetisation, and AI, it's the most feature-rich creator platform. Gina Bianchini's 'anti-social-media' positioning (you own the audience, no algorithm manipulation) resonates with creators burned by platform dependence."
+    },
+    communityFeatures:{
+      "Discussion Spaces (Feed)":true,"Real-time Chat":"Partial","Course Builder":true,"Event Management":true,"Member Directory":true,
+      "Monetisation / Paywalls":true,"Moderation Tools":true,"SSO (SAML/OAuth)":"Partial","API Access":"Partial",
+      "Custom Branding":true,"Branded Mobile App":true,"Gamification":"Partial",
+      "Mighty AI":true,"Workflow Automations":true,"Self-Hosted Option":false,"Live Streaming":true
+    },
+    keyIntegrations:["Zoom","Zapier","Stripe","Google Analytics","Meta Pixel","WordPress","API (Business tier)"],
+    examples:[
+      {name:"FWFG (Yoga With Adriene)",url:"https://fwfg.com",desc:"Find What Feels Good wellness community and courses"},
+      {name:"Marie Forleo's B-School",url:"https://www.marieforleo.com",desc:"Business education community for entrepreneurs"},
+      {name:"TED Circles",url:"https://www.ted.com",desc:"TED's small-group discussion community programme"}
+    ],
+    recentNews:[
+      {date:"2025",text:"Mighty AI expanded with Q&A answering from community content, discussion prompts, and landing page generation"},
+      {date:"2025",text:"Mighty Pro custom-branded apps with more customisation options"},
+      {date:"2025",text:"Course builder upgrades: better analytics, cohort management, certificates"},
+      {date:"2025",text:"Increasingly competing with Circle and Skool in the creator platform space"}
+    ],
+    strengths:["Custom-branded mobile apps published under your own name in app stores (Pro tier)","Most developed AI for creator communities (Mighty AI)","All-in-one: community + courses + events + monetisation + live streaming","Mobile-first design with strong native app experience","Strong creator community and brand with Gina Bianchini's thought leadership","Course builder is more robust than Circle's for structured learning"],
+    considerations:["Limited integrations — Zapier is the bridge for most workflows","No native deep CRM or support tool integrations","Analytics are basic compared to enterprise platforms","Not suited for enterprise support or product communities","API access only on Business tier and above","Pro tier (branded apps) is expensive (~$3,000+/mo)","Smaller developer ecosystem than open-source alternatives"],
+    editorial:"Mighty Networks and Circle are the two leading platforms in the creator/membership community space, and they overlap significantly. Mighty's edge is the branded mobile app (your name in the App Store, not theirs) and Mighty AI, which is genuinely well-implemented. Circle's edge is cleaner UX and better embedding/API options. If mobile app presence matters to your community, Mighty wins. If you need a sleeker web experience and want to embed community into your own product, Circle wins. Neither is suited for enterprise customer support or product communities — they're purpose-built for creator businesses, educators, and membership organisations."
   }
 ];
 
@@ -893,25 +988,25 @@ const tableStakes = [
 const differentiators = [
   {title:"Forum-Style vs Feed/Wall-Style UX",
    desc:"The biggest UX divide. Traditional forums (threaded, topic-based) suit deep technical support and knowledge retention. Social feed/wall UX (chronological, card-based) drives engagement and feels modern but content is harder to find later.",
-   platforms:[{name:"Forum-style",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Discourse","Flarum"]},{name:"Feed/Wall-style",tags:["Bettermode","Bevy Hub"]},{name:"Configurable",tags:["Salesforce","Hivebrite"]}]},
+   platforms:[{name:"Forum-style",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Discourse","Flarum"]},{name:"Feed/Wall-style",tags:["Bettermode","Bevy Hub","Circle","Mighty Networks"]},{name:"Configurable",tags:["Salesforce","Hivebrite"]}]},
   {title:"Events-Native vs Bolt-On",
    desc:"Some platforms treat events as a core capability baked into the product. Others have no events at all, or offer basic integrations. If community events are central to your strategy, this matters enormously.",
-   platforms:[{name:"Events-native",tags:["Bevy","Hivebrite"]},{name:"Built-in events",tags:["Gainsight CC","Bettermode","Salesforce"]},{name:"No native events",tags:["Khoros","Higher Logic Vanilla","Verint","Discourse","Flarum"]}]},
+   platforms:[{name:"Events-native",tags:["Bevy","Hivebrite","Mighty Networks"]},{name:"Built-in events",tags:["Gainsight CC","Bettermode","Salesforce","Circle"]},{name:"No native events",tags:["Khoros","Higher Logic Vanilla","Verint","Discourse","Flarum"]}]},
   {title:"Dedicated Community vs Platform Module",
    desc:"Is the community product the vendor's primary focus, or is it one module in a larger suite? Dedicated vendors iterate faster on community features. Platform modules offer deeper integration with the parent ecosystem.",
-   platforms:[{name:"Community is the product",tags:["Higher Logic Vanilla","Bettermode","Bevy","Hivebrite","Discourse","Flarum"]},{name:"Part of larger suite",tags:["Salesforce","Gainsight CC","Verint","Khoros"]}]},
+   platforms:[{name:"Community is the product",tags:["Higher Logic Vanilla","Bettermode","Bevy","Hivebrite","Discourse","Flarum","Circle","Mighty Networks"]},{name:"Part of larger suite",tags:["Salesforce","Gainsight CC","Verint","Khoros"]}]},
   {title:"AI Capabilities Maturity",
    desc:"Every vendor is rushing to add AI, but maturity varies wildly. Some have shipped production AI moderation and search. Others are still in beta or marketing vapourware.",
-   platforms:[{name:"Production AI features",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Salesforce","Discourse"]},{name:"Emerging AI",tags:["Bettermode","Verint","Bevy"]},{name:"Limited / No AI",tags:["Hivebrite","Flarum"]}]},
+   platforms:[{name:"Production AI features",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Salesforce","Discourse","Mighty Networks"]},{name:"Emerging AI",tags:["Bettermode","Verint","Bevy","Circle"]},{name:"Limited / No AI",tags:["Hivebrite","Flarum"]}]},
   {title:"Membership / Alumni Features",
    desc:"Features like fundraising, job boards, mentoring programmes, and member directories are native in some platforms and completely absent in others.",
-   platforms:[{name:"Native membership features",tags:["Hivebrite"]},{name:"Some membership features",tags:["Bevy"]},{name:"Not focused on membership",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Bettermode","Salesforce","Discourse","Flarum"]}]},
+   platforms:[{name:"Native monetisation + membership",tags:["Circle","Mighty Networks","Hivebrite"]},{name:"Some membership features",tags:["Bevy"]},{name:"Not focused on membership",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Bettermode","Salesforce","Discourse","Flarum"]}]},
   {title:"Self-Hosted / Open Source vs SaaS-Only",
    desc:"Can you run it on your own servers? Open-source platforms give full control over data, security, and customisation but require technical resources. SaaS platforms handle everything but create vendor dependency.",
-   platforms:[{name:"Open source, self-host available",tags:["Discourse","Flarum"]},{name:"SaaS only",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Bettermode","Bevy","Hivebrite","Verint","Salesforce"]}]},
+   platforms:[{name:"Open source, self-host available",tags:["Discourse","Flarum"]},{name:"SaaS only",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Bettermode","Bevy","Hivebrite","Verint","Salesforce","Circle","Mighty Networks"]}]},
   {title:"Self-Serve Pricing vs Enterprise Sales",
    desc:"Can you sign up and start today, or do you need a 3-month sales process? This affects time-to-value and suits different buyer types.",
-   platforms:[{name:"Free / open source",tags:["Discourse (self-hosted)","Flarum"]},{name:"Self-serve pricing published",tags:["Bettermode","Discourse (hosted)"]},{name:"Tiers listed, quote required",tags:["Gainsight CC","Higher Logic Vanilla"]},{name:"Enterprise sales only",tags:["Khoros","Salesforce","Verint","Bevy","Hivebrite"]}]}
+   platforms:[{name:"Free / open source",tags:["Discourse (self-hosted)","Flarum"]},{name:"Self-serve pricing published",tags:["Bettermode","Discourse (hosted)","Circle","Mighty Networks"]},{name:"Tiers listed, quote required",tags:["Gainsight CC","Higher Logic Vanilla"]},{name:"Enterprise sales only",tags:["Khoros","Salesforce","Verint","Bevy","Hivebrite"]}]}
 ];
 
 let weights = {};
@@ -934,6 +1029,7 @@ function uxBadges(arr){return arr.map(a=>`<span class="ux-badge ux-${a.type}">${
 function catBadge(p){
   if(p.category==="established")return'<span class="cat-label cat-established">Established</span>';
   if(p.category==="opensource")return'<span class="cat-label cat-opensource">Open Source</span>';
+  if(p.category==="creator")return'<span class="cat-label cat-creator">Creator / Membership</span>';
   return'<span class="cat-label cat-newgen">New Generation</span>';
 }
 function verdictLine(p){
@@ -946,6 +1042,7 @@ function renderPills(){
     {key:"all",label:"All",count:platforms.length},
     {key:"established",label:"Established",count:platforms.filter(p=>p.category==="established").length},
     {key:"newgen",label:"New Generation",count:platforms.filter(p=>p.category==="newgen").length},
+    {key:"creator",label:"Creator / Membership",count:platforms.filter(p=>p.category==="creator").length},
     {key:"opensource",label:"Open Source",count:platforms.filter(p=>p.category==="opensource").length}
   ];
   document.getElementById("filterPills").innerHTML=cats.map(c=>
@@ -1066,7 +1163,11 @@ function showProfile(id){
   const integ=p.keyIntegrations.map(i=>`<li>${i}</li>`).join("");
   const pros=p.strengths.map(s=>`<li>${s}</li>`).join("");
   const cons=p.considerations.map(s=>`<li>${s}</li>`).join("");
-  const examples=p.examples.map(e=>`<div class="example-item"><div class="example-name">${e.url?`<a href="${e.url}" target="_blank" rel="noopener">${e.name} &rarr;</a>`:e.name}</div><div class="example-desc">${e.desc}</div></div>`).join("");
+  const examples=p.examples.map(e=>{
+    const domain=e.url?new URL(e.url).hostname:'';
+    const favicon=domain?`<img class="example-favicon" src="https://www.google.com/s2/favicons?domain=${domain}&sz=32" alt="" onerror="this.style.display='none'">`:'';
+    return`<div class="example-item">${favicon}<div class="example-info"><div class="example-name">${e.url?`<a href="${e.url}" target="_blank" rel="noopener">${e.name} &rarr;</a>`:e.name}</div><div class="example-desc">${e.desc}</div></div></div>`;
+  }).join("");
   const scoreBars=criteria.map(c=>{
     const pct=(p[c.key]/10)*100;
     return`<div class="score-row"><span class="slbl">${c.label}</span><div class="sbar"><div class="sfill" style="width:${pct}%"></div></div><span class="sval">${p[c.key]}</span></div>`;
@@ -1238,6 +1339,25 @@ function submitReq(e){
   document.getElementById("reqSuccess").style.display="block";
 }
 
+// --- PDF EXPORT ---
+function exportPdf(){
+  const el=document.getElementById("compareContent");
+  if(!el||!el.innerHTML.trim())return;
+  const opt={
+    margin:[10,10,10,10],
+    filename:'FeverBee-Platform-Comparison.pdf',
+    image:{type:'jpeg',quality:0.95},
+    html2canvas:{scale:2,useCORS:true,backgroundColor:'#FAFAF7'},
+    jsPDF:{unit:'mm',format:'a3',orientation:'landscape'}
+  };
+  // Wrap with title
+  const wrapper=document.createElement("div");
+  wrapper.style.cssText="padding:20px;font-family:Inter,sans-serif;background:#FAFAF7";
+  wrapper.innerHTML=`<div style="text-align:center;margin-bottom:16px"><div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#888;text-transform:uppercase;margin-bottom:4px">FEVERBEE</div><h2 style="font-size:18px;font-weight:600;color:#1A1A1A;margin:0 0 4px">Community Platform Comparison</h2><p style="font-size:12px;color:#8A8A8A;margin:0">Generated ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})} &middot; feverbee.com</p></div>`+el.innerHTML;
+  document.body.appendChild(wrapper);
+  html2pdf().set(opt).from(wrapper).save().then(()=>document.body.removeChild(wrapper));
+}
+
 // --- AI RECOMMENDATION ENGINE ---
 
 // File upload handling
@@ -1272,13 +1392,16 @@ function buildPlatformSummary(){
   }).join("\n\n");
 }
 
+// Set this to your deployed Cloudflare Worker URL to enable proxy mode (no API key needed for visitors)
+const AI_PROXY_URL = ''; // e.g. 'https://feverbee-ai-recommend.your-account.workers.dev/recommend'
+
 async function runAiAnalysis(){
   const input=document.getElementById("aiInput").value.trim();
   const apiKey=document.getElementById("aiApiKey").value.trim();
   const resultsDiv=document.getElementById("aiResults");
 
   if(!input){resultsDiv.innerHTML='<div class="ai-error">Please enter your requirements or upload a document.</div>';return}
-  if(!apiKey){resultsDiv.innerHTML='<div class="ai-error">Please enter your Anthropic API key. It is used client-side only and is not stored.</div>';return}
+  if(!apiKey&&!AI_PROXY_URL){resultsDiv.innerHTML='<div class="ai-error">Please enter your Anthropic API key, or ask FeverBee to enable the backend proxy.</div>';return}
 
   const btn=document.getElementById("aiSubmitBtn");
   btn.disabled=true;
@@ -1318,21 +1441,32 @@ Respond in this exact JSON format:
 Use the exact platform IDs: khoros, gainsight, higherlogic, salesforce, verint, bettermode, bevy, hivebrite, discourse, flarum. Return ONLY valid JSON.`;
 
   try{
-    const resp=await fetch("https://api.anthropic.com/v1/messages",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json",
-        "x-api-key":apiKey,
-        "anthropic-version":"2023-06-01",
-        "anthropic-dangerous-direct-browser-access":"true"
-      },
-      body:JSON.stringify({
-        model:"claude-sonnet-4-20250514",
-        max_tokens:2000,
-        system:systemPrompt,
-        messages:[{role:"user",content:`Here are my community platform requirements:\n\n${input}`}]
-      })
-    });
+    let resp;
+    if(AI_PROXY_URL){
+      // Use backend proxy (no API key needed)
+      resp=await fetch(AI_PROXY_URL,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({requirements:input,systemPrompt:systemPrompt})
+      });
+    }else{
+      // Direct API call (requires user API key)
+      resp=await fetch("https://api.anthropic.com/v1/messages",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+          "x-api-key":apiKey,
+          "anthropic-version":"2023-06-01",
+          "anthropic-dangerous-direct-browser-access":"true"
+        },
+        body:JSON.stringify({
+          model:"claude-sonnet-4-20250514",
+          max_tokens:2000,
+          system:systemPrompt,
+          messages:[{role:"user",content:`Here are my community platform requirements:\n\n${input}`}]
+        })
+      });
+    }
 
     if(!resp.ok){
       const err=await resp.json().catch(()=>({}));
