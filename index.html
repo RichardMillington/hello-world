@@ -95,6 +95,33 @@
     .diff-card .diff-platforms{display:flex;flex-wrap:wrap;gap:.25rem}
     .diff-tag{padding:.2rem .55rem;border-radius:4px;font-size:.72rem;font-weight:500;background:#F0EEEB;color:var(--text-sec)}
 
+    /* Interactive differentiator options */
+    .diff-options{display:flex;flex-direction:column;gap:.5rem;margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border)}
+    .diff-option{display:flex;align-items:flex-start;gap:.6rem;padding:.5rem .6rem;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:.15s;background:#fff}
+    .diff-option:hover{border-color:#ccc}
+    .diff-option.selected{border-color:var(--amber);background:var(--amber-light)}
+    .diff-option .opt-radio{width:16px;height:16px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;margin-top:2px;transition:.15s;display:flex;align-items:center;justify-content:center}
+    .diff-option.selected .opt-radio{border-color:var(--amber);background:var(--amber)}
+    .diff-option.selected .opt-radio::after{content:'';width:6px;height:6px;border-radius:50%;background:#fff}
+    .diff-option .opt-label{font-size:.84rem;font-weight:600;color:var(--text)}
+    .diff-option .opt-tags{font-size:.72rem;color:var(--text-dim);margin-top:.15rem}
+    .diff-importance{display:flex;gap:.3rem;margin-top:.5rem}
+    .imp-btn{padding:.25rem .6rem;border:1px solid var(--border);border-radius:4px;font-size:.72rem;font-weight:500;color:var(--text-dim);cursor:pointer;background:#fff;font-family:inherit;transition:.15s}
+    .imp-btn:hover{border-color:#ccc;color:var(--text-sec)}
+    .imp-btn.active{border-color:var(--green);color:var(--green);background:var(--green-bg)}
+    .imp-btn.active-nice{border-color:var(--amber);color:var(--amber);background:var(--amber-light)}
+    .imp-btn.active-not{border-color:var(--border);color:var(--text-dim);background:#F5F4F1}
+    .diff-your-prefs{margin-top:1rem;padding:1rem;background:var(--amber-light);border:1px solid var(--amber);border-radius:8px;font-size:.85rem;color:var(--text-sec)}
+    .diff-your-prefs strong{color:var(--text)}
+
+    /* AI comparison summary */
+    .ai-compare-summary{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1.25rem;box-shadow:var(--shadow)}
+    .ai-compare-summary h4{font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:.5rem;display:flex;align-items:center;gap:.35rem}
+    .ai-compare-summary .summary-text{font-size:.88rem;color:var(--text-sec);line-height:1.7}
+    .ai-compare-summary .summary-loading{color:var(--text-dim);font-size:.85rem}
+    .ai-compare-summary .summary-gen-btn{padding:.35rem .85rem;background:var(--amber-light);color:var(--amber-dark);border:1px solid var(--amber);border-radius:6px;font-size:.82rem;font-weight:500;cursor:pointer;font-family:inherit;transition:.15s}
+    .ai-compare-summary .summary-gen-btn:hover{background:var(--amber);color:#fff}
+
     .compare-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;flex-wrap:wrap;gap:.75rem}
     .compare-header h2{font-size:1.1rem;font-weight:600;color:var(--text)}
     .btn-back{padding:.45rem 1rem;border:1px solid var(--border);border-radius:8px;background:#fff;color:var(--text-sec);cursor:pointer;font-size:.82rem;font-family:inherit;font-weight:500}
@@ -419,9 +446,10 @@
     <div class="section-title">Table Stakes</div>
     <div class="section-desc">Every enterprise community platform includes these. They are not differentiators.</div>
     <div id="stakesArea"></div>
-    <div class="section-title">Key Differentiators</div>
-    <div class="section-desc">Where platforms genuinely differ. These are the decisions that matter when choosing between them.</div>
+    <div class="section-title">What Matters to You?</div>
+    <div class="section-desc">Select your preference in each category and mark how important it is. We'll show which platforms best match your priorities.</div>
     <div class="diff-cards" id="diffCards"></div>
+    <div id="prefsSummary"></div>
   </div>
 
   <div class="tab-panel" id="panel-compare">
@@ -433,6 +461,7 @@
         <button class="btn-back" onclick="switchTab('overview')">+ Change Platforms</button>
       </div>
     </div>
+    <div id="compareSummary"></div>
     <div id="compareContent"></div>
   </div>
 
@@ -1010,28 +1039,65 @@ const tableStakes = [
 ];
 
 const differentiators = [
-  {title:"Forum-Style vs Feed/Wall-Style UX",
-   desc:"The biggest UX divide. Traditional forums (threaded, topic-based) suit deep technical support and knowledge retention. Social feed/wall UX (chronological, card-based) drives engagement and feels modern but content is harder to find later.",
-   platforms:[{name:"Forum-style",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Discourse","Flarum"]},{name:"Feed/Wall-style",tags:["Bettermode","Bevy Hub","Circle","Mighty Networks","Gradual"]},{name:"Configurable",tags:["Salesforce","Hivebrite"]}]},
-  {title:"Events-Native vs Bolt-On",
-   desc:"Some platforms treat events as a core capability baked into the product. Others have no events at all, or offer basic integrations. If community events are central to your strategy, this matters enormously.",
-   platforms:[{name:"Events-native",tags:["Bevy","Hivebrite","Mighty Networks","Gradual"]},{name:"Built-in events",tags:["Gainsight CC","Bettermode","Salesforce","Circle"]},{name:"No native events",tags:["Khoros","Higher Logic Vanilla","Verint","Discourse","Flarum"]}]},
-  {title:"Dedicated Community vs Platform Module",
-   desc:"Is the community product the vendor's primary focus, or is it one module in a larger suite? Dedicated vendors iterate faster on community features. Platform modules offer deeper integration with the parent ecosystem.",
-   platforms:[{name:"Community is the product",tags:["Higher Logic Vanilla","Bettermode","Bevy","Hivebrite","Discourse","Flarum","Circle","Mighty Networks"]},{name:"Part of larger suite",tags:["Salesforce","Gainsight CC","Verint","Khoros"]}]},
-  {title:"AI Capabilities Maturity",
-   desc:"Every vendor is rushing to add AI, but maturity varies wildly. Some have shipped production AI moderation and search. Others are still in beta or marketing vapourware.",
-   platforms:[{name:"Production AI features",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Salesforce","Discourse","Mighty Networks","Gradual"]},{name:"Emerging AI",tags:["Bettermode","Verint","Bevy","Circle"]},{name:"Limited / No AI",tags:["Hivebrite","Flarum"]}]},
-  {title:"Membership / Alumni Features",
-   desc:"Features like fundraising, job boards, mentoring programmes, and member directories are native in some platforms and completely absent in others.",
-   platforms:[{name:"Native monetisation + membership",tags:["Circle","Mighty Networks","Hivebrite","Gradual"]},{name:"Some membership features",tags:["Bevy"]},{name:"Not focused on membership",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Bettermode","Salesforce","Discourse","Flarum"]}]},
-  {title:"Self-Hosted / Open Source vs SaaS-Only",
-   desc:"Can you run it on your own servers? Open-source platforms give full control over data, security, and customisation but require technical resources. SaaS platforms handle everything but create vendor dependency.",
-   platforms:[{name:"Open source, self-host available",tags:["Discourse","Flarum"]},{name:"SaaS only",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Bettermode","Bevy","Hivebrite","Verint","Salesforce","Circle","Mighty Networks","Gradual"]}]},
-  {title:"Self-Serve Pricing vs Enterprise Sales",
-   desc:"Can you sign up and start today, or do you need a 3-month sales process? This affects time-to-value and suits different buyer types.",
-   platforms:[{name:"Free / open source",tags:["Discourse (self-hosted)","Flarum"]},{name:"Self-serve pricing published",tags:["Bettermode","Discourse (hosted)","Circle","Mighty Networks"]},{name:"Tiers listed, quote required",tags:["Gainsight CC","Higher Logic Vanilla"]},{name:"Enterprise sales only",tags:["Khoros","Salesforce","Verint","Bevy","Hivebrite","Gradual"]}]}
+  {id:"ux",title:"Discussion Style",
+   desc:"How do members interact? Traditional forums suit deep technical support. Social feeds drive casual engagement but content is harder to find later.",
+   options:[
+     {id:"forum",label:"Forum-style (threaded, topic-based)",detail:"Best for: support communities, knowledge retention, searchable archives",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Discourse","Flarum"]},
+     {id:"feed",label:"Feed/Wall-style (social, chronological)",detail:"Best for: engagement, casual community, modern feel",tags:["Bettermode","Bevy Hub","Circle","Mighty Networks","Gradual"]},
+     {id:"config",label:"Configurable (can do either)",detail:"Best for: organisations wanting flexibility",tags:["Salesforce","Hivebrite"]}
+   ]},
+  {id:"events",title:"Events Capability",
+   desc:"How important are events to your community strategy? Some platforms treat events as core, others don't have them at all.",
+   options:[
+     {id:"native",label:"Events-native (core feature, built in)",detail:"Native meetings, webinars, livestreams, conferences",tags:["Bevy","Hivebrite","Mighty Networks","Gradual"]},
+     {id:"builtin",label:"Built-in events (functional, not the focus)",detail:"Basic event management alongside community",tags:["Gainsight CC","Bettermode","Salesforce","Circle"]},
+     {id:"none",label:"No native events (integrate separately)",detail:"Use Zoom, Eventbrite, etc. alongside the community",tags:["Khoros","Higher Logic Vanilla","Verint","Discourse","Flarum"]}
+   ]},
+  {id:"focus",title:"Vendor Focus",
+   desc:"Is the community product the vendor's primary focus or one module in a larger suite?",
+   options:[
+     {id:"dedicated",label:"Community is the entire product",detail:"Faster iteration on community features, deeper community expertise",tags:["Higher Logic Vanilla","Bettermode","Bevy","Hivebrite","Discourse","Flarum","Circle","Mighty Networks","Gradual"]},
+     {id:"suite",label:"Part of a larger platform suite",detail:"Deeper integration with CRM, support, marketing tools",tags:["Salesforce","Gainsight CC","Verint","Khoros"]}
+   ]},
+  {id:"ai",title:"AI Capabilities",
+   desc:"Do you need AI-powered search, moderation, content generation, or analytics?",
+   options:[
+     {id:"production",label:"Production AI (shipped and working)",detail:"AI moderation, search, summaries, auto-tagging in production",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Salesforce","Discourse","Mighty Networks"]},
+     {id:"emerging",label:"Emerging AI (in development or beta)",detail:"AI features announced but still maturing",tags:["Bettermode","Verint","Bevy","Circle"]},
+     {id:"none",label:"No AI needed / not a priority",detail:"Happy to manage without AI features",tags:["Hivebrite","Flarum","Gradual"]}
+   ]},
+  {id:"support",title:"Support & Services Model",
+   desc:"What level of vendor support do you need? This varies dramatically between platforms.",
+   options:[
+     {id:"enterprise",label:"Enterprise support (dedicated CSM, SLAs, implementation)",detail:"Named account manager, guaranteed response times, onboarding support",tags:["Khoros","Salesforce","Verint","Gainsight CC"]},
+     {id:"managed",label:"Managed support (CSM on higher tiers, good docs)",detail:"Customer success team available, knowledge base, regular check-ins",tags:["Higher Logic Vanilla","Bevy","Hivebrite","Gradual"]},
+     {id:"selfserve",label:"Self-serve (documentation, community support)",detail:"Help docs, community forums, email support — you figure it out",tags:["Bettermode","Circle","Mighty Networks","Discourse","Flarum"]}
+   ]},
+  {id:"membership",title:"Monetisation & Membership",
+   desc:"Do you need to charge members, sell courses, or manage paid memberships?",
+   options:[
+     {id:"native",label:"Native monetisation (paywalls, subscriptions, courses)",detail:"Built-in payments, membership tiers, course sales",tags:["Circle","Mighty Networks","Hivebrite"]},
+     {id:"some",label:"Some membership features",detail:"Member management but limited payment/commerce",tags:["Bevy","Gradual"]},
+     {id:"notneeded",label:"Not needed (enterprise/support community)",detail:"Members don't pay — it's a customer or internal community",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Bettermode","Salesforce","Discourse","Flarum"]}
+   ]},
+  {id:"hosting",title:"Hosting & Data Control",
+   desc:"Do you need to self-host for data sovereignty, or is cloud SaaS acceptable?",
+   options:[
+     {id:"selfhost",label:"Self-hosted / open source (full control)",detail:"You own and run the infrastructure. Full data sovereignty.",tags:["Discourse","Flarum"]},
+     {id:"saas",label:"SaaS / cloud-hosted (vendor managed)",detail:"Vendor handles hosting, updates, security, uptime.",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Bettermode","Bevy","Hivebrite","Verint","Salesforce","Circle","Mighty Networks","Gradual"]}
+   ]},
+  {id:"pricing",title:"Buying Process",
+   desc:"How quickly do you need to get started? Self-serve means today. Enterprise sales means months.",
+   options:[
+     {id:"free",label:"Free / open source",detail:"Download and run today. No vendor relationship needed.",tags:["Discourse (self-hosted)","Flarum"]},
+     {id:"selfserve",label:"Self-serve (sign up with a credit card)",detail:"Published pricing. Start in minutes/hours.",tags:["Bettermode","Discourse (hosted)","Circle","Mighty Networks"]},
+     {id:"quote",label:"Quote-based (talk to sales)",detail:"Customised pricing. Days to weeks to get started.",tags:["Gainsight CC","Higher Logic Vanilla"]},
+     {id:"enterprise",label:"Enterprise sales process",detail:"RFP, procurement, legal. Weeks to months.",tags:["Khoros","Salesforce","Verint","Bevy","Hivebrite","Gradual"]}
+   ]}
 ];
+
+let userPrefs = {}; // {diffId: {optionId, importance}}
+
 
 let weights = {};
 criteria.forEach(c => weights[c.key] = 5);
@@ -1242,12 +1308,99 @@ function renderStakes(){
   }else{
     area.innerHTML=`<div class="stakes-grid">${tableStakes.map(s=>`<div class="stake-item"><span class="si-icon">\u2713</span>${s}</div>`).join("")}</div><div style="margin-bottom:1rem"><span class="stakes-expand" onclick="stakesExpanded=false;renderStakes()">Collapse &uarr;</span></div>`;
   }
+
   document.getElementById("diffCards").innerHTML=differentiators.map(d=>{
-    const groups=d.platforms.map(g=>
-      `<div style="margin-bottom:.5rem"><span style="font-size:.78rem;font-weight:600;color:var(--text)">${g.name}:</span> <span class="diff-platforms">${g.tags.map(t=>`<span class="diff-tag">${t}</span>`).join("")}</span></div>`
-    ).join("");
-    return`<div class="diff-card"><h4>${d.title}</h4><p>${d.desc}</p>${groups}</div>`;
+    const pref=userPrefs[d.id]||{};
+    const options=d.options.map(o=>{
+      const isSel=pref.optionId===o.id;
+      return`<div class="diff-option ${isSel?'selected':''}" onclick="selectDiffOption('${d.id}','${o.id}')">
+        <div class="opt-radio"></div>
+        <div>
+          <div class="opt-label">${o.label}</div>
+          <div class="opt-tags">${o.detail}<br>${o.tags.map(t=>`<span class="diff-tag">${t}</span>`).join(" ")}</div>
+        </div>
+      </div>`;
+    }).join("");
+    const impBtns=pref.optionId?`<div class="diff-importance">
+      <span style="font-size:.75rem;color:var(--text-dim);margin-right:.25rem">Importance:</span>
+      <button class="imp-btn ${pref.importance==='must'?'active':''}" onclick="setDiffImportance('${d.id}','must')">Must-have</button>
+      <button class="imp-btn ${pref.importance==='nice'?'active-nice':''}" onclick="setDiffImportance('${d.id}','nice')">Nice-to-have</button>
+      <button class="imp-btn ${pref.importance==='not'?'active-not':''}" onclick="setDiffImportance('${d.id}','not')">Not important</button>
+    </div>`:'';
+    return`<div class="diff-card"><h4>${d.title}</h4><p>${d.desc}</p><div class="diff-options">${options}</div>${impBtns}</div>`;
   }).join("");
+
+  renderPrefsSummary();
+}
+
+function selectDiffOption(diffId,optId){
+  if(!userPrefs[diffId])userPrefs[diffId]={};
+  userPrefs[diffId].optionId=optId;
+  if(!userPrefs[diffId].importance)userPrefs[diffId].importance='nice';
+  renderStakes();
+}
+
+function setDiffImportance(diffId,imp){
+  if(!userPrefs[diffId])return;
+  userPrefs[diffId].importance=imp;
+  renderStakes();
+}
+
+function renderPrefsSummary(){
+  const div=document.getElementById("prefsSummary");
+  const prefs=Object.entries(userPrefs).filter(([,v])=>v.optionId);
+  if(prefs.length===0){div.innerHTML='';return}
+
+  // Calculate which platforms match the most preferences
+  const scores={};
+  platforms.forEach(p=>scores[p.id]=0);
+
+  prefs.forEach(([diffId,pref])=>{
+    const diff=differentiators.find(d=>d.id===diffId);
+    const opt=diff?.options.find(o=>o.id===pref.optionId);
+    if(!opt)return;
+    const weight=pref.importance==='must'?3:pref.importance==='nice'?1:0;
+    opt.tags.forEach(tag=>{
+      platforms.forEach(p=>{
+        if(tag===p.name||p.name.includes(tag)||tag.includes(p.name))scores[p.id]+=weight;
+      });
+    });
+  });
+
+  const ranked=platforms.map(p=>({...p,prefScore:scores[p.id]})).filter(p=>p.prefScore>0).sort((a,b)=>b.prefScore-a.prefScore);
+  const mustHaves=prefs.filter(([,v])=>v.importance==='must').length;
+  const niceToHaves=prefs.filter(([,v])=>v.importance==='nice').length;
+
+  if(ranked.length===0){div.innerHTML='';return}
+
+  div.innerHTML=`<div class="diff-your-prefs" style="margin-top:1.5rem">
+    <strong>Based on your preferences</strong> (${mustHaves} must-have${mustHaves!==1?'s':''}, ${niceToHaves} nice-to-have${niceToHaves!==1?'s':''}), the platforms that best match are:
+    <div style="margin-top:.5rem;display:flex;flex-wrap:wrap;gap:.5rem">
+      ${ranked.slice(0,5).map((p,i)=>`<span style="display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .7rem;border-radius:6px;font-size:.84rem;font-weight:600;${i===0?'background:var(--amber);color:#fff':'background:#F0EEEB;color:var(--text)'}">${i===0?'\u2605 ':''} ${p.name}</span>`).join("")}
+    </div>
+    <div style="margin-top:.75rem"><button class="ai-apply-btn" onclick="autoSelectFromPrefs()">Select top matches for comparison</button></div>
+  </div>`;
+}
+
+function autoSelectFromPrefs(){
+  const scores={};
+  platforms.forEach(p=>scores[p.id]=0);
+  Object.entries(userPrefs).forEach(([diffId,pref])=>{
+    const diff=differentiators.find(d=>d.id===diffId);
+    const opt=diff?.options.find(o=>o.id===pref.optionId);
+    if(!opt)return;
+    const weight=pref.importance==='must'?3:pref.importance==='nice'?1:0;
+    opt.tags.forEach(tag=>{
+      platforms.forEach(p=>{
+        if(tag===p.name||p.name.includes(tag)||tag.includes(p.name))scores[p.id]+=weight;
+      });
+    });
+  });
+  const ranked=platforms.map(p=>({...p,prefScore:scores[p.id]})).sort((a,b)=>b.prefScore-a.prefScore);
+  selected.clear();
+  ranked.slice(0,3).forEach(p=>selected.add(p.id));
+  switchTab('compare');
+  updateCompareBar();
 }
 
 // --- PROFILE PAGE (two-column with sidebar) ---
@@ -1361,8 +1514,24 @@ function hideProfile(){
 // --- COMPARE ---
 function renderCompare(){
   const ct=document.getElementById("compareContent");
-  if(selected.size<2){ct.innerHTML='<div class="empty-cmp"><h3>Select platforms to compare</h3><p>Go to All Platforms and select 2&ndash;4 platform cards using the &ldquo;+ Compare&rdquo; button.</p></div>';return}
+  const summaryDiv=document.getElementById("compareSummary");
+  if(selected.size<2){ct.innerHTML='<div class="empty-cmp"><h3>Select platforms to compare</h3><p>Go to All Platforms and select 2&ndash;4 platform cards using the &ldquo;+ Compare&rdquo; button.</p></div>';summaryDiv.innerHTML='';return}
   const picks=platforms.filter(p=>selected.has(p.id));
+
+  // AI comparison summary
+  const pickIds=[...selected].sort().join(',');
+  const prevIds=summaryDiv.dataset.pickIds||'';
+  if(pickIds!==prevIds){
+    summaryDiv.dataset.pickIds=pickIds;
+    summaryDiv.innerHTML=`<div class="ai-compare-summary">
+      <h4>Quick Comparison Summary</h4>
+      <div class="summary-text">${generateLocalSummary(picks)}</div>
+      <div style="margin-top:.75rem">
+        <button class="summary-gen-btn" onclick="generateAiSummary()">Generate detailed AI analysis</button>
+        <span style="font-size:.72rem;color:var(--text-dim);margin-left:.5rem">Powered by Claude</span>
+      </div>
+    </div>`;
+  }
   const diffOnly=document.getElementById("diffToggle")?.checked||false;
   const hdr=picks.map(p=>`<th>${p.name}</th>`).join("");
   let rows="";
@@ -1411,6 +1580,91 @@ function renderCompare(){
   rows+=`<tr><td>Example Communities</td>${picks.map(p=>`<td style="font-size:.82rem;text-align:left">${p.examples.map(e=>e.url?`<a href="${e.url}" target="_blank" rel="noopener">${e.name}</a>`:e.name).join("<br>")}</td>`).join("")}</tr>`;
 
   ct.innerHTML=`<div class="ctable-wrap"><table class="ctable"><thead><tr><th>Criteria</th>${hdr}</tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+// --- LOCAL COMPARISON SUMMARY ---
+function generateLocalSummary(picks){
+  if(picks.length<2)return'';
+  const lines=[];
+
+  // UX approach differences
+  const uxTypes=picks.map(p=>({name:p.name,ux:p.uxApproach.map(a=>a.label).join(' + ')}));
+  const uxSame=uxTypes.every(u=>u.ux===uxTypes[0].ux);
+  if(!uxSame){
+    lines.push(`<strong>UX approach:</strong> ${uxTypes.map(u=>`${u.name} uses a ${u.ux} approach`).join(', while ')}. This is a fundamental difference in how members will experience the community.`);
+  }
+
+  // Score comparison - find biggest gaps
+  const gaps=[];
+  criteria.forEach(c=>{
+    const vals=picks.map(p=>({name:p.name,val:p[c.key]}));
+    const max=Math.max(...vals.map(v=>v.val));
+    const min=Math.min(...vals.map(v=>v.val));
+    if(max-min>=1.5){
+      const best=vals.find(v=>v.val===max);
+      const worst=vals.find(v=>v.val===min);
+      gaps.push({label:c.label,best:best.name,worst:worst.name,gap:max-min,bestVal:max,worstVal:min});
+    }
+  });
+  if(gaps.length>0){
+    const topGap=gaps.sort((a,b)=>b.gap-a.gap)[0];
+    lines.push(`<strong>Biggest scoring gap:</strong> ${topGap.label} — ${topGap.best} scores ${topGap.bestVal} vs ${topGap.worst} at ${topGap.worstVal}. A ${topGap.gap}-point difference.`);
+  }
+
+  // Pricing comparison
+  const prices=picks.map(p=>`${p.name}: ${p.pricing}`);
+  lines.push(`<strong>Pricing:</strong> ${prices.join(' vs ')}.`);
+
+  // Category differences
+  const cats=[...new Set(picks.map(p=>p.catLabel))];
+  if(cats.length>1){
+    lines.push(`<strong>Different categories:</strong> You're comparing across ${cats.join(' and ')} — these serve different markets and use cases.`);
+  }
+
+  // Verdicts
+  lines.push(`<strong>FeverBee verdicts:</strong> ${picks.map(p=>`${p.name} — ${p.verdict}`).join('. ')}.`);
+
+  return lines.join('<br><br>');
+}
+
+async function generateAiSummary(){
+  const picks=platforms.filter(p=>selected.has(p.id));
+  const summaryDiv=document.getElementById("compareSummary");
+  const apiKey=document.getElementById("aiApiKey")?.value?.trim()||'';
+
+  if(!apiKey&&!AI_PROXY_URL){
+    summaryDiv.querySelector('.summary-text').innerHTML=generateLocalSummary(picks)+`<br><br><em style="color:var(--text-dim)">For a more detailed AI analysis, <a href="mailto:richard@feverbee.com?subject=Platform%20Comparison%20Request" style="color:var(--amber)">contact FeverBee</a> or configure the AI backend.</em>`;
+    return;
+  }
+
+  const btn=summaryDiv.querySelector('.summary-gen-btn');
+  btn.disabled=true;btn.textContent='Analysing...';
+
+  const platformSummaries=picks.map(p=>{
+    return`${p.name}: ${p.tagline}. Pricing: ${p.pricing}. Target: ${p.target}. UX: ${p.uxApproach.map(a=>a.label).join(', ')}. Verdict: ${p.verdict}. Strengths: ${p.strengths.join('; ')}. Considerations: ${p.considerations.join('; ')}.`;
+  }).join('\n\n');
+
+  const prompt=`Compare these community platforms in 150-200 words. Be specific and opinionated — what are the 3-4 key differences that would actually affect someone's decision? Don't just list features. Explain the trade-offs in plain English.
+
+${platformSummaries}
+
+Write in a direct, consultancy tone. No bullet points — flowing paragraphs. Start with the single most important difference.`;
+
+  try{
+    let resp;
+    if(AI_PROXY_URL){
+      resp=await fetch(AI_PROXY_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({requirements:prompt,systemPrompt:"You are a FeverBee community platform analyst. Write concise, opinionated comparison summaries. No JSON — just plain text paragraphs."})});
+    }else{
+      resp=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json","x-api-key":apiKey,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:500,messages:[{role:"user",content:prompt}]})});
+    }
+    const data=await resp.json();
+    const text=data.content?.[0]?.text||data.error?.message||'Could not generate summary';
+    summaryDiv.querySelector('.summary-text').innerHTML=text.replace(/\n\n/g,'<br><br>');
+    btn.textContent='Regenerate analysis';btn.disabled=false;
+  }catch(e){
+    summaryDiv.querySelector('.summary-text').innerHTML+=`<br><br><em style="color:var(--red)">Error: ${e.message}</em>`;
+    btn.textContent='Try again';btn.disabled=false;
+  }
 }
 
 // --- NAVIGATION ---
