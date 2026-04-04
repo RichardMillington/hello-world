@@ -6,6 +6,8 @@
   <title>Community Platform Comparison Tool | FeverBee</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
@@ -400,8 +402,8 @@
         <div class="ai-dropzone" id="aiDropzone">
           <div class="drop-icon">&#128196;</div>
           <div class="drop-text">Drop a requirements document here, or click to upload</div>
-          <div class="drop-hint">.txt, .md, .doc files</div>
-          <input type="file" id="aiFileInput" accept=".txt,.md,.doc,.docx,.pdf" onchange="handleFileUpload(event)">
+          <div class="drop-hint">.pdf, .pptx, .txt, .md, .doc supported</div>
+          <input type="file" id="aiFileInput" accept=".txt,.md,.doc,.docx,.pdf,.pptx" onchange="handleFileUpload(event)">
         </div>
         <textarea class="ai-textarea" id="aiInput" placeholder="Or describe what you need...&#10;&#10;e.g. We're a B2B SaaS company with 50,000 customers. We need a community for customer support deflection, product feedback, and peer-to-peer knowledge sharing. We use Salesforce and Zendesk. Budget is $30-60k/year. Must have SSO and strong moderation. Events would be nice but not essential."></textarea>
         <div class="ai-key-row">
@@ -1735,13 +1737,91 @@ function handleFileUpload(e){
   if(file)readFile(file);
 }
 
-function readFile(file){
-  const reader=new FileReader();
-  reader.onload=e=>{
-    document.getElementById("aiInput").value=e.target.result;
-    dropzone.querySelector(".drop-text").textContent=`Loaded: ${file.name}`;
-  };
-  reader.readAsText(file);
+async function readFile(file){
+  const ext=file.name.split('.').pop().toLowerCase();
+  const statusEl=dropzone.querySelector(".drop-text");
+  statusEl.textContent=`Reading ${file.name}...`;
+
+  try{
+    let text='';
+    if(ext==='pdf'){
+      text=await readPdf(file);
+    }else if(ext==='pptx'){
+      text=await readPptx(file);
+    }else{
+      text=await readAsText(file);
+    }
+    document.getElementById("aiInput").value=text;
+    statusEl.textContent=`Loaded: ${file.name} (${text.length.toLocaleString()} characters)`;
+  }catch(err){
+    statusEl.textContent=`Error reading ${file.name}: ${err.message}`;
+  }
+}
+
+function readAsText(file){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=e=>resolve(e.target.result);
+    reader.onerror=()=>reject(new Error('Could not read file'));
+    reader.readAsText(file);
+  });
+}
+
+async function readPdf(file){
+  const arrayBuffer=await file.arrayBuffer();
+  const pdf=await pdfjsLib.getDocument({data:arrayBuffer}).promise;
+  const pages=[];
+  for(let i=1;i<=pdf.numPages;i++){
+    const page=await pdf.getPage(i);
+    const content=await page.getTextContent();
+    const text=content.items.map(item=>item.str).join(' ');
+    if(text.trim())pages.push(text);
+  }
+  return pages.join('\n\n');
+}
+
+async function readPptx(file){
+  // PPTX is a ZIP of XML files. Use JSZip-like approach with browser APIs.
+  const arrayBuffer=await file.arrayBuffer();
+  const blob=new Blob([arrayBuffer],{type:'application/zip'});
+
+  // Try using the browser's native decompression if available
+  // Fall back to extracting text from the raw XML
+  try{
+    const zip=await loadPptxAsZip(arrayBuffer);
+    return zip;
+  }catch(e){
+    // Fallback: read as text and extract readable content
+    const text=new TextDecoder('utf-8',{fatal:false}).decode(arrayBuffer);
+    const readable=text.replace(/<[^>]+>/g,' ').replace(/[^\x20-\x7E\n\r]/g,'').replace(/\s+/g,' ').trim();
+    return readable||'Could not extract text from PPTX. Please copy-paste the content instead.';
+  }
+}
+
+async function loadPptxAsZip(arrayBuffer){
+  // Minimal PPTX parser: PPTX is a ZIP containing slide XML files
+  // We look for ppt/slides/slide*.xml and extract text nodes
+  const bytes=new Uint8Array(arrayBuffer);
+
+  // Find local file headers in the ZIP and extract slide XML content
+  const slides=[];
+  const decoder=new TextDecoder('utf-8',{fatal:false});
+
+  // Simple approach: decode the whole thing and regex out text from XML
+  const fullText=decoder.decode(bytes);
+
+  // Extract content from <a:t> tags (PowerPoint text runs)
+  const textRuns=fullText.match(/<a:t>([^<]*)<\/a:t>/g);
+  if(textRuns&&textRuns.length>0){
+    const texts=textRuns.map(t=>t.replace(/<\/?a:t>/g,''));
+    // Group by rough slide boundaries
+    let result=texts.join(' ');
+    // Clean up
+    result=result.replace(/\s+/g,' ').trim();
+    return result;
+  }
+  throw new Error('No text content found');
+}
 }
 
 // Build platform summary for the prompt
