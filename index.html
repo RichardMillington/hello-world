@@ -949,6 +949,46 @@ const platforms = [
     strengths:["Custom-branded mobile apps published under your own name in app stores (Pro tier)","Most developed AI for creator communities (Mighty AI)","All-in-one: community + courses + events + monetisation + live streaming","Mobile-first design with strong native app experience","Strong creator community and brand with Gina Bianchini's thought leadership","Course builder is more robust than Circle's for structured learning"],
     considerations:["Limited integrations — Zapier is the bridge for most workflows","No native deep CRM or support tool integrations","Analytics are basic compared to enterprise platforms","Not suited for enterprise support or product communities","API access only on Business tier and above","Pro tier (branded apps) is expensive (~$3,000+/mo)","Smaller developer ecosystem than open-source alternatives"],
     editorial:"Mighty Networks and Circle are the two leading platforms in the creator/membership community space, and they overlap significantly. Mighty's edge is the branded mobile app (your name in the App Store, not theirs) and Mighty AI, which is genuinely well-implemented. Circle's edge is cleaner UX and better embedding/API options. If mobile app presence matters to your community, Mighty wins. If you need a sleeker web experience and want to embed community into your own product, Circle wins. Neither is suited for enterprise customer support or product communities — they're purpose-built for creator businesses, educators, and membership organisations."
+  },
+  {
+    id:"gradual",name:"Graduway (Gravyty)",category:"newgen",catLabel:"New Generation",
+    tagline:"Alumni networking platform with AI-powered fundraising, now part of Gravyty",
+    uxApproach:[{type:"feed",label:"LinkedIn-style Feed"},{type:"hybrid",label:"Member Directory"}],
+    pricing:"Custom enterprise quotes (~$10,000 - $50,000+/yr by institution size)",target:"Higher Ed / Alumni / Associations",
+    verdict:"Strong in higher ed alumni. Gravyty AI fundraising is a unique differentiator",verdictType:"steady",website:"https://www.graduway.com",
+    easeOfUse:7,qualityOfFeatures:7,integrations:7,dataPrivacySecurity:7.5,servicesSupport:7,reportsAnalytics:6.5,
+    execution:{
+      "Discussions":"Social-media-style activity feeds within the community. LinkedIn-like UX patterns. Not a forum — more like a news feed with posts, updates, and shared content. Designed for alumni who may not be tech-savvy.",
+      "Q&A":"No dedicated Q&A format. Discussion happens within the activity feed.",
+      "Ideation":"No ideation features.",
+      "Knowledge Base":"No structured knowledge base. Content sharing through the feed and resource sections.",
+      "Content Format":"Member directory-centric, like Hivebrite. The primary experience is finding and connecting with fellow alumni — browsing profiles by location, industry, class year. Activity feeds, events, and groups sit alongside the directory. LinkedIn-inspired UX throughout.",
+      "AI Approach":"Gravyty AI fundraising engine is the key differentiator post-acquisition. AI recommends which donors to contact, when, and with what message based on community engagement data. Smart mentoring matching. Predictive analytics for identifying disengaged members or high-potential donors. Automated engagement workflows.",
+      "Events":"Built-in event management with creation, promotion, RSVP, and virtual event support. Events are a core feature for alumni engagement.",
+      "Mobile":"Branded native iOS and Android apps. White-label — appears as the institution's own app.",
+      "Unique Features":"The Gravyty AI fundraising engine turns community engagement into fundraising intelligence — unique in this space. If a donor is active in the community, the AI flags them for outreach with suggested messaging and timing. Structured mentoring programmes with algorithmic matching. Geo-visualisation showing member distribution globally. LinkedIn profile import for easy onboarding. Job board for alumni career networking."
+    },
+    communityFeatures:{
+      "Activity Feed":true,"Member Directory":true,"Groups & Chapters":true,"Event Management":true,"Job Board":true,
+      "Mentoring Programmes":true,"Fundraising Integration":true,"Moderation Tools":true,"SSO (SAML/OAuth)":true,"API Access":"Partial",
+      "Custom Branding":true,"Native Mobile App":true,"Discussion Forums":false,
+      "AI Fundraising":true,"Geo-Mapping":true,"Self-Hosted Option":false,"Multi-language":true
+    },
+    keyIntegrations:["Salesforce","Blackbaud Raiser's Edge/NXT","Institutional SSO","Student Information Systems","Zapier","LinkedIn (profile import)","Calendar systems","Email platforms"],
+    examples:[
+      {name:"London Business School Alumni",url:"https://www.london.edu/alumni",desc:"Global alumni network for one of the world's top business schools"},
+      {name:"Columbia University Alumni",url:"https://alumni.columbia.edu",desc:"Ivy League alumni networking and engagement"},
+      {name:"University of Cambridge Alumni",url:"https://www.alumni.cam.ac.uk",desc:"Global alumni community for Cambridge graduates"}
+    ],
+    recentNews:[
+      {date:"2024-25",text:"Continued deepening of Gravyty AI integration with community engagement data"},
+      {date:"2025",text:"Expansion into professional associations beyond higher education"},
+      {date:"2025",text:"Unified product offering combining community engagement with AI-driven fundraising intelligence"},
+      {date:"2025",text:"Growing competition with Hivebrite in the alumni platform space"}
+    ],
+    strengths:["AI-powered fundraising intelligence is unique — turns community engagement into donation opportunities","Purpose-built for higher education alumni with features like class year search, chapter management, geo-mapping","Strongest Blackbaud/Raiser's Edge integration of any community platform","LinkedIn profile import makes onboarding frictionless for alumni","Structured mentoring programmes with algorithmic matching","White-label mobile apps branded to the institution"],
+    considerations:["No traditional forum or discussion features — it's a networking platform, not a community platform","Less versatile than Hivebrite for non-alumni use cases","No public pricing — enterprise sales process only","Analytics and reporting less sophisticated than enterprise community platforms","Primarily US/UK/Israel market presence","Not suited for product communities, support communities, or creator use cases"],
+    editorial:"Graduway occupies a very specific niche: if you're a university advancement office that wants to combine alumni networking with fundraising intelligence, it's genuinely differentiated. The Gravyty AI acquisition was smart — no other platform can turn a community member's engagement patterns into actionable fundraising recommendations. But let's be clear about what this is and isn't. It's an alumni networking tool with fundraising AI, not a community platform in the traditional sense. There are no forums, no threaded discussions, no knowledge base. If you need actual community features alongside alumni networking, Hivebrite is more complete. If fundraising is your primary goal and community is the vehicle, Graduway/Gravyty is the play."
   }
 ];
 
@@ -972,25 +1012,25 @@ const tableStakes = [
 const differentiators = [
   {title:"Forum-Style vs Feed/Wall-Style UX",
    desc:"The biggest UX divide. Traditional forums (threaded, topic-based) suit deep technical support and knowledge retention. Social feed/wall UX (chronological, card-based) drives engagement and feels modern but content is harder to find later.",
-   platforms:[{name:"Forum-style",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Discourse","Flarum"]},{name:"Feed/Wall-style",tags:["Bettermode","Bevy Hub","Circle","Mighty Networks"]},{name:"Configurable",tags:["Salesforce","Hivebrite"]}]},
+   platforms:[{name:"Forum-style",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Discourse","Flarum"]},{name:"Feed/Wall-style",tags:["Bettermode","Bevy Hub","Circle","Mighty Networks","Graduway"]},{name:"Configurable",tags:["Salesforce","Hivebrite"]}]},
   {title:"Events-Native vs Bolt-On",
    desc:"Some platforms treat events as a core capability baked into the product. Others have no events at all, or offer basic integrations. If community events are central to your strategy, this matters enormously.",
-   platforms:[{name:"Events-native",tags:["Bevy","Hivebrite","Mighty Networks"]},{name:"Built-in events",tags:["Gainsight CC","Bettermode","Salesforce","Circle"]},{name:"No native events",tags:["Khoros","Higher Logic Vanilla","Verint","Discourse","Flarum"]}]},
+   platforms:[{name:"Events-native",tags:["Bevy","Hivebrite","Mighty Networks","Graduway"]},{name:"Built-in events",tags:["Gainsight CC","Bettermode","Salesforce","Circle"]},{name:"No native events",tags:["Khoros","Higher Logic Vanilla","Verint","Discourse","Flarum"]}]},
   {title:"Dedicated Community vs Platform Module",
    desc:"Is the community product the vendor's primary focus, or is it one module in a larger suite? Dedicated vendors iterate faster on community features. Platform modules offer deeper integration with the parent ecosystem.",
    platforms:[{name:"Community is the product",tags:["Higher Logic Vanilla","Bettermode","Bevy","Hivebrite","Discourse","Flarum","Circle","Mighty Networks"]},{name:"Part of larger suite",tags:["Salesforce","Gainsight CC","Verint","Khoros"]}]},
   {title:"AI Capabilities Maturity",
    desc:"Every vendor is rushing to add AI, but maturity varies wildly. Some have shipped production AI moderation and search. Others are still in beta or marketing vapourware.",
-   platforms:[{name:"Production AI features",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Salesforce","Discourse","Mighty Networks"]},{name:"Emerging AI",tags:["Bettermode","Verint","Bevy","Circle"]},{name:"Limited / No AI",tags:["Hivebrite","Flarum"]}]},
+   platforms:[{name:"Production AI features",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Salesforce","Discourse","Mighty Networks","Graduway"]},{name:"Emerging AI",tags:["Bettermode","Verint","Bevy","Circle"]},{name:"Limited / No AI",tags:["Hivebrite","Flarum"]}]},
   {title:"Membership / Alumni Features",
    desc:"Features like fundraising, job boards, mentoring programmes, and member directories are native in some platforms and completely absent in others.",
-   platforms:[{name:"Native monetisation + membership",tags:["Circle","Mighty Networks","Hivebrite"]},{name:"Some membership features",tags:["Bevy"]},{name:"Not focused on membership",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Bettermode","Salesforce","Discourse","Flarum"]}]},
+   platforms:[{name:"Native monetisation + membership",tags:["Circle","Mighty Networks","Hivebrite","Graduway"]},{name:"Some membership features",tags:["Bevy"]},{name:"Not focused on membership",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Bettermode","Salesforce","Discourse","Flarum"]}]},
   {title:"Self-Hosted / Open Source vs SaaS-Only",
    desc:"Can you run it on your own servers? Open-source platforms give full control over data, security, and customisation but require technical resources. SaaS platforms handle everything but create vendor dependency.",
-   platforms:[{name:"Open source, self-host available",tags:["Discourse","Flarum"]},{name:"SaaS only",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Bettermode","Bevy","Hivebrite","Verint","Salesforce","Circle","Mighty Networks"]}]},
+   platforms:[{name:"Open source, self-host available",tags:["Discourse","Flarum"]},{name:"SaaS only",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Bettermode","Bevy","Hivebrite","Verint","Salesforce","Circle","Mighty Networks","Graduway"]}]},
   {title:"Self-Serve Pricing vs Enterprise Sales",
    desc:"Can you sign up and start today, or do you need a 3-month sales process? This affects time-to-value and suits different buyer types.",
-   platforms:[{name:"Free / open source",tags:["Discourse (self-hosted)","Flarum"]},{name:"Self-serve pricing published",tags:["Bettermode","Discourse (hosted)","Circle","Mighty Networks"]},{name:"Tiers listed, quote required",tags:["Gainsight CC","Higher Logic Vanilla"]},{name:"Enterprise sales only",tags:["Khoros","Salesforce","Verint","Bevy","Hivebrite"]}]}
+   platforms:[{name:"Free / open source",tags:["Discourse (self-hosted)","Flarum"]},{name:"Self-serve pricing published",tags:["Bettermode","Discourse (hosted)","Circle","Mighty Networks"]},{name:"Tiers listed, quote required",tags:["Gainsight CC","Higher Logic Vanilla"]},{name:"Enterprise sales only",tags:["Khoros","Salesforce","Verint","Bevy","Hivebrite","Graduway"]}]}
 ];
 
 let weights = {};
