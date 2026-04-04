@@ -1020,6 +1020,46 @@ const platforms = [
     strengths:["Best-in-class native event capabilities — meetings, webinars, livestreams, and multi-day conferences all connected to community","Genuine all-in-one unification: events, content, courses, discussions, and member directory in a single platform","Full white-label with custom domains as standard — community genuinely looks like your own product","Strong clubs/chapters/interest groups with location-based chapters and dedicated forums","SOC 2 Type II certified — enterprise-grade security","Member matching and curated introductions built in","Active product development with visible monthly/quarterly cadence"],
     considerations:["No dedicated Q&A, ideation, or knowledge base — missing table stakes for many B2B support communities","No gamification mechanics","No AI capabilities — a growing gap as competitors invest heavily in AI","Pre-Seed company with 1-10 employees — risk of limited support, slower feature development, uncertain long-term viability","Opaque pricing with no public information","Weak integration story — no public API docs, no confirmed Zapier/Salesforce/HubSpot connectors","Livestreams require external RTMP source and aren't natively recorded","Courses are a paid add-on, not core","Limited public social proof — few named customers"],
     editorial:"Gradual's core proposition is compelling: unify events, content, courses, and community in one white-labeled platform so organisations stop juggling separate tools. And on that specific promise, it delivers well — the event capabilities are genuinely strong, the white-labeling is thorough, and the clubs/chapters structure is thoughtful for association-style communities. But the platform has significant gaps that matter for most enterprise community use cases. No Q&A, ideation, knowledge base, gamification, or AI means Gradual is missing capabilities established platforms consider table stakes. The elephant in the room is company maturity: Pre-Seed with 1-10 employees is significantly earlier-stage than every other platform in this comparison. A strong choice for event-driven, white-labeled communities — especially associations. Not yet ready for traditional enterprise support/feedback communities. Watch for how quickly they close the AI and integration gaps."
+  },
+  {
+    id:"thrive",name:"Higher Logic Thrive",category:"established",catLabel:"Established Platform",
+    tagline:"Association engagement suite combining community, email automation, and deep AMS integrations",
+    uxApproach:[{type:"forum",label:"Forum + Portal"},{type:"hybrid",label:"Member Portal"}],
+    pricing:"Custom (~$20,000 - $100,000+/yr based on modules and member count)",target:"Associations / Nonprofits / Membership Orgs",
+    verdict:"Dominant in associations. The AMS integration depth is unmatched",verdictType:"steady",website:"https://www.higherlogic.com/thrive/",
+    easeOfUse:6,qualityOfFeatures:7,integrations:9,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7.5,
+    execution:{
+      "Discussions":"Traditional threaded forum with discussions organised by topic, community, and interest group. Structured, searchable, persistent. More utilitarian than modern — the UX leans functional over beautiful. Has been improving but still feels a generation behind Vanilla or Discourse in polish.",
+      "Q&A":"Q&A supported within forum discussions. Not as distinct or well-executed as Vanilla's dedicated Q&A format with accepted answers.",
+      "Ideation":"Ideation boards available for member feedback and feature requests. Less sophisticated than Gainsight CC but functional for association use cases.",
+      "Knowledge Base":"Resource libraries and document sharing. Curated content areas for best practices and institutional knowledge. More of a portal-style resource centre than a structured KB.",
+      "Content Format":"Forum-first with a portal overlay. Threaded discussions are the core, surrounded by resource libraries, member directory, groups/chapters, and events. When embedded in an association website with SSO, it functions as part of a broader member portal. Not a social feed — structured and organised.",
+      "AI Approach":"AI Search Assistant launched in 2025 — natural language search across community discussions, resource libraries, and knowledge content. AI-assisted email subject line optimisation and engagement predictions in Thrive Marketing. Engagement scoring with ML-driven insights. The AI story is practical but earlier than Vanilla's RAG-based search.",
+      "Events":"Not a native event platform. Integrates with event tools and surfaces event content within the community. Events drive community engagement but you need a separate event tool (unlike Bevy or Gradual).",
+      "Mobile":"Mobile-responsive web design. No dedicated native mobile app. The mobile experience has been an area of investment but historically lags behind mobile-first platforms.",
+      "Unique Features":"The AMS integration ecosystem is the defining differentiator. Deep, native, bi-directional integrations with iMIS, Personify, Nimble AMS, Aptify, Fonteva, netFORUM, and MemberSuite. Community engagement data flows into the AMS for renewal predictions, member health scoring, and targeted outreach. Thrive Marketing adds email automation driven by community + AMS data. Engagement scoring unifies community activity with membership data. No other platform in this comparison comes close on AMS integration depth."
+    },
+    communityFeatures:{
+      "Discussion Forums":true,"Q&A":true,"Ideation / Ideas":true,"Resource Libraries":true,"Member Directory":true,
+      "Gamification":"Partial","Moderation Tools":true,"SSO (SAML/OAuth)":true,"API Access":true,
+      "Custom Branding":true,"Native Mobile App":false,"Events":"Partial",
+      "AI Search Assistant":true,"Email Automation (Thrive Marketing)":true,"Groups / Chapters / Committees":true,"Self-Hosted Option":false
+    },
+    keyIntegrations:["iMIS (deep native integration)","Personify","Nimble AMS (Salesforce-native)","Aptify","Fonteva","netFORUM","MemberSuite","Salesforce","SSO/SAML providers","LMS platforms","Event platforms"],
+    examples:[
+      {name:"ASAE Collaborate",url:"https://collaborate.asaecenter.org",desc:"The 'association of associations' — 45,000+ association professionals"},
+      {name:"HIMSS Community",url:"https://www.himss.org",desc:"Healthcare IT professionals — 120,000+ members globally"},
+      {name:"ANA (Association of National Advertisers)",url:"https://www.ana.net",desc:"Marketing and advertising industry association"}
+    ],
+    recentNews:[
+      {date:"Jun 2025",text:"Launched AI Search Assistant for Thrive Community — natural language search across discussions, resources, and knowledge content"},
+      {date:"2025",text:"Tighter integration between Thrive Community and Thrive Marketing for unified engagement data and cross-channel automation"},
+      {date:"2025",text:"UX modernisation updates for improved mobile experience and contemporary look"},
+      {date:"2025",text:"Enhanced analytics dashboards for community health, engagement scoring, and ROI measurement"}
+    ],
+    strengths:["Deepest AMS integration ecosystem of any community platform — iMIS, Personify, Nimble AMS, Aptify, Fonteva, netFORUM, MemberSuite","Combined community + email automation suite (Thrive Marketing) driven by membership data","Engagement scoring unifies community activity with AMS data for renewal predictions","3,000+ association and nonprofit customers — proven at scale in this vertical","ASAE-endorsed — used by the association industry's own professional body","Groups, chapters, and committees built for association governance structures"],
+    considerations:["UX feels dated compared to modern platforms — functional but not beautiful","No native mobile app","Not suited for B2B SaaS or product communities (use Vanilla for that)","Pricing is premium — can be prohibitive for smaller associations","Implementation can be complex, especially with AMS integrations","Portal-style UX doesn't drive the casual engagement that feed-based platforms achieve","Email automation (Thrive Marketing) is a separate module with separate pricing"],
+    editorial:"Higher Logic Thrive dominates the association community market for one reason: AMS integrations. No other platform comes close to the depth of connection with iMIS, Personify, Nimble AMS, and the rest of the association management ecosystem. When community engagement data flows into your AMS and drives renewal predictions, targeted email campaigns, and member health scoring — that's genuinely transformative for association operations. The addition of Thrive Marketing creates a community + email automation combo that's hard to replicate with separate tools. But let's be honest about the trade-offs: the UX is functional rather than inspiring. If you showed a Thrive community next to a Circle or Discourse community, the design gap is obvious. For associations, that usually doesn't matter — the data integration value outweighs the UX gap. For anyone outside the association world, Thrive isn't the right platform. It's purpose-built for a specific market and it owns that market."
   }
 ];
 
@@ -1044,7 +1084,7 @@ const differentiators = [
   {id:"ux",title:"Discussion Style",
    desc:"How do members interact? Traditional forums suit deep technical support. Social feeds drive casual engagement but content is harder to find later.",
    options:[
-     {id:"forum",label:"Forum-style (threaded, topic-based)",detail:"Best for: support communities, knowledge retention, searchable archives",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Discourse","Flarum"]},
+     {id:"forum",label:"Forum-style (threaded, topic-based)",detail:"Best for: support communities, knowledge retention, searchable archives",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Higher Logic Thrive","Verint","Discourse","Flarum"]},
      {id:"feed",label:"Feed/Wall-style (social, chronological)",detail:"Best for: engagement, casual community, modern feel",tags:["Bettermode","Bevy Hub","Circle","Mighty Networks","Gradual"]},
      {id:"config",label:"Configurable (can do either)",detail:"Best for: organisations wanting flexibility",tags:["Salesforce","Hivebrite"]}
    ]},
@@ -1053,25 +1093,25 @@ const differentiators = [
    options:[
      {id:"native",label:"Events-native (core feature, built in)",detail:"Native meetings, webinars, livestreams, conferences",tags:["Bevy","Hivebrite","Mighty Networks","Gradual"]},
      {id:"builtin",label:"Built-in events (functional, not the focus)",detail:"Basic event management alongside community",tags:["Gainsight CC","Bettermode","Salesforce","Circle"]},
-     {id:"none",label:"No native events (integrate separately)",detail:"Use Zoom, Eventbrite, etc. alongside the community",tags:["Khoros","Higher Logic Vanilla","Verint","Discourse","Flarum"]}
+     {id:"none",label:"No native events (integrate separately)",detail:"Use Zoom, Eventbrite, etc. alongside the community",tags:["Khoros","Higher Logic Vanilla","Higher Logic Thrive","Verint","Discourse","Flarum"]}
    ]},
   {id:"focus",title:"Vendor Focus",
    desc:"Is the community product the vendor's primary focus or one module in a larger suite?",
    options:[
      {id:"dedicated",label:"Community is the entire product",detail:"Faster iteration on community features, deeper community expertise",tags:["Higher Logic Vanilla","Bettermode","Bevy","Hivebrite","Discourse","Flarum","Circle","Mighty Networks","Gradual"]},
-     {id:"suite",label:"Part of a larger platform suite",detail:"Deeper integration with CRM, support, marketing tools",tags:["Salesforce","Gainsight CC","Verint","Khoros"]}
+     {id:"suite",label:"Part of a larger platform suite",detail:"Deeper integration with CRM, support, marketing tools",tags:["Salesforce","Gainsight CC","Verint","Khoros","Higher Logic Thrive"]}
    ]},
   {id:"ai",title:"AI Capabilities",
    desc:"Do you need AI-powered search, moderation, content generation, or analytics?",
    options:[
-     {id:"production",label:"Production AI (shipped and working)",detail:"AI moderation, search, summaries, auto-tagging in production",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Salesforce","Discourse","Mighty Networks"]},
+     {id:"production",label:"Production AI (shipped and working)",detail:"AI moderation, search, summaries, auto-tagging in production",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Higher Logic Thrive","Salesforce","Discourse","Mighty Networks"]},
      {id:"emerging",label:"Emerging AI (in development or beta)",detail:"AI features announced but still maturing",tags:["Bettermode","Verint","Bevy","Circle"]},
      {id:"none",label:"No AI needed / not a priority",detail:"Happy to manage without AI features",tags:["Hivebrite","Flarum","Gradual"]}
    ]},
   {id:"support",title:"Support & Services Model",
    desc:"What level of vendor support do you need? This varies dramatically between platforms.",
    options:[
-     {id:"enterprise",label:"Enterprise support (dedicated CSM, SLAs, implementation)",detail:"Named account manager, guaranteed response times, onboarding support",tags:["Khoros","Salesforce","Verint","Gainsight CC"]},
+     {id:"enterprise",label:"Enterprise support (dedicated CSM, SLAs, implementation)",detail:"Named account manager, guaranteed response times, onboarding support",tags:["Khoros","Salesforce","Verint","Gainsight CC","Higher Logic Thrive"]},
      {id:"managed",label:"Managed support (CSM on higher tiers, good docs)",detail:"Customer success team available, knowledge base, regular check-ins",tags:["Higher Logic Vanilla","Bevy","Hivebrite","Gradual"]},
      {id:"selfserve",label:"Self-serve (documentation, community support)",detail:"Help docs, community forums, email support — you figure it out",tags:["Bettermode","Circle","Mighty Networks","Discourse","Flarum"]}
    ]},
@@ -1080,20 +1120,20 @@ const differentiators = [
    options:[
      {id:"native",label:"Native monetisation (paywalls, subscriptions, courses)",detail:"Built-in payments, membership tiers, course sales",tags:["Circle","Mighty Networks","Hivebrite"]},
      {id:"some",label:"Some membership features",detail:"Member management but limited payment/commerce",tags:["Bevy","Gradual"]},
-     {id:"notneeded",label:"Not needed (enterprise/support community)",detail:"Members don't pay — it's a customer or internal community",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Verint","Bettermode","Salesforce","Discourse","Flarum"]}
+     {id:"notneeded",label:"Not needed (enterprise/support community)",detail:"Members don't pay — it's a customer or internal community",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Higher Logic Thrive","Verint","Bettermode","Salesforce","Discourse","Flarum"]}
    ]},
   {id:"hosting",title:"Hosting & Data Control",
    desc:"Do you need to self-host for data sovereignty, or is cloud SaaS acceptable?",
    options:[
      {id:"selfhost",label:"Self-hosted / open source (full control)",detail:"You own and run the infrastructure. Full data sovereignty.",tags:["Discourse","Flarum"]},
-     {id:"saas",label:"SaaS / cloud-hosted (vendor managed)",detail:"Vendor handles hosting, updates, security, uptime.",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Bettermode","Bevy","Hivebrite","Verint","Salesforce","Circle","Mighty Networks","Gradual"]}
+     {id:"saas",label:"SaaS / cloud-hosted (vendor managed)",detail:"Vendor handles hosting, updates, security, uptime.",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Higher Logic Thrive","Bettermode","Bevy","Hivebrite","Verint","Salesforce","Circle","Mighty Networks","Gradual"]}
    ]},
   {id:"pricing",title:"Buying Process",
    desc:"How quickly do you need to get started? Self-serve means today. Enterprise sales means months.",
    options:[
      {id:"free",label:"Free / open source",detail:"Download and run today. No vendor relationship needed.",tags:["Discourse (self-hosted)","Flarum"]},
      {id:"selfserve",label:"Self-serve (sign up with a credit card)",detail:"Published pricing. Start in minutes/hours.",tags:["Bettermode","Discourse (hosted)","Circle","Mighty Networks"]},
-     {id:"quote",label:"Quote-based (talk to sales)",detail:"Customised pricing. Days to weeks to get started.",tags:["Gainsight CC","Higher Logic Vanilla"]},
+     {id:"quote",label:"Quote-based (talk to sales)",detail:"Customised pricing. Days to weeks to get started.",tags:["Gainsight CC","Higher Logic Vanilla","Higher Logic Thrive"]},
      {id:"enterprise",label:"Enterprise sales process",detail:"RFP, procurement, legal. Weeks to months.",tags:["Khoros","Salesforce","Verint","Bevy","Hivebrite","Gradual"]}
    ]}
 ];
