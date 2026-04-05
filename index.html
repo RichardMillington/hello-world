@@ -474,9 +474,8 @@
       </div>
     </div>
 
-    <div class="browse-all-section">
-      <p class="browse-all-label">Or explore the full database</p>
-      <button class="btn-browse-all" id="btnBrowseAll" onclick="togglePlatformGrid()">Browse all 14 platforms &#8595;</button>
+    <div class="browse-all-section" style="margin-top:1.5rem;padding-top:0;border-top:none">
+      <button class="btn-browse-all" id="btnBrowseAll" onclick="togglePlatformGrid()" style="background:var(--amber);color:#fff;border-color:var(--amber);font-weight:600;padding:.75rem 2rem;font-size:.9rem;border-radius:10px;box-shadow:0 2px 8px rgba(232,160,32,.25)">Browse All 14 Platforms &#8595;</button>
     </div>
 
     <div class="platform-grid-wrapper" id="platformGridWrapper">
@@ -535,16 +534,14 @@
 
   <div class="profile-page" id="profilePage"></div>
 
-  <div class="req-section" id="reqSection" style="border-radius:16px;text-align:center;max-width:600px;margin:2rem auto">
-    <h3 style="font-size:1rem;font-weight:600;margin-bottom:.3rem">Want a personalised recommendation?</h3>
-    <p style="font-size:.84rem;color:var(--text-sec);margin-bottom:1.25rem;max-width:480px;margin-left:auto;margin-right:auto">Tell us about your community and we'll email you a tailored platform shortlist with trade-offs.</p>
+  <div class="req-section" id="reqSection" style="display:none">
     <form class="req-form" id="reqForm" onsubmit="submitReq(event)">
       <div class="req-row">
         <input type="text" name="name" placeholder="Your name" required>
         <input type="email" name="email" placeholder="Email address" required>
       </div>
       <input type="text" name="org" placeholder="Organisation name">
-      <textarea name="requirements" placeholder="Briefly describe your community goals, audience size, current platform (if any), and must-have features..." required style="min-height:80px"></textarea>
+      <textarea name="requirements" placeholder="Briefly describe your community goals..." required style="min-height:80px"></textarea>
       <button type="submit" class="req-submit" style="margin:0 auto">Get Free Recommendation</button>
     </form>
     <div class="req-success" id="reqSuccess">Thanks! A FeverBee strategist will review your requirements and email you a personalised recommendation within 2 business days.</div>
@@ -2108,7 +2105,13 @@ function togglePlatformGrid(){
   const btn=document.getElementById('btnBrowseAll');
   if(w){
     w.classList.toggle('visible');
-    btn.textContent=w.classList.contains('visible')?'Hide platforms \u2191':'Browse all 14 platforms \u2193';
+    if(w.classList.contains('visible')){
+      btn.textContent='Hide platforms \u2191';
+      btn.style.background='#fff';btn.style.color='var(--text-sec)';btn.style.borderColor='var(--border)';btn.style.boxShadow='none';
+    }else{
+      btn.innerHTML='Browse All 14 Platforms \u2193';
+      btn.style.background='var(--amber)';btn.style.color='#fff';btn.style.borderColor='var(--amber)';btn.style.boxShadow='0 2px 8px rgba(232,160,32,.25)';
+    }
   }
 }
 
