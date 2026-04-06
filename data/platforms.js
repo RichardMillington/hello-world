@@ -6,6 +6,14 @@ const platforms = [
     pricing:"~$50,000+/yr (custom quotes only)",target:"Enterprise",
     verdict:"Established leader, but watch post-acquisition direction",verdictType:"steady",website:"https://khoros.com",
     easeOfUse:6.5,qualityOfFeatures:8.5,integrations:8,dataPrivacySecurity:9,servicesSupport:8,reportsAnalytics:8.5,
+    scoreExplainers:{
+      easeOfUse:"Complex enterprise setup. Requires implementation partner and training. Not self-serve.",
+      qualityOfFeatures:"Best-in-class forum, moderation, and multi-language. Deep and polished across the board.",
+      integrations:"Premium Salesforce connector is excellent. Adobe, Google Analytics 360. Fewer out-of-box options than Salesforce.",
+      dataPrivacySecurity:"Enterprise-grade. SOC 2, GDPR, robust access controls. Trusted by Samsung, HP, Spotify.",
+      servicesSupport:"Dedicated CSM and implementation support. Post-acquisition service levels being watched.",
+      reportsAnalytics:"Strong analytics with intent, sentiment, and emotion classification. Case deflection tracking."
+    },
     execution:{
       "Discussions":"Classic threaded forum. Topic-based boards with categories and sub-categories. Deep threading suits long technical support conversations. Content is highly searchable and persistent.",
       "Q&A":"Dedicated Q&A format with accepted answers, voting, and best-answer selection. Separate from general discussion boards.",
@@ -46,6 +54,14 @@ const platforms = [
     pricing:"Custom (3 tiers: Professional, Business, Enterprise)",target:"Mid-Market / Enterprise",
     verdict:"Rising fast. Strong product momentum and analyst recognition",verdictType:"rising",website:"https://www.gainsight.com/customer-communities/",
     easeOfUse:7.5,qualityOfFeatures:8,integrations:8.5,dataPrivacySecurity:8,servicesSupport:8.5,reportsAnalytics:8,
+    scoreExplainers:{
+      easeOfUse:"Cleaner setup than legacy platforms. Admin dashboard is intuitive. Docs are solid.",
+      qualityOfFeatures:"Strong forum + ideation + product updates hub. AI moderation agent is production-ready.",
+      integrations:"Deep Gainsight CS/PX integration. Salesforce, Zendesk, Jira, Slack, Zapier. Best if already in Gainsight.",
+      dataPrivacySecurity:"Standard enterprise security. GDPR compliant. Less documented than Khoros or Salesforce.",
+      servicesSupport:"IDC MarketScape Leader. Dedicated CSM. Strong onboarding. Responsive support team.",
+      reportsAnalytics:"Community health dashboards. Subscription analytics added Q1 2026. Engagement scoring via Gainsight CS."
+    },
     execution:{
       "Discussions":"Forum-style with threaded topics. Organised by categories. Focused on customer-to-customer support and peer engagement rather than general discussion.",
       "Q&A":"Integrated into forum topics. Less distinct from discussions than Khoros or Vanilla.",
@@ -87,6 +103,14 @@ const platforms = [
     pricing:"Custom (3 tiers: Corporate, Enterprise, Enterprise Plus)",target:"Mid-Market / Enterprise",
     verdict:"Solid and reliable. Steady performer in B2B support communities",verdictType:"steady",website:"https://www.higherlogic.com/vanilla/",
     easeOfUse:7.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7.5,
+    scoreExplainers:{
+      easeOfUse:"Clean admin interface. Widget Builder needs dev skills but core setup is manageable.",
+      qualityOfFeatures:"Solid forums + distinct Q&A format. AI Search with RAG is well-executed. No blogs or events.",
+      integrations:"Best Zendesk integration in the market. Salesforce, Slack, Zoom, Zapier. No native AMS connectors.",
+      dataPrivacySecurity:"Standard enterprise security with SSO. GDPR compliant. No standout security features.",
+      servicesSupport:"Dedicated CSM on all plans. Good documentation. Responsive support team.",
+      reportsAnalytics:"Decent dashboards but analytics feel a generation behind Khoros and Salesforce."
+    },
     execution:{
       "Discussions":"Traditional threaded forum with categories. Clean, focused interface. Strong for B2B support communities where searchability matters.",
       "Q&A":"Distinct Q&A content type with accepted answers and AI-suggested answers from historical content. The Q&A format is more differentiated from discussions than most platforms.",
@@ -128,6 +152,14 @@ const platforms = [
     pricing:"Per-login ($2-$15) or per-member ($5-$35/mo) by license type",target:"Enterprise",
     verdict:"Dominant if you're in the ecosystem. Overkill if you're not",verdictType:"steady",website:"https://www.salesforce.com/products/experience-cloud/",
     easeOfUse:5,qualityOfFeatures:7.5,integrations:9.5,dataPrivacySecurity:9,servicesSupport:7,reportsAnalytics:8.5,
+    scoreExplainers:{
+      easeOfUse:"The most complex platform here. Requires SI partner for implementation. Steep learning curve.",
+      qualityOfFeatures:"Configurable but community-specific UX lags dedicated vendors. Jack of all trades.",
+      integrations:"Unmatched. Native access to Sales Cloud, Service Cloud, Marketing Cloud, Data Cloud, AppExchange.",
+      dataPrivacySecurity:"Enterprise-grade. SOC 2, HIPAA-capable, FedRAMP. The gold standard for regulated industries.",
+      servicesSupport:"Massive ecosystem but support can feel impersonal. You often deal with partners, not Salesforce.",
+      reportsAnalytics:"Powerful — full Salesforce reporting engine. But requires configuration to get community-specific insights."
+    },
     execution:{
       "Discussions":"Fully configurable - can be traditional forum, Chatter-style feed, or portal-style. Experience Builder lets you design any layout. The flexibility is powerful but means more setup complexity.",
       "Q&A":"Q&A available via Chatter Questions or custom Lightning components. Not as purpose-built as dedicated community Q&A.",
@@ -168,6 +200,14 @@ const platforms = [
     pricing:"Custom enterprise quotes only",target:"Enterprise",
     verdict:"Declining momentum. Falling behind on innovation and market presence",verdictType:"declining",website:"https://www.verint.com/engagement-channels/communities/",
     easeOfUse:6,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:8.5,servicesSupport:7.5,reportsAnalytics:8,
+    scoreExplainers:{
+      easeOfUse:"Enterprise setup with older UX patterns. Functional but dated interface requires adjustment.",
+      qualityOfFeatures:"Mature forum + KB. Solid but not innovating. Telligent heritage shows in the design.",
+      integrations:"Verint CX suite, Salesforce, Dynamics. Fewer third-party connectors than competitors.",
+      dataPrivacySecurity:"Strong compliance and security. Enterprise-grade controls. Good for regulated industries.",
+      servicesSupport:"Enterprise support available but innovation pace is slower than competitors.",
+      reportsAnalytics:"Strongest case deflection analytics in the market. Good ROI measurement for support communities."
+    },
     execution:{
       "Discussions":"Traditional threaded forum inherited from Telligent. Category-based boards. Mature forum infrastructure but older UX patterns.",
       "Q&A":"Q&A built into forum structure. Less distinct from general discussions than newer platforms.",
@@ -207,6 +247,14 @@ const platforms = [
     pricing:"From $399/mo (Starter) to $1,500/mo (Growth); Premium custom",target:"SMB / Mid-Market",
     verdict:"Watch this space. Modern approach but needs to prove enterprise readiness",verdictType:"watch",website:"https://www.bettermode.com",
     easeOfUse:8.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:7,servicesSupport:7,reportsAnalytics:7,
+    scoreExplainers:{
+      easeOfUse:"Most accessible setup. Design Studio is no-code. Self-serve from $399/mo — live in hours.",
+      qualityOfFeatures:"Modern feed UX is polished. GraphQL API is developer-friendly. No structured KB or ideation.",
+      integrations:"Zapier (8,000+ apps), Make, Salesforce, Intercom, Slack, Shopify. Broad but not deep.",
+      dataPrivacySecurity:"Adequate but less mature than enterprise-focused vendors. Smaller security team.",
+      servicesSupport:"Self-serve model. Docs and community support. No dedicated CSM on lower tiers.",
+      reportsAnalytics:"Basic engagement analytics. Content performance tracking. Less sophisticated than enterprise platforms."
+    },
     execution:{
       "Discussions":"Social feed/wall-style. Content appears in a scrolling feed like LinkedIn or Facebook rather than threaded forum topics. Feels modern and drives casual engagement but content is harder to find months later.",
       "Q&A":"Q&A built into the feed. Users can post questions and receive answers, but it lives within the same feed UI rather than a dedicated Q&A section.",
@@ -246,6 +294,14 @@ const platforms = [
     pricing:"Custom enterprise pricing (estimated mid-five figures/yr)",target:"Mid-Market / Enterprise",
     verdict:"Rising in events. Still proving itself as a full community platform",verdictType:"rising",website:"https://www.bevy.com",
     easeOfUse:7,qualityOfFeatures:7.5,integrations:7.5,dataPrivacySecurity:7.5,servicesSupport:8,reportsAnalytics:7.5,
+    scoreExplainers:{
+      easeOfUse:"Event setup is straightforward. Community hub features are newer and less documented.",
+      qualityOfFeatures:"Events are world-class. Community hub (forums, content) is functional but less mature.",
+      integrations:"Salesforce, HubSpot, Slack, Marketo, Zapier, Zoom. Solid for an events platform.",
+      dataPrivacySecurity:"Enterprise-grade positioning. Security adequate for large community programmes.",
+      servicesSupport:"Strong — owns CMX (community industry body). Responsive team. Good onboarding.",
+      reportsAnalytics:"Event ROI attribution is excellent. Community analytics still developing."
+    },
     execution:{
       "Discussions":"Community Hub discussions are newer and still maturing. Not the core strength - events are. Forum/discussion features are functional but lack the depth of dedicated forum platforms.",
       "Q&A":"Basic Q&A within community hub. Not a primary capability.",
@@ -285,6 +341,14 @@ const platforms = [
     pricing:"Custom (~$5,000 - $30,000+/yr based on members)",target:"Mid-Market / Enterprise",
     verdict:"Strong in its niche. Best choice for alumni and membership orgs",verdictType:"steady",website:"https://www.hivebrite.com",
     easeOfUse:7.5,qualityOfFeatures:7.5,integrations:6.5,dataPrivacySecurity:8,servicesSupport:7,reportsAnalytics:7,
+    scoreExplainers:{
+      easeOfUse:"White-label setup needs configuration but well-documented. Admin tools are purpose-built for membership orgs.",
+      qualityOfFeatures:"Mentoring, fundraising, job board are excellent. Forum/discussion features lag dedicated community platforms.",
+      integrations:"Salesforce, HubSpot, SSO, payment gateways. Fewer options than enterprise community vendors.",
+      dataPrivacySecurity:"GDPR-compliant European origins. Strong privacy positioning. SOC 2 equivalent.",
+      servicesSupport:"Customer success available. Smaller team but responsive. Growing support infrastructure.",
+      reportsAnalytics:"Member engagement dashboards. Activity tracking. Less sophisticated than enterprise analytics."
+    },
     execution:{
       "Discussions":"Discussion forums available but less sophisticated than dedicated community platforms. Not the primary use case - member networking is.",
       "Q&A":"Basic Q&A within discussions. Not a distinct content type.",
@@ -325,6 +389,14 @@ const platforms = [
     pricing:"Free (self-hosted) or $50-$300/mo hosted; Enterprise from $8,000/yr",target:"All sizes",
     verdict:"Rising. The open-source leader with real AI momentum",verdictType:"rising",website:"https://www.discourse.org",
     easeOfUse:7,qualityOfFeatures:8.5,integrations:7,dataPrivacySecurity:8,servicesSupport:6.5,reportsAnalytics:6.5,
+    scoreExplainers:{
+      easeOfUse:"Self-hosted requires sysadmin skills. Hosted version is straightforward. Plugin setup can be complex.",
+      qualityOfFeatures:"Most modern forum UX in open source. Trust levels, real-time updates, chat channels, AI features — polished.",
+      integrations:"WordPress, Slack, GitHub, Zendesk, Zapier, SSO. Plugin ecosystem extends further but quality varies.",
+      dataPrivacySecurity:"Self-hosted means full data sovereignty. Good security defaults. You manage your own compliance.",
+      servicesSupport:"Community-driven support. Enterprise tier gets SLA and priority. Self-hosted = you're on your own.",
+      reportsAnalytics:"Basic community metrics. Less sophisticated than commercial platforms. Plugin ecosystem can extend."
+    },
     execution:{
       "Discussions":"Modern threaded forum with infinite scroll, real-time updates, and a flat-ish threading model (replies quote parent context rather than deep nesting). Feels contemporary compared to traditional phpBB-style forums. Categories and tags for organisation. Trust levels auto-promote active members.",
       "Q&A":"Dedicated Q&A plugin with accepted answers and voting. Can be enabled per category. Functional but not as central as in Vanilla.",
@@ -365,6 +437,14 @@ const platforms = [
     pricing:"Free (self-hosted only)",target:"SMB / Developer communities",
     verdict:"Niche option. Best for small communities wanting simplicity over features",verdictType:"watch",website:"https://flarum.org",
     easeOfUse:8,qualityOfFeatures:7,integrations:5,dataPrivacySecurity:7,servicesSupport:4,reportsAnalytics:4.5,
+    scoreExplainers:{
+      easeOfUse:"Deliberately simple. Beautiful defaults, minimal configuration. Lower server requirements than Discourse.",
+      qualityOfFeatures:"Clean two-pane forum does one thing well. No Q&A, KB, events, or AI. Simplicity is the feature.",
+      integrations:"OAuth SSO, WordPress via extension. Very limited. Zapier not confirmed. Small extension ecosystem.",
+      dataPrivacySecurity:"Self-hosted = you control data. Basic security. No enterprise compliance certifications.",
+      servicesSupport:"Community support only. No commercial support option. You rely on GitHub issues and forums.",
+      reportsAnalytics:"Minimal. Basic post/user stats. No engagement scoring, deflection metrics, or dashboards."
+    },
     execution:{
       "Discussions":"Clean, modern single-page app forum. Two-pane layout: discussion list on the left, conversation on the right. Fast and responsive. Feels like a lightweight, elegant forum stripped to essentials. Tags instead of categories (flat, not hierarchical).",
       "Q&A":"No native Q&A format. Discussions only. Community extensions can add basic Q&A features.",
@@ -404,6 +484,14 @@ const platforms = [
     pricing:"From $49/mo (Basic) to $219/mo (Business); Enterprise custom",target:"Creators / SMB / Mid-Market",
     verdict:"Strong in the creator space. Increasingly competing for SaaS communities too",verdictType:"rising",website:"https://circle.so",
     easeOfUse:8.5,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:6.5,servicesSupport:7,reportsAnalytics:6.5,
+    scoreExplainers:{
+      easeOfUse:"Clean, modern setup. Spaces architecture is intuitive. Non-technical admins can manage day-to-day.",
+      qualityOfFeatures:"Community + courses + events + monetisation in one. Each is good but none is best-in-class individually.",
+      integrations:"Zapier, Stripe, Zoom, Slack, Mailchimp. API on higher tiers. Headless/embed options for SaaS.",
+      dataPrivacySecurity:"Adequate for creator/SMB use. SSO on higher tiers only. Less enterprise-grade than larger platforms.",
+      servicesSupport:"Self-serve model with docs and community. No dedicated CSM unless Enterprise tier.",
+      reportsAnalytics:"Member activity and content analytics. Less depth than enterprise platforms but adequate for creators."
+    },
     execution:{
       "Discussions":"Feed/wall-style within Spaces. Posts appear in a social timeline, not threaded forum topics. Comments are nested but shallow. Feels like a modern social platform rather than a knowledge base.",
       "Q&A":"Not a dedicated format. Q&A happens within the feed. No accepted answers or voting system like dedicated Q&A platforms.",
@@ -444,6 +532,14 @@ const platforms = [
     pricing:"From $41/mo (Community) to $179/mo (Business); Pro from ~$3,000/mo",target:"Creators / Educators / SMB",
     verdict:"Established in creator space. Mighty AI is a genuine differentiator",verdictType:"steady",website:"https://www.mightynetworks.com",
     easeOfUse:8,qualityOfFeatures:7,integrations:5.5,dataPrivacySecurity:6,servicesSupport:6.5,reportsAnalytics:5.5,
+    scoreExplainers:{
+      easeOfUse:"Mobile-first design is intuitive. Mighty Pro setup is more complex. Course builder is straightforward.",
+      qualityOfFeatures:"Community + courses + events + branded apps. Mighty AI is well-executed. Individual features are solid not exceptional.",
+      integrations:"Zoom, Zapier, Stripe, Google Analytics. API only on Business tier. No deep CRM integrations.",
+      dataPrivacySecurity:"Adequate for creator/SMB use. Not enterprise-grade. Limited compliance documentation.",
+      servicesSupport:"Docs, community support, email. Mighty Pro gets dedicated success manager. Lower tiers are self-serve.",
+      reportsAnalytics:"Basic activity and revenue analytics. Engagement scores. Less sophisticated than enterprise tools."
+    },
     execution:{
       "Discussions":"Social feed/wall within each Space. Activity feed similar to Facebook Groups. Not threaded — posts in a timeline with nested comments. Mobile-first design makes it feel more like a social app than a community platform.",
       "Q&A":"Q&A as a content type within the feed. No dedicated Q&A module with accepted answers.",
@@ -484,6 +580,14 @@ const platforms = [
     pricing:"Custom quotes only (Pre-Seed stage, likely lower than established enterprise vendors). Courses as paid add-on.",target:"Mid-Market / Enterprise (associations, B2B communities)",
     verdict:"Compelling event-centric proposition. Very early stage — watch the trajectory",verdictType:"watch",website:"https://www.gradual.com",
     easeOfUse:7.5,qualityOfFeatures:7,integrations:5.5,dataPrivacySecurity:8,servicesSupport:7,reportsAnalytics:6.5,
+    scoreExplainers:{
+      easeOfUse:"Unified dashboard is well-designed. White-label setup requires configuration but is documented.",
+      qualityOfFeatures:"Events are standout strong. Forums, content, clubs are solid. No Q&A, ideation, KB, or AI.",
+      integrations:"CRM mentioned but unconfirmed specifics. RTMP streaming, Google Maps. No public API docs or Zapier.",
+      dataPrivacySecurity:"SOC 2 Type II certified — strong for a Pre-Seed company. Enterprise-grade positioning.",
+      servicesSupport:"Knowledge base, product update events. Small team (1-10) may limit capacity. Founder-involved.",
+      reportsAnalytics:"Event and engagement tracking. Real-time dashboards. Member segments. Depth unclear vs established tools."
+    },
     execution:{
       "Discussions":"Forum-based discussions organised into up to 20 boards. Posts appear in two feeds: 'Hot' (most engagement) and 'New' (chronological). Threaded comments. In-club forum boards allow discussions within chapters and interest groups. Not a traditional threaded forum — more of a modern feed-style approach with forum structure layered on top.",
       "Q&A":"No dedicated Q&A module for the community. Q&A exists only within livestream and meeting events, where hosts can facilitate moderated or open Q&A sessions. No persistent Q&A with accepted answers or voting.",
@@ -524,6 +628,14 @@ const platforms = [
     pricing:"Custom (~$20,000 - $100,000+/yr based on modules and member count)",target:"Associations / Nonprofits / Membership Orgs",
     verdict:"Dominant in associations. The AMS integration depth is unmatched",verdictType:"steady",website:"https://www.higherlogic.com/thrive/",
     easeOfUse:6,qualityOfFeatures:7,integrations:9,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7.5,
+    scoreExplainers:{
+      easeOfUse:"Complex with AMS integrations. Portal-style UX is dated. Implementation is a significant project.",
+      qualityOfFeatures:"Forum + email automation + engagement scoring. Functional but UX lags modern platforms.",
+      integrations:"Deepest AMS integration ecosystem: iMIS, Personify, Nimble AMS, Aptify, Fonteva, netFORUM. Unmatched.",
+      dataPrivacySecurity:"Enterprise-grade. Standard compliance. Good for associations handling member data.",
+      servicesSupport:"3,000+ association customers. Strong onboarding and CSM. ASAE-endorsed.",
+      reportsAnalytics:"Engagement scoring ties community to AMS data. Renewal predictions. Good ROI measurement."
+    },
     execution:{
       "Discussions":"Traditional threaded forum with discussions organised by topic, community, and interest group. Structured, searchable, persistent. More utilitarian than modern — the UX leans functional over beautiful. Has been improving but still feels a generation behind Vanilla or Discourse in polish.",
       "Q&A":"Q&A supported within forum discussions. Not as distinct or well-executed as Vanilla's dedicated Q&A format with accepted answers.",

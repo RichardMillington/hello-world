@@ -329,7 +329,8 @@ function showProfile(id){
   }).join("");
   const scoreBars=criteria.map(c=>{
     const pct=(p[c.key]/10)*100;
-    return`<div class="score-row"><span class="slbl">${c.label}</span><div class="sbar"><div class="sfill" style="width:${pct}%;background:${sColor(p[c.key])}"></div></div><span class="sval">${p[c.key]}</span></div>`;
+    const explainer=p.scoreExplainers?.[c.key]||'';
+    return`<div style="margin-bottom:.5rem"><div class="score-row"><span class="slbl">${c.label}</span><div class="sbar"><div class="sfill" style="width:${pct}%;background:${sColor(p[c.key])}"></div></div><span class="sval">${p[c.key]}</span></div>${explainer?`<div style="font-size:.7rem;color:var(--text-dim);margin-top:.15rem;padding-left:.25rem;line-height:1.4">${explainer}</div>`:''}</div>`;
   }).join("");
 
   const isPlaceholder=p.editorial.startsWith("[");
@@ -448,7 +449,8 @@ function renderCompare(){
     if(diffOnly&&allSame)return;
     rows+=`<tr class="${allSame?'same-row':''}"><td>${c.label}</td>${picks.map(p=>{
       const v=p[c.key];const isBest=v===best&&picks.filter(pp=>pp[c.key]===best).length<picks.length;
-      return`<td class="${isBest?'winner':''}"><div class="cbar-cell"><div class="cmbar"><div class="cmfill" style="width:${(v/10)*100}%;background:${sColor(v)}"></div></div><span style="font-weight:700;color:var(--text)">${v}</span></div></td>`;
+      const explainer=p.scoreExplainers?.[c.key]||'';
+      return`<td class="${isBest?'winner':''}"><div class="cbar-cell"><div class="cmbar"><div class="cmfill" style="width:${(v/10)*100}%;background:${sColor(v)}"></div></div><span style="font-weight:700;color:var(--text)">${v}</span></div>${explainer?`<div style="font-size:.72rem;color:var(--text-dim);margin-top:.3rem;line-height:1.4;text-align:left">${explainer}</div>`:''}</td>`;
     }).join("")}</tr>`;
   });
 
