@@ -1,0 +1,6 @@
+name = "feverbee-ai-recommend"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# Deploy: wrangler deploy
+# Set API key: wrangler secret put ANTHROPIC_API_KEY

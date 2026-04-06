@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Platform Comparison Tool | FeverBee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+</head>
+<body>
+<header>
+  <div class="logo">FEVER<span>BEE</span></div>
+  <h1>Find the Right Community Platform</h1>
+  <p>14 enterprise platforms evaluated across 50+ criteria by FeverBee's community strategists. Based on the Buzz Report.</p>
+  <div class="trust-line"><span class="trust-dot"></span>Independent analysis &middot; No vendor sponsorship &middot; Updated April 2026</div>
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">14</div><div class="stat-label">Platforms</div></div>
+    <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Criteria</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Scoring Dimensions</div></div>
+    <div class="stat"><div class="stat-num">2026</div><div class="stat-label">Updated</div></div>
+  </div>
+</header>
+
+<div class="pathways">
+  <div class="pathway-card pw-active" data-tab="overview" onclick="switchTab('overview')">
+    <div class="step-num">1</div>
+    <div class="info-tip">?<div class="tip-text">Our AI analyses your needs against all 14 platforms and recommends the best matches with trade-offs.</div></div>
+    <div class="pw-icon" style="background:var(--amber);color:#fff">&#128269;</div>
+    <h3>Get a Recommendation</h3>
+    <p>Describe your needs or upload requirements &mdash; we'll match you to the best platforms.</p>
+    <span class="pw-badge">Recommended</span>
+  </div>
+  <div class="pathway-card" data-tab="stakes" onclick="switchTab('stakes')">
+    <div class="step-num">2</div>
+    <div class="info-tip">?<div class="tip-text">Adjust sliders across 8 categories like ease of use, integrations, and data privacy to weight what matters.</div></div>
+    <div class="pw-icon">&#9878;&#65039;</div>
+    <h3>What Matters to You</h3>
+    <p>Pick your priorities across 8 categories and see which platforms match.</p>
+  </div>
+  <div class="pathway-card" data-tab="compare" onclick="switchTab('compare')">
+    <div class="step-num">3</div>
+    <div class="info-tip">?<div class="tip-text">Pick 2-4 platforms and see them side-by-side across every feature and dimension we track.</div></div>
+    <div class="pw-icon">&#128202;</div>
+    <h3>Compare Side by Side</h3>
+    <p>Select 2&ndash;4 platforms for a detailed feature-by-feature comparison.</p>
+  </div>
+</div>
+
+<div style="max-width:860px;margin:.75rem auto 0;padding:0 1rem;text-align:center">
+  <button class="how-toggle" onclick="var c=document.getElementById('howContent');var a=document.getElementById('howArrow');if(c.style.display==='none'||!c.style.display){c.style.display='block';a.style.transform='rotate(180deg)'}else{c.style.display='none';a.style.transform=''}">
+    <span style="font-size:.8rem">&#9432;</span> How does this tool work? <span id="howArrow" style="transition:transform .2s">&#9662;</span>
+  </button>
+  <div class="how-content" id="howContent">
+    <p style="margin-bottom:.75rem"><strong style="color:var(--text)">FeverBee's independent analysis.</strong> We evaluate community platforms based on the Buzz Report methodology. Every platform is scored across 6 dimensions: ease of use, feature quality, integrations, data privacy, services &amp; support, and reports &amp; analytics.</p>
+    <p style="margin-bottom:.75rem">Scores are weighted by what matters to <em>your</em> organisation. Adjust the weights, describe your needs, or compare platforms head-to-head.</p>
+    <p style="margin:0;color:var(--text-dim);font-size:.72rem">No vendor sponsorship. No affiliate links. Scores updated April 2026.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tab-bar" style="display:none">
+    <button class="tab-btn active" data-tab="overview">All Platforms</button>
+    <button class="tab-btn" data-tab="stakes">Table Stakes & Differentiators</button>
+    <button class="tab-btn" data-tab="compare">Side-by-Side Comparison</button>
+  </div>
+
+  <div class="tab-panel active" id="panel-overview">
+    <div class="ai-section" style="border-radius:16px">
+      <div class="ai-accent"></div>
+      <div style="padding:1.75rem">
+        <h2 style="font-size:1.1rem;font-weight:600;margin-bottom:.25rem;color:var(--text)">What are you looking for?</h2>
+        <p style="font-size:.84rem;color:var(--text-sec);margin-bottom:1.25rem">Tell us about your community and we'll recommend the best platforms with trade-offs to consider.</p>
+        <div class="ai-input-grid">
+          <textarea class="ai-textarea" id="aiInput" style="min-height:110px;border-radius:10px" placeholder="e.g. B2B SaaS, 50K customers, need support deflection + knowledge sharing. Must have SSO, Salesforce integration. Budget ~$40K/yr..."></textarea>
+          <div class="ai-dropzone" id="aiDropzone" style="min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px">
+            <div class="drop-icon" style="font-size:1.25rem;margin-bottom:.4rem">&#128196;</div>
+            <div class="drop-text" style="font-size:.75rem;font-weight:500">Drop a file or click</div>
+            <div class="drop-hint" style="font-size:.65rem;margin-top:.2rem">.pdf, .pptx, .txt, .md, .doc</div>
+            <input type="file" id="aiFileInput" accept=".txt,.md,.doc,.docx,.pdf,.pptx" onchange="handleFileUpload(event)">
+          </div>
+        </div>
+        <div class="prompt-chips">
+          <span>Try:</span>
+          <button class="prompt-chip" onclick="document.getElementById('aiInput').value='B2B SaaS with 50K customers, need support deflection + knowledge sharing. Use Salesforce and Zendesk. Budget $30-60K/yr.'">B2B SaaS support</button>
+          <button class="prompt-chip" onclick="document.getElementById('aiInput').value='Non-profit membership org, 5K members, need events + member directory + discussions. Must integrate with our AMS.'">Membership community</button>
+          <button class="prompt-chip" onclick="document.getElementById('aiInput').value='Developer community, open-source project, need forum + docs integration + SSO. Want self-hosted option.'">Developer community</button>
+        </div>
+        <div style="margin-top:1rem;display:flex;align-items:center">
+          <input type="password" class="ai-key-input" id="aiApiKey" placeholder="API key" style="display:none">
+          <button class="ai-submit" id="aiSubmitBtn" onclick="runAiAnalysis()" style="display:inline-flex;align-items:center;gap:.5rem;border-radius:10px;padding:.75rem 1.75rem">Get Recommendations &rarr;</button>
+          <span style="display:inline-block;margin-left:.75rem;font-size:.72rem;color:var(--text-dim)">Powered by Claude &middot; Analysed against our platform data</span>
+        </div>
+        <div id="aiResults"></div>
+      </div>
+    </div>
+
+    <div class="quick-picks" id="quickPicks"></div>
+
+    <div class="weight-section">
+      <div class="weight-toggle" onclick="document.querySelector('.weight-body').classList.toggle('open');document.querySelector('.chevron').classList.toggle('open')">
+        <h3>Customise scoring weights</h3>
+        <span class="chevron">&#9660;</span>
+      </div>
+      <div class="weight-body" id="weightBody">
+        <p>Drag sliders to weight what matters most to your organisation. Platform scores update in real time.</p>
+        <div class="weight-grid" id="weightGrid"></div>
+        <div style="margin-top:.75rem;text-align:right"><button class="weight-reset" onclick="resetWeights()">Reset to defaults</button></div>
+      </div>
+    </div>
+    <div class="overview-controls">
+      <div class="filter-pills" id="filterPills"></div>
+      <div class="sort-row">
+        <label style="font-size:.82rem;color:var(--text-dim)">Sort by</label>
+        <select class="sort-select" id="sortSelect" onchange="renderOverview()">
+          <option value="score">Weighted Score</option>
+          <option value="alpha">Alphabetical</option>
+          <option value="easeOfUse">Ease of Setup</option>
+          <option value="qualityOfFeatures">Quality of Features</option>
+          <option value="integrations">Integrations</option>
+        </select>
+        <input type="text" class="search-box" id="searchInput" placeholder="Search platforms...">
+      </div>
+    </div>
+    <div class="platform-grid" id="platformGrid"></div>
+
+  </div>
+
+  <div class="tab-panel" id="panel-stakes">
+    <div class="section-title">Table Stakes</div>
+    <div class="section-desc">Every enterprise community platform includes these. They are not differentiators.</div>
+    <div id="stakesArea"></div>
+    <div class="section-title">What Matters to You?</div>
+    <div class="section-desc">Select your preference in each category and mark how important it is. We'll show which platforms best match your priorities.</div>
+    <div class="diff-cards" id="diffCards"></div>
+    <div id="prefsSummary"></div>
+  </div>
+
+  <div class="tab-panel" id="panel-compare">
+    <div class="compare-header">
+      <h2>Side-by-Side Comparison</h2>
+      <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
+        <label class="diff-only-toggle"><input type="checkbox" id="diffToggle" checked onchange="renderCompare()"> Show only differences</label>
+        <button class="pdf-btn" onclick="exportPdf()">&#128196; Export PDF</button>
+        <button class="btn-back" onclick="switchTab('overview')">+ Change Platforms</button>
+      </div>
+    </div>
+    <div id="compareSummary"></div>
+    <div id="compareContent"></div>
+  </div>
+
+  <div class="profile-page" id="profilePage"></div>
+
+  <div class="req-section" id="reqSection" style="display:none">
+    <form class="req-form" id="reqForm" onsubmit="submitReq(event)">
+      <div class="req-row">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Email address" required>
+      </div>
+      <input type="text" name="org" placeholder="Organisation name">
+      <textarea name="requirements" placeholder="Briefly describe your community goals..." required style="min-height:80px"></textarea>
+      <button type="submit" class="req-submit" style="margin:0 auto">Get Free Recommendation</button>
+    </form>
+    <div class="req-success" id="reqSuccess">Thanks! A FeverBee strategist will review your requirements and email you a personalised recommendation within 2 business days.</div>
+  </div>
+</div>
+
+<div class="compare-bar" id="compareBar">
+  <div class="bar-platforms">Comparing: <span id="barNames"></span></div>
+  <button class="bar-btn" onclick="switchTab('compare')">View comparison &rarr;</button>
+</div>
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&uarr;</button>
+
+<footer style="background:var(--card);border-top:1px solid var(--border);margin-top:2rem">
+  <div style="max-width:860px;margin:0 auto;padding:2.5rem 1.5rem;text-align:center">
+    <div style="display:flex;justify-content:center;align-items:center;gap:.5rem;margin-bottom:1rem">
+      <span style="font-weight:700;font-size:.85rem;letter-spacing:.15em;color:var(--text)">FEVER<span style="color:var(--amber)">BEE</span></span>
+    </div>
+    <p style="font-size:.75rem;color:var(--text-dim);max-width:500px;margin:0 auto 1rem;line-height:1.6">Based on the FeverBee Buzz Report evaluation criteria. Feature data verified against vendor documentation (April 2026). Scores are illustrative.</p>
+    <div style="display:flex;justify-content:center;gap:1.5rem;font-size:.72rem">
+      <a href="https://www.feverbee.com" style="color:var(--amber);text-decoration:none">FeverBee.com</a>
+      <a href="https://www.feverbee.com/buzzreport/" style="color:var(--amber);text-decoration:none">The Buzz Report</a>
+      <a href="https://www.feverbee.com/contact/" style="color:var(--amber);text-decoration:none">Contact Us</a>
+    </div>
+    <p style="font-size:.65rem;color:var(--text-dim);margin-top:1rem">&copy; 2026 FeverBee Ltd. All rights reserved.</p>
+  </div>
+</footer>
+<script src="data/platforms.js"></script>
+<script src="js/app.js"></script>
+<script src="js/ai.js"></script>
+</body>
+</html>
