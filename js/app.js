@@ -400,7 +400,7 @@ function showProfile(id){
   document.querySelector(".tab-bar").style.display="none";
   document.getElementById("compareBar").classList.remove("show");
   pp.classList.add("active");
-  window.scrollTo(0,0);
+  pp.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function hideProfile(){
@@ -579,7 +579,9 @@ function switchTab(tab){
   if(tab==="compare"){renderCompare();document.getElementById("compareBar").classList.remove("show")}
   else if(tab==="stakes"){renderStakes();document.getElementById("compareBar").classList.remove("show")}
   else{updateCompareBar()}
-  window.scrollTo({top:0,behavior:'smooth'});
+  // Scroll to the content, not the very top of the page
+  const panel=document.getElementById("panel-"+tab);
+  if(panel)panel.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 document.querySelectorAll(".tab-btn").forEach(b=>b.addEventListener("click",()=>switchTab(b.dataset.tab)));
