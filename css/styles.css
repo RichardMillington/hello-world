@@ -432,14 +432,6 @@
     /* Platform grid 2-col */
     .platform-grid{grid-template-columns:repeat(2,1fr)}
 
-    /* Platform grid toggle */
-    .platform-grid-wrapper{display:none;animation:gridFadeIn .3s ease}
-    .platform-grid-wrapper.visible{display:block}
-    @keyframes gridFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-    .browse-all-section{text-align:center;margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border)}
-    .btn-browse-all{display:inline-flex;align-items:center;gap:.5rem;background:none;border:1px solid var(--border);border-radius:10px;padding:.6rem 1.5rem;font-size:.84rem;font-weight:500;font-family:inherit;color:var(--text-sec);cursor:pointer;transition:all .15s}
-    .btn-browse-all:hover{border-color:var(--amber);color:var(--text)}
-    .browse-all-label{font-size:.78rem;color:var(--text-dim);margin-bottom:.6rem}
 
     /* Condensed cards: hide score bars by default */
     .pcard .score-row{display:none}

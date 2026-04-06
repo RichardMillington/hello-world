@@ -633,22 +633,6 @@ document.querySelectorAll('.pathway-card').forEach(card=>{
   });
 });
 
-// --- PLATFORM GRID TOGGLE ---
-function togglePlatformGrid(){
-  const w=document.getElementById('platformGridWrapper');
-  const btn=document.getElementById('btnBrowseAll');
-  if(w){
-    w.classList.toggle('visible');
-    if(w.classList.contains('visible')){
-      btn.textContent='Hide platforms \u2191';
-      btn.style.background='var(--card)';btn.style.color='var(--text-sec)';btn.style.borderColor='var(--border)';btn.style.boxShadow='none';
-    }else{
-      btn.innerHTML='Browse All 14 Platforms \u2193';
-      btn.style.background='var(--amber)';btn.style.color='#fff';btn.style.borderColor='var(--amber)';btn.style.boxShadow='0 2px 8px rgba(232,160,32,.25)';
-    }
-  }
-}
-
 // --- QUICK PICKS ---
 function renderQuickPicks(){
   const scored=platforms.map(p=>({...p,ws:+weightedScore(p)}));

@@ -99,38 +99,32 @@
 
     <div class="quick-picks" id="quickPicks"></div>
 
-    <div class="browse-all-section" style="margin-top:1.5rem;padding-top:0;border-top:none">
-      <button class="btn-browse-all" id="btnBrowseAll" onclick="togglePlatformGrid()" style="background:var(--amber);color:#fff;border-color:var(--amber);font-weight:600;padding:.75rem 2rem;font-size:.9rem;border-radius:10px;box-shadow:0 2px 8px rgba(232,160,32,.25)">Browse All 14 Platforms &#8595;</button>
-    </div>
-
-    <div class="platform-grid-wrapper" id="platformGridWrapper">
-      <div class="weight-section">
-        <div class="weight-toggle" onclick="document.querySelector('.weight-body').classList.toggle('open');document.querySelector('.chevron').classList.toggle('open')">
-          <h3>Customise scoring weights</h3>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="weight-body" id="weightBody">
-          <p>Drag sliders to weight what matters most to your organisation. Platform scores update in real time.</p>
-          <div class="weight-grid" id="weightGrid"></div>
-          <div style="margin-top:.75rem;text-align:right"><button class="weight-reset" onclick="resetWeights()">Reset to defaults</button></div>
-        </div>
+    <div class="weight-section">
+      <div class="weight-toggle" onclick="document.querySelector('.weight-body').classList.toggle('open');document.querySelector('.chevron').classList.toggle('open')">
+        <h3>Customise scoring weights</h3>
+        <span class="chevron">&#9660;</span>
       </div>
-      <div class="overview-controls">
-        <div class="filter-pills" id="filterPills"></div>
-        <div class="sort-row">
-          <label style="font-size:.82rem;color:var(--text-dim)">Sort by</label>
-          <select class="sort-select" id="sortSelect" onchange="renderOverview()">
-            <option value="score">Weighted Score</option>
-            <option value="alpha">Alphabetical</option>
-            <option value="easeOfUse">Ease of Setup</option>
-            <option value="qualityOfFeatures">Quality of Features</option>
-            <option value="integrations">Integrations</option>
-          </select>
-          <input type="text" class="search-box" id="searchInput" placeholder="Search platforms...">
-        </div>
+      <div class="weight-body" id="weightBody">
+        <p>Drag sliders to weight what matters most to your organisation. Platform scores update in real time.</p>
+        <div class="weight-grid" id="weightGrid"></div>
+        <div style="margin-top:.75rem;text-align:right"><button class="weight-reset" onclick="resetWeights()">Reset to defaults</button></div>
       </div>
-      <div class="platform-grid" id="platformGrid"></div>
     </div>
+    <div class="overview-controls">
+      <div class="filter-pills" id="filterPills"></div>
+      <div class="sort-row">
+        <label style="font-size:.82rem;color:var(--text-dim)">Sort by</label>
+        <select class="sort-select" id="sortSelect" onchange="renderOverview()">
+          <option value="score">Weighted Score</option>
+          <option value="alpha">Alphabetical</option>
+          <option value="easeOfUse">Ease of Setup</option>
+          <option value="qualityOfFeatures">Quality of Features</option>
+          <option value="integrations">Integrations</option>
+        </select>
+        <input type="text" class="search-box" id="searchInput" placeholder="Search platforms...">
+      </div>
+    </div>
+    <div class="platform-grid" id="platformGrid"></div>
 
   </div>
 
