@@ -433,12 +433,27 @@
     .platform-grid{grid-template-columns:repeat(2,1fr)}
 
 
-    /* Condensed cards: hide score bars by default */
-    .pcard .score-row{display:none}
+    /* Condensed cards: show mini score bars */
+    .pcard .score-row{display:flex !important;margin-bottom:.2rem}
+    .pcard .score-row .slbl{font-size:.7rem;min-width:90px}
+    .pcard .score-row .sbar{height:3px}
+    .pcard .score-row .sval{font-size:.7rem;min-width:18px}
     .pcard .overall{margin-top:.25rem;padding-top:.5rem}
+
+    /* Platform screenshot thumbnail */
+    .platform-thumb{width:100%;height:120px;border-radius:8px;overflow:hidden;margin-bottom:.6rem;background:var(--border);position:relative}
+    .platform-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;opacity:.8;transition:opacity .2s}
+    .pcard:hover .platform-thumb img{opacity:1}
 
     /* AI input side-by-side */
     .ai-input-grid{display:grid;grid-template-columns:1fr 200px;gap:1rem;align-items:start}
+
+    /* Compare-with dropdown on profile */
+    .compare-with{margin-top:.75rem}
+    .compare-with select{width:100%;padding:.5rem .75rem;border:1px solid var(--border);border-radius:8px;font-size:.82rem;font-family:inherit;background:#141414;color:var(--text);outline:0;cursor:pointer}
+    .compare-with select:focus{border-color:var(--amber)}
+    .compare-with-btn{margin-top:.4rem;width:100%;padding:.5rem;background:var(--amber);color:#000;border:0;border-radius:8px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
+    .compare-with-btn:hover{background:var(--amber-dark)}
 
     /* Trust line */
     .trust-line{display:inline-flex;align-items:center;gap:.5rem;color:var(--amber);font-size:.78rem;font-weight:500;letter-spacing:.02em;margin-top:.6rem}
@@ -447,4 +462,29 @@
     @media(max-width:768px){
       .pathways{grid-template-columns:1fr;margin-top:-1.5rem}
       .ai-input-grid{grid-template-columns:1fr}
+      .platform-grid{grid-template-columns:1fr !important}
+      .profile-layout{grid-template-columns:1fr !important}
+      .profile-sidebar{position:static !important}
+      .overview-controls{flex-direction:column;align-items:stretch}
+      .sort-row{flex-direction:column;gap:.5rem}
+      .search-box{width:100%}
+      .compare-bar{flex-direction:column;gap:.5rem;padding:.5rem 1rem}
+      .compare-bar .bar-platforms{flex-wrap:wrap;justify-content:center}
+      .quick-picks{grid-template-columns:repeat(2,1fr)}
+      .ctable{font-size:.75rem}
+      .ctable th,.ctable td{padding:.5rem .6rem}
+      .exec-cell{font-size:.75rem}
+      .pcard .score-row .slbl{min-width:70px;font-size:.65rem}
+      .platform-thumb{height:80px}
+      header h1{font-size:1.5rem !important}
+      .stats-bar{gap:1rem}
+      .stats-bar .stat-num{font-size:1rem}
+    }
+
+    @media(max-width:480px){
+      .pathways{gap:.5rem;padding:0 .5rem}
+      .pathway-card{padding:1rem .75rem}
+      .quick-picks{grid-template-columns:1fr}
+      .pcard .score-row{display:none !important}
+      .platform-thumb{height:60px}
     }

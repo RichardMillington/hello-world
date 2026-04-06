@@ -186,9 +186,11 @@ function renderOverview(){
       const pct=(p[c.key]/10)*100;
       return`<div class="score-row"><span class="slbl">${c.label}</span><div class="sbar"><div class="sfill" style="width:${pct}%;background:${sColor(p[c.key])}"></div></div><span class="sval">${p[c.key]}</span></div>`;
     }).join("");
+    const thumbUrl=p.website?`https://api.microlink.io/?url=${encodeURIComponent(p.website)}&screenshot=true&meta=false&embed=screenshot.url`:'';
     return`<div class="pcard" onclick="cardClick('${p.id}',event)" style="cursor:pointer">
       ${showRank?`<span class="rank-badge">#${i+1}</span>`:''}
       <label class="compare-check ${sel?'active':''}" onclick="event.preventDefault();event.stopPropagation();toggleCompare('${p.id}',event)"><input type="checkbox" ${sel?'checked':''}>${sel?'\u2713 Compare':'+ Compare'}</label>
+      ${p.website?`<div class="platform-thumb"><img src="https://image.thum.io/get/width/600/crop/400/${p.website}" alt="${p.name}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`:''}
       <h3>${p.name}</h3>
       <div class="tagline">${p.tagline}</div>
       <div class="card-cat">${catBadge(p)} ${uxBadges(p.uxApproach)}</div>
@@ -389,6 +391,13 @@ function showProfile(id){
           <h4>Key Integrations</h4>
           <ul style="list-style:none;padding:0">${p.keyIntegrations.slice(0,6).map(i=>`<li style="font-size:.84rem;padding:.15rem 0;color:var(--text-sec)">${i}</li>`).join("")}</ul>
         </div>
+        <div class="sidebar-card compare-with">
+          <h4>Compare with...</h4>
+          <select id="compareWithSelect">
+            ${platforms.filter(x=>x.id!==p.id).map(x=>`<option value="${x.id}">${x.name}</option>`).join("")}
+          </select>
+          <button class="compare-with-btn" onclick="compareWith('${p.id}')">Compare side by side &rarr;</button>
+        </div>
         <div class="cta-box" style="margin:0;border-radius:var(--radius)">
           <h3 style="font-size:.95rem">Need help deciding?</h3>
           <p style="font-size:.82rem">1-hour session with a FeverBee community strategist. We'll review your requirements and give an honest recommendation.</p>
@@ -402,6 +411,16 @@ function showProfile(id){
   document.getElementById("compareBar").classList.remove("show");
   pp.classList.add("active");
   pp.scrollIntoView({behavior:'smooth',block:'start'});
+  updateHash('platform/'+id);
+}
+
+function compareWith(currentId){
+  const otherId=document.getElementById('compareWithSelect').value;
+  selected.clear();
+  selected.add(currentId);
+  selected.add(otherId);
+  switchTab('compare');
+  updateHash('compare/'+currentId+','+otherId);
 }
 
 function hideProfile(){
@@ -584,6 +603,8 @@ function switchTab(tab){
   // Scroll to the content, not the very top of the page
   const panel=document.getElementById("panel-"+tab);
   if(panel)panel.scrollIntoView({behavior:'smooth',block:'start'});
+  if(tab==='compare'&&selected.size>=2)updateHash('compare/'+[...selected].join(','));
+  else updateHash(tab);
 }
 
 document.querySelectorAll(".tab-btn").forEach(b=>b.addEventListener("click",()=>switchTab(b.dataset.tab)));
@@ -656,10 +677,32 @@ function renderQuickPicks(){
   ).join('');
 }
 
+// --- URL ROUTING ---
+function updateHash(hash){
+  history.replaceState(null,null,'#'+hash);
+}
+function handleHash(){
+  const hash=location.hash.slice(1);
+  if(!hash)return;
+  if(hash.startsWith('platform/')){
+    const id=hash.split('/')[1];
+    if(platforms.find(p=>p.id===id))showProfile(id);
+  }else if(hash.startsWith('compare/')){
+    const ids=hash.split('/')[1].split(',');
+    selected.clear();
+    ids.forEach(id=>{if(platforms.find(p=>p.id===id))selected.add(id)});
+    switchTab('compare');
+  }else if(hash==='stakes'||hash==='compare'||hash==='overview'){
+    switchTab(hash);
+  }
+}
+window.addEventListener('hashchange',handleHash);
+
 // Init
 renderPills();
 renderWeights();
 renderOverview();
 renderQuickPicks();
 updateCompareBar();
-</script>
+// Handle initial hash after rendering
+setTimeout(handleHash,100);
