@@ -658,4 +658,3 @@ renderWeights();
 renderOverview();
 renderQuickPicks();
 updateCompareBar();
-</script>
