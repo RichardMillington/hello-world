@@ -5,7 +5,7 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Traditional Forum"}],
     pricing:"~$50,000+/yr (custom quotes only)",target:"Enterprise",
     verdict:"Established leader, but watch post-acquisition direction",verdictType:"steady",website:"https://khoros.com",
-    easeOfUse:6,qualityOfFeatures:7.2,integrations:8,dataPrivacySecurity:8,servicesSupport:6,reportsAnalytics:8,
+    easeOfUse:5,qualityOfFeatures:7.2,integrations:8,dataPrivacySecurity:8,servicesSupport:3,reportsAnalytics:6,
     scoreExplainers:{
       easeOfUse:"Complex enterprise setup. Requires implementation partner and training. Not self-serve.",
       qualityOfFeatures:"Best-in-class forum, moderation, and multi-language. Deep and polished across the board.",
