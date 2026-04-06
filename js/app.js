@@ -3,6 +3,7 @@ criteria.forEach(c => weights[c.key] = 5);
 let selected = new Set();
 let currentFilter = "all";
 let stakesExpanded = true;
+let userPrefs = {};
 
 function sColor(s){return s>=8?'var(--green)':s>=6?'var(--amber)':'var(--red)'}
 function fBadge(v){
