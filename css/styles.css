@@ -382,13 +382,16 @@
 
     /* Pathway cards */
     .pathways{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:-2.5rem;position:relative;z-index:2;padding:0 1rem;max-width:860px;margin-left:auto;margin-right:auto;margin-bottom:1rem}
-    .pathway-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1rem;cursor:pointer;transition:all .2s;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.04);position:relative}
+    .pathway-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1rem;cursor:pointer;transition:all .2s;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.04);position:relative;user-select:none}
     .pathway-card:hover{border-color:var(--amber);box-shadow:0 4px 20px rgba(232,160,32,.12);transform:translateY(-2px)}
     .pathway-card.pw-active{border-color:var(--amber);box-shadow:0 0 0 2px var(--amber),0 4px 20px rgba(232,160,32,.12);background:var(--card-hover)}
     .pathway-card .pw-icon{width:38px;height:38px;background:var(--amber-light);border-radius:10px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:.6rem;font-size:1rem}
     .pathway-card.pw-active .pw-icon{background:var(--amber);color:#fff}
-    .pathway-card h3{font-size:.82rem;font-weight:600;margin-bottom:.3rem;color:var(--text)}
-    .pathway-card p{font-size:.72rem;color:var(--text-dim);line-height:1.4}
+    .pathway-card h3{font-size:.82rem;font-weight:600;margin-bottom:.3rem;color:var(--text);pointer-events:none}
+    .pathway-card p{font-size:.72rem;color:var(--text-dim);line-height:1.4;pointer-events:none}
+    .pathway-card .pw-icon{pointer-events:none}
+    .pathway-card .pw-badge{pointer-events:none}
+    .pathway-card .step-num{pointer-events:none}
     .pw-badge{display:inline-block;background:var(--amber);color:#fff;font-size:.6rem;font-weight:600;padding:.12rem .4rem;border-radius:20px;margin-top:.4rem;letter-spacing:.02em}
     .step-num{position:absolute;top:-8px;left:-8px;width:22px;height:22px;border-radius:50%;background:var(--amber);color:#fff;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(232,160,32,.3);z-index:5}
     .info-tip{position:absolute;top:8px;right:8px;width:18px;height:18px;border-radius:50%;background:var(--border);color:var(--text-dim);font-size:.6rem;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:help;transition:all .15s;z-index:5}

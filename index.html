@@ -25,7 +25,7 @@
 </header>
 
 <div class="pathways">
-  <div class="pathway-card pw-active" data-tab="overview">
+  <div class="pathway-card pw-active" data-tab="overview" onclick="switchTab('overview')">
     <div class="step-num">1</div>
     <div class="info-tip">?<div class="tip-text">Our AI analyses your needs against all 14 platforms and recommends the best matches with trade-offs.</div></div>
     <div class="pw-icon" style="background:var(--amber);color:#fff">&#128269;</div>
@@ -33,14 +33,14 @@
     <p>Describe your needs or upload requirements &mdash; we'll match you to the best platforms.</p>
     <span class="pw-badge">Recommended</span>
   </div>
-  <div class="pathway-card" data-tab="stakes">
+  <div class="pathway-card" data-tab="stakes" onclick="switchTab('stakes')">
     <div class="step-num">2</div>
     <div class="info-tip">?<div class="tip-text">Adjust sliders across 8 categories like ease of use, integrations, and data privacy to weight what matters.</div></div>
     <div class="pw-icon">&#9878;&#65039;</div>
     <h3>What Matters to You</h3>
     <p>Pick your priorities across 8 categories and see which platforms match.</p>
   </div>
-  <div class="pathway-card" data-tab="compare">
+  <div class="pathway-card" data-tab="compare" onclick="switchTab('compare')">
     <div class="step-num">3</div>
     <div class="info-tip">?<div class="tip-text">Pick 2-4 platforms and see them side-by-side across every feature and dimension we track.</div></div>
     <div class="pw-icon">&#128202;</div>
