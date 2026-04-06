@@ -616,7 +616,7 @@ function exportPdf(){
   // Wrap with title
   const wrapper=document.createElement("div");
   wrapper.style.cssText="padding:20px;font-family:Montserrat,sans-serif;background:#0D0D0D;color:#fff";
-  wrapper.innerHTML=`<div style="text-align:center;margin-bottom:16px"><div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#888;text-transform:uppercase;margin-bottom:4px">FEVERBEE</div><h2 style="font-size:18px;font-weight:600;color:#1A1A1A;margin:0 0 4px">Community Platform Comparison</h2><p style="font-size:12px;color:#8A8A8A;margin:0">Generated ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})} &middot; feverbee.com</p></div>`+el.innerHTML;
+  wrapper.innerHTML=`<div style="text-align:center;margin-bottom:16px"><div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#999;text-transform:uppercase;margin-bottom:4px">FEVERBEE</div><h2 style="font-size:18px;font-weight:600;color:#fff;margin:0 0 4px">Community Platform Comparison</h2><p style="font-size:12px;color:#999;margin:0">Generated ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})} &middot; feverbee.com</p></div>`+el.innerHTML;
   document.body.appendChild(wrapper);
   html2pdf().set(opt).from(wrapper).save().then(()=>document.body.removeChild(wrapper));
 }
