@@ -110,7 +110,7 @@ function buildPlatformSummary(){
 }
 
 // Set this to your deployed Cloudflare Worker URL to enable proxy mode (no API key needed for visitors)
-const AI_PROXY_URL = ''; // e.g. 'https://feverbee-ai-recommend.your-account.workers.dev/recommend'
+const AI_PROXY_URL = 'https://feverbee-ai-recommend.richard-708.workers.dev/'; // e.g. 'https://feverbee-ai-recommend.your-account.workers.dev/recommend'
 
 async function runAiAnalysis(){
   const input=document.getElementById("aiInput").value.trim();
