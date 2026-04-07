@@ -134,10 +134,11 @@ function renderOverview(){
     return`<div class="pcard" onclick="cardClick('${p.id}',event)" style="cursor:pointer">
       ${showRank?`<span class="rank-badge">#${i+1}</span>`:''}
       <label class="compare-check ${sel?'active':''}" onclick="event.preventDefault();event.stopPropagation();toggleCompare('${p.id}',event)"><input type="checkbox" ${sel?'checked':''}>${sel?'\u2713 Compare':'+ Compare'}</label>
+      <div style="margin-bottom:.5rem">${momentumTag(p)}</div>
       ${p.website?`<div class="platform-thumb"><img src="https://image.thum.io/get/width/600/crop/400/${p.website}" alt="${p.name}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`:''}
       <h3>${p.name}</h3>
       <div class="tagline">${p.tagline}</div>
-      <div class="card-cat">${catBadge(p)} ${momentumTag(p)} ${uxBadges(p.uxApproach)}</div>
+      <div class="card-cat">${catBadge(p)} ${uxBadges(p.uxApproach)}</div>
       ${bars}
       <div class="overall"><span class="olbl">Weighted Score</span><span class="oval">${p.ws} <span style="font-size:.7rem;font-weight:400;color:var(--text-dim)">/ 10</span></span></div>
       ${verdictLine(p)}
@@ -284,8 +285,9 @@ function showProfile(id){
   pp.innerHTML=`
     <button class="profile-back" onclick="hideProfile()">&larr; Back to all platforms</button>
     <div class="profile-hero">
-      <div style="margin-bottom:.5rem">${catBadge(p)} ${momentumTag(p)} ${uxBadges(p.uxApproach)}</div>
+      <div style="margin-bottom:.6rem">${momentumTag(p)}</div>
       <h2>${p.name}</h2>
+      <div style="margin:.4rem 0 .6rem">${catBadge(p)} ${uxBadges(p.uxApproach)}</div>
       <div class="p-tagline">${p.tagline}</div>
       <div class="p-meta"><strong>Pricing:</strong> ${p.pricing} &middot; <strong>Target:</strong> ${p.target}${p.website?` &middot; <a href="${p.website}" target="_blank" rel="noopener">${p.website.replace('https://','').replace('www.','').replace(/\/$/,'')}</a>`:''}</div>
       ${verdictLine(p)}
