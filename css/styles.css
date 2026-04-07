@@ -210,14 +210,31 @@
     .ux-events{background:var(--purple-bg);color:var(--purple)}
 
     .verdict-badge{display:inline-flex;align-items:center;gap:.35rem;padding:.25rem .7rem;border-radius:6px;font-size:.78rem;font-weight:600;letter-spacing:.2px}
+    .verdict-rapid-rising{background:rgba(52,211,153,0.15);color:#34D399;border:1px solid rgba(52,211,153,0.3)}
+    .verdict-rapid-rising::before{content:"\25B2\25B2";font-size:.55rem;letter-spacing:-2px}
     .verdict-rising{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
     .verdict-rising::before{content:"\25B2";font-size:.6rem}
     .verdict-steady{background:var(--yellow-bg);color:var(--yellow);border:1px solid var(--yellow-border)}
     .verdict-steady::before{content:"\25C6";font-size:.6rem}
     .verdict-declining{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
     .verdict-declining::before{content:"\25BC";font-size:.6rem}
+    .verdict-rapid-declining{background:rgba(248,113,113,0.15);color:#F87171;border:1px solid rgba(248,113,113,0.3)}
+    .verdict-rapid-declining::before{content:"\25BC\25BC";font-size:.55rem;letter-spacing:-2px}
     .verdict-watch{background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-border)}
     .verdict-watch::before{content:"\25CB";font-size:.6rem}
+
+    /* Momentum tag on cards */
+    .momentum-tag{display:inline-flex;align-items:center;gap:.3rem;padding:.2rem .6rem;border-radius:20px;font-size:.68rem;font-weight:600;letter-spacing:.02em}
+    .momentum-rapid-rising{background:rgba(52,211,153,0.12);color:#34D399;border:1px solid rgba(52,211,153,0.25)}
+    .momentum-rapid-rising::before{content:"\25B2\25B2";font-size:.5rem;letter-spacing:-2px}
+    .momentum-rising{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+    .momentum-rising::before{content:"\25B2";font-size:.5rem}
+    .momentum-steady{background:rgba(255,255,255,0.06);color:var(--text-dim);border:1px solid var(--border)}
+    .momentum-steady::before{content:"\25C6";font-size:.5rem}
+    .momentum-declining{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+    .momentum-declining::before{content:"\25BC";font-size:.5rem}
+    .momentum-rapid-declining{background:rgba(248,113,113,0.12);color:#F87171;border:1px solid rgba(248,113,113,0.25)}
+    .momentum-rapid-declining::before{content:"\25BC\25BC";font-size:.5rem;letter-spacing:-2px}
 
     .cta-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:3rem 2rem;text-align:center;margin:2.5rem 0}
     .cta-box h3{font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:.4rem}
