@@ -168,8 +168,11 @@ function renderStakes(){
         </div>
       </div>`;
     }).join("");
-    const impBtns=pref.optionId?`<div class="diff-importance">
-      <span style="font-size:.75rem;color:var(--text-dim);margin-right:.25rem">Importance:</span>
+    // Only show importance if selection is a positive preference (not "none", "notneeded", "saas", "free")
+    const selectedOpt=d.options.find(o=>o.id===pref.optionId);
+    const isNeutralChoice=selectedOpt&&(selectedOpt.id==='none'||selectedOpt.id==='notneeded'||selectedOpt.id==='saas'||selectedOpt.id==='free');
+    const impBtns=(pref.optionId&&!isNeutralChoice)?`<div class="diff-importance">
+      <span style="font-size:.75rem;color:var(--text-dim);margin-right:.25rem">How important is this to your decision?</span>
       <button class="imp-btn ${pref.importance==='must'?'active':''}" onclick="setDiffImportance('${d.id}','must')">Must-have</button>
       <button class="imp-btn ${pref.importance==='nice'?'active-nice':''}" onclick="setDiffImportance('${d.id}','nice')">Nice-to-have</button>
       <button class="imp-btn ${pref.importance==='not'?'active-not':''}" onclick="setDiffImportance('${d.id}','not')">Not important</button>
