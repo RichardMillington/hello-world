@@ -4,7 +4,7 @@ const platforms = [
     tagline:"Full-featured enterprise community with social customer care",
     uxApproach:[{type:"forum",label:"Traditional Forum"}],
     pricing:"~$50,000+/yr (custom quotes only)",target:"Enterprise",
-    verdict:"Declining. Post-acquisition quality and support have deteriorated significantly",verdictType:"declining",website:"https://khoros.com",
+    verdict:"Declining. Post-acquisition quality and support have deteriorated significantly",verdictType:"declining",momentum:"rapid-declining",website:"https://khoros.com",
     featureCompleteness:9,easeOfUse:6.5,qualityOfFeatures:6,integrations:8,dataPrivacySecurity:9,servicesSupport:5.5,reportsAnalytics:6,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, blogs, gamification, mobile app, 37+ languages. Only missing native events.",
@@ -53,7 +53,7 @@ const platforms = [
     tagline:"Customer success-focused community platform (formerly inSided)",
     uxApproach:[{type:"forum",label:"Traditional Forum"},{type:"feed",label:"Product Updates Feed"}],
     pricing:"Custom (3 tiers: Professional, Business, Enterprise)",target:"Mid-Market / Enterprise",
-    verdict:"Rising fast. Strong product momentum and analyst recognition",verdictType:"rising",website:"https://www.gainsight.com/customer-communities/",
+    verdict:"Rising fast. Strong product momentum and analyst recognition",verdictType:"rising",momentum:"rapid-rising",website:"https://www.gainsight.com/customer-communities/",
     featureCompleteness:8,easeOfUse:7.5,qualityOfFeatures:8,integrations:8.5,dataPrivacySecurity:8,servicesSupport:8.5,reportsAnalytics:8,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, product updates hub, gamification, events. No native mobile app or blogs.",
@@ -103,7 +103,7 @@ const platforms = [
     tagline:"Proven B2B community platform for support-driven engagement",
     uxApproach:[{type:"forum",label:"Traditional Forum"},{type:"hybrid",label:"Q&A Hybrid"}],
     pricing:"Custom (3 tiers: Corporate, Enterprise, Enterprise Plus)",target:"Mid-Market / Enterprise",
-    verdict:"Solid and reliable. Steady performer in B2B support communities",verdictType:"steady",website:"https://www.higherlogic.com/vanilla/",
+    verdict:"Solid and reliable. Steady performer in B2B support communities",verdictType:"steady",momentum:"rapid-rising",website:"https://www.higherlogic.com/vanilla/",
     featureCompleteness:7,easeOfUse:7.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7.5,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, gamification. No blogs, no events, no mobile app. Focused but not broad.",
@@ -153,7 +153,7 @@ const platforms = [
     tagline:"CRM-native community for organisations deep in the Salesforce ecosystem",
     uxApproach:[{type:"hybrid",label:"Configurable (Forum/Portal/Feed)"}],
     pricing:"Per-login ($2-$15) or per-member ($5-$35/mo) by license type",target:"Enterprise",
-    verdict:"Stagnating. Feature-rich on paper but community development has stalled — quality lags behind dedicated platforms",verdictType:"declining",website:"https://www.salesforce.com/products/experience-cloud/",
+    verdict:"Stagnating. Feature-rich on paper but community development has stalled — quality lags behind dedicated platforms",verdictType:"declining",momentum:"declining",website:"https://www.salesforce.com/products/experience-cloud/",
     featureCompleteness:9,easeOfUse:5,qualityOfFeatures:5.5,integrations:9.5,dataPrivacySecurity:9,servicesSupport:7,reportsAnalytics:8.5,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, gamification, events, mobile app, blogs via CMS. Can do almost anything — with effort.",
@@ -202,7 +202,7 @@ const platforms = [
     tagline:"Enterprise community with strong moderation and CX suite integration",
     uxApproach:[{type:"forum",label:"Traditional Forum"}],
     pricing:"Custom enterprise quotes only",target:"Enterprise",
-    verdict:"Declining momentum. Falling behind on innovation and market presence",verdictType:"declining",website:"https://www.verint.com/engagement-channels/communities/",
+    verdict:"Declining momentum. Falling behind on innovation and market presence",verdictType:"declining",momentum:"steady",website:"https://www.verint.com/engagement-channels/communities/",
     featureCompleteness:8.5,easeOfUse:6,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:8.5,servicesSupport:7.5,reportsAnalytics:8,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, blogs, gamification, mobile app. No native events. Feature-rich but aging.",
@@ -250,7 +250,7 @@ const platforms = [
     tagline:"Modern, API-first community with flexible content types and feed-style UX",
     uxApproach:[{type:"feed",label:"Social Feed / Wall"}],
     pricing:"From $399/mo (Starter) to $1,500/mo (Growth); Premium custom",target:"SMB / Mid-Market",
-    verdict:"Watch this space. Modern approach but needs to prove enterprise readiness",verdictType:"watch",website:"https://www.bettermode.com",
+    verdict:"Watch this space. Modern approach but needs to prove enterprise readiness",verdictType:"watch",momentum:"rising",website:"https://www.bettermode.com",
     featureCompleteness:7.5,easeOfUse:8.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:7,servicesSupport:7,reportsAnalytics:7,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, blogs, events, polls, gamification. No mobile app. Flexible content types (podcasts, jobs, reviews).",
@@ -298,7 +298,7 @@ const platforms = [
     tagline:"Community events platform expanding into all-in-one community management",
     uxApproach:[{type:"events",label:"Events-First"},{type:"feed",label:"Community Hub Feed"}],
     pricing:"Custom enterprise pricing (estimated mid-five figures/yr)",target:"Mid-Market / Enterprise",
-    verdict:"Rising in events. Still proving itself as a full community platform",verdictType:"rising",website:"https://www.bevy.com",
+    verdict:"Rising in events. Still proving itself as a full community platform",verdictType:"rising",momentum:"rising",website:"https://www.bevy.com",
     featureCompleteness:5.5,easeOfUse:7,qualityOfFeatures:7.5,integrations:7.5,dataPrivacySecurity:7.5,servicesSupport:8,reportsAnalytics:7.5,
     scoreExplainers:{
       featureCompleteness:"Events are comprehensive. Forums and Q&A are partial. No ideation, KB, gamification, or mobile app. Events-first, not feature-broad.",
@@ -346,7 +346,7 @@ const platforms = [
     tagline:"Alumni and membership community platform expanding into enterprise",
     uxApproach:[{type:"hybrid",label:"Member Directory + Feed"},{type:"events",label:"Events-Centric"}],
     pricing:"Custom (~$5,000 - $30,000+/yr based on members)",target:"Mid-Market / Enterprise",
-    verdict:"Strong in its niche. Best choice for alumni and membership orgs",verdictType:"steady",website:"https://www.hivebrite.com",
+    verdict:"Strong in its niche. Best choice for alumni and membership orgs",verdictType:"steady",momentum:"steady",website:"https://www.hivebrite.com",
     featureCompleteness:7.5,easeOfUse:7.5,qualityOfFeatures:7.5,integrations:6.5,dataPrivacySecurity:8,servicesSupport:7,reportsAnalytics:7,
     scoreExplainers:{
       featureCompleteness:"Forums, events, member directory, job board, mentoring, fundraising, mobile app. No Q&A, ideation, or gamification. Membership-focused breadth.",
@@ -395,7 +395,7 @@ const platforms = [
     tagline:"The most popular open-source forum platform, used by developer and tech communities worldwide",
     uxApproach:[{type:"forum",label:"Modern Forum"},{type:"hybrid",label:"Chat Hybrid"}],
     pricing:"Free (self-hosted) or $50-$300/mo hosted; Enterprise from $8,000/yr",target:"All sizes",
-    verdict:"Rising. The open-source leader with real AI momentum",verdictType:"rising",website:"https://www.discourse.org",
+    verdict:"Rising. The open-source leader with real AI momentum",verdictType:"rising",momentum:"steady",website:"https://www.discourse.org",
     featureCompleteness:7,easeOfUse:7,qualityOfFeatures:8.5,integrations:7,dataPrivacySecurity:8,servicesSupport:6.5,reportsAnalytics:6.5,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A (plugin), chat channels, gamification, wiki-mode KB. No native events, ideation, or blogs. Plugin ecosystem fills some gaps.",
@@ -444,7 +444,7 @@ const platforms = [
     tagline:"Lightweight, elegant open-source forum for simple, fast community discussions",
     uxApproach:[{type:"forum",label:"Modern Minimal Forum"}],
     pricing:"Free (self-hosted only)",target:"SMB / Developer communities",
-    verdict:"Niche option. Best for small communities wanting simplicity over features",verdictType:"watch",website:"https://flarum.org",
+    verdict:"Niche option. Best for small communities wanting simplicity over features",verdictType:"watch",momentum:"declining",website:"https://flarum.org",
     featureCompleteness:3.5,easeOfUse:8,qualityOfFeatures:7,integrations:5,dataPrivacySecurity:7,servicesSupport:4,reportsAnalytics:4.5,
     scoreExplainers:{
       featureCompleteness:"Forums only. No Q&A, KB, ideation, events, blogs, gamification, or mobile app. Deliberately minimal — add via extensions.",
@@ -492,7 +492,7 @@ const platforms = [
     tagline:"All-in-one community, courses, and monetisation platform for creators and brands",
     uxApproach:[{type:"feed",label:"Social Feed"},{type:"hybrid",label:"Courses + Chat"}],
     pricing:"From $49/mo (Basic) to $219/mo (Business); Enterprise custom",target:"Creators / SMB / Mid-Market",
-    verdict:"Strong in the creator space. Increasingly competing for SaaS communities too",verdictType:"rising",website:"https://circle.so",
+    verdict:"Strong in the creator space. Increasingly competing for SaaS communities too",verdictType:"rising",momentum:"rapid-rising",website:"https://circle.so",
     featureCompleteness:8,easeOfUse:9,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:6.5,servicesSupport:7,reportsAnalytics:6.5,
     scoreExplainers:{
       featureCompleteness:"Forums (feed-style), chat, courses, events, member directory, monetisation, mobile app. No ideation or structured KB. Strong breadth for creators.",
@@ -541,7 +541,7 @@ const platforms = [
     tagline:"Community-powered courses and memberships with branded mobile apps and AI",
     uxApproach:[{type:"feed",label:"Social Feed"},{type:"hybrid",label:"Courses + Events"}],
     pricing:"From $41/mo (Community) to $179/mo (Business); Pro from ~$3,000/mo",target:"Creators / Educators / SMB",
-    verdict:"Established in creator space. Mighty AI is a genuine differentiator",verdictType:"steady",website:"https://www.mightynetworks.com",
+    verdict:"Established in creator space. Mighty AI is a genuine differentiator",verdictType:"steady",momentum:"steady",website:"https://www.mightynetworks.com",
     featureCompleteness:8,easeOfUse:9,qualityOfFeatures:7,integrations:5.5,dataPrivacySecurity:6,servicesSupport:6.5,reportsAnalytics:5.5,
     scoreExplainers:{
       featureCompleteness:"Forums (feed-style), courses, events, live streaming, mobile app (branded on Pro), monetisation, member directory. No ideation, KB, or structured Q&A.",
@@ -590,7 +590,7 @@ const platforms = [
     tagline:"All-in-one community platform unifying events, content, courses, and discussions in a single white-labeled experience",
     uxApproach:[{type:"feed",label:"Feed + Forums"},{type:"events",label:"Events-Native"}],
     pricing:"Custom quotes only (Pre-Seed stage, likely lower than established enterprise vendors). Courses as paid add-on.",target:"Mid-Market / Enterprise (associations, B2B communities)",
-    verdict:"Compelling event-centric proposition. Very early stage — watch the trajectory",verdictType:"watch",website:"https://www.gradual.com",
+    verdict:"Compelling event-centric proposition. Very early stage — watch the trajectory",verdictType:"watch",momentum:"rising",website:"https://www.gradual.com",
     featureCompleteness:6.5,easeOfUse:8.5,qualityOfFeatures:7,integrations:5.5,dataPrivacySecurity:8,servicesSupport:7,reportsAnalytics:6.5,
     scoreExplainers:{
       featureCompleteness:"Forums, events (meetings/webinars/conferences), blogs/content library, courses (paid add-on), mobile app, clubs/chapters. No Q&A, ideation, KB, or gamification.",
@@ -639,7 +639,7 @@ const platforms = [
     tagline:"Association engagement suite combining community, email automation, and deep AMS integrations",
     uxApproach:[{type:"forum",label:"Forum + Portal"},{type:"hybrid",label:"Member Portal"}],
     pricing:"Custom (~$20,000 - $100,000+/yr based on modules and member count)",target:"Associations / Nonprofits / Membership Orgs",
-    verdict:"Dominant in associations. The AMS integration depth is unmatched",verdictType:"steady",website:"https://www.higherlogic.com/thrive/",
+    verdict:"Dominant in associations. The AMS integration depth is unmatched",verdictType:"steady",momentum:"steady",website:"https://www.higherlogic.com/thrive/",
     featureCompleteness:7.5,easeOfUse:6,qualityOfFeatures:7,integrations:9,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7.5,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, resource libraries, member directory, groups/chapters, email automation. No mobile app, events, or blogs. Association-focused breadth.",

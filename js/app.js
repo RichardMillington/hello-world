@@ -27,6 +27,19 @@ function verdictLine(p){
   return`<div class="verdict-line"><span class="verdict-dot ${p.verdictType}"></span>${p.verdict}</div>`;
 }
 
+const momentumLabels={
+  'rapid-rising':'Rapidly Rising',
+  'rising':'Rising',
+  'steady':'Stable',
+  'declining':'Declining',
+  'rapid-declining':'Rapidly Declining'
+};
+function momentumTag(p){
+  const m=p.momentum||'steady';
+  const label=momentumLabels[m]||'Stable';
+  return`<span class="momentum-tag momentum-${m}">${label}</span>`;
+}
+
 // --- FILTER PILLS WITH COUNTS ---
 function renderPills(){
   const cats=[
@@ -193,7 +206,7 @@ function renderOverview(){
       ${p.website?`<div class="platform-thumb"><img src="https://image.thum.io/get/width/600/crop/400/${p.website}" alt="${p.name}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`:''}
       <h3>${p.name}</h3>
       <div class="tagline">${p.tagline}</div>
-      <div class="card-cat">${catBadge(p)} ${uxBadges(p.uxApproach)}</div>
+      <div class="card-cat">${catBadge(p)} ${momentumTag(p)} ${uxBadges(p.uxApproach)}</div>
       ${bars}
       <div class="overall"><span class="olbl">Weighted Score</span><span class="oval">${p.ws} <span style="font-size:.7rem;font-weight:400;color:var(--text-dim)">/ 10</span></span></div>
       ${verdictLine(p)}
@@ -340,7 +353,7 @@ function showProfile(id){
   pp.innerHTML=`
     <button class="profile-back" onclick="hideProfile()">&larr; Back to all platforms</button>
     <div class="profile-hero">
-      <div style="margin-bottom:.5rem">${catBadge(p)} ${uxBadges(p.uxApproach)}</div>
+      <div style="margin-bottom:.5rem">${catBadge(p)} ${momentumTag(p)} ${uxBadges(p.uxApproach)}</div>
       <h2>${p.name}</h2>
       <div class="p-tagline">${p.tagline}</div>
       <div class="p-meta"><strong>Pricing:</strong> ${p.pricing} &middot; <strong>Target:</strong> ${p.target}${p.website?` &middot; <a href="${p.website}" target="_blank" rel="noopener">${p.website.replace('https://','').replace('www.','').replace(/\/$/,'')}</a>`:''}</div>
