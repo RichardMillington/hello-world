@@ -5,7 +5,7 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Traditional Forum"}],
     pricing:"~$50,000+/yr (custom quotes only)",target:"Enterprise",
     verdict:"Established leader, but watch post-acquisition direction",verdictType:"steady",website:"https://khoros.com",
-    easeOfUse:6.5,qualityOfFeatures:8.5,integrations:8,dataPrivacySecurity:9,servicesSupport:8,reportsAnalytics:8.5,
+    easeOfUse:5,qualityOfFeatures:7.2,integrations:7,dataPrivacySecurity:8,servicesSupport:2,reportsAnalytics:6,
     scoreExplainers:{
       easeOfUse:"Complex enterprise setup. Requires implementation partner and training. Not self-serve.",
       qualityOfFeatures:"Best-in-class forum, moderation, and multi-language. Deep and polished across the board.",
@@ -53,7 +53,7 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Traditional Forum"},{type:"feed",label:"Product Updates Feed"}],
     pricing:"Custom (3 tiers: Professional, Business, Enterprise)",target:"Mid-Market / Enterprise",
     verdict:"Rising fast. Strong product momentum and analyst recognition",verdictType:"rising",website:"https://www.gainsight.com/customer-communities/",
-    easeOfUse:7.5,qualityOfFeatures:8,integrations:8.5,dataPrivacySecurity:8,servicesSupport:8.5,reportsAnalytics:8,
+    easeOfUse:6,qualityOfFeatures:6.4,integrations:8,dataPrivacySecurity:8,servicesSupport:7,reportsAnalytics:4,
     scoreExplainers:{
       easeOfUse:"Cleaner setup than legacy platforms. Admin dashboard is intuitive. Docs are solid.",
       qualityOfFeatures:"Strong forum + ideation + product updates hub. AI moderation agent is production-ready.",
@@ -102,7 +102,7 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Traditional Forum"},{type:"hybrid",label:"Q&A Hybrid"}],
     pricing:"Custom (3 tiers: Corporate, Enterprise, Enterprise Plus)",target:"Mid-Market / Enterprise",
     verdict:"Solid and reliable. Steady performer in B2B support communities",verdictType:"steady",website:"https://www.higherlogic.com/vanilla/",
-    easeOfUse:7.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7.5,
+    easeOfUse:7,qualityOfFeatures:6.6,integrations:6,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:6,
     scoreExplainers:{
       easeOfUse:"Clean admin interface. Widget Builder needs dev skills but core setup is manageable.",
       qualityOfFeatures:"Solid forums + distinct Q&A format. AI Search with RAG is well-executed. No blogs or events.",
@@ -151,7 +151,7 @@ const platforms = [
     uxApproach:[{type:"hybrid",label:"Configurable (Forum/Portal/Feed)"}],
     pricing:"Per-login ($2-$15) or per-member ($5-$35/mo) by license type",target:"Enterprise",
     verdict:"Dominant if you're in the ecosystem. Overkill if you're not",verdictType:"steady",website:"https://www.salesforce.com/products/experience-cloud/",
-    easeOfUse:5,qualityOfFeatures:7.5,integrations:9.5,dataPrivacySecurity:9,servicesSupport:7,reportsAnalytics:8.5,
+    easeOfUse:3,qualityOfFeatures:5.4,integrations:9,dataPrivacySecurity:10,servicesSupport:3,reportsAnalytics:2,
     scoreExplainers:{
       easeOfUse:"The most complex platform here. Requires SI partner for implementation. Steep learning curve.",
       qualityOfFeatures:"Configurable but community-specific UX lags dedicated vendors. Jack of all trades.",
@@ -199,7 +199,7 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Traditional Forum"}],
     pricing:"Custom enterprise quotes only",target:"Enterprise",
     verdict:"Declining momentum. Falling behind on innovation and market presence",verdictType:"declining",website:"https://www.verint.com/engagement-channels/communities/",
-    easeOfUse:6,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:8.5,servicesSupport:7.5,reportsAnalytics:8,
+    easeOfUse:3,qualityOfFeatures:5.4,integrations:6,dataPrivacySecurity:10,servicesSupport:8,reportsAnalytics:6,
     scoreExplainers:{
       easeOfUse:"Enterprise setup with older UX patterns. Functional but dated interface requires adjustment.",
       qualityOfFeatures:"Mature forum + KB. Solid but not innovating. Telligent heritage shows in the design.",
@@ -388,7 +388,7 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Modern Forum"},{type:"hybrid",label:"Chat Hybrid"}],
     pricing:"Free (self-hosted) or $50-$300/mo hosted; Enterprise from $8,000/yr",target:"All sizes",
     verdict:"Rising. The open-source leader with real AI momentum",verdictType:"rising",website:"https://www.discourse.org",
-    easeOfUse:7,qualityOfFeatures:8.5,integrations:7,dataPrivacySecurity:8,servicesSupport:6.5,reportsAnalytics:6.5,
+    easeOfUse:5,qualityOfFeatures:5.8,integrations:6,dataPrivacySecurity:8,servicesSupport:6,reportsAnalytics:8,
     scoreExplainers:{
       easeOfUse:"Self-hosted requires sysadmin skills. Hosted version is straightforward. Plugin setup can be complex.",
       qualityOfFeatures:"Most modern forum UX in open source. Trust levels, real-time updates, chat channels, AI features — polished.",
