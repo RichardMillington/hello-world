@@ -431,10 +431,28 @@ function hideProfile(){
 }
 
 // --- COMPARE ---
+function renderComparePicker(){
+  const picker=document.getElementById("comparePlatformPicker");
+  if(!picker)return;
+  picker.innerHTML=`<div class="picker-hint">Select 2&ndash;4 platforms to compare:</div><div class="platform-picker">${platforms.map(p=>{
+    const picked=selected.has(p.id);
+    return`<button class="picker-chip ${picked?'picked':''}" onclick="toggleCompareChip('${p.id}')">${p.name}</button>`;
+  }).join("")}</div>`;
+}
+
+function toggleCompareChip(id){
+  if(selected.has(id)){selected.delete(id)}
+  else{if(selected.size>=4)return;selected.add(id)}
+  renderComparePicker();
+  renderCompare();
+  updateCompareBar();
+}
+
 function renderCompare(){
+  renderComparePicker();
   const ct=document.getElementById("compareContent");
   const summaryDiv=document.getElementById("compareSummary");
-  if(selected.size<2){ct.innerHTML='<div class="empty-cmp"><h3>Select platforms to compare</h3><p>Go to All Platforms and select 2&ndash;4 platform cards using the &ldquo;+ Compare&rdquo; button.</p></div>';summaryDiv.innerHTML='';return}
+  if(selected.size<2){ct.innerHTML='<div class="empty-cmp"><h3>Select at least 2 platforms above</h3><p>Click platform names to add or remove them from the comparison.</p></div>';summaryDiv.innerHTML='';return}
   const picks=platforms.filter(p=>selected.has(p.id));
 
   // AI comparison summary
