@@ -109,6 +109,16 @@ function buildPlatformSummary(){
   }).join("\n\n");
 }
 
+// Build survey feedback summary for the prompt
+function buildSurveySummary(){
+  if(typeof surveyData==='undefined') return '';
+  return Object.entries(surveyData).map(([id,d])=>{
+    const scores=Object.entries(d.scores).map(([k,v])=>`${k}: ${v}/5`).join(", ");
+    const topComments=d.feedback.slice(0,5).map((c,i)=>`  "${c.substring(0,200)}"`).join("\n");
+    return`**${d.name}** (${d.n} respondents, overall: ${d.overall}/10)\nScores: ${scores}\nSample user feedback:\n${topComments}`;
+  }).join("\n\n");
+}
+
 // Set this to your deployed Cloudflare Worker URL to enable proxy mode (no API key needed for visitors)
 const AI_PROXY_URL = 'https://feverbee-ai-recommend.richard-708.workers.dev/'; // e.g. 'https://feverbee-ai-recommend.your-account.workers.dev/recommend'
 
@@ -124,6 +134,7 @@ async function runAiAnalysis(){
   btn.disabled=true;
   resultsDiv.innerHTML='<div class="ai-loading"><span class="spinner"></span>Analysing your requirements against 10 community platforms...</div>';
 
+  const surveySummary=buildSurveySummary();
   const systemPrompt=`You are a FeverBee community platform analyst. You have deep knowledge of enterprise community platforms. Given a user's requirements, recommend the best platforms from the following options and explain trade-offs.
 
 Here are the 10 platforms in our comparison tool:
@@ -131,6 +142,11 @@ ${buildPlatformSummary()}
 
 The 6 evaluation criteria are: Ease of Setup & Use, Quality of Features, Integrations, Data Privacy & Security, Services & Support, Reports & Analytics. Each is scored 0-10.
 
+${surveySummary ? `You also have access to real user feedback from FeverBee's 2024 Enterprise Community Platform Survey (166 respondents). Use this data to ground your recommendations in real-world user experiences. When relevant, reference specific feedback themes (without quoting exact comments verbatim). Here is the survey data:
+
+${surveySummary}
+
+` : ''}
 Respond in this exact JSON format:
 {
   "recommendations": [
