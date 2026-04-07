@@ -725,11 +725,12 @@ const differentiators = [
      {id:"suite",label:"Part of a larger platform suite",detail:"Deeper integration with CRM, support, marketing tools",tags:["Salesforce","Gainsight CC","Verint","Khoros","Higher Logic Thrive"]}
    ]},
   {id:"ai",title:"AI Capabilities",
-   desc:"Do you need AI-powered search, moderation, content generation, or analytics?",
+   desc:"Where is each platform on the enterprise community AI roadmap? The maturity gap is enormous — from basic moderation to autonomous governance.",
    options:[
-     {id:"production",label:"Production AI (shipped and working)",detail:"AI moderation, search, summaries, auto-tagging in production",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Higher Logic Thrive","Salesforce","Discourse","Mighty Networks"]},
-     {id:"emerging",label:"Emerging AI (in development or beta)",detail:"AI features announced but still maturing",tags:["Bettermode","Verint","Bevy","Circle"]},
-     {id:"none",label:"No AI needed / not a priority",detail:"Happy to manage without AI features",tags:["Hivebrite","Flarum","Gradual"]}
+     {id:"advanced",label:"Advanced AI (multiple production AI features)",detail:"AI moderation + search/discovery + content summarisation + workflow automation + support/deflection agents. Multiple AI capabilities in production.",tags:["Khoros","Gainsight CC","Salesforce","Discourse"]},
+     {id:"moderate",label:"Moderate AI (1-2 production features, more piloting)",detail:"AI search or moderation in production. Content summarisation, member contribution support in pilot. Early-stage but real.",tags:["Higher Logic Vanilla","Higher Logic Thrive","Mighty Networks"]},
+     {id:"emerging",label:"Emerging AI (early features, mostly marketing)",detail:"Basic AI search or moderation launched. Most capabilities still in development or roadmap.",tags:["Bettermode","Verint","Bevy","Circle"]},
+     {id:"none",label:"No AI / not a priority",detail:"No meaningful AI capabilities. Platform relies on manual processes and traditional tools.",tags:["Hivebrite","Flarum","Gradual"]}
    ]},
   {id:"support",title:"Support & Services Model",
    desc:"What level of vendor support do you need? This varies dramatically between platforms.",
@@ -749,15 +750,14 @@ const differentiators = [
    desc:"Do you need to self-host for data sovereignty, or is cloud SaaS acceptable?",
    options:[
      {id:"selfhost",label:"Self-hosted / open source (full control)",detail:"You own and run the infrastructure. Full data sovereignty.",tags:["Discourse","Flarum"]},
-     {id:"saas",label:"SaaS / cloud-hosted (vendor managed)",detail:"Vendor handles hosting, updates, security, uptime.",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Higher Logic Thrive","Bettermode","Bevy","Hivebrite","Verint","Salesforce","Circle","Mighty Networks","Gradual"]}
+     {id:"saas",label:"SaaS / cloud-hosted (vendor managed)",detail:"Vendor handles hosting, updates, security, uptime.",tags:["Khoros","Gainsight CC","Higher Logic Vanilla","Higher Logic Thrive","Bettermode","Bevy","Hivebrite","Verint","Salesforce","Circle","Mighty Networks","Gradual","Discourse"]}
    ]},
   {id:"pricing",title:"Buying Process",
-   desc:"How quickly do you need to get started? Self-serve means today. Enterprise sales means months.",
+   desc:"How quickly do you need to get started? Self-serve means today. Enterprise sales can take months.",
    options:[
      {id:"free",label:"Free / open source",detail:"Download and run today. No vendor relationship needed.",tags:["Discourse (self-hosted)","Flarum"]},
      {id:"selfserve",label:"Self-serve (sign up with a credit card)",detail:"Published pricing. Start in minutes/hours.",tags:["Bettermode","Discourse (hosted)","Circle","Mighty Networks"]},
-     {id:"quote",label:"Quote-based (talk to sales)",detail:"Customised pricing. Days to weeks to get started.",tags:["Gainsight CC","Higher Logic Vanilla","Higher Logic Thrive"]},
-     {id:"enterprise",label:"Enterprise sales process",detail:"RFP, procurement, legal. Weeks to months.",tags:["Khoros","Salesforce","Verint","Bevy","Hivebrite","Gradual"]}
+     {id:"enterprise",label:"Sales-led (quote or enterprise process)",detail:"Talk to sales for pricing. Days to months depending on procurement.",tags:["Khoros","Salesforce","Verint","Bevy","Hivebrite","Gradual","Gainsight CC","Higher Logic Vanilla","Higher Logic Thrive"]}
    ]}
 ];
 const weightHints={
