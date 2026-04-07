@@ -154,7 +154,7 @@ const platforms = [
     uxApproach:[{type:"hybrid",label:"Configurable (Forum/Portal/Feed)"}],
     pricing:"Per-login ($2-$15) or per-member ($5-$35/mo) by license type",target:"Enterprise",
     verdict:"Stagnating. Feature-rich on paper but community development has stalled — quality lags behind dedicated platforms",verdictType:"declining",momentum:"declining",website:"https://www.salesforce.com/products/experience-cloud/",
-    featureCompleteness:9,easeOfUse:5,qualityOfFeatures:5.5,integrations:9.5,dataPrivacySecurity:9,servicesSupport:7,reportsAnalytics:8.5,
+    featureCompleteness:9,easeOfUse:5,qualityOfFeatures:4.5,integrations:7.5,dataPrivacySecurity:9.5,servicesSupport:7,reportsAnalytics:7,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, gamification, events, mobile app, blogs via CMS. Can do almost anything — with effort.",
       easeOfUse:"The most complex platform here. Requires SI partner for implementation. Steep learning curve.",
@@ -251,7 +251,7 @@ const platforms = [
     uxApproach:[{type:"feed",label:"Social Feed / Wall"}],
     pricing:"From $399/mo (Starter) to $1,500/mo (Growth); Premium custom",target:"SMB / Mid-Market",
     verdict:"Watch this space. Modern approach but needs to prove enterprise readiness",verdictType:"watch",momentum:"rising",website:"https://www.bettermode.com",
-    featureCompleteness:7.5,easeOfUse:8.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:7,servicesSupport:7,reportsAnalytics:7,
+    featureCompleteness:7,easeOfUse:7,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:7,servicesSupport:7,reportsAnalytics:7,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, blogs, events, polls, gamification. No mobile app. Flexible content types (podcasts, jobs, reviews).",
       easeOfUse:"Most accessible setup. Design Studio is no-code. Self-serve from $399/mo — live in hours.",
@@ -299,7 +299,7 @@ const platforms = [
     uxApproach:[{type:"events",label:"Events-First"},{type:"feed",label:"Community Hub Feed"}],
     pricing:"Custom enterprise pricing (estimated mid-five figures/yr)",target:"Mid-Market / Enterprise",
     verdict:"Rising in events. Still proving itself as a full community platform",verdictType:"rising",momentum:"rising",website:"https://www.bevy.com",
-    featureCompleteness:5.5,easeOfUse:7,qualityOfFeatures:7.5,integrations:7.5,dataPrivacySecurity:7.5,servicesSupport:8,reportsAnalytics:7.5,
+    featureCompleteness:6.5,easeOfUse:7,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:7.5,servicesSupport:8,reportsAnalytics:7.5,
     scoreExplainers:{
       featureCompleteness:"Events are comprehensive. Forums and Q&A are partial. No ideation, KB, gamification, or mobile app. Events-first, not feature-broad.",
       easeOfUse:"Event setup is straightforward. Community hub features are newer and less documented.",
@@ -347,7 +347,7 @@ const platforms = [
     uxApproach:[{type:"hybrid",label:"Member Directory + Feed"},{type:"events",label:"Events-Centric"}],
     pricing:"Custom (~$5,000 - $30,000+/yr based on members)",target:"Mid-Market / Enterprise",
     verdict:"Strong in its niche. Best choice for alumni and membership orgs",verdictType:"steady",momentum:"steady",website:"https://www.hivebrite.com",
-    featureCompleteness:7.5,easeOfUse:7.5,qualityOfFeatures:7.5,integrations:6.5,dataPrivacySecurity:8,servicesSupport:7,reportsAnalytics:7,
+    featureCompleteness:7,easeOfUse:7.5,qualityOfFeatures:7.5,integrations:6,dataPrivacySecurity:8,servicesSupport:6.5,reportsAnalytics:7,
     scoreExplainers:{
       featureCompleteness:"Forums, events, member directory, job board, mentoring, fundraising, mobile app. No Q&A, ideation, or gamification. Membership-focused breadth.",
       easeOfUse:"White-label setup needs configuration but well-documented. Admin tools are purpose-built for membership orgs.",
@@ -493,7 +493,7 @@ const platforms = [
     uxApproach:[{type:"feed",label:"Social Feed"},{type:"hybrid",label:"Courses + Chat"}],
     pricing:"From $49/mo (Basic) to $219/mo (Business); Enterprise custom",target:"Creators / SMB / Mid-Market",
     verdict:"Strong in the creator space. Increasingly competing for SaaS communities too",verdictType:"rising",momentum:"rapid-rising",website:"https://circle.so",
-    featureCompleteness:8,easeOfUse:9,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:6.5,servicesSupport:7,reportsAnalytics:6.5,
+    featureCompleteness:6,easeOfUse:9.5,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:6.5,servicesSupport:6,reportsAnalytics:6.5,
     scoreExplainers:{
       featureCompleteness:"Forums (feed-style), chat, courses, events, member directory, monetisation, mobile app. No ideation or structured KB. Strong breadth for creators.",
       easeOfUse:"One of the easiest platforms to set up and manage. Drag-and-drop Spaces architecture. Non-technical admins can run everything day-to-day without developer support.",
