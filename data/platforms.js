@@ -4,16 +4,16 @@ const platforms = [
     tagline:"Full-featured enterprise community with social customer care",
     uxApproach:[{type:"forum",label:"Traditional Forum"}],
     pricing:"~$50,000+/yr (custom quotes only)",target:"Enterprise",
-    verdict:"Established leader, but watch post-acquisition direction",verdictType:"steady",website:"https://khoros.com",
-    featureCompleteness:9,easeOfUse:6.5,qualityOfFeatures:8.5,integrations:8,dataPrivacySecurity:9,servicesSupport:8,reportsAnalytics:8.5,
+    verdict:"Declining. Post-acquisition quality and support have deteriorated significantly",verdictType:"declining",website:"https://khoros.com",
+    featureCompleteness:9,easeOfUse:6.5,qualityOfFeatures:6,integrations:8,dataPrivacySecurity:9,servicesSupport:5.5,reportsAnalytics:6,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, blogs, gamification, mobile app, 37+ languages. Only missing native events.",
       easeOfUse:"Complex enterprise setup. Requires implementation partner and training. Not self-serve.",
-      qualityOfFeatures:"Best-in-class forum, moderation, and multi-language. Deep and polished across the board.",
+      qualityOfFeatures:"Feature set is broad but quality has declined post-acquisition. New bugs, reliability issues, and broken functionality reported by customers.",
       integrations:"Premium Salesforce connector is excellent. Adobe, Google Analytics 360. Fewer out-of-box options than Salesforce.",
       dataPrivacySecurity:"Enterprise-grade. SOC 2, GDPR, robust access controls. Trusted by Samsung, HP, Spotify.",
-      servicesSupport:"Dedicated CSM and implementation support. Post-acquisition service levels being watched.",
-      reportsAnalytics:"Strong analytics with intent, sentiment, and emotion classification. Case deflection tracking."
+      servicesSupport:"Post-acquisition support has deteriorated significantly. Staff quality has dropped. Response times and resolution rates are worse than pre-acquisition levels.",
+      reportsAnalytics:"Analytics and data frequently broken since the acquisition. Dashboards unreliable. Was strong — now a liability."
     },
     execution:{
       "Discussions":"Classic threaded forum. Topic-based boards with categories and sub-categories. Deep threading suits long technical support conversations. Content is highly searchable and persistent.",
@@ -44,9 +44,9 @@ const platforms = [
       {date:"Q3 2025",text:"AI Community Orchestration: AI assists with content generation, moderation, sentiment analysis"},
       {date:"Jul 2025",text:"Strategic shift from search-driven support to AI-powered community ecosystems"}
     ],
-    strengths:["Most comprehensive feature set for large enterprises","37+ language support out of the box","Deep Salesforce bi-directional connector","Strong AI moderation and spam filtering","Proven at massive scale (Samsung, Spotify)"],
-    considerations:["Premium pricing - starts around $50k/yr","No native events capability","No self-hosted option","IgniteTech acquisition may bring strategic changes","90-day auto-renewal opt-out clause in contracts"],
-    editorial:"Khoros remains the most feature-complete enterprise community platform on the market. If you're a large organisation with complex needs, multilingual requirements, and a big budget, it's hard to beat. The Salesforce connector is genuinely best-in-class. But the IgniteTech acquisition introduces uncertainty — we're watching closely to see whether the new ownership accelerates innovation or strips the product for efficiency. The pricing also puts it out of reach for most mid-market buyers. If you can afford it and need the depth, it delivers. If you're not a Fortune 500, look elsewhere."
+    strengths:["Most comprehensive feature set for large enterprises","37+ language support out of the box","Deep Salesforce bi-directional connector","Proven at massive scale (Samsung, Spotify)"],
+    considerations:["Quality has declined significantly since IgniteTech acquisition","New bugs and reliability issues reported by customers","Data and analytics frequently broken","Support quality and staff have deteriorated","Premium pricing ($50k+/yr) increasingly hard to justify given current state","90-day auto-renewal opt-out clause in contracts","No native events capability"],
+    editorial:"We no longer recommend Khoros for new implementations. Since the IgniteTech acquisition, the platform has deteriorated significantly. Customers report new bugs, reliability issues, and frequently broken analytics. The quality of support staff has dropped noticeably — response times are longer and resolutions less competent. The feature set is still broad on paper, and the Salesforce connector remains excellent, but the day-to-day experience of running a community on Khoros has gotten materially worse. If you're already on Khoros, watch your renewal carefully and evaluate alternatives. If you're choosing a new platform, there are better options at every price point. The 37+ language support and scale capabilities are real strengths, but they don't compensate for a product that's heading in the wrong direction."
   },
   {
     id:"gainsight",name:"Gainsight Customer Communities",category:"established",catLabel:"Established Platform",
@@ -153,12 +153,12 @@ const platforms = [
     tagline:"CRM-native community for organisations deep in the Salesforce ecosystem",
     uxApproach:[{type:"hybrid",label:"Configurable (Forum/Portal/Feed)"}],
     pricing:"Per-login ($2-$15) or per-member ($5-$35/mo) by license type",target:"Enterprise",
-    verdict:"Dominant if you're in the ecosystem. Overkill if you're not",verdictType:"steady",website:"https://www.salesforce.com/products/experience-cloud/",
-    featureCompleteness:9,easeOfUse:5,qualityOfFeatures:7.5,integrations:9.5,dataPrivacySecurity:9,servicesSupport:7,reportsAnalytics:8.5,
+    verdict:"Stagnating. Feature-rich on paper but community development has stalled — quality lags behind dedicated platforms",verdictType:"declining",website:"https://www.salesforce.com/products/experience-cloud/",
+    featureCompleteness:9,easeOfUse:5,qualityOfFeatures:5.5,integrations:9.5,dataPrivacySecurity:9,servicesSupport:7,reportsAnalytics:8.5,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, gamification, events, mobile app, blogs via CMS. Can do almost anything — with effort.",
       easeOfUse:"The most complex platform here. Requires SI partner for implementation. Steep learning curve.",
-      qualityOfFeatures:"Configurable but community-specific UX lags dedicated vendors. Jack of all trades.",
+      qualityOfFeatures:"Salesforce is not actively developing the community platform. Features exist but quality is far behind dedicated vendors. UX feels neglected.",
       integrations:"Unmatched. Native access to Sales Cloud, Service Cloud, Marketing Cloud, Data Cloud, AppExchange.",
       dataPrivacySecurity:"Enterprise-grade. SOC 2, HIPAA-capable, FedRAMP. The gold standard for regulated industries.",
       servicesSupport:"Massive ecosystem but support can feel impersonal. You often deal with partners, not Salesforce.",
@@ -194,8 +194,8 @@ const platforms = [
       {date:"2025-26",text:"Agentforce live with 12,000+ customers - AI agents for community workflows at $2/conversation"}
     ],
     strengths:["Unmatched integration depth within Salesforce ecosystem","Flexible licensing (per-login or per-member)","Native CRM data access without middleware","Agentforce AI agents for workflow automation","Experience Builder for no-code page creation"],
-    considerations:["Requires deep Salesforce ecosystem commitment","Community is one module in a massive platform - complexity overhead","Community-specific UX lags dedicated vendors","Implementation typically requires SI partners","Services and support can feel impersonal"],
-    editorial:"Salesforce Experience Cloud is the most polarising platform in this comparison. If your organisation lives in Salesforce, the native data integration is transformative — community interactions flow into cases, opportunities, and reports without any middleware. But the total cost of ownership is brutal: licensing, implementation (you'll almost certainly need an SI partner), and ongoing maintenance add up fast. The community-specific UX also lags dedicated vendors — it feels like a CRM that happens to have a community module, because that's exactly what it is. We recommend it only when deep CRM integration is a non-negotiable requirement. Otherwise, a dedicated platform will serve your community members better."
+    considerations:["Salesforce is not actively investing in community platform development","Feature quality is far behind dedicated community vendors","Requires deep Salesforce ecosystem commitment","Community is one module in a massive platform — complexity overhead","Implementation typically requires SI partners","Total cost of ownership is brutal (licensing + SI + maintenance)","Services and support can feel impersonal"],
+    editorial:"Salesforce Experience Cloud has all the features on paper, but Salesforce is not meaningfully investing in community platform development. The features exist — forums, Q&A, ideation, KB — but the quality and UX are far behind what dedicated community vendors deliver. It feels like a product that was built years ago and hasn't been seriously updated since. The integration story remains the one genuine strength: if your organisation lives in Salesforce, the native data access is transformative. But you're paying enterprise prices for a community experience that lags behind platforms costing a fraction of the price. The total cost of ownership (licensing + SI partner + maintenance) makes it the most expensive option in this comparison by a wide margin. We only recommend Salesforce Experience Cloud when deep, bidirectional CRM integration is an absolute non-negotiable — and even then, we encourage clients to evaluate whether Gainsight CC or Higher Logic Vanilla with a Salesforce connector might give them 80% of the integration at 20% of the cost and complexity."
   },
   {
     id:"verint",name:"Verint Community",category:"established",catLabel:"Established Platform",
@@ -493,10 +493,10 @@ const platforms = [
     uxApproach:[{type:"feed",label:"Social Feed"},{type:"hybrid",label:"Courses + Chat"}],
     pricing:"From $49/mo (Basic) to $219/mo (Business); Enterprise custom",target:"Creators / SMB / Mid-Market",
     verdict:"Strong in the creator space. Increasingly competing for SaaS communities too",verdictType:"rising",website:"https://circle.so",
-    featureCompleteness:8,easeOfUse:8.5,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:6.5,servicesSupport:7,reportsAnalytics:6.5,
+    featureCompleteness:8,easeOfUse:9,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:6.5,servicesSupport:7,reportsAnalytics:6.5,
     scoreExplainers:{
       featureCompleteness:"Forums (feed-style), chat, courses, events, member directory, monetisation, mobile app. No ideation or structured KB. Strong breadth for creators.",
-      easeOfUse:"Clean, modern setup. Spaces architecture is intuitive. Non-technical admins can manage day-to-day.",
+      easeOfUse:"One of the easiest platforms to set up and manage. Drag-and-drop Spaces architecture. Non-technical admins can run everything day-to-day without developer support.",
       qualityOfFeatures:"Community + courses + events + monetisation in one. Each is good but none is best-in-class individually.",
       integrations:"Zapier, Stripe, Zoom, Slack, Mailchimp. API on higher tiers. Headless/embed options for SaaS.",
       dataPrivacySecurity:"Adequate for creator/SMB use. SSO on higher tiers only. Less enterprise-grade than larger platforms.",
@@ -542,10 +542,10 @@ const platforms = [
     uxApproach:[{type:"feed",label:"Social Feed"},{type:"hybrid",label:"Courses + Events"}],
     pricing:"From $41/mo (Community) to $179/mo (Business); Pro from ~$3,000/mo",target:"Creators / Educators / SMB",
     verdict:"Established in creator space. Mighty AI is a genuine differentiator",verdictType:"steady",website:"https://www.mightynetworks.com",
-    featureCompleteness:8,easeOfUse:8,qualityOfFeatures:7,integrations:5.5,dataPrivacySecurity:6,servicesSupport:6.5,reportsAnalytics:5.5,
+    featureCompleteness:8,easeOfUse:9,qualityOfFeatures:7,integrations:5.5,dataPrivacySecurity:6,servicesSupport:6.5,reportsAnalytics:5.5,
     scoreExplainers:{
       featureCompleteness:"Forums (feed-style), courses, events, live streaming, mobile app (branded on Pro), monetisation, member directory. No ideation, KB, or structured Q&A.",
-      easeOfUse:"Mobile-first design is intuitive. Mighty Pro setup is more complex. Course builder is straightforward.",
+      easeOfUse:"Drag-and-drop community builder. Mobile-first design is intuitive. Course builder is straightforward. Non-technical users can set up and manage without developers.",
       qualityOfFeatures:"Community + courses + events + branded apps. Mighty AI is well-executed. Individual features are solid not exceptional.",
       integrations:"Zoom, Zapier, Stripe, Google Analytics. API only on Business tier. No deep CRM integrations.",
       dataPrivacySecurity:"Adequate for creator/SMB use. Not enterprise-grade. Limited compliance documentation.",
@@ -591,10 +591,10 @@ const platforms = [
     uxApproach:[{type:"feed",label:"Feed + Forums"},{type:"events",label:"Events-Native"}],
     pricing:"Custom quotes only (Pre-Seed stage, likely lower than established enterprise vendors). Courses as paid add-on.",target:"Mid-Market / Enterprise (associations, B2B communities)",
     verdict:"Compelling event-centric proposition. Very early stage — watch the trajectory",verdictType:"watch",website:"https://www.gradual.com",
-    featureCompleteness:6.5,easeOfUse:7.5,qualityOfFeatures:7,integrations:5.5,dataPrivacySecurity:8,servicesSupport:7,reportsAnalytics:6.5,
+    featureCompleteness:6.5,easeOfUse:8.5,qualityOfFeatures:7,integrations:5.5,dataPrivacySecurity:8,servicesSupport:7,reportsAnalytics:6.5,
     scoreExplainers:{
       featureCompleteness:"Forums, events (meetings/webinars/conferences), blogs/content library, courses (paid add-on), mobile app, clubs/chapters. No Q&A, ideation, KB, or gamification.",
-      easeOfUse:"Unified dashboard is well-designed. White-label setup requires configuration but is documented.",
+      easeOfUse:"Drag-and-drop community setup with intuitive unified dashboard. White-label configuration is well-documented. Non-technical admins can manage without developers.",
       qualityOfFeatures:"Events are standout strong. Forums, content, clubs are solid. No Q&A, ideation, KB, or AI.",
       integrations:"CRM mentioned but unconfirmed specifics. RTMP streaming, Google Maps. No public API docs or Zapier.",
       dataPrivacySecurity:"SOC 2 Type II certified — strong for a Pre-Seed company. Enterprise-grade positioning.",
