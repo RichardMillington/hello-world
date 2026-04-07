@@ -455,6 +455,13 @@
     .compare-with-btn{margin-top:.4rem;width:100%;padding:.5rem;background:var(--amber);color:#000;border:0;border-radius:8px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
     .compare-with-btn:hover{background:var(--amber-dark)}
 
+    /* Platform picker on compare tab */
+    .platform-picker{display:flex;flex-wrap:wrap;gap:.4rem}
+    .picker-chip{padding:.35rem .75rem;border:1px solid var(--border);border-radius:8px;font-size:.78rem;font-weight:500;color:var(--text-sec);cursor:pointer;background:var(--card);transition:all .15s;font-family:inherit}
+    .picker-chip:hover{border-color:var(--amber);color:var(--text)}
+    .picker-chip.picked{background:var(--amber);color:#000;border-color:var(--amber)}
+    .picker-hint{font-size:.78rem;color:var(--text-dim);margin-bottom:.6rem}
+
     /* Trust line */
     .trust-line{display:inline-flex;align-items:center;gap:.5rem;color:var(--amber);font-size:.78rem;font-weight:500;letter-spacing:.02em;margin-top:.6rem}
     .trust-dot{width:6px;height:6px;background:var(--amber);border-radius:50%;display:inline-block}
