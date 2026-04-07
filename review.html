@@ -129,7 +129,7 @@
       gap:8px;
     }
     .list-item:last-child { border-bottom:none; }
-    .list-item::before { content:"â¢"; color:var(--accent); font-weight:700; }
+    .list-item::before { content:"•"; color:var(--accent); font-weight:700; }
 
     /* Feedback controls */
     .feedback-toggle {
@@ -291,7 +291,7 @@
   }
 
   document.title = `${p.name} Data Review | FeverBee`;
-  document.getElementById('pageTitle').textContent = `${p.name} â Data Review`;
+  document.getElementById('pageTitle').textContent = `${p.name} — Data Review`;
 
   const container = document.getElementById('mainContent');
   const corrections = {}; // track all corrections
@@ -516,7 +516,7 @@
       const n=p.recentNews[i];
       const ck = `news_${i}`;
       newsHTML += `<div class="text-row" style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;">
-        <div style="flex:1"><span style="color:var(--accent);font-weight:600;">${n.date}</span> â ${n.text}</div>
+        <div style="flex:1"><span style="color:var(--accent);font-weight:600;">${n.date}</span> — ${n.text}</div>
         ${makeFeedbackBtns(ck, 'News: '+n.text.substring(0,50))}
       </div>`;
     }
@@ -539,7 +539,7 @@
       const e=p.examples[i];
       const ck = `example_${i}`;
       exHTML += `<div class="text-row" style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;">
-        <div style="flex:1"><strong>${e.name}</strong> â ${e.desc}<br><span style="font-size:12px;color:var(--text-muted);">${e.url}</span></div>
+        <div style="flex:1"><strong>${e.name}</strong> — ${e.desc}<br><span style="font-size:12px;color:var(--text-muted);">${e.url}</span></div>
         ${makeFeedbackBtns(ck, 'Example: '+e.name)}
       </div>`;
     }
@@ -564,7 +564,7 @@
       <div class="summary-count" id="summaryCount">No corrections marked yet</div>
     </div>
     <div style="text-align:center;padding:30px;color:var(--text-muted);font-size:12px;">
-      Thank you for helping us maintain accurate data. â The FeverBee Team
+      Thank you for helping us maintain accurate data. — The FeverBee Team
     </div>`;
 
   // --- Global functions ---
