@@ -54,7 +54,7 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Traditional Forum"},{type:"feed",label:"Product Updates Feed"}],
     pricing:"Custom (3 tiers: Professional, Business, Enterprise)",target:"Mid-Market / Enterprise",
     verdict:"Rising fast. Strong product momentum and analyst recognition",verdictType:"rising",momentum:"rapid-rising",website:"https://www.gainsight.com/customer-communities/",
-    featureCompleteness:8,easeOfUse:7.5,qualityOfFeatures:8,integrations:8.5,dataPrivacySecurity:8,servicesSupport:8.5,reportsAnalytics:8,
+    featureCompleteness:7.5,easeOfUse:7,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, product updates hub, gamification, events. No native mobile app or blogs.",
       easeOfUse:"Cleaner setup than legacy platforms. Admin dashboard is intuitive. Docs are solid.",
@@ -104,7 +104,7 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Traditional Forum"},{type:"hybrid",label:"Q&A Hybrid"}],
     pricing:"Custom (3 tiers: Corporate, Enterprise, Enterprise Plus)",target:"Mid-Market / Enterprise",
     verdict:"Solid and reliable. Steady performer in B2B support communities",verdictType:"steady",momentum:"rapid-rising",website:"https://www.higherlogic.com/vanilla/",
-    featureCompleteness:7,easeOfUse:7.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7.5,
+    featureCompleteness:8.5,easeOfUse:7.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7.5,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, gamification. No blogs, no events, no mobile app. Focused but not broad.",
       easeOfUse:"Clean admin interface. Widget Builder needs dev skills but core setup is manageable.",
@@ -154,7 +154,7 @@ const platforms = [
     uxApproach:[{type:"hybrid",label:"Configurable (Forum/Portal/Feed)"}],
     pricing:"Per-login ($2-$15) or per-member ($5-$35/mo) by license type",target:"Enterprise",
     verdict:"Stagnating. Feature-rich on paper but community development has stalled — quality lags behind dedicated platforms",verdictType:"declining",momentum:"declining",website:"https://www.salesforce.com/products/experience-cloud/",
-    featureCompleteness:9,easeOfUse:5,qualityOfFeatures:4.5,integrations:7.5,dataPrivacySecurity:9.5,servicesSupport:7,reportsAnalytics:7,
+    featureCompleteness:9,easeOfUse:3,qualityOfFeatures:3.5,integrations:7.5,dataPrivacySecurity:9.5,servicesSupport:5,reportsAnalytics:5,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, gamification, events, mobile app, blogs via CMS. Can do almost anything — with effort.",
       easeOfUse:"The most complex platform here. Requires SI partner for implementation. Steep learning curve.",
@@ -493,7 +493,7 @@ const platforms = [
     uxApproach:[{type:"feed",label:"Social Feed"},{type:"hybrid",label:"Courses + Chat"}],
     pricing:"From $49/mo (Basic) to $219/mo (Business); Enterprise custom",target:"Creators / SMB / Mid-Market",
     verdict:"Strong in the creator space. Increasingly competing for SaaS communities too",verdictType:"rising",momentum:"rapid-rising",website:"https://circle.so",
-    featureCompleteness:6,easeOfUse:9.5,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:6.5,servicesSupport:6,reportsAnalytics:6.5,
+    featureCompleteness:6,easeOfUse:9.5,qualityOfFeatures:7.5,integrations:6,dataPrivacySecurity:6.5,servicesSupport:5,reportsAnalytics:6.5,
     scoreExplainers:{
       featureCompleteness:"Forums (feed-style), chat, courses, events, member directory, monetisation, mobile app. No ideation or structured KB. Strong breadth for creators.",
       easeOfUse:"One of the easiest platforms to set up and manage. Drag-and-drop Spaces architecture. Non-technical admins can run everything day-to-day without developer support.",
@@ -542,7 +542,7 @@ const platforms = [
     uxApproach:[{type:"feed",label:"Social Feed"},{type:"hybrid",label:"Courses + Events"}],
     pricing:"From $41/mo (Community) to $179/mo (Business); Pro from ~$3,000/mo",target:"Creators / Educators / SMB",
     verdict:"Established in creator space. Mighty AI is a genuine differentiator",verdictType:"steady",momentum:"steady",website:"https://www.mightynetworks.com",
-    featureCompleteness:8,easeOfUse:9,qualityOfFeatures:7,integrations:5.5,dataPrivacySecurity:6,servicesSupport:6.5,reportsAnalytics:5.5,
+    featureCompleteness:7,easeOfUse:9,qualityOfFeatures:8,integrations:5.5,dataPrivacySecurity:6,servicesSupport:6.5,reportsAnalytics:5.5,
     scoreExplainers:{
       featureCompleteness:"Forums (feed-style), courses, events, live streaming, mobile app (branded on Pro), monetisation, member directory. No ideation, KB, or structured Q&A.",
       easeOfUse:"Drag-and-drop community builder. Mobile-first design is intuitive. Course builder is straightforward. Non-technical users can set up and manage without developers.",
@@ -591,7 +591,7 @@ const platforms = [
     uxApproach:[{type:"feed",label:"Feed + Forums"},{type:"events",label:"Events-Native"}],
     pricing:"Custom quotes only (Pre-Seed stage, likely lower than established enterprise vendors). Courses as paid add-on.",target:"Mid-Market / Enterprise (associations, B2B communities)",
     verdict:"Compelling event-centric proposition. Very early stage — watch the trajectory",verdictType:"watch",momentum:"rising",website:"https://www.gradual.com",
-    featureCompleteness:6.5,easeOfUse:8.5,qualityOfFeatures:7,integrations:5.5,dataPrivacySecurity:8,servicesSupport:7,reportsAnalytics:6.5,
+    featureCompleteness:6,easeOfUse:8.5,qualityOfFeatures:8,integrations:5.5,dataPrivacySecurity:8,servicesSupport:7,reportsAnalytics:6.5,
     scoreExplainers:{
       featureCompleteness:"Forums, events (meetings/webinars/conferences), blogs/content library, courses (paid add-on), mobile app, clubs/chapters. No Q&A, ideation, KB, or gamification.",
       easeOfUse:"Drag-and-drop community setup with intuitive unified dashboard. White-label configuration is well-documented. Non-technical admins can manage without developers.",
