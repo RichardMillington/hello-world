@@ -396,7 +396,7 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Modern Forum"},{type:"hybrid",label:"Chat Hybrid"}],
     pricing:"Free (self-hosted) or $50-$300/mo hosted; Enterprise from $8,000/yr",target:"All sizes",
     verdict:"Rising. The open-source leader with real AI momentum",verdictType:"rising",momentum:"steady",website:"https://www.discourse.org",
-    featureCompleteness:7,easeOfUse:7,qualityOfFeatures:8.5,integrations:7,dataPrivacySecurity:8,servicesSupport:6.5,reportsAnalytics:6.5,
+    featureCompleteness:6.5,easeOfUse:7,qualityOfFeatures:9.5,integrations:7,dataPrivacySecurity:8.5,servicesSupport:7,reportsAnalytics:6.5,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A (plugin), chat channels, gamification, wiki-mode KB. No native events, ideation, or blogs. Plugin ecosystem fills some gaps.",
       easeOfUse:"Self-hosted requires sysadmin skills. Hosted version is straightforward. Plugin setup can be complex.",
