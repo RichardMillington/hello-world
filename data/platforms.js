@@ -444,7 +444,7 @@ const platforms = [
     tagline:"Lightweight, elegant open-source forum for simple, fast community discussions",
     uxApproach:[{type:"forum",label:"Modern Minimal Forum"}],
     pricing:"Free (self-hosted only)",target:"SMB / Developer communities",
-    verdict:"Niche option. Best for small communities wanting simplicity over features",verdictType:"watch",momentum:"declining",website:"https://flarum.org",
+    verdict:"Niche option. Best for small communities wanting simplicity over features",verdictType:"watch",momentum:"steady",website:"https://flarum.org",
     featureCompleteness:3.5,easeOfUse:8,qualityOfFeatures:7,integrations:5,dataPrivacySecurity:7,servicesSupport:4,reportsAnalytics:4.5,
     scoreExplainers:{
       featureCompleteness:"Forums only. No Q&A, KB, ideation, events, blogs, gamification, or mobile app. Deliberately minimal — add via extensions.",
