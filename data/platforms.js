@@ -203,7 +203,7 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Traditional Forum"}],
     pricing:"Custom enterprise quotes only",target:"Enterprise",
     verdict:"Declining momentum. Falling behind on innovation and market presence",verdictType:"declining",momentum:"steady",website:"https://www.verint.com/engagement-channels/communities/",
-    featureCompleteness:8.5,easeOfUse:6,qualityOfFeatures:7,integrations:7.5,dataPrivacySecurity:9,servicesSupport:7.5,reportsAnalytics:7,
+    featureCompleteness:8.5,easeOfUse:6,qualityOfFeatures:7,integrations:7.5,dataPrivacySecurity:9,servicesSupport:7.5,reportsAnalytics:6,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, blogs, gamification, mobile app. No native events. Feature-rich but aging.",
       easeOfUse:"Enterprise setup with older UX patterns. Functional but dated interface requires adjustment.",
