@@ -203,7 +203,7 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Traditional Forum"}],
     pricing:"Custom enterprise quotes only",target:"Enterprise",
     verdict:"Declining momentum. Falling behind on innovation and market presence",verdictType:"declining",momentum:"steady",website:"https://www.verint.com/engagement-channels/communities/",
-    featureCompleteness:8.5,easeOfUse:6,qualityOfFeatures:7.5,integrations:7.5,dataPrivacySecurity:8.5,servicesSupport:7.5,reportsAnalytics:8,
+    featureCompleteness:8.5,easeOfUse:6,qualityOfFeatures:7,integrations:7.5,dataPrivacySecurity:9,servicesSupport:7.5,reportsAnalytics:7,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, blogs, gamification, mobile app. No native events. Feature-rich but aging.",
       easeOfUse:"Enterprise setup with older UX patterns. Functional but dated interface requires adjustment.",
@@ -640,7 +640,7 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Forum + Portal"},{type:"hybrid",label:"Member Portal"}],
     pricing:"Custom (~$20,000 - $100,000+/yr based on modules and member count)",target:"Associations / Nonprofits / Membership Orgs",
     verdict:"Dominant in associations. The AMS integration depth is unmatched",verdictType:"steady",momentum:"steady",website:"https://www.higherlogic.com/thrive/",
-    featureCompleteness:7.5,easeOfUse:6,qualityOfFeatures:7,integrations:9,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7.5,
+    featureCompleteness:7,easeOfUse:6,qualityOfFeatures:7,integrations:8,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, resource libraries, member directory, groups/chapters, email automation. No mobile app, events, or blogs. Association-focused breadth.",
       easeOfUse:"Complex with AMS integrations. Portal-style UX is dated. Implementation is a significant project.",
