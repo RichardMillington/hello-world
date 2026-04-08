@@ -130,13 +130,15 @@ function renderOverview(){
       const pct=(p[c.key]/10)*100;
       return`<div class="score-row"><span class="slbl">${c.label}</span><div class="sbar"><div class="sfill" style="width:${pct}%;background:${sColor(p[c.key])}"></div></div><span class="sval">${p[c.key]}</span></div>`;
     }).join("");
-    const thumbUrl=p.website?`https://api.microlink.io/?url=${encodeURIComponent(p.website)}&screenshot=true&meta=false&embed=screenshot.url`:'';
+    const domain=p.website?new URL(p.website).hostname:'';
     return`<div class="pcard" onclick="cardClick('${p.id}',event)" style="cursor:pointer">
       ${showRank?`<span class="rank-badge">#${i+1}</span>`:''}
       <label class="compare-check ${sel?'active':''}" onclick="event.preventDefault();event.stopPropagation();toggleCompare('${p.id}',event)"><input type="checkbox" ${sel?'checked':''}>${sel?'\u2713 Compare':'+ Compare'}</label>
       <div style="margin-bottom:.5rem">${momentumTag(p)}</div>
-      ${p.website?`<div class="platform-thumb"><img src="https://image.thum.io/get/width/600/crop/400/${p.website}" alt="${p.name}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`:''}
-      <h3>${p.name}</h3>
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.4rem">
+        ${domain?`<div class="platform-logo"><img src="https://logo.clearbit.com/${domain}" alt="" onerror="this.src='https://www.google.com/s2/favicons?domain=${domain}&sz=64'"></div>`:''}
+        <h3 style="margin:0">${p.name}</h3>
+      </div>
       <div class="tagline">${p.tagline}</div>
       <div class="card-cat">${catBadge(p)} ${uxBadges(p.uxApproach)}</div>
       ${bars}
@@ -224,11 +226,11 @@ function renderPrefsSummary(){
   if(ranked.length===0){div.innerHTML='';return}
 
   div.innerHTML=`<div class="diff-your-prefs" style="margin-top:1.5rem">
-    <strong>Based on your preferences</strong> (${mustHaves} must-have${mustHaves!==1?'s':''}, ${niceToHaves} nice-to-have${niceToHaves!==1?'s':''}), the platforms that best match are:
+    <strong>Platforms that match your preferences</strong> (${mustHaves} must-have${mustHaves!==1?'s':''}, ${niceToHaves} nice-to-have${niceToHaves!==1?'s':''}), ranked by how many of your selections they appear in:
     <div style="margin-top:.5rem;display:flex;flex-wrap:wrap;gap:.5rem">
       ${ranked.slice(0,5).map((p,i)=>`<span style="display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .7rem;border-radius:6px;font-size:.84rem;font-weight:600;${i===0?'background:var(--amber);color:#000':'background:var(--border);color:var(--text)'}">${i===0?'\u2605 ':''} ${p.name}</span>`).join("")}
     </div>
-    <div style="margin-top:.75rem"><button class="ai-apply-btn" onclick="autoSelectFromPrefs()">Select top matches for comparison</button></div>
+    <div style="margin-top:.75rem"><button class="ai-apply-btn" onclick="autoSelectFromPrefs()">Compare these platforms side by side &rarr;</button></div>
   </div>`;
 }
 
