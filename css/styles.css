@@ -457,10 +457,9 @@
     .pcard .score-row .sval{font-size:.7rem;min-width:18px}
     .pcard .overall{margin-top:.25rem;padding-top:.5rem}
 
-    /* Platform screenshot thumbnail */
-    .platform-thumb{width:100%;height:120px;border-radius:8px;overflow:hidden;margin-bottom:.6rem;background:var(--border);position:relative}
-    .platform-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;opacity:.8;transition:opacity .2s}
-    .pcard:hover .platform-thumb img{opacity:1}
+    /* Platform logo */
+    .platform-logo{width:40px;height:40px;border-radius:8px;overflow:hidden;background:var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+    .platform-logo img{width:100%;height:100%;object-fit:contain;padding:4px}
 
     /* AI input side-by-side */
     .ai-input-grid{display:grid;grid-template-columns:1fr 200px;gap:1rem;align-items:start}
@@ -499,7 +498,6 @@
       .ctable th,.ctable td{padding:.5rem .6rem}
       .exec-cell{font-size:.75rem}
       .pcard .score-row .slbl{min-width:70px;font-size:.65rem}
-      .platform-thumb{height:80px}
       header h1{font-size:1.5rem !important}
       .stats-bar{gap:1rem}
       .stats-bar .stat-num{font-size:1rem}
@@ -510,5 +508,4 @@
       .pathway-card{padding:1rem .75rem}
       .quick-picks{grid-template-columns:1fr}
       .pcard .score-row{display:none !important}
-      .platform-thumb{height:60px}
     }
