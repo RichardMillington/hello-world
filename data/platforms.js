@@ -203,7 +203,7 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Traditional Forum"}],
     pricing:"Custom enterprise quotes only",target:"Enterprise",
     verdict:"Declining momentum. Falling behind on innovation and market presence",verdictType:"declining",momentum:"steady",website:"https://www.verint.com/engagement-channels/communities/",
-    featureCompleteness:8.5,easeOfUse:6,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:8.5,servicesSupport:7.5,reportsAnalytics:8,
+    featureCompleteness:8.5,easeOfUse:6,qualityOfFeatures:7.5,integrations:7.5,dataPrivacySecurity:8.5,servicesSupport:7.5,reportsAnalytics:8,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, blogs, gamification, mobile app. No native events. Feature-rich but aging.",
       easeOfUse:"Enterprise setup with older UX patterns. Functional but dated interface requires adjustment.",
@@ -251,7 +251,7 @@ const platforms = [
     uxApproach:[{type:"feed",label:"Social Feed / Wall"}],
     pricing:"From $399/mo (Starter) to $1,500/mo (Growth); Premium custom",target:"SMB / Mid-Market",
     verdict:"Watch this space. Modern approach but needs to prove enterprise readiness",verdictType:"watch",momentum:"rising",website:"https://www.bettermode.com",
-    featureCompleteness:7,easeOfUse:7,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:7,servicesSupport:7,reportsAnalytics:7,
+    featureCompleteness:7,easeOfUse:7.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:7,servicesSupport:7,reportsAnalytics:7,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, blogs, events, polls, gamification. No mobile app. Flexible content types (podcasts, jobs, reviews).",
       easeOfUse:"Most accessible setup. Design Studio is no-code. Self-serve from $399/mo — live in hours.",
@@ -299,7 +299,7 @@ const platforms = [
     uxApproach:[{type:"events",label:"Events-First"},{type:"feed",label:"Community Hub Feed"}],
     pricing:"Custom enterprise pricing (estimated mid-five figures/yr)",target:"Mid-Market / Enterprise",
     verdict:"Rising in events. Still proving itself as a full community platform",verdictType:"rising",momentum:"rising",website:"https://www.bevy.com",
-    featureCompleteness:6.5,easeOfUse:7,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:7.5,servicesSupport:8,reportsAnalytics:7.5,
+    featureCompleteness:6.5,easeOfUse:6.5,qualityOfFeatures:7.5,integrations:7,dataPrivacySecurity:7.5,servicesSupport:8,reportsAnalytics:7.5,
     scoreExplainers:{
       featureCompleteness:"Events are comprehensive. Forums and Q&A are partial. No ideation, KB, gamification, or mobile app. Events-first, not feature-broad.",
       easeOfUse:"Event setup is straightforward. Community hub features are newer and less documented.",
@@ -392,11 +392,11 @@ const platforms = [
   },
   {
     id:"discourse",name:"Discourse",category:"opensource",catLabel:"Open Source",
-    tagline:"The most popular open-source forum platform, used by developer and tech communities worldwide",
+    tagline:"The leading open-source community platform — available self-hosted or as a fully managed enterprise service",
     uxApproach:[{type:"forum",label:"Modern Forum"},{type:"hybrid",label:"Chat Hybrid"}],
     pricing:"Free (self-hosted) or $50-$300/mo hosted; Enterprise from $8,000/yr",target:"All sizes",
     verdict:"Rising. The open-source leader with real AI momentum",verdictType:"rising",momentum:"steady",website:"https://www.discourse.org",
-    featureCompleteness:6.5,easeOfUse:7,qualityOfFeatures:9.5,integrations:7,dataPrivacySecurity:8.5,servicesSupport:7,reportsAnalytics:6.5,
+    featureCompleteness:6.5,easeOfUse:7,qualityOfFeatures:5.5,integrations:7.5,dataPrivacySecurity:8.5,servicesSupport:7,reportsAnalytics:6.5,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A (plugin), chat channels, gamification, wiki-mode KB. No native events, ideation, or blogs. Plugin ecosystem fills some gaps.",
       easeOfUse:"Self-hosted requires sysadmin skills. Hosted version is straightforward. Plugin setup can be complex.",
