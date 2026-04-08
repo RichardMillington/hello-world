@@ -54,7 +54,7 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Traditional Forum"},{type:"feed",label:"Product Updates Feed"}],
     pricing:"Custom (3 tiers: Professional, Business, Enterprise)",target:"Mid-Market / Enterprise",
     verdict:"Rising fast. Strong product momentum and analyst recognition",verdictType:"rising",momentum:"rapid-rising",website:"https://www.gainsight.com/customer-communities/",
-    featureCompleteness:7.5,easeOfUse:7,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7,
+    featureCompleteness:7.5,easeOfUse:6.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, product updates hub, gamification, events. No native mobile app or blogs.",
       easeOfUse:"Cleaner setup than legacy platforms. Admin dashboard is intuitive. Docs are solid.",
@@ -104,7 +104,7 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Traditional Forum"},{type:"hybrid",label:"Q&A Hybrid"}],
     pricing:"Custom (3 tiers: Corporate, Enterprise, Enterprise Plus)",target:"Mid-Market / Enterprise",
     verdict:"Solid and reliable. Steady performer in B2B support communities",verdictType:"steady",momentum:"rapid-rising",website:"https://www.higherlogic.com/vanilla/",
-    featureCompleteness:8.5,easeOfUse:7.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7.5,
+    featureCompleteness:8.5,easeOfUse:7,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7.5,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, gamification. No blogs, no events, no mobile app. Focused but not broad.",
       easeOfUse:"Clean admin interface. Widget Builder needs dev skills but core setup is manageable.",
@@ -251,7 +251,7 @@ const platforms = [
     uxApproach:[{type:"feed",label:"Social Feed / Wall"}],
     pricing:"From $399/mo (Starter) to $1,500/mo (Growth); Premium custom",target:"SMB / Mid-Market",
     verdict:"Watch this space. Modern approach but needs to prove enterprise readiness",verdictType:"watch",momentum:"rising",website:"https://www.bettermode.com",
-    featureCompleteness:7,easeOfUse:7.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:7,servicesSupport:7,reportsAnalytics:7,
+    featureCompleteness:7,easeOfUse:7,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:7,servicesSupport:7,reportsAnalytics:7,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, blogs, events, polls, gamification. No mobile app. Flexible content types (podcasts, jobs, reviews).",
       easeOfUse:"Most accessible setup. Design Studio is no-code. Self-serve from $399/mo — live in hours.",
@@ -347,7 +347,7 @@ const platforms = [
     uxApproach:[{type:"hybrid",label:"Member Directory + Feed"},{type:"events",label:"Events-Centric"}],
     pricing:"Custom (~$5,000 - $30,000+/yr based on members)",target:"Mid-Market / Enterprise",
     verdict:"Strong in its niche. Best choice for alumni and membership orgs",verdictType:"steady",momentum:"steady",website:"https://www.hivebrite.com",
-    featureCompleteness:7,easeOfUse:7.5,qualityOfFeatures:7.5,integrations:6,dataPrivacySecurity:8,servicesSupport:6.5,reportsAnalytics:7,
+    featureCompleteness:6,easeOfUse:7.5,qualityOfFeatures:7,integrations:6,dataPrivacySecurity:8,servicesSupport:6.5,reportsAnalytics:7,
     scoreExplainers:{
       featureCompleteness:"Forums, events, member directory, job board, mentoring, fundraising, mobile app. No Q&A, ideation, or gamification. Membership-focused breadth.",
       easeOfUse:"White-label setup needs configuration but well-documented. Admin tools are purpose-built for membership orgs.",
@@ -396,7 +396,7 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Modern Forum"},{type:"hybrid",label:"Chat Hybrid"}],
     pricing:"Free (self-hosted) or $50-$300/mo hosted; Enterprise from $8,000/yr",target:"All sizes",
     verdict:"Rising. The open-source leader with real AI momentum",verdictType:"rising",momentum:"steady",website:"https://www.discourse.org",
-    featureCompleteness:6.5,easeOfUse:7,qualityOfFeatures:5.5,integrations:7.5,dataPrivacySecurity:8.5,servicesSupport:7,reportsAnalytics:6.5,
+    featureCompleteness:6.5,easeOfUse:7,qualityOfFeatures:8.5,integrations:7.5,dataPrivacySecurity:8.5,servicesSupport:7,reportsAnalytics:6.5,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A (plugin), chat channels, gamification, wiki-mode KB. No native events, ideation, or blogs. Plugin ecosystem fills some gaps.",
       easeOfUse:"Self-hosted requires sysadmin skills. Hosted version is straightforward. Plugin setup can be complex.",
@@ -445,7 +445,7 @@ const platforms = [
     uxApproach:[{type:"forum",label:"Modern Minimal Forum"}],
     pricing:"Free (self-hosted only)",target:"SMB / Developer communities",
     verdict:"Niche option. Best for small communities wanting simplicity over features",verdictType:"watch",momentum:"steady",website:"https://flarum.org",
-    featureCompleteness:3.5,easeOfUse:8,qualityOfFeatures:7,integrations:5,dataPrivacySecurity:7,servicesSupport:4,reportsAnalytics:4.5,
+    featureCompleteness:5.5,easeOfUse:7,qualityOfFeatures:7,integrations:5,dataPrivacySecurity:7,servicesSupport:4,reportsAnalytics:5.5,
     scoreExplainers:{
       featureCompleteness:"Forums only. No Q&A, KB, ideation, events, blogs, gamification, or mobile app. Deliberately minimal — add via extensions.",
       easeOfUse:"Deliberately simple. Beautiful defaults, minimal configuration. Lower server requirements than Discourse.",
@@ -493,7 +493,7 @@ const platforms = [
     uxApproach:[{type:"feed",label:"Social Feed"},{type:"hybrid",label:"Courses + Chat"}],
     pricing:"From $49/mo (Basic) to $219/mo (Business); Enterprise custom",target:"Creators / SMB / Mid-Market",
     verdict:"Strong in the creator space. Increasingly competing for SaaS communities too",verdictType:"rising",momentum:"rapid-rising",website:"https://circle.so",
-    featureCompleteness:6,easeOfUse:9.5,qualityOfFeatures:7.5,integrations:6,dataPrivacySecurity:6.5,servicesSupport:5,reportsAnalytics:6.5,
+    featureCompleteness:6,easeOfUse:9.5,qualityOfFeatures:5.5,integrations:6,dataPrivacySecurity:6.5,servicesSupport:5,reportsAnalytics:6.5,
     scoreExplainers:{
       featureCompleteness:"Forums (feed-style), chat, courses, events, member directory, monetisation, mobile app. No ideation or structured KB. Strong breadth for creators.",
       easeOfUse:"One of the easiest platforms to set up and manage. Drag-and-drop Spaces architecture. Non-technical admins can run everything day-to-day without developer support.",
