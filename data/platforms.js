@@ -57,7 +57,7 @@ const platforms = [
     featureCompleteness:7.5,easeOfUse:6.5,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, product updates hub, gamification, events. No native mobile app or blogs.",
-      easeOfUse:"Cleaner setup than legacy platforms. Admin dashboard is intuitive. Docs are solid.",
+      easeOfUse:"Reasonable setup but not drag-and-drop simple. Admin dashboard is functional. Configuration takes time, especially with Gainsight CS integration.",
       qualityOfFeatures:"Strong forum + ideation + product updates hub. AI moderation agent is production-ready.",
       integrations:"Deep Gainsight CS/PX integration. Salesforce, Zendesk, Jira, Slack, Zapier. Best if already in Gainsight.",
       dataPrivacySecurity:"Standard enterprise security. GDPR compliant. Less documented than Khoros or Salesforce.",
@@ -106,7 +106,7 @@ const platforms = [
     verdict:"Solid and reliable. Steady performer in B2B support communities",verdictType:"steady",momentum:"rapid-rising",website:"https://www.higherlogic.com/vanilla/",
     featureCompleteness:8.5,easeOfUse:7,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:8,servicesSupport:8,reportsAnalytics:7.5,
     scoreExplainers:{
-      featureCompleteness:"Forums, Q&A, ideation, KB, gamification. No blogs, no events, no mobile app. Focused but not broad.",
+      featureCompleteness:"Strong core: forums, Q&A with accepted answers, ideation, KB, gamification, AI search, Widget Builder. Missing blogs, events, and mobile app but deep where it matters.",
       easeOfUse:"Clean admin interface. Widget Builder needs dev skills but core setup is manageable.",
       qualityOfFeatures:"Solid forums + distinct Q&A format. AI Search with RAG is well-executed. No blogs or events.",
       integrations:"Best Zendesk integration in the market. Salesforce, Slack, Zoom, Zapier. No native AMS connectors.",
@@ -157,12 +157,12 @@ const platforms = [
     featureCompleteness:9,easeOfUse:3,qualityOfFeatures:3.5,integrations:7.5,dataPrivacySecurity:9.5,servicesSupport:5,reportsAnalytics:5,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, gamification, events, mobile app, blogs via CMS. Can do almost anything — with effort.",
-      easeOfUse:"The most complex platform here. Requires SI partner for implementation. Steep learning curve.",
-      qualityOfFeatures:"Salesforce is not actively developing the community platform. Features exist but quality is far behind dedicated vendors. UX feels neglected.",
-      integrations:"Unmatched. Native access to Sales Cloud, Service Cloud, Marketing Cloud, Data Cloud, AppExchange.",
+      easeOfUse:"Extremely complex. Requires SI partner, months of implementation, and ongoing admin expertise. The hardest platform to get running.",
+      qualityOfFeatures:"Salesforce has essentially stopped developing the community platform. Features exist on paper but the UX is years behind dedicated vendors. Feels abandoned.",
+      integrations:"Native Salesforce ecosystem access is the one real strength. But community-specific integrations with third-party tools lag behind dedicated platforms.",
       dataPrivacySecurity:"Enterprise-grade. SOC 2, HIPAA-capable, FedRAMP. The gold standard for regulated industries.",
-      servicesSupport:"Massive ecosystem but support can feel impersonal. You often deal with partners, not Salesforce.",
-      reportsAnalytics:"Powerful — full Salesforce reporting engine. But requires configuration to get community-specific insights."
+      servicesSupport:"Support is impersonal and often routed through SI partners rather than Salesforce directly. Community-specific expertise is thin.",
+      reportsAnalytics:"Salesforce reporting engine is powerful in theory but getting community-specific insights requires significant configuration. Out of the box, it's weak."
     },
     execution:{
       "Discussions":"Fully configurable - can be traditional forum, Chatter-style feed, or portal-style. Experience Builder lets you design any layout. The flexibility is powerful but means more setup complexity.",
@@ -208,10 +208,10 @@ const platforms = [
       featureCompleteness:"Forums, Q&A, ideation, KB, blogs, gamification, mobile app. No native events. Feature-rich but aging.",
       easeOfUse:"Enterprise setup with older UX patterns. Functional but dated interface requires adjustment.",
       qualityOfFeatures:"Mature forum + KB. Solid but not innovating. Telligent heritage shows in the design.",
-      integrations:"Verint CX suite, Salesforce, Dynamics. Fewer third-party connectors than competitors.",
+      integrations:"Solid integration with Verint CX suite, Salesforce, and Dynamics. Decent third-party ecosystem but not as broad as newer platforms.",
       dataPrivacySecurity:"Strong compliance and security. Enterprise-grade controls. Good for regulated industries.",
       servicesSupport:"Enterprise support available but innovation pace is slower than competitors.",
-      reportsAnalytics:"Strongest case deflection analytics in the market. Good ROI measurement for support communities."
+      reportsAnalytics:"Case deflection analytics were once a strength but the reporting hasn't kept pace. Functional but dated compared to modern alternatives."
     },
     execution:{
       "Discussions":"Traditional threaded forum inherited from Telligent. Category-based boards. Mature forum infrastructure but older UX patterns.",
@@ -254,7 +254,7 @@ const platforms = [
     featureCompleteness:7,easeOfUse:7,qualityOfFeatures:8,integrations:7.5,dataPrivacySecurity:7,servicesSupport:7,reportsAnalytics:7,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, blogs, events, polls, gamification. No mobile app. Flexible content types (podcasts, jobs, reviews).",
-      easeOfUse:"Most accessible setup. Design Studio is no-code. Self-serve from $399/mo — live in hours.",
+      easeOfUse:"Decent setup with Design Studio for no-code customisation. Self-serve pricing. Not as intuitive as Circle or Mighty Networks but manageable.",
       qualityOfFeatures:"Modern feed UX is polished. GraphQL API is developer-friendly. No structured KB or ideation.",
       integrations:"Zapier (8,000+ apps), Make, Salesforce, Intercom, Slack, Shopify. Broad but not deep.",
       dataPrivacySecurity:"Adequate but less mature than enterprise-focused vendors. Smaller security team.",
@@ -400,7 +400,7 @@ const platforms = [
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A (plugin), chat channels, gamification, wiki-mode KB. No native events, ideation, or blogs. Plugin ecosystem fills some gaps.",
       easeOfUse:"Self-hosted requires sysadmin skills. Hosted version is straightforward. Plugin setup can be complex.",
-      qualityOfFeatures:"Most modern forum UX in open source. Trust levels, real-time updates, chat channels, AI features — polished.",
+      qualityOfFeatures:"Exceptional quality for what it does. Trust levels, real-time updates, chat channels, AI features, and markdown editor are all polished. The best forum UX available.",
       integrations:"WordPress, Slack, GitHub, Zendesk, Zapier, SSO. Plugin ecosystem extends further but quality varies.",
       dataPrivacySecurity:"Self-hosted means full data sovereignty. Good security defaults. You manage your own compliance.",
       servicesSupport:"Community-driven support. Enterprise tier gets SLA and priority. Self-hosted = you're on your own.",
@@ -447,7 +447,7 @@ const platforms = [
     verdict:"Niche option. Best for small communities wanting simplicity over features",verdictType:"watch",momentum:"steady",website:"https://flarum.org",
     featureCompleteness:5.5,easeOfUse:7,qualityOfFeatures:7,integrations:5,dataPrivacySecurity:7,servicesSupport:4,reportsAnalytics:5.5,
     scoreExplainers:{
-      featureCompleteness:"Forums only. No Q&A, KB, ideation, events, blogs, gamification, or mobile app. Deliberately minimal — add via extensions.",
+      featureCompleteness:"Core forums with basic gamification via extensions. No native Q&A, KB, ideation, events, or mobile app. Extension ecosystem adds some breadth but limited.",
       easeOfUse:"Deliberately simple. Beautiful defaults, minimal configuration. Lower server requirements than Discourse.",
       qualityOfFeatures:"Clean two-pane forum does one thing well. No Q&A, KB, events, or AI. Simplicity is the feature.",
       integrations:"OAuth SSO, WordPress via extension. Very limited. Zapier not confirmed. Small extension ecosystem.",
@@ -497,7 +497,7 @@ const platforms = [
     scoreExplainers:{
       featureCompleteness:"Forums (feed-style), chat, courses, events, member directory, monetisation, mobile app. No ideation or structured KB. Strong breadth for creators.",
       easeOfUse:"One of the easiest platforms to set up and manage. Drag-and-drop Spaces architecture. Non-technical admins can run everything day-to-day without developer support.",
-      qualityOfFeatures:"Community + courses + events + monetisation in one. Each is good but none is best-in-class individually.",
+      qualityOfFeatures:"Broad feature set but shallow execution. Community, courses, events, and monetisation are all present but none are best-in-class. Jack of all trades, master of none.",
       integrations:"Zapier, Stripe, Zoom, Slack, Mailchimp. API on higher tiers. Headless/embed options for SaaS.",
       dataPrivacySecurity:"Adequate for creator/SMB use. SSO on higher tiers only. Less enterprise-grade than larger platforms.",
       servicesSupport:"Self-serve model with docs and community. No dedicated CSM unless Enterprise tier.",
@@ -546,7 +546,7 @@ const platforms = [
     scoreExplainers:{
       featureCompleteness:"Forums (feed-style), courses, events, live streaming, mobile app (branded on Pro), monetisation, member directory. No ideation, KB, or structured Q&A.",
       easeOfUse:"Drag-and-drop community builder. Mobile-first design is intuitive. Course builder is straightforward. Non-technical users can set up and manage without developers.",
-      qualityOfFeatures:"Community + courses + events + branded apps. Mighty AI is well-executed. Individual features are solid not exceptional.",
+      qualityOfFeatures:"Strong execution across community, courses, events, and branded apps. Mighty AI is genuinely well-implemented. Quality is consistently good.",
       integrations:"Zoom, Zapier, Stripe, Google Analytics. API only on Business tier. No deep CRM integrations.",
       dataPrivacySecurity:"Adequate for creator/SMB use. Not enterprise-grade. Limited compliance documentation.",
       servicesSupport:"Docs, community support, email. Mighty Pro gets dedicated success manager. Lower tiers are self-serve.",
@@ -595,7 +595,7 @@ const platforms = [
     scoreExplainers:{
       featureCompleteness:"Forums, events (meetings/webinars/conferences), blogs/content library, courses (paid add-on), mobile app, clubs/chapters. No Q&A, ideation, KB, or gamification.",
       easeOfUse:"Drag-and-drop community setup with intuitive unified dashboard. White-label configuration is well-documented. Non-technical admins can manage without developers.",
-      qualityOfFeatures:"Events are standout strong. Forums, content, clubs are solid. No Q&A, ideation, KB, or AI.",
+      qualityOfFeatures:"What it does, it does well. Events are excellent, forums and content are polished, clubs/chapters are thoughtfully designed. Limited scope but high quality within it.",
       integrations:"CRM mentioned but unconfirmed specifics. RTMP streaming, Google Maps. No public API docs or Zapier.",
       dataPrivacySecurity:"SOC 2 Type II certified — strong for a Pre-Seed company. Enterprise-grade positioning.",
       servicesSupport:"Knowledge base, product update events. Small team (1-10) may limit capacity. Founder-involved.",
@@ -645,7 +645,7 @@ const platforms = [
       featureCompleteness:"Forums, Q&A, ideation, resource libraries, member directory, groups/chapters, email automation. No mobile app, events, or blogs. Association-focused breadth.",
       easeOfUse:"Complex with AMS integrations. Portal-style UX is dated. Implementation is a significant project.",
       qualityOfFeatures:"Forum + email automation + engagement scoring. Functional but UX lags modern platforms.",
-      integrations:"Deepest AMS integration ecosystem: iMIS, Personify, Nimble AMS, Aptify, Fonteva, netFORUM. Unmatched.",
+      integrations:"Strong AMS integrations: iMIS, Personify, Nimble AMS, Aptify, Fonteva, netFORUM. Best in the association space but depth varies by AMS.",
       dataPrivacySecurity:"Enterprise-grade. Standard compliance. Good for associations handling member data.",
       servicesSupport:"3,000+ association customers. Strong onboarding and CSM. ASAE-endorsed.",
       reportsAnalytics:"Engagement scoring ties community to AMS data. Renewal predictions. Good ROI measurement."
