@@ -154,7 +154,7 @@ const platforms = [
     uxApproach:[{type:"hybrid",label:"Configurable (Forum/Portal/Feed)"}],
     pricing:"Per-login ($2-$15) or per-member ($5-$35/mo) by license type",target:"Enterprise",
     verdict:"Stagnating. Feature-rich on paper but community development has stalled — quality lags behind dedicated platforms",verdictType:"declining",momentum:"declining",website:"https://www.salesforce.com/products/experience-cloud/",
-    featureCompleteness:9,easeOfUse:3,qualityOfFeatures:3.5,integrations:7.5,dataPrivacySecurity:9.5,servicesSupport:5,reportsAnalytics:5,
+    featureCompleteness:9,easeOfUse:3,qualityOfFeatures:3.5,integrations:8.5,dataPrivacySecurity:9.5,servicesSupport:5,reportsAnalytics:5,
     scoreExplainers:{
       featureCompleteness:"Forums, Q&A, ideation, KB, gamification, events, mobile app, blogs via CMS. Can do almost anything — with effort.",
       easeOfUse:"Extremely complex. Requires SI partner, months of implementation, and ongoing admin expertise. The hardest platform to get running.",
