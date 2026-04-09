@@ -695,6 +695,28 @@ const criteria = [
   {key:"reportsAnalytics",label:"Reports & Analytics"}
 ];
 
+// Migration difficulty: 1=Easy, 2=Moderate, 3=Challenging, 4=Difficult, 5=Very Difficult
+// Factors: data export, content format compatibility, SSO reconfiguration, integration rebuild, member migration, URL redirects
+const migrationDifficulty = {
+  "khoros":      {to_gainsight:3,to_higherlogic:3,to_salesforce:4,to_verint:3,to_bettermode:3,to_discourse:3,to_circle:4,to_mighty:4,to_gradual:3,to_hivebrite:4,to_bevy:4,to_flarum:4,to_thrive:4},
+  "gainsight":   {to_khoros:3,to_higherlogic:2,to_salesforce:4,to_verint:3,to_bettermode:2,to_discourse:3,to_circle:3,to_mighty:3,to_gradual:3,to_hivebrite:3,to_bevy:4,to_flarum:3,to_thrive:3},
+  "higherlogic": {to_khoros:3,to_gainsight:2,to_salesforce:4,to_verint:3,to_bettermode:2,to_discourse:2,to_circle:3,to_mighty:3,to_gradual:3,to_hivebrite:3,to_bevy:4,to_flarum:3,to_thrive:2},
+  "salesforce":  {to_khoros:4,to_gainsight:4,to_higherlogic:4,to_verint:4,to_bettermode:4,to_discourse:4,to_circle:5,to_mighty:5,to_gradual:4,to_hivebrite:5,to_bevy:5,to_flarum:5,to_thrive:4},
+  "verint":      {to_khoros:3,to_gainsight:3,to_higherlogic:3,to_salesforce:4,to_bettermode:3,to_discourse:3,to_circle:4,to_mighty:4,to_gradual:3,to_hivebrite:4,to_bevy:4,to_flarum:3,to_thrive:3},
+  "bettermode":  {to_khoros:3,to_gainsight:2,to_higherlogic:2,to_salesforce:4,to_verint:3,to_discourse:2,to_circle:2,to_mighty:2,to_gradual:2,to_hivebrite:3,to_bevy:3,to_flarum:2,to_thrive:3},
+  "discourse":   {to_khoros:3,to_gainsight:3,to_higherlogic:2,to_salesforce:4,to_verint:3,to_bettermode:2,to_circle:3,to_mighty:3,to_gradual:3,to_hivebrite:3,to_bevy:4,to_flarum:2,to_thrive:3},
+  "circle":      {to_khoros:4,to_gainsight:3,to_higherlogic:3,to_salesforce:4,to_verint:4,to_bettermode:2,to_discourse:3,to_mighty:2,to_gradual:2,to_hivebrite:3,to_bevy:3,to_flarum:3,to_thrive:3},
+  "mighty":      {to_khoros:4,to_gainsight:3,to_higherlogic:3,to_salesforce:4,to_verint:4,to_bettermode:2,to_discourse:3,to_circle:2,to_gradual:2,to_hivebrite:3,to_bevy:3,to_flarum:3,to_thrive:3},
+  "bevy":        {to_khoros:4,to_gainsight:3,to_higherlogic:3,to_salesforce:4,to_verint:4,to_bettermode:3,to_discourse:3,to_circle:3,to_mighty:3,to_gradual:2,to_hivebrite:3,to_flarum:4,to_thrive:3},
+  "hivebrite":   {to_khoros:4,to_gainsight:3,to_higherlogic:3,to_salesforce:4,to_verint:4,to_bettermode:3,to_discourse:3,to_circle:3,to_mighty:3,to_gradual:2,to_bevy:3,to_flarum:4,to_thrive:3},
+  "flarum":      {to_khoros:3,to_gainsight:3,to_higherlogic:2,to_salesforce:4,to_verint:3,to_bettermode:2,to_discourse:1,to_circle:3,to_mighty:3,to_gradual:3,to_hivebrite:3,to_bevy:4,to_thrive:3},
+  "gradual":     {to_khoros:3,to_gainsight:3,to_higherlogic:3,to_salesforce:4,to_verint:3,to_bettermode:2,to_discourse:3,to_circle:2,to_mighty:2,to_hivebrite:2,to_bevy:2,to_flarum:3,to_thrive:3},
+  "thrive":      {to_khoros:4,to_gainsight:3,to_higherlogic:2,to_salesforce:4,to_verint:3,to_bettermode:3,to_discourse:3,to_circle:3,to_mighty:3,to_gradual:3,to_hivebrite:3,to_bevy:4,to_flarum:3}
+};
+
+const migrationLabels={1:"Easy",2:"Moderate",3:"Challenging",4:"Difficult",5:"Very Difficult"};
+const migrationColors={1:"var(--green)",2:"var(--green)",3:"var(--amber)",4:"var(--red)",5:"var(--red)"};
+
 const tableStakes = [
   "Discussion forums or spaces","User profiles and accounts","Content moderation tools",
   "Single Sign-On (SSO)","Search functionality","Admin dashboard",
