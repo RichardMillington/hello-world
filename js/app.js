@@ -219,18 +219,28 @@ function renderPrefsSummary(){
     });
   });
 
-  const ranked=platforms.map(p=>({...p,prefScore:scores[p.id]})).filter(p=>p.prefScore>0).sort((a,b)=>b.prefScore-a.prefScore);
+  // Calculate max possible score for percentage
+  const maxScore=prefs.reduce((sum,[,v])=>{
+    const w=v.importance==='must'?3:v.importance==='nice'?1:0;
+    return sum+w;
+  },0);
+
+  const ranked=platforms.map(p=>({...p,prefScore:scores[p.id],matchPct:maxScore>0?Math.round((scores[p.id]/maxScore)*100):0})).filter(p=>p.prefScore>0).sort((a,b)=>b.prefScore-a.prefScore);
   const mustHaves=prefs.filter(([,v])=>v.importance==='must').length;
   const niceToHaves=prefs.filter(([,v])=>v.importance==='nice').length;
 
   if(ranked.length===0){div.innerHTML='';return}
 
   div.innerHTML=`<div class="diff-your-prefs" style="margin-top:1.5rem">
-    <strong>Platforms that match your preferences</strong> (${mustHaves} must-have${mustHaves!==1?'s':''}, ${niceToHaves} nice-to-have${niceToHaves!==1?'s':''}), ranked by how many of your selections they appear in:
-    <div style="margin-top:.5rem;display:flex;flex-wrap:wrap;gap:.5rem">
-      ${ranked.slice(0,5).map((p,i)=>`<span style="display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .7rem;border-radius:6px;font-size:.84rem;font-weight:600;${i===0?'background:var(--amber);color:#000':'background:var(--border);color:var(--text)'}">${i===0?'\u2605 ':''} ${p.name}</span>`).join("")}
+    <strong>Platforms that match your preferences</strong> (${mustHaves} must-have${mustHaves!==1?'s':''}, ${niceToHaves} nice-to-have${niceToHaves!==1?'s':''}):
+    <div style="margin-top:.75rem;display:flex;flex-direction:column;gap:.4rem">
+      ${ranked.slice(0,6).map((p,i)=>`<div style="display:flex;align-items:center;gap:.75rem">
+        <div style="width:45px;text-align:right;font-size:1.1rem;font-weight:800;color:${p.matchPct>=80?'var(--green)':p.matchPct>=50?'var(--amber)':'var(--text-dim)'}">${p.matchPct}%</div>
+        <div style="flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;width:${p.matchPct}%;background:${p.matchPct>=80?'var(--green)':p.matchPct>=50?'var(--amber)':'var(--text-dim)'};border-radius:3px"></div></div>
+        <div style="min-width:140px;font-size:.85rem;font-weight:600;color:var(--text)">${i===0?'\u2605 ':''} ${p.name}</div>
+      </div>`).join("")}
     </div>
-    <div style="margin-top:.75rem"><button class="ai-apply-btn" onclick="autoSelectFromPrefs()">Compare these platforms side by side &rarr;</button></div>
+    <div style="margin-top:.75rem"><button class="ai-apply-btn" onclick="autoSelectFromPrefs()">Compare top matches side by side &rarr;</button></div>
   </div>`;
 }
 
@@ -253,6 +263,38 @@ function autoSelectFromPrefs(){
   ranked.slice(0,3).forEach(p=>selected.add(p.id));
   switchTab('compare');
   updateCompareBar();
+}
+
+// --- MIGRATION HELPERS ---
+function renderMigrationFrom(fromId){
+  const data=migrationDifficulty[fromId];
+  if(!data)return'<p style="font-size:.78rem;color:var(--text-dim)">No migration data available.</p>';
+  const entries=Object.entries(data).map(([key,diff])=>{
+    const toId=key.replace('to_','');
+    const p=platforms.find(x=>x.id===toId);
+    if(!p)return null;
+    return{name:p.name,id:toId,diff};
+  }).filter(Boolean).sort((a,b)=>a.diff-b.diff);
+  return entries.map(e=>
+    `<div style="display:flex;align-items:center;justify-content:space-between;padding:.25rem 0;font-size:.78rem;border-bottom:1px solid var(--border)">
+      <span style="color:var(--text-sec)">${e.name}</span>
+      <span style="color:${migrationColors[e.diff]};font-weight:600;font-size:.72rem">${migrationLabels[e.diff]}</span>
+    </div>`
+  ).join('');
+}
+
+function updateMigrationPreview(fromId){
+  const toId=document.getElementById('compareWithSelect').value;
+  const div=document.getElementById('migrationPreview');
+  if(!div)return;
+  const data=migrationDifficulty[fromId];
+  const key='to_'+toId;
+  const diff=data?.[key];
+  const toP=platforms.find(x=>x.id===toId);
+  if(!diff||!toP){div.innerHTML='';return}
+  div.innerHTML=`<div style="font-size:.78rem;color:var(--text-sec);padding:.4rem .5rem;background:var(--bg);border-radius:6px;border:1px solid var(--border)">
+    Migration difficulty: <strong style="color:${migrationColors[diff]}">${migrationLabels[diff]}</strong>
+  </div>`;
 }
 
 // --- PROFILE PAGE (two-column with sidebar) ---
@@ -344,10 +386,16 @@ function showProfile(id){
         </div>
         <div class="sidebar-card compare-with">
           <h4>Compare with...</h4>
-          <select id="compareWithSelect">
+          <select id="compareWithSelect" onchange="updateMigrationPreview('${p.id}')">
             ${platforms.filter(x=>x.id!==p.id).map(x=>`<option value="${x.id}">${x.name}</option>`).join("")}
           </select>
+          <div id="migrationPreview" style="margin-top:.5rem"></div>
           <button class="compare-with-btn" onclick="compareWith('${p.id}')">Compare side by side &rarr;</button>
+        </div>
+        <div class="sidebar-card">
+          <h4>Migration Difficulty</h4>
+          <p style="font-size:.75rem;color:var(--text-dim);margin-bottom:.5rem">How hard is it to migrate away from ${p.name}?</p>
+          ${renderMigrationFrom(p.id)}
         </div>
         <div class="cta-box" style="margin:0;border-radius:var(--radius)">
           <h3 style="font-size:.95rem">Need help deciding?</h3>
@@ -438,7 +486,7 @@ function renderCompare(){
     rows+=`<tr class="${allSame?'same-row':''}"><td>${c.label}</td>${picks.map(p=>{
       const v=p[c.key];const isBest=v===best&&picks.filter(pp=>pp[c.key]===best).length<picks.length;
       const explainer=p.scoreExplainers?.[c.key]||'';
-      return`<td class="${isBest?'winner':''}"><div class="cbar-cell"><div class="cmbar"><div class="cmfill" style="width:${(v/10)*100}%;background:${sColor(v)}"></div></div><span style="font-weight:700;color:var(--text)">${v}</span></div>${explainer?`<div style="font-size:.72rem;color:var(--text-dim);margin-top:.3rem;line-height:1.4;text-align:left">${explainer}</div>`:''}</td>`;
+      return`<td class="${isBest?'winner':''}"><div class="cbar-cell"><div class="cmbar"><div class="cmfill" style="width:${(v/10)*100}%;background:${sColor(v)}"></div></div><span style="font-weight:700;color:var(--text)">${v}</span></div>${explainer?`<div class="score-tip-wrap"><span class="score-tip-trigger">?</span><div class="score-tip-text">${explainer}</div></div>`:''}</td>`;
     }).join("")}</tr>`;
   });
 
@@ -467,6 +515,22 @@ function renderCompare(){
   rows+=`<tr><td>Pricing</td>${picks.map(p=>`<td style="font-size:.82rem;font-weight:600">${p.pricing}</td>`).join("")}</tr>`;
   rows+=`<tr><td>Target Market</td>${picks.map(p=>`<td style="font-size:.84rem">${p.target}</td>`).join("")}</tr>`;
   rows+=`<tr><td>Example Communities</td>${picks.map(p=>`<td style="font-size:.82rem;text-align:left">${p.examples.map(e=>e.url?`<a href="${e.url}" target="_blank" rel="noopener">${e.name}</a>`:e.name).join("<br>")}</td>`).join("")}</tr>`;
+
+  // Migration difficulty between selected platforms
+  if(picks.length>=2&&typeof migrationDifficulty!=='undefined'){
+    rows+=`<tr class="sec-row"><td colspan="${picks.length+1}">Migration Difficulty</td></tr>`;
+    picks.forEach(from=>{
+      const data=migrationDifficulty[from.id];
+      if(!data)return;
+      rows+=`<tr><td>From ${from.name}</td>${picks.map(to=>{
+        if(to.id===from.id)return'<td style="color:var(--text-dim);font-size:.78rem">—</td>';
+        const key='to_'+to.id;
+        const diff=data[key];
+        if(!diff)return'<td>—</td>';
+        return`<td style="font-size:.82rem;font-weight:600;color:${migrationColors[diff]}">${migrationLabels[diff]}</td>`;
+      }).join("")}</tr>`;
+    });
+  }
 
   ct.innerHTML=`<div class="ctable-wrap"><table class="ctable"><thead><tr><th>Criteria</th>${hdr}</tr></thead><tbody>${rows}</tbody></table></div>`;
 }
