@@ -673,5 +673,6 @@ renderWeights();
 renderOverview();
 renderQuickPicks();
 updateCompareBar();
-// Handle initial hash after rendering
-setTimeout(handleHash,100);
+// Handle initial hash - try immediately and retry if platforms aren't ready
+handleHash();
+if(location.hash)window.addEventListener('load',handleHash);
