@@ -2,5 +2,12 @@ name = "feverbee-ai-recommend"
 main = "worker.js"
 compatibility_date = "2024-01-01"
 
-# Deploy: wrangler deploy
-# Set API key: wrangler secret put ANTHROPIC_API_KEY
+# KV namespace for rate limiting and response caching
+# SETUP STEPS:
+#   1. wrangler kv:namespace create "RATE_LIMIT"
+#   2. Copy the ID from the output and paste below
+#   3. wrangler deploy
+#   4. wrangler secret put ANTHROPIC_API_KEY
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
