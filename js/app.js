@@ -219,13 +219,46 @@ function renderOverview(){
 }
 
 // --- TABLE STAKES ---
+let selectedStake=null;
+
 function renderStakes(){
   const area=document.getElementById("stakesArea");
-  if(!stakesExpanded){
-    area.innerHTML=`<div class="stakes-compact">All platforms include: ${tableStakes.join(", ")}. <span class="stakes-expand" onclick="stakesExpanded=true;renderStakes()">Show as grid &darr;</span></div>`;
-  }else{
-    area.innerHTML=`<div class="stakes-grid">${tableStakes.map(s=>`<div class="stake-item"><span class="si-icon">\u2713</span>${s}</div>`).join("")}</div><div style="margin-bottom:1rem"><span class="stakes-expand" onclick="stakesExpanded=false;renderStakes()">Collapse &uarr;</span></div>`;
-  }
+  const levelColors={ok:'var(--amber)',good:'var(--green)',great:'var(--purple)'};
+  const levelLabels={ok:'OK',good:'Good',great:'Great'};
+
+  area.innerHTML=`<div style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem">
+    ${tableStakes.map(s=>{
+      const isOpen=selectedStake===s.id;
+      return`<div class="stake-card" style="background:var(--card);border:1px solid ${isOpen?'var(--amber)':'var(--border)'};border-radius:10px;overflow:hidden;transition:all .2s">
+        <div onclick="selectedStake=${isOpen?'null':`'${s.id}'`};renderStakes()" style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;cursor:pointer">
+          <div style="font-size:.88rem;font-weight:600;color:var(--text)">${s.name}</div>
+          <span style="font-size:.65rem;color:var(--text-dim);transition:transform .2s;transform:rotate(${isOpen?'180':'0'}deg)">&#9660;</span>
+        </div>
+        ${isOpen?`<div style="padding:0 1rem 1rem;border-top:1px solid var(--border)">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin:.75rem 0">
+            <div style="padding:.6rem;border-radius:8px;background:rgba(251,191,36,0.06);border:1px solid rgba(251,191,36,0.15)">
+              <div style="font-size:.68rem;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem">OK</div>
+              <div style="font-size:.78rem;color:var(--text-sec);line-height:1.5">${s.ok}</div>
+            </div>
+            <div style="padding:.6rem;border-radius:8px;background:rgba(52,211,153,0.06);border:1px solid rgba(52,211,153,0.15)">
+              <div style="font-size:.68rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem">Good</div>
+              <div style="font-size:.78rem;color:var(--text-sec);line-height:1.5">${s.good}</div>
+            </div>
+            <div style="padding:.6rem;border-radius:8px;background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.15)">
+              <div style="font-size:.68rem;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem">Great</div>
+              <div style="font-size:.78rem;color:var(--text-sec);line-height:1.5">${s.great}</div>
+            </div>
+          </div>
+          <div style="font-size:.78rem;font-weight:600;color:var(--text-dim);margin-bottom:.4rem">Where each platform lands:</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.35rem">
+            ${platforms.map(p=>{
+              const level=s.ratings[p.id]||'ok';
+              return`<span style="display:inline-flex;align-items:center;gap:.25rem;padding:.2rem .55rem;border-radius:6px;font-size:.72rem;font-weight:500;background:${level==='great'?'rgba(167,139,250,0.12)':level==='good'?'rgba(52,211,153,0.12)':'rgba(251,191,36,0.12)'};color:${levelColors[level]};border:1px solid ${level==='great'?'rgba(167,139,250,0.25)':level==='good'?'rgba(52,211,153,0.25)':'rgba(251,191,36,0.25)'}">${p.name} <strong>${levelLabels[level]}</strong></span>`;
+            }).join('')}
+          </div>
+        </div>`:''}</div>`;
+    }).join('')}
+  </div>`;
 
   document.getElementById("diffCards").innerHTML=differentiators.map(d=>{
     const pref=userPrefs[d.id]||{};
