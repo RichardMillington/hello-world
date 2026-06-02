@@ -85,9 +85,11 @@
     .compare-fab.show{display:flex}
     .fab-count{background:rgba(0,0,0,.3);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem}
 
-    .stakes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.6rem;margin-bottom:2rem}
-    .stake-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.65rem 1rem;font-size:.84rem;color:var(--text-sec);display:flex;align-items:center;gap:.5rem;box-shadow:var(--shadow)}
-    .stake-item .si-icon{color:var(--green);font-weight:700;font-size:.9rem}
+    .stake-card:hover{border-color:var(--amber) !important}
+
+    @media(max-width:768px){
+      .stake-card div[style*="grid-template-columns:1fr 1fr 1fr"]{grid-template-columns:1fr !important}
+    }
 
     .diff-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.25rem;margin-bottom:2rem}
     .diff-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow)}
