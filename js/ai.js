@@ -115,7 +115,7 @@ function buildDetailedScores(){
 }
 
 // Set this to your deployed Cloudflare Worker URL to enable proxy mode (no API key needed for visitors)
-const AI_PROXY_URL = ''; // e.g. 'https://feverbee-ai-recommend.your-account.workers.dev/recommend'
+const AI_PROXY_URL = 'https://feverbee-ai-recommend.richard-708.workers.dev/';
 
 async function runAiAnalysis(){
   const input=document.getElementById("aiInput").value.trim();
@@ -130,6 +130,7 @@ async function runAiAnalysis(){
   resultsDiv.innerHTML='<div class="ai-loading"><span class="spinner"></span>Analysing against FeverBee\'s platform data...</div>';
 
   const detailedScores=buildDetailedScores();
+  const surveySummary=buildSurveySummary();
 
   const systemPrompt=`You are a FeverBee community platform analyst. You answer questions about enterprise community platforms with authority and specificity, drawing on FeverBee's detailed analysis of 14 platforms.
 
@@ -144,6 +145,9 @@ ${detailedScores}
 MIGRATION DIFFICULTY (1=Easy to 5=Very Difficult):
 ${typeof migrationDifficulty!=='undefined'?Object.entries(migrationDifficulty).map(([from,tos])=>`From ${from}: ${Object.entries(tos).map(([k,v])=>k.replace('to_','')+':'+v).join(', ')}`).join('\n'):''}
 
+${surveySummary ? `USER SURVEY DATA (FeverBee 2024 Enterprise Community Platform Survey, 166 respondents):
+${surveySummary}
+` : ''}
 INSTRUCTIONS:
 - Answer in clear, direct prose. Use short paragraphs.
 - Be opinionated. FeverBee gives honest recommendations, not diplomatic non-answers.
