@@ -71,10 +71,10 @@
     <div class="ai-section" style="border-radius:16px">
       <div class="ai-accent"></div>
       <div style="padding:1.75rem">
-        <h2 style="font-size:1.1rem;font-weight:600;margin-bottom:.25rem;color:var(--text)">What are you looking for?</h2>
-        <p style="font-size:.84rem;color:var(--text-sec);margin-bottom:1.25rem">Tell us about your community and we'll recommend the best platforms with trade-offs to consider.</p>
+        <h2 style="font-size:1.1rem;font-weight:600;margin-bottom:.25rem;color:var(--text)">Ask anything about community platforms</h2>
+        <p style="font-size:.84rem;color:var(--text-sec);margin-bottom:1.25rem">Ask a question, describe your requirements, or upload a document. Our AI draws on FeverBee's detailed platform analysis to give you an informed answer.</p>
         <div class="ai-input-grid">
-          <textarea class="ai-textarea" id="aiInput" style="min-height:110px;border-radius:10px" placeholder="e.g. B2B SaaS, 50K customers, need support deflection + knowledge sharing. Must have SSO, Salesforce integration. Budget ~$40K/yr..."></textarea>
+          <textarea class="ai-textarea" id="aiInput" style="min-height:110px;border-radius:10px" placeholder="e.g. Which platform is best for a 50K member support community? Does Discourse support SAML SSO? How hard is it to migrate from Khoros to Gainsight?"></textarea>
           <div class="ai-dropzone" id="aiDropzone" style="min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px">
             <div class="drop-icon" style="font-size:1.25rem;margin-bottom:.4rem">&#128196;</div>
             <div class="drop-text" style="font-size:.75rem;font-weight:500">Drop a file or click</div>
@@ -84,14 +84,15 @@
         </div>
         <div class="prompt-chips">
           <span>Try:</span>
-          <button class="prompt-chip" onclick="document.getElementById('aiInput').value='B2B SaaS with 50K customers, need support deflection + knowledge sharing. Use Salesforce and Zendesk. Budget $30-60K/yr.'">B2B SaaS support</button>
-          <button class="prompt-chip" onclick="document.getElementById('aiInput').value='Non-profit membership org, 5K members, need events + member directory + discussions. Must integrate with our AMS.'">Membership community</button>
-          <button class="prompt-chip" onclick="document.getElementById('aiInput').value='Developer community, open-source project, need forum + docs integration + SSO. Want self-hosted option.'">Developer community</button>
+          <button class="prompt-chip" onclick="document.getElementById('aiInput').value='Which platform is best for a B2B SaaS support community with 50K customers?'">Best for SaaS support</button>
+          <button class="prompt-chip" onclick="document.getElementById('aiInput').value='Compare Gainsight CC vs Higher Logic Vanilla for a customer community'">Gainsight vs HL Vanilla</button>
+          <button class="prompt-chip" onclick="document.getElementById('aiInput').value='How hard is it to migrate from Khoros to another platform?'">Migrating from Khoros</button>
+          <button class="prompt-chip" onclick="document.getElementById('aiInput').value='Which platforms have the best AI features right now?'">Best AI features</button>
         </div>
         <div style="margin-top:1rem;display:flex;align-items:center">
           <input type="password" class="ai-key-input" id="aiApiKey" placeholder="API key" style="display:none">
-          <button class="ai-submit" id="aiSubmitBtn" onclick="runAiAnalysis()" style="display:inline-flex;align-items:center;gap:.5rem;border-radius:10px;padding:.75rem 1.75rem">Get Recommendations &rarr;</button>
-          <span style="display:inline-block;margin-left:.75rem;font-size:.72rem;color:var(--text-dim)">Powered by Claude &middot; Analysed against our platform data</span>
+          <button class="ai-submit" id="aiSubmitBtn" onclick="runAiAnalysis()" style="display:inline-flex;align-items:center;gap:.5rem;border-radius:10px;padding:.75rem 1.75rem">Get Answer &rarr;</button>
+          <span style="display:inline-block;margin-left:.75rem;font-size:.72rem;color:var(--text-dim)">Powered by Claude &middot; Drawing on FeverBee's platform analysis</span>
         </div>
         <div id="aiResults"></div>
       </div>
@@ -189,6 +190,7 @@
 </footer>
 <script src="data/platforms.js"></script>
 <script src="data/surveyData.js"></script>
+<script src="data/feverbee-scores.js"></script>
 <script src="js/app.js"></script>
 <script src="js/ai.js"></script>
 </body>
