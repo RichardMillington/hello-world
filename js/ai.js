@@ -105,8 +105,13 @@ async function loadPptxAsZip(arrayBuffer){
 function buildPlatformSummary(){
   return platforms.map(p=>{
     const feats=Object.entries(p.communityFeatures).map(([k,v])=>`${k}: ${v===true?'Yes':v===false?'No':'Partial'}`).join(", ");
-    return`**${p.name}** (${p.catLabel}): ${p.tagline}. Pricing: ${p.pricing}. Target: ${p.target}. UX: ${p.uxApproach.map(a=>a.label).join(", ")}. Verdict: ${p.verdict}. Key features: ${feats}. Integrations: ${p.keyIntegrations.join(", ")}. Strengths: ${p.strengths.join("; ")}. Considerations: ${p.considerations.join("; ")}.`;
+    return`**${p.name}** (${p.catLabel}): ${p.tagline}. Pricing: ${p.pricing}. Target: ${p.target}. UX: ${p.uxApproach.map(a=>a.label).join(", ")}. Verdict: ${p.verdict}. Momentum: ${p.momentum}. Key features: ${feats}. Integrations: ${p.keyIntegrations.join(", ")}. Strengths: ${p.strengths.join("; ")}. Considerations: ${p.considerations.join("; ")}. Editorial: ${p.editorial}`;
   }).join("\n\n");
+}
+
+function buildDetailedScores(){
+  if(typeof feverbeeJustifications==='undefined')return'';
+  return feverbeeJustifications.map(j=>`${j.platform} - ${j.feature} (${j.score}/10): ${j.justification}`).join("\n");
 }
 
 // Set this to your deployed Cloudflare Worker URL to enable proxy mode (no API key needed for visitors)
@@ -117,45 +122,40 @@ async function runAiAnalysis(){
   const apiKey=document.getElementById("aiApiKey").value.trim();
   const resultsDiv=document.getElementById("aiResults");
 
-  if(!input){resultsDiv.innerHTML='<div class="ai-error">Please describe your requirements or upload a document first.</div>';return}
-  if(!apiKey&&!AI_PROXY_URL){resultsDiv.innerHTML='<div class="ai-error">This feature requires a backend connection. Please <a href="mailto:richard@feverbee.com?subject=Platform%20Recommendation%20Request" style="color:var(--red);font-weight:600">email us your requirements</a> and we\'ll send you a personalised recommendation.</div>';return}
+  if(!input){resultsDiv.innerHTML='<div class="ai-error">Please enter your question or describe your requirements.</div>';return}
+  if(!apiKey&&!AI_PROXY_URL){resultsDiv.innerHTML='<div class="ai-error">This feature requires a backend connection. Please <a href="mailto:richard@feverbee.com?subject=Platform%20Question" style="color:var(--red);font-weight:600">email us your question</a> and we\'ll respond directly.</div>';return}
 
   const btn=document.getElementById("aiSubmitBtn");
   btn.disabled=true;
-  resultsDiv.innerHTML='<div class="ai-loading"><span class="spinner"></span>Analysing your requirements against 10 community platforms...</div>';
+  resultsDiv.innerHTML='<div class="ai-loading"><span class="spinner"></span>Analysing against FeverBee\'s platform data...</div>';
 
-  const systemPrompt=`You are a FeverBee community platform analyst. You have deep knowledge of enterprise community platforms. Given a user's requirements, recommend the best platforms from the following options and explain trade-offs.
+  const detailedScores=buildDetailedScores();
 
-Here are the 10 platforms in our comparison tool:
+  const systemPrompt=`You are a FeverBee community platform analyst. You answer questions about enterprise community platforms with authority and specificity, drawing on FeverBee's detailed analysis of 14 platforms.
+
+You can answer ANY question about community platforms: comparisons, specific feature questions, migration advice, recommendations, pricing, AI capabilities, use case fit, etc.
+
+PLATFORM DATA:
 ${buildPlatformSummary()}
 
-The 6 evaluation criteria are: Ease of Setup & Use, Quality of Features, Integrations, Data Privacy & Security, Services & Support, Reports & Analytics. Each is scored 0-10.
+DETAILED FEATURE SCORES AND JUSTIFICATIONS (from FeverBee's analysis):
+${detailedScores}
 
-Respond in this exact JSON format:
-{
-  "recommendations": [
-    {"id": "platform_id", "rank": 1, "fitScore": "92%", "reasoning": "Why this platform fits their needs"},
-    {"id": "platform_id", "rank": 2, "fitScore": "78%", "reasoning": "Why this is the runner-up"},
-    {"id": "platform_id", "rank": 3, "fitScore": "65%", "reasoning": "Why this is worth considering"}
-  ],
-  "tradeoffs": [
-    "Trade-off 1: choosing X over Y means you gain... but lose...",
-    "Trade-off 2: ...",
-    "Trade-off 3: ..."
-  ],
-  "suggestedWeights": {
-    "easeOfUse": 5,
-    "qualityOfFeatures": 7,
-    "integrations": 8,
-    "dataPrivacySecurity": 5,
-    "servicesSupport": 6,
-    "reportsAnalytics": 4
-  },
-  "weightReasoning": "Brief explanation of why these weights suit their requirements",
-  "summary": "A 2-3 sentence overall recommendation"
-}
+MIGRATION DIFFICULTY (1=Easy to 5=Very Difficult):
+${typeof migrationDifficulty!=='undefined'?Object.entries(migrationDifficulty).map(([from,tos])=>`From ${from}: ${Object.entries(tos).map(([k,v])=>k.replace('to_','')+':'+v).join(', ')}`).join('\n'):''}
 
-Use the exact platform IDs: khoros, gainsight, higherlogic, salesforce, verint, bettermode, bevy, hivebrite, discourse, flarum. Return ONLY valid JSON.`;
+INSTRUCTIONS:
+- Answer in clear, direct prose. Use short paragraphs.
+- Be opinionated. FeverBee gives honest recommendations, not diplomatic non-answers.
+- Reference specific scores and justifications when relevant.
+- If comparing platforms, highlight the 3-4 differences that actually matter for the decision.
+- If recommending, give a clear first choice with reasoning, then alternatives.
+- If the question is about a specific feature, cite the detailed justification data.
+- Keep responses concise (200-400 words). Don't pad.
+- Use FeverBee's voice: professional, direct, consultancy-level insight.
+- Never recommend Khoros for new implementations. Strongly recommend migrating off it.
+- Be honest about Salesforce's stagnating community development.
+- Format with **bold** for platform names and key points. Use line breaks between paragraphs.`;
 
   try{
     let resp;
@@ -180,7 +180,7 @@ Use the exact platform IDs: khoros, gainsight, higherlogic, salesforce, verint, 
           model:"claude-sonnet-4-20250514",
           max_tokens:2000,
           system:systemPrompt,
-          messages:[{role:"user",content:`Here are my community platform requirements:\n\n${input}`}]
+          messages:[{role:"user",content:input}]
         })
       });
     }
@@ -191,18 +191,31 @@ Use the exact platform IDs: khoros, gainsight, higherlogic, salesforce, verint, 
     }
 
     const data=await resp.json();
-    const text=data.content[0].text;
+    const text=data.content?.[0]?.text||data.error?.message||'No response received';
 
-    // Parse JSON from response (handle markdown code blocks)
-    const jsonMatch=text.match(/\{[\s\S]*\}/);
-    if(!jsonMatch)throw new Error("Could not parse AI response");
-    const result=JSON.parse(jsonMatch[0]);
+    // Try to parse as JSON (recommendation format) or render as prose
+    let jsonMatch=text.match(/\{[\s\S]*\}/);
+    let parsed=null;
+    try{if(jsonMatch)parsed=JSON.parse(jsonMatch[0])}catch(e){}
 
-    renderAiResults(result);
+    if(parsed&&parsed.recommendations){
+      renderAiResults(parsed);
+    }else{
+      // Render as prose answer
+      const formatted=text
+        .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+        .replace(/\n\n/g,'</p><p>')
+        .replace(/\n/g,'<br>');
+      resultsDiv.innerHTML=`<div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-top:1rem">
+        <div style="display:flex;align-items:center;gap:.4rem;margin-bottom:.75rem;font-size:.78rem;color:var(--amber);font-weight:600"><span style="font-size:.9rem">&#9733;</span> FeverBee Analysis</div>
+        <div style="font-size:.88rem;color:var(--text-sec);line-height:1.7"><p>${formatted}</p></div>
+      </div>`;
+    }
   }catch(err){
     resultsDiv.innerHTML=`<div class="ai-error">Error: ${err.message}</div>`;
   }finally{
     btn.disabled=false;
+    btn.innerHTML='Get Answer &rarr;';
   }
 }
 
