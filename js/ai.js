@@ -117,6 +117,64 @@ function buildDetailedScores(){
 // Set this to your deployed Cloudflare Worker URL to enable proxy mode (no API key needed for visitors)
 const AI_PROXY_URL = 'https://feverbee-ai-recommend.richard-708.workers.dev/';
 
+// Conversation memory: [{q, a}] pairs from this session
+let conversationHistory = [];
+const MAX_HISTORY_PAIRS = 4; // keep last 4 Q&A pairs to control token usage
+
+function clearConversation(){
+  conversationHistory = [];
+  document.getElementById("aiResults").innerHTML = '';
+  const ta = document.getElementById("aiInput");
+  ta.value = '';
+  ta.placeholder = "e.g. Which platform is best for a 50K member support community? Does Discourse support SAML SSO? How hard is it to migrate from Khoros to Gainsight?";
+}
+
+function buildConversationContext(newQuestion){
+  if(conversationHistory.length === 0) return newQuestion;
+  const recent = conversationHistory.slice(-MAX_HISTORY_PAIRS);
+  const convo = recent.map(p => `USER ASKED: ${p.q}\n\nYOU ANSWERED: ${p.a}`).join('\n\n---\n\n');
+  return `CONVERSATION SO FAR:\n\n${convo}\n\n---\n\nNEW QUESTION (answer this in context of the conversation above): ${newQuestion}`;
+}
+
+function formatAnswerHtml(text){
+  return text
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\n\n/g,'</p><p>')
+    .replace(/\n/g,'<br>');
+}
+
+function renderConversation(){
+  const resultsDiv = document.getElementById("aiResults");
+  const items = conversationHistory.map((pair,i) => {
+    const isLast = i === conversationHistory.length - 1;
+    return `<div style="margin-top:1rem">
+      <div style="font-size:.82rem;color:var(--text-dim);padding:.5rem .85rem;background:var(--bg);border:1px solid var(--border);border-radius:8px"><strong style="color:var(--text-sec)">You asked:</strong> ${pair.q.length>200?pair.q.slice(0,200)+'…':pair.q}</div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-top:.5rem">
+        <div style="display:flex;align-items:center;gap:.4rem;margin-bottom:.75rem;font-size:.78rem;color:var(--amber);font-weight:600"><span style="font-size:.9rem">&#9733;</span> FeverBee Analysis</div>
+        <div style="font-size:.88rem;color:var(--text-sec);line-height:1.7"><p>${formatAnswerHtml(pair.a)}</p></div>
+        ${isLast ? renderLeadCta(pair.q) : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  const followUpHint = `<div style="display:flex;justify-content:space-between;align-items:center;margin-top:.75rem;font-size:.78rem;color:var(--text-dim)">
+    <span>Ask a follow-up question above &mdash; the conversation continues from here.</span>
+    <button onclick="clearConversation()" style="background:none;border:1px solid var(--border);border-radius:6px;padding:.3rem .7rem;font-size:.75rem;color:var(--text-dim);cursor:pointer;font-family:inherit">Start new conversation</button>
+  </div>`;
+
+  resultsDiv.innerHTML = items + followUpHint;
+  resultsDiv.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function renderLeadCta(lastQuestion){
+  const subject = encodeURIComponent('Community platform help');
+  const body = encodeURIComponent(`Hi Richard,\n\nI was using the FeverBee platform comparison tool and asked: "${lastQuestion.slice(0,300)}"\n\nI'd like to talk about how FeverBee could help us.\n\nThanks`);
+  return `<div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+    <div style="font-size:.82rem;color:var(--text-sec);flex:1;min-width:240px">Need hands-on help? FeverBee helps organisations select, configure, and optimise community platforms.</div>
+    <a href="mailto:richard@feverbee.com?subject=${subject}&body=${body}" style="display:inline-block;padding:.55rem 1.2rem;background:var(--amber);color:#000;border-radius:8px;font-size:.82rem;font-weight:700;text-decoration:none;white-space:nowrap">Talk to FeverBee &rarr;</a>
+  </div>`;
+}
+
 async function runAiAnalysis(){
   const input=document.getElementById("aiInput").value.trim();
   const apiKey=document.getElementById("aiApiKey").value.trim();
@@ -159,16 +217,22 @@ INSTRUCTIONS:
 - Use FeverBee's voice: professional, direct, consultancy-level insight.
 - Never recommend Khoros for new implementations. Strongly recommend migrating off it.
 - Be honest about Salesforce's stagnating community development.
-- Format with **bold** for platform names and key points. Use line breaks between paragraphs.`;
+- Format with **bold** for platform names and key points. Use line breaks between paragraphs.
+- If a conversation history is provided, answer the new question in the context of that conversation. Don't repeat information you already gave unless asked.
+- When it fits naturally, close with one short sentence noting that FeverBee helps organisations select, configure, and optimise community platforms. Keep it to a single sentence, helpful in tone, never salesy. Skip it if it would feel forced.`;
+
+  // Include conversation history so follow-up questions work
+  const fullInput=buildConversationContext(input);
 
   try{
     let resp;
     if(AI_PROXY_URL){
-      // Use backend proxy (no API key needed)
+      // Use backend proxy (no API key needed). `question` is the raw new
+      // question, logged server-side for market intelligence.
       resp=await fetch(AI_PROXY_URL,{
         method:"POST",
         headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({requirements:input,systemPrompt:systemPrompt})
+        body:JSON.stringify({requirements:fullInput,systemPrompt:systemPrompt,question:input})
       });
     }else{
       // Direct API call (requires user API key)
@@ -184,7 +248,7 @@ INSTRUCTIONS:
           model:"claude-sonnet-4-20250514",
           max_tokens:2000,
           system:systemPrompt,
-          messages:[{role:"user",content:input}]
+          messages:[{role:"user",content:fullInput}]
         })
       });
     }
@@ -205,15 +269,13 @@ INSTRUCTIONS:
     if(parsed&&parsed.recommendations){
       renderAiResults(parsed);
     }else{
-      // Render as prose answer
-      const formatted=text
-        .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
-        .replace(/\n\n/g,'</p><p>')
-        .replace(/\n/g,'<br>');
-      resultsDiv.innerHTML=`<div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-top:1rem">
-        <div style="display:flex;align-items:center;gap:.4rem;margin-bottom:.75rem;font-size:.78rem;color:var(--amber);font-weight:600"><span style="font-size:.9rem">&#9733;</span> FeverBee Analysis</div>
-        <div style="font-size:.88rem;color:var(--text-sec);line-height:1.7"><p>${formatted}</p></div>
-      </div>`;
+      // Store in conversation history and render the full thread
+      conversationHistory.push({q:input,a:text});
+      renderConversation();
+      // Clear the input and switch to follow-up mode
+      const ta=document.getElementById("aiInput");
+      ta.value='';
+      ta.placeholder="Ask a follow-up question...";
     }
   }catch(err){
     resultsDiv.innerHTML=`<div class="ai-error">Error: ${err.message}</div>`;
