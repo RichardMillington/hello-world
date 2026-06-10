@@ -29,7 +29,7 @@ const ALLOWED_ORIGINS = [
 ];
 const MAX_REQUESTS_PER_IP_PER_HOUR = 5;
 const MAX_REQUESTS_PER_DAY_GLOBAL = 200;
-const MAX_INPUT_CHARS = 10000;
+const MAX_INPUT_CHARS = 25000; // raised to accommodate conversation history
 const MAX_OUTPUT_TOKENS = 2000;
 const CACHE_TTL_SECONDS = 60;
 
@@ -58,7 +58,7 @@ export default {
     }
 
     try {
-      const { requirements, systemPrompt } = await request.json();
+      const { requirements, systemPrompt, question } = await request.json();
 
       if (!requirements || !systemPrompt) {
         return json({ error: 'Missing requirements or systemPrompt' }, 400, corsHeaders);
@@ -105,6 +105,15 @@ export default {
         // Increment counters (expire after their window)
         await env.RATE_LIMIT.put(hourKey, String(ipCount + 1), { expirationTtl: 3600 });
         await env.RATE_LIMIT.put(dayKey, String(globalCount + 1), { expirationTtl: 86400 });
+
+        // QUESTION LOGGING — market intelligence, 90-day retention.
+        // View via: wrangler kv key list --binding RATE_LIMIT --prefix "log:"
+        // then: wrangler kv key get --binding RATE_LIMIT "<key>"
+        const logKey = `log:${new Date().toISOString()}:${Math.random().toString(36).slice(2, 8)}`;
+        await env.RATE_LIMIT.put(logKey, JSON.stringify({
+          q: (question || requirements).slice(0, 600),
+          t: new Date().toISOString(),
+        }), { expirationTtl: 7776000 });
 
         // Call API
         const response = await callClaude(env.ANTHROPIC_API_KEY, requirements, systemPrompt);
