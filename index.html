@@ -180,6 +180,38 @@
     </form>
     <div class="req-success" id="reqSuccess">Thanks! A FeverBee strategist will review your requirements and email you a personalised recommendation within 2 business days.</div>
   </div>
+
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;margin-top:2rem">
+    <div style="text-align:center;margin-bottom:1.25rem">
+      <h3 style="font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.3rem">Know something we don't?</h3>
+      <p style="font-size:.84rem;color:var(--text-sec);max-width:520px;margin:0 auto">Platform features change fast. If you've spotted an update, a new capability, or a score that doesn't match your experience, let us know. We review every submission and update the tool regularly.</p>
+    </div>
+    <form id="updateForm" onsubmit="submitUpdate(event)" style="max-width:600px;margin:0 auto">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.6rem">
+        <select id="updatePlatform" required style="padding:.55rem .75rem;border:1px solid var(--border);border-radius:8px;font-size:.85rem;font-family:inherit;background:#141414;color:var(--text);outline:0;cursor:pointer">
+          <option value="">Select platform...</option>
+        </select>
+        <select id="updateCategory" required style="padding:.55rem .75rem;border:1px solid var(--border);border-radius:8px;font-size:.85rem;font-family:inherit;background:#141414;color:var(--text);outline:0;cursor:pointer">
+          <option value="">What's changed?</option>
+          <option value="New feature">New feature or capability</option>
+          <option value="Score correction">Score seems wrong</option>
+          <option value="Pricing change">Pricing update</option>
+          <option value="Bug or issue">Bug, outage, or quality issue</option>
+          <option value="Acquisition or news">Acquisition, funding, or major news</option>
+          <option value="Other">Other update</option>
+        </select>
+      </div>
+      <textarea id="updateDetail" required placeholder="Describe the update. Be as specific as possible: what changed, when, and where you saw it (link to source if available)." style="width:100%;min-height:100px;border:1px solid var(--border);border-radius:8px;padding:.75rem;font-size:.85rem;font-family:inherit;background:#141414;color:var(--text);outline:0;resize:vertical;line-height:1.5;margin-bottom:.6rem"></textarea>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.75rem">
+        <input type="text" id="updateName" placeholder="Your name (optional)" style="padding:.55rem .75rem;border:1px solid var(--border);border-radius:8px;font-size:.85rem;font-family:inherit;background:#141414;color:var(--text);outline:0">
+        <input type="email" id="updateEmail" placeholder="Email (optional, for follow-up)" style="padding:.55rem .75rem;border:1px solid var(--border);border-radius:8px;font-size:.85rem;font-family:inherit;background:#141414;color:var(--text);outline:0">
+      </div>
+      <div style="text-align:center">
+        <button type="submit" style="padding:.6rem 1.5rem;background:var(--amber);color:#000;border:0;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:inherit">Submit Update</button>
+      </div>
+    </form>
+    <div id="updateSuccess" style="display:none;padding:1rem;background:var(--green-bg);border:1px solid var(--green-border);border-radius:8px;color:var(--green);font-size:.88rem;font-weight:600;text-align:center;margin-top:.75rem;max-width:600px;margin-left:auto;margin-right:auto">Thanks! We'll review this and update the tool if it checks out.</div>
+  </div>
 </div>
 
 <div class="compare-bar" id="compareBar">

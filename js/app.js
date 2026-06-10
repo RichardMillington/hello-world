@@ -694,6 +694,56 @@ function submitReq(e){
   document.getElementById("reqSuccess").style.display="block";
 }
 
+// Platform update submissions
+function initUpdateForm(){
+  const sel=document.getElementById("updatePlatform");
+  if(!sel)return;
+  platforms.forEach(p=>{
+    const opt=document.createElement("option");
+    opt.value=p.id;
+    opt.textContent=p.name;
+    sel.appendChild(opt);
+  });
+}
+
+function submitUpdate(e){
+  e.preventDefault();
+  const platform=document.getElementById("updatePlatform");
+  const category=document.getElementById("updateCategory");
+  const detail=document.getElementById("updateDetail");
+  const name=document.getElementById("updateName");
+  const email=document.getElementById("updateEmail");
+
+  const platformName=platform.options[platform.selectedIndex].textContent;
+  const subject=encodeURIComponent(`Platform Update: ${platformName} - ${category.value}`);
+  const body=encodeURIComponent(
+    `PLATFORM UPDATE SUBMISSION\n` +
+    `========================\n\n` +
+    `Platform: ${platformName}\n` +
+    `Category: ${category.value}\n` +
+    `Submitted by: ${name.value||'Anonymous'}${email.value?' ('+email.value+')':''}\n\n` +
+    `Update details:\n${detail.value}\n\n` +
+    `---\nSubmitted via feverbee.com/communityplatforms`
+  );
+
+  // Also log to the worker if available
+  if(typeof AI_PROXY_URL!=='undefined'&&AI_PROXY_URL){
+    fetch(AI_PROXY_URL.replace(/\/$/, '') + '/../',{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        requirements:`[UPDATE SUBMISSION - DO NOT PROCESS AS AI QUERY] Platform: ${platformName}, Category: ${category.value}, Detail: ${detail.value.slice(0,500)}`,
+        systemPrompt:"Log only",
+        question:`[UPDATE] ${platformName}: ${category.value} - ${detail.value.slice(0,300)}`
+      })
+    }).catch(()=>{});
+  }
+
+  window.location.href=`mailto:richard@feverbee.com?subject=${subject}&body=${body}`;
+  document.getElementById("updateForm").style.display="none";
+  document.getElementById("updateSuccess").style.display="block";
+}
+
 // --- PDF EXPORT ---
 function exportPdf(){
   const el=document.getElementById("compareContent");
@@ -770,6 +820,7 @@ renderWeights();
 renderOverview();
 renderQuickPicks();
 updateCompareBar();
+initUpdateForm();
 // Handle initial hash - try immediately and retry if platforms aren't ready
 handleHash();
 if(location.hash)window.addEventListener('load',handleHash);
