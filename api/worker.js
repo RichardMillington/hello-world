@@ -27,8 +27,8 @@ const ALLOWED_ORIGINS = [
   'https://feverbee.com',
   'https://richardmillington.github.io',
 ];
-const MAX_REQUESTS_PER_IP_PER_HOUR = 5;
-const MAX_REQUESTS_PER_DAY_GLOBAL = 200;
+const MAX_REQUESTS_PER_IP_PER_HOUR = 20;
+const MAX_REQUESTS_PER_DAY_GLOBAL = 1000;
 const MAX_INPUT_CHARS = 25000; // raised to accommodate conversation history
 const MAX_OUTPUT_TOKENS = 2000;
 const CACHE_TTL_SECONDS = 60;

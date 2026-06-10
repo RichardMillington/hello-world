@@ -255,7 +255,10 @@ INSTRUCTIONS:
 
     if(!resp.ok){
       const err=await resp.json().catch(()=>({}));
-      throw new Error(err.error?.message||`API error: ${resp.status}`);
+      if(resp.status===429){
+        throw new Error(err.error||"You've reached the rate limit for AI questions. Please try again in an hour, or email richard@feverbee.com with your question and we'll respond directly.");
+      }
+      throw new Error(err.error?.message||err.error||`Something went wrong (${resp.status}). Please try again.`);
     }
 
     const data=await resp.json();
