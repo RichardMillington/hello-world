@@ -115,7 +115,7 @@ const platforms = [
       integrations:"Best Zendesk integration in the market. Salesforce, Slack, Zoom, Zapier. No native AMS connectors.",
       dataPrivacySecurity:"Standard enterprise security with SSO. GDPR compliant. No standout security features.",
       servicesSupport:"Dedicated CSM on all plans. Good documentation. Responsive support team.",
-      reportsAnalytics:"Decent dashboards but analytics feel a generation behind Khoros and Salesforce."
+      reportsAnalytics:"Solid dashboards with engagement metrics, content performance, and contributor tracking. Room to improve but functional."
     },
     execution:{
       "Discussions":"Traditional threaded forum with categories. Clean, focused interface. Strong for B2B support communities where searchability matters.",
@@ -148,8 +148,8 @@ const platforms = [
       {date:"Mar 2026",text:"TLI selects Higher Logic for Autism Knowledge Gateway community"}
     ],
     strengths:["Best-in-class Zendesk integration for support communities","Widget Builder (React/TypeScript IDE) for deep customisation","AI Search Assistant with RAG technology","Dedicated Customer Success team on all plans","Strong in B2B support community use cases"],
-    considerations:["No native mobile app","No built-in events feature","Limited multi-language vs Khoros","Analytics less advanced than competitors","No blog functionality built in"],
-    editorial:"Higher Logic Vanilla is the quiet achiever in this space. It doesn't generate the most buzz, but organisations running it tend to be satisfied. The Zendesk integration is the best we've seen from any platform. If Zendesk is your support tool, this is probably your community platform. The Widget Builder is genuinely impressive for teams with developer resources. It's a real IDE, not a drag-and-drop toy. The AI Search Assistant with RAG is practical and well-implemented. Where it falls short: no mobile app, no events, and the analytics still needs work. It's a workhorse, not a showpiece."
+    considerations:["No native mobile app","No built-in events feature","Limited multi-language vs Khoros","Analytics improving but not yet best-in-class","No blog functionality built in"],
+    editorial:"Higher Logic Vanilla is the quiet achiever in this space. It doesn't generate the most buzz, but organisations running it tend to be satisfied. The Zendesk integration is the best we've seen from any platform. If Zendesk is your support tool, this is probably your community platform. The Widget Builder is genuinely impressive for teams with developer resources. It's a real IDE, not a drag-and-drop toy. The AI Search Assistant with RAG is practical and well-implemented. Where it falls short: no mobile app, no events, and no blog functionality. It's a workhorse, not a showpiece."
   },
   {
     id:"salesforce",name:"Salesforce Experience Cloud",category:"established",catLabel:"Established Platform",
@@ -212,7 +212,7 @@ const platforms = [
       featureCompleteness:"Forums, Q&A, ideation, KB, blogs, gamification, mobile app. No native events. Feature-rich but aging.",
       featureDepth:"Average across 8 features the platform actually offers (excluding Events). Strongest: Content & Knowledge (7), Moderation (7).",
       easeOfUse:"Enterprise setup with older UX patterns. Functional but dated interface requires adjustment.",
-      qualityOfFeatures:"Mature forum + KB. Solid but not innovating. Telligent heritage shows in the design.",
+      qualityOfFeatures:"Mature forum + KB with solid execution. Telligent heritage shows in the design but core features are reliable.",
       integrations:"Solid integration with Verint CX suite, Salesforce, and Dynamics. Decent third-party ecosystem but not as broad as newer platforms.",
       dataPrivacySecurity:"Strong compliance and security. Enterprise-grade controls. Good for regulated industries.",
       servicesSupport:"Enterprise support available but innovation pace is slower than competitors.",
@@ -363,7 +363,7 @@ const platforms = [
       integrations:"Salesforce, HubSpot, SSO, payment gateways. Fewer options than enterprise community vendors.",
       dataPrivacySecurity:"GDPR-compliant European origins. Strong privacy positioning. SOC 2 equivalent.",
       servicesSupport:"Customer success available. Smaller team but responsive. Growing support infrastructure.",
-      reportsAnalytics:"Member engagement dashboards. Activity tracking. Less sophisticated than enterprise analytics."
+      reportsAnalytics:"Member engagement dashboards and activity tracking. Adequate for membership organisations. Improving with recent updates."
     },
     execution:{
       "Discussions":"Discussion forums available but less sophisticated than dedicated community platforms. Not the primary use case - member networking is.",
@@ -395,7 +395,7 @@ const platforms = [
       {date:"2025",text:"Positioning shift from 'alumni platform' to general 'community management platform'"}
     ],
     strengths:["Purpose-built for alumni/membership organisations - features like mentoring, fundraising, job boards are native","Strongest white-labelling of any platform (fully branded apps, no 'powered by')","All-in-one for membership orgs: CMS + CRM + events + fundraising + jobs","GDPR-compliant European origins","Native mobile apps included"],
-    considerations:["Forum/discussion features less sophisticated than dedicated community platforms","Fewer third-party integrations than competitors","Academic/alumni DNA may not suit all enterprise use cases","Smaller engineering team than established vendors","Analytics less advanced"],
+    considerations:["Forum/discussion features less sophisticated than dedicated community platforms","Fewer third-party integrations than competitors","Academic/alumni DNA may not suit all enterprise use cases","Smaller engineering team than established vendors","Analytics adequate but not a standout strength"],
     editorial:"Hivebrite is the clear winner for alumni networks, associations, and membership organisations. Features like mentoring programme management, fundraising, and job boards are native, not afterthoughts. The white-labelling is the best in the market, and the branded mobile apps are a genuine differentiator. However, we see Hivebrite trying to position itself as a general-purpose community platform, and that's a stretch. The discussion and content features lag behind dedicated community vendors. If you're a university, professional association, or membership organisation, Hivebrite is purpose-built for you. If you're a SaaS company looking for customer community, there are better options."
   },
   {
@@ -511,7 +511,7 @@ const platforms = [
       qualityOfFeatures:"Broad feature set but shallow execution. Community, courses, events, and monetisation are all present but none are best-in-class. Jack of all trades, master of none.",
       integrations:"Zapier, Stripe, Zoom, Slack, Mailchimp. API on higher tiers. Headless/embed options for SaaS.",
       dataPrivacySecurity:"Adequate for creator/SMB use. SSO on higher tiers only. Less enterprise-grade than larger platforms.",
-      servicesSupport:"Self-serve model with docs and community. No dedicated CSM unless Enterprise tier.",
+      servicesSupport:"Self-serve model. Documentation and community support only on most tiers. Limited hands-on help.",
       reportsAnalytics:"Member activity and content analytics. Less depth than enterprise platforms but adequate for creators."
     },
     execution:{
