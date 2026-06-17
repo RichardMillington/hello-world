@@ -137,7 +137,7 @@ const platforms = [
     keyIntegrations:["Zendesk (deep bi-directional integration)","Salesforce","Slack","Zoom (one-click event registration)","Zapier","ServiceNow","Jira","Aha!"],
     examples:[
       {name:"Airtable Community",url:"https://community.airtable.com",desc:"User community for the no-code platform (Vanilla-powered)"},
-      {name:"DigitalOcean Community",url:"https://www.digitalocean.com/community",desc:"Developer tutorials and Q&A community"},
+      {name:"Acer Community",url:"https://community.acer.com",desc:"Global support community for Acer hardware and devices (200,000+ members)"},
       {name:"Malwarebytes Forums",url:"https://forums.malwarebytes.com",desc:"Long-standing support community"}
     ],
     recentNews:[
