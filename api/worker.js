@@ -146,7 +146,7 @@ async function callClaude(apiKey, requirements, systemPrompt) {
       'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-6',
       max_tokens: MAX_OUTPUT_TOKENS,
       system: systemPrompt,
       messages: [{ role: 'user', content: `Here are my community platform requirements:\n\n${requirements}` }],
