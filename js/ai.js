@@ -109,21 +109,12 @@ function buildPlatformSummary(){
   }).join("\n\n");
 }
 
-// Build survey feedback summary for the prompt
-function buildSurveySummary(){
-  if(typeof surveyData==='undefined') return '';
-  return Object.entries(surveyData).map(([id,d])=>{
-    const scores=Object.entries(d.scores).map(([k,v])=>`${k}: ${v}/5`).join(", ");
-    const topComments=d.feedback.slice(0,5).map((c,i)=>`  "${c.substring(0,200)}"`).join("\n");
-    return`**${d.name}** (${d.n} respondents, overall: ${d.overall}/10)\nScores: ${scores}\nSample user feedback:\n${topComments}`;
-  }).join("\n\n");
-}
-
 function buildDetailedScores(){
   if(typeof feverbeeJustifications==='undefined')return'';
   return feverbeeJustifications.map(j=>`${j.platform} - ${j.feature} (${j.score}/10): ${j.justification}`).join("\n");
 }
 
+// Set this to your deployed Cloudflare Worker URL to enable proxy mode (no API key needed for visitors)
 const AI_PROXY_URL = 'https://feverbee-ai-recommend.richard-708.workers.dev/';
 
 // Conversation memory: [{q, a}] pairs from this session
@@ -196,8 +187,8 @@ async function runAiAnalysis(){
   btn.disabled=true;
   resultsDiv.innerHTML='<div class="ai-loading"><span class="spinner"></span>Analysing against FeverBee\'s platform data...</div>';
 
-  const surveySummary=buildSurveySummary();
   const detailedScores=buildDetailedScores();
+  const surveySummary=buildSurveySummary();
 
   const systemPrompt=`You are a FeverBee community platform analyst. You answer questions about enterprise community platforms with authority and specificity, drawing on FeverBee's detailed analysis of 14 platforms.
 
@@ -254,7 +245,7 @@ INSTRUCTIONS:
           "anthropic-dangerous-direct-browser-access":"true"
         },
         body:JSON.stringify({
-          model:"claude-sonnet-4-20250514",
+          model:"claude-sonnet-4-6",
           max_tokens:2000,
           system:systemPrompt,
           messages:[{role:"user",content:fullInput}]
